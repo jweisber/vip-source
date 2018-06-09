@@ -1,0 +1,283 @@
+# Logic
+
+Logic is the study of what follows from what. From the information that Tweety is a bird and all birds are animals, it follows that Tweety is an animal.
+
+Can Tweety fly? Well, most birds can fly, so probably. But it's not certain. Tweety might be a penguin.
+
+So some things follow with certainty, others only follow with high probability. (And some don't follow at all, of course.)
+
+*Deductive* logic is the branch of logic that studies when something follows with certainty. *Inductive* logic studies when a thing follows with high probability.
+
+This book is about inductive logic and probability. But we need a few concepts from deductive logic to lay the foundations.
+
+
+## Validity & Soundness
+
+`r newthought("In deductive logic")` we study "valid" arguments. An argument is ***valid*** when the conclusion must be true if the premises are true. Take this example from earlier:
+
+> Tweety is a bird.\
+> All birds are animals.\
+> Therefore, Tweety is an animal.
+
+The first two lines are called the *premises* of the argument. The last line is called the *conclusion*. In this example, the conclusion must be true if the premises are. So the argument is valid.
+
+Here's another example of a valid argument:
+
+> Tweety is taller than Kwazi.\
+> Kwazi is taller than Peso.\
+> Therefore, Tweety is taller than Peso.
+
+The argument is valid because it's just not possible for the premises to be true and the conclusion false.
+
+Here's an example of an *invalid* argument:
+
+> Tweety is a bird.\
+> Most birds can fly.\
+> Therefore, Tweety can fly.
+
+It's not valid because validity requires the conclusion to follow *necessarily*. If there's any way for the the premises to be true yet the conclusion false, the argument doesn't count as valid. And like we said, Tweety might be a penguin.
+
+Valid arguments are interesting because their logic is airtight. If the assumptions of the argument are correct, there's no way to go wrong accepting the conclusion. But what if the assumptiosn *aren't* correct? Validity isn't everything.
+
+`r newthought("We call an argument")` ***sound*** when it's valid *and* all the premises are true:
+$$ \mbox{sound = valid + true premises}.$$
+For example, here's a sound argument:
+
+> The author of this book is human.\
+> All humans are animals.\
+> Therefore, the author of this book is an animal.
+
+Sound arguments are important because their conclusions are always true. The premises of a valid argument are true by definition. And since it's also valid by definition, that gauratnees the conclusion is true also.
+
+But deductive logic studies validity instead of soundness. Why? Because logicians aren't in the business of determining when the premises of an argument are true. As a logician, I might have no idea who Tweety is, and thus no idea whether Tweety is a bird. I might not even know whether all birds fly, or just some, or even none. That's a job for an ornithologist. A logician's job is to assess the *logic* of an argument, the connections between its assumptions and its conclusion. Taking the premises of an argument for granted, how well do those assumptions support the conclusion? That's something you don't need to know any ornithology to study. Or biology, or medicine, or physics, or whatever topic a particular argument concerns. 
+
+`r newthought("Validity is a hypothetical")` notion. It's about whether the conclusion must be true *if* the premises are true. So when you're asking whether an argument is valid, start by supposing or imagining the premises to be true. Then ask yourself: in this hypothetical scenario, is there any way  the conclusion could be false? If there is, the argument is *invalid*. Otherwise, it's valid.
+
+
+## Propositions
+
+`r newthought("Arguments are made out of statements")`, assertions that something is true. The last statement/assertion is the conclusion of the argument. The one's building up to it are the premises.
+
+In logic we call these statements *propositions*. And we use capital letters of the English alphabet as shorthand for them. For example, this argument:
+
+> If Aegon is a tyrant, then Brandon is a wizard.\
+> Aegon is a tyrant.\
+> Therefore, Brandon is a wizard.
+
+can be summarized like this:
+
+> If $A$, then $B$.\
+> $A$.\
+> Therefore, $B$.
+
+`r newthought("Not all sentences")` are propositions. Some are questions; some are commands; some are expressions of worry. For example:
+
+- What time is it?
+- Pass the rooster sauce!
+- Uh oh.
+
+One way to distinguish propositions from these other kinds of sentences is: propositions are capable of being true or false. It wouldn't make sense to respond to someone who asks you what time it is by saying, "what you just said is false!", or "that's true!".
+
+
+## Visualizing Propositions
+
+In the last chapter we talked about how some pairs of propositions are mutually exclusive: if one of them is true, the other must be false. For example:
+
+- $A$: Confucius was born in the 6th Century A.D.
+- $B$: Confucius was born in the 6th Century B.C.
+
+There is no way for both of these propositions to be true, and we can visualize this relationship:
+
+```{r echo=FALSE, fig.cap="Mutually exclusive propositions", cache=TRUE}
+
+euler_diagram <- function(propositions) {
+    ggplot(data = propositions) + theme_void() + coord_fixed() +
+        xlim(-3,3) + ylim(-2,2) +
+        theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+        geom_circle(aes(x0 = cirx, y0 = ciry, r = r)) +
+        geom_text(aes(x = labx, y = laby, label = labl), 
+                  parse = TRUE, size = 6, family=c("serif"))
+}
+
+propositions <- data.frame(
+    cirx = c(-1.25  , 1.25),
+    ciry = c(0      , 0),
+    r    = c(1      , 1),
+    labx = c(-2     , 2),
+    laby = c(1      , 1),
+    labl = c("italic(A)", "italic(B)")
+)
+
+euler_diagram(propositions)
+```
+
+Each circle represents a proposition. You can think of it as tracing out the possible situations where the proposition would be true. The circles don't overlap because there is no possible situation where both propositions in this example are true.
+
+Contrast that example with these two propositions, which are not mutually exclusive:
+
+- Confucius was born in Asia.
+- Confucius was born in the 6th Century B.C.
+
+When propositons are not mutually exclusive, we say they are ***compatible***. The diagram in such a case has overlapping circles:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="Compatible propositions", cache=TRUE}
+propositions <- data.frame(
+    cirx = c(-.5   , .5),
+    ciry = c(0     , 0),
+    r    = c(1     , 1),
+    labx = c(-1.25 ,  1.25),
+    laby = c(1     , 1),
+    labl = c("italic(A)", "italic(B)")
+)
+
+euler_diagram(propositions)
+```
+
+The region of the diagram where the circles overlap represents the possible scenarios where both propositions are true (the "$A \,\&\, B$ region").
+
+```{r echo=FALSE, fig.cap="Leonhard Euler (1707–1783)", fig.margin = TRUE, out.width = '60%'}
+knitr::include_graphics("img/euler.png")
+```
+
+These kinds of diagrams are called ***Euler diagrams*** (prounounced "oiler"), after the mathematician Leonhard Euler. You may have seen Venn diagrams before, which are very similar. But in Euler diagrams the circles don't have to overlap.
+
+`r newthought("Sometimes one circle")` will even contain another circle entirely. Take this example:
+
+- Confucius was born in Asia.
+- Confucius was born.
+
+These propositions aren't just compatible. If the first is true, then the second *must* be true. Imagine an argument with the first proposition as the premise and the second proposition the conclusion. The argument would be valid:
+
+> Confucius was born in Asia.\
+> Therefore, Confucius was born.
+
+In this case we say that the first proposition ***logically entails*** the second. In terms of an Euler diagram:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="Logical entailment"}
+propositions <- data.frame(
+    cirx = c(0     , 0),
+    ciry = c(0     , 0),
+    r    = c(1.25  , .5),
+    labx = c(-.5   , -.95),
+    laby = c(.5    , 1.15),
+    labl = c("italic(A)", "italic(B)")
+)
+
+euler_diagram(propositions)
+```
+
+The first circle is contained entirely in the second because there is no possible situation where the first proposition is true yet the second false.
+
+What if an argument has multiple premises? For example:
+
+> Zhuangzi was born in the Anhui province of China.\
+> Zhuoru was born in Beijing, the capital of China.\
+> Therefore, both Zhuangzi and Zhuoru were born in China.
+
+This argument is valid, and the diagram might look like this:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="A valid argument with two premises"}
+propositions <- data.frame(
+    cirx = c(-.75  , .75, 0),
+    ciry = c(0     , 0  , 0.25),
+    r    = c(1     , 1  , 1),
+    labx = c(-1.25 ,  1.25, 0),
+    laby = c(1.15     , 1.15, 1.5),
+    labl = c("italic(A)", "italic(B)", "italic(C)")
+)
+
+euler_diagram(propositions)
+```
+Notice how the $A \,\&\, B$ region lies entirely within the $C$ circle. This reflects the argument's validity: there is no way for the first two propositions to be true and the last one false.
+
+In contrast, an invalid argument would have a diagram like this:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="An invalid argument with two premises"}
+propositions <- data.frame(
+    cirx = c(-.75  , .75   , 0),
+    ciry = c(-.5   , -.5   , 0.25),
+    r    = c(1     , 1     , 1),
+    labx = c(-1.25 , 1.25  , 0),
+    laby = c(.65     , .65     , 1.5),
+    labl = c("italic(A)", "italic(B)", "italic(C)")
+)
+
+euler_diagram(propositions)
+```
+
+This diagram allows for the possibility that $A$ and $B$ are both true yet $C$ is false, by putting part of the $A \,\&\, B$ region outside the $C$ circle. 
+
+
+## Strength
+
+Inductive logic looks for arguments that aren't necessarily valid but are still "strong". A ***strong*** argument is one where the conclusion is highly probable, if the premises are true. For example:
+
+> The sun has risen every day so far.\
+> Therefore, the sun will rise again tomorrow.
+
+This argument isn't valid, because it's possible the conclusion is false even though the premise is true. Maybe the sun will explode in the night for some reason unknown to modern science. Or maybe the Earth's rotation will be stopped by alien forces.
+
+These possibilities aren't very likely, of course. So the argument is strong, even though it's not strictly valid. The premise gives us very good reason to believe the conclusion, it's just that the reason isn't 100% airtight.
+
+In an Euler diagram then, the premise circle wouldn't be contained entirely within the conclusion circle. We have to leave some room for the possibility that the premise is true and the conclusion false. But we can still convey that this possibility has only a very slight chance of being true by making it slim:
+
+```{r echo=FALSE, fig.cap="A strong argument"}
+propositions <- data.frame(
+    cirx = c(-.5   , .5),
+    ciry = c(0     , 0),
+    r    = c(1.9     , 1),
+    labx = c(-2.35 ,  1.55),
+    laby = c(1     , .55),
+    labl = c("italic(A)", "italic(B)")
+)
+
+euler_diagram(propositions)
+```
+
+We could also label the $A \,\& \sim\! B$ region with a small number if we knew exactly how unlikely this possibility was.
+
+
+`r newthought("Strength comes in degrees.")` An argument's premises can make the conclusion somewhat likely, very likely, almost certain, or perfectly certain. So arguments can be weak, somewhat strong, very strong, etc.
+
+Strength is different from validity in this way, since validity is all-or-nothing. If there is any possible way for the premises to be true and the conclusion false, the argument is invalid---no matter how remote or bizarre that possibility is.
+
+Notice, however, that valid arguments are strong, by definition. Since it's impossible for a valid argument's conclusion to be false if the premises are true, the premises make the conclusion 100% probable. A valid argument is as strong as an argument can be.
+
+
+## Forms of Inductive Argument
+
+What kids of strong arguments are there, and how strong are they? That's what the rest of this book is about, in a way. But we can start by identifying some common forms of inductive argument.
+
+`r newthought("Generalizing from observed instances")` is a common kind of inference:
+
+> Every raven I have every seen has been black.\
+> Therefore, all ravens are black.
+
+Arguments of this kind are stronger the more instances you observe. If you've only ever seen two ravens, this argument won't be very compelling. But if you've seen thousands, then it's much stronger.
+
+It also helps to observe different kinds of instances. If you've only observed ravens in your city or town, then even the thousands you've seen won't count for much. It's quite possible the raven population in your area is unusual, and ravens on the other side of the world are quite different.
+
+`r newthought("Going in the opposite direction")`, we can also use what we know about a general population to draw conclusions about particular instances we haven't observed yet. We saw an example of this earlier:
+
+> Most birds can fly.\
+> Therefore, my pet bird Tweety can fly.
+
+Once again, the strength of such inferences varies with the details. If "most birds" means 99%, the argument is quite strong. If "most" means only 80%, then it's not so strong.
+
+It also helps to know that Tweety is similar to the birds that can fly, and dissimilar to the ones that can't. If we know that Tweety is small and has feathers, that makes the argument stronger. If instead we know that Tweety is large, and coloured black and white, that makes the argument weaker because it suggests Tweety may be a penguin.
+
+
+`r newthought("Inference to the best explanation")` is another common form of argument, quite different from the last two. Here's an example:
+
+> My car won't start and the gas gauge reads 'empty'.\
+> Therefore, my car is out of gas.
+
+An empty tank would explain the sytmptoms described in the premise, so the premise makes the conclusion plausible. There could be other possible explanations, of course. Maybe the engine and the gas gauge both just happened to break at the same time. But that would be quite a coincidence, so this explanation isn't as good.
+
+What makes one explanation better than another? That turns out to be a very hard question, and there is no generally accepted answer. We'll come back to this issue later, once we have a better grip on the basics of probability.
+
+
+## Exercises {-}
+
+1. Lorem ipsum dolor sit amet...
+2. Lorem ipsum dolor sit amet...

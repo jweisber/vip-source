@@ -1,0 +1,341 @@
+# Truth Tables
+
+Before going hogwild on inductive logic and probability, it helps to have a solid foundation from deductive logic. We've already introduced most of the deductive logic concepts we'll need. In this chapter we'll cement those, and introduce a few more, using a helpful tool: truth tables.
+
+
+## Connectives
+
+`r newthought("Complex propositions")` can be built up out of other simpler propositions like so:
+
+- __Aegon is a tyrant__ and __Brandon is a wizard__.
+- Either __Aegon is a tyrant__ or __Brandon is a wizard__.
+- It's not true that __Aegon is a tyrant__.
+
+The bold propositions here are used to build up the longer, more complex ones  using the terms *and*, *either/or*, and *it's not true that*. Such terms are called *connectives*.
+
+The three connectives just listed are the only ones we'll need in this book. Each has a name and a shorthand symbol:
+
+```{r echo=FALSE}
+df <- data.frame(
+    Name = c("conjunction", "disjunction", "negation"),
+    English = c("and", "either/or", "it's not true that"),    
+    Symbol = c("$\\&$", "$\\vee$", "$\\sim$"),
+    Example = c("$A \\,\\&\\, B$", "$A \\vee B$", "$\\sim\\! A$")
+)
+knitr::kable(df)
+```
+
+When you use these connectives, the truth of the complex proposition depends on the truth of its components. For example, $\sim\! A$ is false if $A$ is true, and it's true if $A$ is false:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "F"),
+    NotA = c("F", "T")
+)
+colnames(df) <- c("$A$", "$\\sim\\! A$")
+knitr::kable(df, align = "c", caption="Truth table for $\\sim$")
+```
+
+Slightly more complicated is the rule for $\&$ ("and"):
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    AandB = c("T", "F", "F", "F")
+)
+colnames(df) <- c("$A$", "$B$", "$A \\,\\&\\, B$")
+knitr::kable(df, align = "c", caption="Truth table for &")
+```
+
+There are four rows now because $\&$ combines two propositions $A$ and $B$ together to make the more complex proposition $A \& B$. And each of those propositions could be either true or false. So there are $2 \times 2 = 4$ possible situations to consider.
+
+Notice that in only one of these situations is $A \& B$ true, namely the first row where both $A$ and $B$ are true.
+
+The table for $\vee$ ("either/or") is a little more surprising:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    AandB = c("T", "T", "T", "F")
+)
+colnames(df) <- c("$A$", "$B$", "$A \\vee B$")
+knitr::kable(df, align = "c", caption="Truth table for $\\vee$")
+```
+
+Now the complex proposition is always true, except for one case: the last row where $A$ and $B$ are both false. It makes sense that $A \vee B$ is false when both sides are false. But why is it true when both sides are true? Doesn't "Either $A$ or $B$" mean that *just one of these* is true?
+
+Sometimes it does have that meaning. But sometimes it means "Either A or B, *or both*". Consider this exchange:
+
+> X: What are you doing tomorrow night?\
+> Y: I'm either going to a friend's house or out to a club. I might even do both if there's time.
+
+Y isn't necessarily changing their mind here. They could just be clarifying: they're doing at least one of these things, possibly even both of them. 
+
+Although it's common to use "either/or" in English to mean *just* one or the other, not both, in logic we use the more permissive reading. So $A \vee B$ means *either $A$, or $B$, or both*.
+
+We can always convey the stricter way of meaning "either/or" with a more complex construction:
+$$(A \vee B) \,\&\, \sim\! (A \,\&\, B).$$
+That says:
+$$ \mbox{Either $A$ or $B$ is true, and it's not the case that both $A$ and $B$ are true}.$$
+Which is just a very explicit way of saying: either one or the other, but not both.
+
+In fact we can verify as much with a truth-table. We start with an empty table, where the header lists all the formulas we use to build up to the final, complex one we're interested in:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = rep("$\\;$", 4),
+    B = rep(" ", 4),
+    AorB = rep(" ", 4),
+    AandB = rep(" ", 4),
+    NotAandB = rep(" ", 4),
+    Whole = rep(" ", 4)
+)
+colnames(df) <- c("$A$", "$B$", "$A \\vee B$", "$A \\& B$", "$\\sim\\!(A \\,\\&\\, B$)", "$(A \\vee B) \\,\\&\\, \\sim\\! (A \\,\\&\\, B)$")
+knitr::kable(df, align = "c")
+```
+
+Then we fill in the possible truth-values for the simplest propositions, $A$ and $B$:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    AorB = rep(" ", 4),
+    AandB = rep(" ", 4),
+    NotAandB = rep(" ", 4),
+    Whole = rep(" ", 4)
+)
+colnames(df) <- c("$A$", "$B$", "$A \\vee B$", "$A \\& B$", "$\\sim\\!(A \\,\\&\\, B$)", "$(A \\vee B) \\,\\&\\, \\sim\\! (A \\,\\&\\, B)$")
+knitr::kable(df, align = "c")
+```
+
+Next we consult the truth-tables above for $\&$ and $\vee$ to fill in the columns at the next level of complexity:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    AorB = c("T", "T", "T", "F"),
+    AandB = c("T", "F", "F", "F"),
+    NotAandB = rep(" ", 4),
+    Whole = rep(" ", 4)
+)
+colnames(df) <- c("$A$", "$B$", "$A \\vee B$", "$A \\& B$", "$\\sim\\!(A \\,\\&\\, B$)", "$(A \\vee B) \\,\\&\\, \\sim\\! (A \\,\\&\\, B)$")
+knitr::kable(df, align = "c")
+```
+
+Then move up to the next level of complexity. To fill in the column for $\sim\!(A \,\&\, B)$, we consult the column for $A \,\&\, B$ and apply the rules from the table for $\sim$:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    AorB = c("T", "T", "T", "F"),
+    AandB = c("T", "F", "F", "F"),
+    NotAandB = c("F", "T", "T", "T"),
+    Whole = rep(" ", 4)
+)
+colnames(df) <- c("$A$", "$B$", "$A \\vee B$", "$A \\& B$", "$\\sim\\!(A \\,\\&\\, B$)", "$(A \\vee B) \\,\\&\\, \\sim\\! (A \\,\\&\\, B)$")
+knitr::kable(df, align = "c")
+```
+
+Finally, we consult the columns for $A \vee B$ and $\sim\!(A \,\&\, B)$, and the table for $\&$, to fill in the column $(A \vee B) \,\&\, \sim\!(A \& B)$:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    AorB = c("T", "T", "T", "F"),
+    AandB = c("T", "F", "F", "F"),
+    NotAandB = c("F", "T", "T", "T"),
+    Whole = c("F", "T", "T", "F")
+)
+colnames(df) <- c("$A$", "$B$", "$A \\vee B$", "$A \\& B$", "$\\sim\\!(A \\,\\&\\, B$)", "$(A \\vee B) \\,\\&\\, \\sim\\! (A \\,\\&\\, B)$")
+knitr::kable(df, align = "c")
+```
+
+Complex constructions like this are difficult at first. Practice is the only way to become fluent, so doing the exercises is essential.
+
+
+## Logical Truths & Contradictions
+
+Some propositions are come out true in every row of the truth table. Consider $A \vee \sim\! A$ for example:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "F"),
+    NotA = c("F", "T"),
+    AorNotA = c("T", "T")
+)
+colnames(df) <- c("$A$", "$\\sim\\! A$", "$A \\,\\vee \\sim\\! A$")
+knitr::kable(df, align = "c")
+```
+
+These propositions are especially interesting because they *must* be true. Their truth is guaranteed, just as a matter of logic. So we call them ***logical truths***.
+
+The other side of this coin is propositions that are false in every row of the truth table, like $A \,\&\, \sim\!A$:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "F"),
+    NotA = c("F", "T"),
+    AandNotA = c("F", "F")
+)
+colnames(df) <- c("$A$", "$\\sim\\! A$", "$A \\,\\&\\, \\sim\\! A$")
+knitr::kable(df, align = "c")
+```
+
+These propositions are called ***contradictions***.
+
+Notice that the negation of a contradiction is a logical truth. For example, consider the truth table for $\sim\! (A \,\&\, \sim\! A)$:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "F"),
+    NotA = c("F", "T"),
+    AandNotA = c("F", "F"),
+    NotAandNotA = c("T", "T")
+)
+colnames(df) <- c("$A$", "$\\sim\\! A$", "$A \\,\\&\\, \\sim\\! A$", "$\\sim\\! (A \\,\\&\\, \\sim\\! A)$")
+knitr::kable(df, align = "c")
+```
+
+
+## Mutually Exclusivity & Truth Tables
+
+`r newthought("Truth tables can be used")` to establish that two propositions are mutually exclusive. A very simple example is the propositions $A$ and $\sim\! A$:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "F"),
+    NotA = c("F", "T")
+)
+colnames(df) <- c("$A$", "$\\sim\\! A$")
+knitr::kable(df, align = "c")
+```
+
+There is no row in the table where both propositions are true. And if two propositions can't both be true, they are mutually exclusive by definition.
+
+A slightly more complex example is the propositions $A \vee B$ and $\sim\! A \,\&\, \sim\! B$:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    NotA = c("F", "F", "T", "T"),
+    NotB = c("F", "T", "F", "T"),
+    AorB = c("T", "T", "T", "F"),
+    NotAandNotB = c("F", "F", "F", "T")
+)
+colnames(df) <- c("$A$", "$B$", "$\\sim\\! A$", "$\\sim\\! B$", "$A \\vee B$",
+                  "$\\sim\\! A \\,\\&\\, \\sim\\! B$")
+knitr::kable(df, align = "c")
+```
+
+Here again, there's no row where $A \vee B$ and $\sim\! A \,\&\, \sim\! B$ are both true. So they are mutually exclusive.
+
+
+## Entailment & Equivalence
+
+`r newthought("Truth tables can also be used")` to establish that an argument is valid. Here's a very simple example:
+
+> $A \,\&\, B$.\
+> Therefore, $A$.
+
+Obviously it's not possible for the first line to be true and the second line false, so the argument is valid (if a bit silly). Accordingly, there is no line of the truth table where $A \,\&\, B$ comes out true, yet $A$ comes out false:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    AandB = c("T", "F", "F", "F")
+)
+colnames(df) <- c("$A$", "$B$", "$A \\,\\&\\, B$")
+knitr::kable(df, align = "c")
+```
+
+The only line where $A \,\&\, B$ comes out true is the first one. And on that line $A$ is true too. So the inference from $A \,\&\, B$ to $A$ is valid.
+
+One more example:
+
+> $A \vee B$.\
+> $\sim\! A$.\
+> Therefore, $B$.
+
+This argument is valid because the first premise says that at least one of the two propositions must be true, and the second line says it's not $A$. So it must be $B$ that's true, as the conclusion asserts. And once again there is no line of the truth table where both $A \vee B$ and $\sim\! A$ are true, yet $B$ is false:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    NotA = c("F", "F", "T", "T"),
+    AveeB = c("T", "T", "T", "F")
+)
+colnames(df) <- c("$A$", "$B$", "$\\sim\\! A$", "$A \\vee B$")
+knitr::kable(df, align = "c")
+```
+
+The only line where both $A \vee B$ and $\sim\! A$ are true is the third row, and $B$ is true on that row. So once again the truth table tells us this argument is valid.
+
+When an argument is valid, we say its premises ***entail*** the conclusion. Returning to the last two examples:
+
+- $A \,\&\, B$ entails $A$.
+- The propositions $A \vee B$ and $\sim\! A$ together entail $B$.
+
+When one proposition entails another, there is no line of the truth table where the first proposition is true and the second is false.
+
+`r newthought("Sometimes entailment goes in both directions")`: the first proposition entails the second *and the second entails the first*. For example, not only does $A \,\&\, B$ entail $B \,\&\, A$, but also $B \,\&\, A$ entails $A \,\&\, B$.
+
+We say such propositions are ***logically equivalent***. In terms of truth tables, their columns match perfectly. They are identical copies of T's and F's.
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    AandB = c("T", "F", "F", "F"),
+    BandA = c("T", "F", "F", "F")
+)
+colnames(df) <- c("$A$", "$B$", "$A \\,\\&\\, B$", "$B \\,\\&\\, A$")
+knitr::kable(df, align = "c")
+```
+
+A more complex example is the propositions $\sim\! (A \vee B)$ and $\sim\! A \,\&\, \sim\! B$:
+
+```{r echo=FALSE}
+df <- data.frame(
+    A = c("T", "T", "F", "F"),
+    B = c("T", "F", "T", "F"),
+    NotA = c("F", "F", "T", "T"),
+    NotB = c("F", "T", "F", "T"),
+    AorB = c("T", "T", "T", "F"),
+    NotAorB = c("F", "F", "F", "T"),
+    NotAandNotB = c("F", "F", "F", "T")
+)
+colnames(df) <- c("$A$", "$B$", "$\\sim\\! A$", "$\\sim\\! B$", "$A \\vee B$", 
+                  "$\\sim\\!(A \\vee B)$", "$\\sim\\! A \\,\\&\\, \\sim\\! B$")
+knitr::kable(df, align = "c")
+```
+
+Here again the columns under these two propositions are identical.
+
+
+## Summary
+
+To summarize:
+
+- Connectives can be used to build more complex propositions, like $A \,\&\, B$ or $A \vee \sim\! B$. We introduced three connectives:
+    - $\sim\! A$ means it's not true that $A$.
+    - $A \,\&\, B$ means both $A$ and $B$ are true.
+    - $A \vee B$ means either $A$ is true, or $B$ is true, *or both are true*.
+- A valid argument's validity can be established with a truth table, if there's no row where all the premises have a T and yet the conclusion has an F.
+- Truth-tables can also be used to establish that two propositions are mutually exclusive: if there is no row of the table where both propositions have a T.
+- Logically equivalent propositions are propositions that entail one another.
+    - In truth table terms, their columns are identical.
+
+
+## Exercises {-}
+
+1. Lorem ipsum dolor sit amet...
+2. Lorem ipsum dolor sit amet...

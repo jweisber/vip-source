@@ -1,0 +1,96 @@
+# The Gambler's Fallacy
+
+
+My wife's family keeps having girls. My wife has two sisters (no brothers), and she and her sisters each have two daughters (no sons). That's nine girls in a row!
+
+So, are they due for a boy next? Here are three possible answers:
+
+1. Yes, the next baby is more likely to be a boy than a girl. Ten girls in a row is *really* unlikely. So the tenth baby is more likely to be a boy than a girl.
+
+2. No, the next baby is actually more likely to be a *girl*. Girls run in the family! Something about the genetics or circumstances of this family clearly predispose them to have girls more often than boys.
+
+3. No, the next baby is equally likely to be a boy vs. girl. Each baby's sex is determined by a purely random event, similar to a coin flip. So it's a 50-50 shot every time. The nine girls so far is just a coincidence.
+
+Which answer is correct?
+
+
+
+## Independence
+
+It depends on whether the sex of each baby is *independent* of the
+others.
+
+Independence
+
+:   Two events are ***independent*** when the outcome of one doesn't change the probabilities of the other.
+
+A prime example of independence is ***sampling with replacement***. Suppose we have an urn with 50 black marbles and 50 white ones. You draw a ball at random, then put it back. Then you give the urn a good hard shake and draw again. The two draws are independent in this case. Each time you draw, the number of black/white marbles is the same, and they're all randomly mixed up. Even if you were to draw ten white balls in a row, the eleventh draw would still be a 50-50 shot for black vs. white!
+
+But now imagine a case of sampling ***without replacement***. The situation is the same, except now you set aside each ball you draw, rather than put it back.  Now the draws are ***dependent***. If you draw a black ball on the first draw, the odds of black on the next draw have gone down. There are only 49 black balls in the urn now, and 50 white.
+
+
+## Fairness
+
+Flips of an ordinary coin are also independent. Even if you get ten heads in a row, the eleventh toss is still 50-50. If it's *really* an ordinary coin, the ten heads in a row were just a coincidence.
+
+But coin flips aren't just independent, they're also ***unbiased***: heads and tails are equally likely. A process is ***biased*** if some outcomes are more likely than others. For example, a loaded coin that comes up heads 3/4 of the time is biased.
+
+So coin flips are unbiased and independent. We call such processes ***fair***.
+$$ \mbox{Fair = Unbiased + Independent}.$$
+Another example of a fair process is drawing from our black/white urn **with replacement**. There are 50 black and 50 white marbles on every draw, so black and white have equal probability every time.
+
+But drawing without replacement is not a fair process, because the draws are not independent then. Removing a black ball makes the chance of black on the next draw go down.
+
+
+## The Gambler's Fallacy
+
+Gambling usually involves fair processes: fair dice, fair roulette wheels, fair decks of cards, etc. But people sometimes forget that fair processes are independent. If a roulette wheel comes up black nine times in a row, they figure it's "due" for red. Or if they get a bunch of bad hands in a row at poker, they figure they're due for a good one soon.
+
+This way of thinking is called *the gambler's fallacy*. A fallacy is a mistake in reasoning. The mistake here is neglecting to fully account for independence. These gamblers know the process in question is fair, in fact that's a key part of their reasoning. They know it's unlikely that the roulette wheel will land on black ten times in a row because a fair wheel should land on black and red equally often. But then they overlook the fact that fair means independent, and independent means that the last nine spins tell us nothing about the tenth spin.
+
+The gambler's fallacy is so seductive that it can be hard to find your way out of it. Here's one way to think about it that may help. Imagine the gambler's point of view at two different times: before the ten spins of the wheel, and after. Before, the gambler is contemplaing the likelihood of getting ten black spins in a row:
+
+```{r echo=FALSE, fig.cap="Contemplating ten black spins of a roulette wheel"}
+knitr::include_graphics("img/fig.png")
+```
+
+From that vantage point, the gambler is exactly right to think it's unlikely these ten spins will all land on black. But now imagine their point of view after observing, to their surprise, the first nine spins all landing black:
+
+```{r echo=FALSE, fig.cap="Contemplating a tenth black spin after nine black spins"}
+knitr::include_graphics("img/fig.png")
+```
+
+Now how likely is it these ten spins will all land black? Well now just one more spin has to land black to fulfill this unlikely prophecy. So it's not such a long shot anymore. In fact, it's just a 50-50 shot. Although it was very unlikely that the first nine spins would turn out this way, now that they have, it's quite possible the last one will turn out the same.
+
+
+## Ignorance Is Not a Fallacy
+
+You might still feel a thought tugging at the back of your mind. Imagine we flip a coin 100 times and it lands heads every time. Shouldn't you conclude the next toss will almost certainly be heads? How is that a fallacy?
+
+The answer: it's not a fallacy. It *would* be a fallacy if you knew the coin was fair. But if you didn't know that, then landing 100 heads in a row should be enough to convince you that it's not fair. That's a massively unlikely thing to happen for a fair coin.
+
+The gambler's fallacy only occurs when you know a process is fair, and then you fail to reason accordingly. If you don't know whether a process is fair, then you aren't making a logical error by reasoning according to a different assumption.
+
+So, is the gambler's fallacy at work if my wife's family predicts the next child born will be a boy? As it turns out, [the process that determines the sex of a child is approximately fair](https://stat.duke.edu/~dalene/chance/chanceweb/144.rodgers.pdf).^[The question isn't completely settled, though, as far as I could tell from my (not very thorough) research.] Most people don't know about this research, though, so it's not necessarily a fallacy. A fallacy is an error in reasoning, not a lack of knowledge.
+
+
+## The Hot Hand Fallacy
+
+Sometimes a basketball player hits a lot of baskets in a row and people figure they're on fire: they've got a "hot hand". But [a famous study published in 1985](http://www.sciencedirect.com/science/article/pii/0010028585900106?via%3Dihub) found that these streaks are just a coincidence. Each shot is still independent of the others. Is the hot hand an example of the gambler's fallacy?
+
+Most people don't know about the famous 1985 study. Certainly nobody knew what the result of the study would be before it was conducted. So a lot of believers in the hot hand were in the unfortunate position of just not knowing a player's shots are independent. So the hot hand isn't the same as the gambler's fallacy.
+
+Believers in the hot hand may be guilty of a different fallacy, though. That same study analyzed the reasoning that leads people to think a player's shots are dependent. Their conclusion: people tend to see patterns in sequences of misses and hits even when they're random. So there may be another fallacy at work, a "hot hand falacy".
+
+Things might actually be more complex than that, however. [Some recent studies](https://www.gsb.stanford.edu/insights/jeffrey-zwiebel-why-hot-hand-may-be-real-after-all) found that the hot-hand may actually be real after all! How could that be possible? What did the earlier studies miss? It's still being researched, but one possibility is: defense. When a basketball player gets in the zone, the other team ups their game. The hot player has to take harder shots. So the Harvard study added a correction to account for increased difficulty. And the Stanford study looked at baseball instead. Then they found evidence of streaks.
+
+["Applied statistics is hard"](http://andrewgelman.com/2016/03/11/statistics-is-like-basketball-or-knitting/), as one famous statistician recently wrote.
+
+
+## Girls Revisited
+
+So what about my wife's family and their nine girls in a row? As best I can tell, the available evidence says girls running in the family [isn't a thing](http://www.tandfonline.com/doi/abs/10.1080/09332480.2001.10542293) (or boys either). So the odds of a girl next are unchanged.
+
+Like the hot-hand though, most people don't know about the research on this question. And that includes my in-laws. So even if they figure we're due for a boy, they're not guilty of the gambler's fallacy.
+
+Are they guilty of a different fallacy though? Like the basketball fans who see non-existent patterns in random sequences of missed and hit shots? I'm going leave this one up to you, the reader. My in-laws might end up reading this book some day!

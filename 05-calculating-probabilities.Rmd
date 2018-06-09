@@ -1,0 +1,254 @@
+# Calculating Probabilities
+
+`r newthought("Imagine")` you're going to flip a fair coin twice. Here are three results you might get:
+
+- 2 heads,
+- 2 tails,
+- 1 heads, 1 tails.
+
+How probable is each of these outcomes? It's tempting to think they're equally probable, so 1/3 for each. But actually the first two are only 1/4 likely, while the last is 1/2 likely.
+
+Why?
+
+Because there are really four possible outcomes here. But we have to pay attention to the order of events to see how. If you get one heads and one tails,in what order will they appear? You might get the heads first and then the tails, or things could happen in the opposite order.
+
+So there are really four possible sequences: HH, TT, HT, and TH. All four sequences are equally likely, with a probability of $1/4$.
+
+But how do we know each sequence has $1/4$ probability? And how does that tell us the probability is $1/2$ that you'll get one heads and one tails (ignoring order)? To answer these questions we need to introduce some basic mechanics of probability.
+
+
+## Multiplying Probabilities
+
+`r newthought("We denote")` the probability of proposition $A$ with $Pr(A)$. So $Pr(A)=2/3$ means there's a $2/3$ chance $A$ is true.
+
+A ***fair*** coin is, by definition, one that always has a $1/2$ chance of landing heads and a $1/2$ chance of landing tails. Even if the last nine tosses all landed heads, there's still a $1/2$ chance the tenth toss will be tails. If the coin is really and truly fair, then those nine heads in a row were just a coincidence.^[How do we know a coin is really and truly fair? We could flip it a thousand times; inspect it carefully; compare it to other coins from the same mint; etc.]
+
+For a single toss, we can use $H$ for the proposition that it lands heads, and $T$ for the proposition that it lands tails. We can then write $Pr(H) = 1/2$ and $Pr(T) = 1/2$.
+
+For a sequence of two tosses, we can use $H_1$ for heads on the first toss, and $H_2$ for heads on the second toss. Similarly, $T_1$ and $T_2$ represent tails on the first and second tosses, respectively. The four possible sequences are then represented by the complex propositions:
+
+- $H_1 \,\&\, H_2$,
+- $T_1 \,\&\, T_2$,
+- $H_1 \,\&\, T_2$,
+- $T_1 \,\&\, H_2$.
+
+We want to calculate the probabilities of these propositions. For example, we want to know $Pr(H_1 \,\&\, H_2)$.
+
+Because the coin is fair, we know by definition $Pr(H_1) = 1/2$ and $Pr(H_2) = 1/2$. The probability of heads on any given toss is always $1/2$ (no matter what came before). To get the probability of $H_1 \,\&\, H_2$ it's then natural to compute:
+$$
+  \begin{aligned}
+    Pr(H_1 \,\&\, H_2) &= Pr(H_1) \times Pr(H_2)\\
+                       &= 1/2 \times 1/2\\
+                       &= 1/4.
+  \end{aligned}
+$$
+And this is indeed correct, *but only because the coin is fair*. More specifically, a fair coin is one where the tosses are ***independent***. Independence means the outcome of one toss doesn't change the probability of another toss. And the following is a general rule of probability:
+
+Multiplication Rule
+
+:    If propositions $A$ and $B$ are independent, then $Pr(A \,\&\, B) = Pr(A) \times Pr(B)$.
+
+So, because the tosses are independent (because the coin is fair), we can multiply to calculate $Pr(H_1 \,\&\, H_2) = 1/4$. And the same reasoning applies to all our four possible sequences. So we have:
+
+$$
+  \begin{aligned}
+    Pr(H_1 \,\&\, H_2) &= 1/4,\\
+    Pr(T_1 \,\&\, T_2) &= 1/4,\\
+    Pr(H_1 \,\&\, T_2) &= 1/4,\\
+    Pr(T_1 \,\&\, H_2) &= 1/4.
+  \end{aligned}
+$$
+
+
+`r newthought("The Multiplication rule only applies")` to independent propositions. Otherwise it gives the wrong answer. For example, the propositions $H_1$ and $T_1$ are definitely not independent. If the coin lands heads on the first toss ($H_1$), that drastically alters the chances of tails on the first toss ($T_1$). It changes that probability to zero! But if you were to apply the Multiplication Rule here, you'd get the result $Pr(H_1 \,\&\, T_1) = Pr(H_1) \times Pr(T_1) = 1/2 \times 1/2 = 1/4$, which is definitely wrong.
+
+```{block, type='warning'}
+Only use the Multiplication Rule on independent propositions.
+```
+
+
+## Adding Probabilities
+
+We observed that you can get one heads and one tails in either of two ways. You can get heads first and then tails: $H_1 \,\&\, T_2$. Or you can get tails first and then heads: $T_1 \,\&\, H_2$. So the logical expression of this proposition:
+
+> One toss lands heads, one lands tails.
+
+is:
+
+$$ (H_1 \,\&\, T_2) \vee (T_1 \,\&\, H_2). $$
+
+This proposition is a disjunction, an either/or statement. *EITHER* we get the heads first and then the tails, *OR* we get the tails first and then the heads.
+
+How do we calculate the probability of a disjunction?
+
+Addition Rule
+
+:    If $A$ and $B$ are mutually exclusive, then $Pr(A \vee B) = Pr(A) + Pr(B)$.
+
+In this case the two sides of our disjunction are mutually exclusive. They describe opposite orders of affairs. So we can apply the Addition Rule to calculate:
+
+$$
+  \begin{aligned}
+    Pr((H_1 \,\&\, T_2) \vee (T_1 \,\&\, H_2)) 
+      &= Pr(H_1 \,\&\, T_2) + Pr(T_1 \,\&\, H_2)\\
+      &= 1/4 + 1/4\\
+      &= 1/2.
+  \end{aligned}      
+$$
+
+`r newthought("This completes the solution")` to the problem we started this chapter with. We've now computed the three probabilities we set out to:
+
+- $Pr(\mbox{2 heads}) = Pr(H_1 \,\&\, H_2) = 1/2 \times 1/2 = 1/4$,
+- $Pr(\mbox{2 tails}) = Pr(T_1 \,\&\, T_2) = 1/2 \times 1/2 = 1/4$,
+- $Pr(\mbox{1 head, 1 tail}) = Pr((H_1 \,\&\, T_2) \vee (T_1 \,\&\, H_2)) = 1/4 + 1/4 = 1/2$.
+
+In the process we introduced two central rules of probability, one for $\,\&\,$ sentences and one for $\vee$ sentences.
+
+The multiplication rule for $\,\&\,$ sentences only applies when the propositions are independent. The addition rule for $\,\vee\,$ sentences only applies when the propositions are mutually exclusive.
+
+`r newthought("Why does the additional rule")` for $\vee$ sentences only apply when the propositions are mutually exclusive? Well imagine you need to get in touch with your friend about something important, so you send them an text and an email. 90% of the time they check their texts before the day is over. And 90% of the time they check their email. What is the probability they'll see at least one of your messages, whether the text or the email (or both)?
+
+If we calculate $Pr(T \vee E) = Pr(T) + Pr(E)$, we get $90\% + 90\% = 180\%$, which doesn't make any sense. Something can't happen $180\%$ of the time.
+
+We'll see the correct way to handle this kind of problem soon. In the meantime, be careful:
+
+```{block, type='warning'}
+Only use the Addition Rule on mutually exclusive propositions.
+```
+
+## Exclusivity vs. Independence
+
+Students often confuse exclusivity and independence. One way to keep them straight is to remember that mutually exclusive propositions don't overlap:
+
+```{r echo=FALSE, fig.cap="Mutually exclusive propositions", cache=TRUE}
+
+euler_diagram <- function(propositions) {
+    ggplot(data = propositions) + theme_void() + coord_fixed() +
+        xlim(-3,3) + ylim(-2,2) +
+        theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+        geom_circle(aes(x0 = cirx, y0 = ciry, r = r)) +
+        geom_text(aes(x = labx, y = laby, label = labl), 
+                  parse = TRUE, size = 6, family=c("serif"))
+}
+
+propositions <- data.frame(
+    cirx = c(-1.25  , 1.25),
+    ciry = c(0      , 0),
+    r    = c(1      , 1),
+    labx = c(-2     , 2),
+    laby = c(1      , 1),
+    labl = c("italic(A)", "italic(B)")
+)
+
+euler_diagram(propositions)
+```
+
+but independent propositions do overlap. Independent means that the truth of one doesn't affect the chances of the other. So if you find out that $A$ is true, $B$ still has the same chance of being true. Which means there have to be some $B$ possibilities within the $A$ circle:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="Compatible propositions", cache=TRUE}
+propositions <- data.frame(
+    cirx = c(-.5   , .5),
+    ciry = c(0     , 0),
+    r    = c(1     , 1),
+    labx = c(-1.25 ,  1.25),
+    laby = c(1     , 1),
+    labl = c("italic(A)", "italic(B)")
+)
+
+euler_diagram(propositions)
+```
+
+`r newthought("What does independence amount to")` in terms of an Euler diagram? It means the $A \,\&\, B$ region takes up just as much of the $B$ region as the $A$ circle takes up in the whole diagram. In algebraic terms:
+
+$$ \frac{Pr(A \,\&\, B)}{Pr(B)} = Pr(A). $$
+
+That's a bit hard to conceptualize visually, so don't worry if you're having trouble getting your head around it. We'll come back to this idea later.
+
+`r newthought("The main thing")` for now is to remember that that independence and exclusivity are very different. In fact they're contrary to one another: exclusive propositions are not independent, and vice versa.
+
+Another marker that may help you keep them straight. Exclusivity is a concept of deductive logic. It's about whether it's *possible* for both propositions to be true (even if that possibility is very unlikely). Whereas independence is a concept of inductive logic. It's about whether one proposition being true changes the *probability* of the other being true.
+
+
+## Tautologies, Contradictions, and Equivalent Propositions
+
+A tautology is a proposition that must be true, so its probability is always 1.
+
+The Tautology Rule
+
+:    $\p(T) = 1$ for every tautology $T$.
+
+For example, $A \vee \neg A$ is a tautology, so $\p(A \vee \neg A) = 1$.
+
+```{r echo=FALSE, fig.margin=TRUE}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+In terms of an Euler diagram, the $A$ and $\neg A$ regions together take up the whole diagram. So $\p(A \vee \neg A) = \color{blue}{\blacksquare} + \color{red}{\blacksquare} = 1$.
+
+`r newthought("The flipside of a tautology is a contradiction,")` a proposition that can't possibly be true. So it has probability 0.
+
+The Contradiction Rule
+
+:    $\p(C) = 0$ for every contradiction $C$.
+
+For example, $A \wedge \neg A$ is a contradiction, so $\p(A \wedge \neg A) = 0$.
+
+```{r echo=FALSE, fig.margin=TRUE}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+In terms of Euler diagrams, there is no region where $A$ and $\neg A$ overlap. So the portion the diagram devoted to $A \wedge \neg A$ has $0$ area.
+
+`r newthought("Equivalent propositions")` are true under exactly the same circumstances (and false under exactly the same circumstances). So they have the same chance of being true (and exactly the same chance of being false).
+
+The Equivalence Rule
+
+:    $\p(A) = \p(B)$ if $A$ and $B$ are logically equivalent.
+
+For example, $A \vee B$ is logically equivalent to $B \vee A$, so $\p(A \vee B) = \p(B \vee A)$.
+
+```{r echo=FALSE, fig.margin=TRUE}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+In terms of an Euler diagram, the $A \vee B$ region is exactly the same as the $B \vee A$ region: the red region. So both propositions take up the same amount of space in the diagram.
+
+
+## The Language of Events
+
+In some fields, like statistics and math, you'll see a lot of the same concepts from this chapter introduced in different language. Instead of propositions, they'll discuss *events*, which are sets of possible outcomes.
+
+For example, the roll of a six-sided die has six possible outcomes: $1, 2, 3, 4, 5, 6$. And the event of the die landing on an even number is the set $\{2, 4, 6\}$. 
+
+In this way of doing things, rather than consider the probability that a proposition $A$ is true, we consider the probability that event $E$ occurs. Instead of considering a conjunction of propositions like $A \,\&\, B$, we consider the *intersection* of two events, $E \cap F$. And so on.
+
+If you're used to seeing probability presented this way, there's an easy way to translate into logic-ese. For any event $E$, there's the corresponding proposition that event $E$ occurs. And you can translate the usual set operations into logic as follows:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="Compatible propositions", cache=TRUE}
+df <- data.frame(
+    Events = c("$E^c$", "$E \\cap F$", "$E \\cup F$"),
+    Propositions = c("$\\sim\\! A$", "$A \\,\\&\\, B$", "$A \\vee B$")
+)
+
+knitr::kable(df, align = "c", caption="Translating between events and propositions")
+```
+
+We won't use the language of events in this book. I'm just mentioning this in case you've come across it before and you're wondering how it connects. If you've never seen it before, you can forget everything you just read in this section.
+
+
+## Summary
+
+In this chapter we learned how to represent probabilities of propositions using the $Pr(\ldots)$ operator. We also learned some fundamental rules of probability.
+
+There were three rules corresponding to the concepts of tautology, contradiction, and equivalence.
+
+- $\p(T) = 1$ for every tautology $T$.
+- $\p(C) = 0$ for every contradiction $C$.
+- $\p(A) = \p(B)$ if $A$ and $B$ are logically equivalent.
+
+And there were two rules corresponding to the connectives $\wedge$ and $\vee$.
+
+- $Pr(A \vee B) = Pr(A) + Pr(B)$, if $A$ and $B$ are mutually exclusive.
+- $Pr(A \wedge B) = Pr(A) \times Pr(B)$, if $A$ and $B$ are independent.
+
+The restrictions on these two rules are essential, as we saw. If you ignore them, you will get wrong answers.

@@ -1,0 +1,116 @@
+# The Monty Hall Problem
+
+`r tufte::newthought("Imagine")` you're on a game show. There are three doors, one with a prize behind it. You're allowed to pick any door, so you choose the first one at random. Let's call that door A.
+
+![](img/fig.png)
+
+The rules of the game then require the host to open one of the other doors, and let you switch your choice if you want. Because the host doesn't want to give away the game, they always open a door without the prize.
+
+In your case, the host opens door C. No prize, as usual. "Do you want to switch to door B?", the host asks.^[The problem is named after Monty Hall, host and creator of the game show, *Let's Make a Deal*.]
+
+Pause a moment to think about your answer before reading on.
+
+![](img/fig.png)
+
+`r tufte::newthought("What did")` you decide? Did you conclude it doesn't matter whether you stick with door A or switch to door B?
+
+If so, you're in good company. Most people have found that answer sensible, including many professors of statistics and mathematics. They figure your chances of winning the prize with door A used to be one-in-three, since each door was just as likely to have the prize. Now that there are only two possibilities remaining, A and B, each has the same one-in-two chance of being the winner. So it doesn't matter which one you pick.
+
+But the right answer is you should switch. Door B is now twice as likely to be the winner as door A. Why?
+
+The reason is subtle. One way to think about it is that the host's choice of which door to open isn't necessarily free. Maybe they *had* to open door C, because the prize is behind door B and they didn't want to give that away. Of course, it could be behind door A instead, so they just picked door C at random. But there was only a one-in-three chance the prize would be behind door A. Which means there's a two-in-three chance they didn't really have a choice, they had to open door C to avoid showing you the prize behind door B.
+
+Here's another way to think about it. Imagine the game had a hundred doors instead of just three. And suppose again you start by picking door A at random. Then the host opens *all the other doors but one*, door B again. You have to ask yourself: why did they pick door B to leave unopened?? Well, almost certainly because that's where the prize is hidden! Maybe you got really lucky and picked right with door A at the beginning. But it's way more likely you didn't, and the host had to keep door B closed to avoid giving away the game.^[This way of solving the problem was suggested by Marilyn vos Savant. Her columns in *Parade* magazine in 1990–1991 made the Monty Hall problem famous.]
+
+
+## Picturing the Solution
+
+`r tufte::newthought("A picture helps")` us understand the solution. The prize could be behind door A, door B, or door C. And each possibility is equally likely: 1/3.
+
+![](img/fig.png)
+
+But the truth of where the prize is affects which door the host will open. If it's behind door B, they won't show you by opening door B. But the rules require them to open one of the other doors. So they have to open door C.
+
+Likewise, if the prize is behind door C, then opening door B is their only option.
+
+Only if the prize is behind door A do they have a choice: open either door B or door C. In that case it's a tossup which door they'll open, so each of those possibilities then has a 1/2 chance.
+
+![](img/fig.png)
+
+Now imagine playing the game over and over. A third of the time things will follow the top branch; a third of the time they'll follow the middle; and the remaining third they'll follow the bottom.
+
+When things follow the bottom branch, half of those times the host will open door B, and half of those times they'll open door C. So one in every six plays will follow the prize-A/open-B path. And one in every six plays will follow the prize-A/open-C path. And so on.
+
+![](img/fig.png)
+
+Now here's the punchline: when the host opens door C, that's usually because the prize is behind door B. They open door C because the prize is behind door A a sixth of the time, whereas they open it because the prize is behind door B a third of the time.
+
+
+## Lessons Learned
+
+Tree diagrams are a handy tool for solving probability problems. They also illustrate some of the central concepts of probability.
+
+Probabilities are numbers assigned to possibilities. In the Monty Hall problem, there are three possibilities for where the prize is. Each of these possibilities is assigned a probability; in this case they're all assigned the same probability, 1/3.
+
+`r tufte::newthought("Some possibilities")` are ***mutually exclusive***. Only one of them can obtain. The prize can't be behind door A and door B, for example, at least not in the Monty Hall problem. (You could make up a different game with two prizes. But that's not the way our game show works.)
+
+Other examples of mutually exclusive possibilities:
+
+- A coin can land heads or tails, but it can't do both on a single toss.
+- A card drawn from a standard deck could be either an ace or a queen, but it can't be both.
+- The temperature at noon tomorrow could be 20 degrees, or it could be 25 degrees, but it can't be both.
+
+```{marginfigure}
+Mutually exclusive possibilities:
+![](img/marg_fig.png)
+```
+
+
+`r tufte::newthought("When possibilities are mutually exclusive")`, their probabilities "add up". For example, the initial probability the prize will be behind either door A or door B is $1/3 + 1/3 = 2/3$.  And the probability a card drawn from a standard deck will be either an ace or a queen is $4/52 + 4/52 = 8/52$, or $2/13$.
+
+
+`r tufte::newthought("Another key concept")` is possibilities that are ***exhaustive***. In the Monty Hall problem, the prize has to be behind one of the doors: A, B, and C "exhaust" all the possibilities. More examples of exhaustive possibilities:
+
+- Heads and tails again. (Well, unless a coin can land on its edge. Can it? Let's pretend it can't.)
+- A card being drawn from a standard deck must be either red or black. (There are no joker cards in a standard deck.)
+- The temperature at noon tomorrow must be either above zero, below zero, or zero.
+
+```{marginfigure}
+Exhaustive possibilities:
+![](img/marg_fig.png)
+```
+
+
+`r tufte::newthought("In our")` tree diagrams, the branches always involved a set of possibilities that was *both* exclusive *and* exhaustive. The first split, representing the three places the prize might be, covers all the possibilities, and only one of those possibilities can be the actual location of the prize. The next split is similar. On the bottom branch for example, the host must open either door B or door C given the rules, but only one or the other.
+
+When a set of possibilities is both exclusive and exhaustive, it's called a *partition*. A partition "carves up" the space of possibilities into distinct, non-overlapping units. Like the space of possible outcomes for the throw of a die:
+
+There can be more than one way to "partition" a space of possibilities, by the way. For example, the possible outcomes for a random draw of a card can be partitioned according to color:
+![](img/fig.png)
+or according to suit:
+![](img/fig.png)
+or according to both suit and rank:
+![](img/fig.png)
+
+`r tufte::newthought("When possibilities")` form a partition, their probabilities must add up to 1. Initially, the probability the prize will be behind one of the three doors is $1/3 + 1/3 + 1/3 = 1$. And the probability that a card drawn from a standard deck at random will be either red or black is $1/2 + 1/2 = 1$.
+
+In a way, the fundamental principle of probability is that probabilities over a partition must add up to 1.
+
+
+`r tufte::newthought("Tree diagrams")` follow a few simple rules using these concepts. The parts of a tree are called *nodes*, *branches*, and *leaves*:
+![](img/fig.png)
+The rules for a tree are:
+
+1. Each node represents a partition. The branches coming out of it must represent mutually exclusive possibilities, and they must cover all the possibilities.
+2. The probabilities at each node must add up to 1.
+3. The probability on a branch is *conditional* on all branches leading up to it.
+    - In the Monty Hall problem, the probability is 1 that the host will open door B, *given* that the prize is behind door C (top branch). But the probability is 1/2 if the prize is behind door A (bottom branch).
+    - You can think of the initial branch as the exception to this rule. Or you can think of its probabilities as conditional on nothing.
+4. The probability of a leaf is calculated by multiplying across the branches on the path leading to it. This number represents the probability that all possibilities on that path are actual.
+
+
+## Exercises {-}
+
+1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque odio odio, rhoncus sit amet mattis sed, volutpat eu lectus. Sed et eros massa. Cras blandit non leo quis porta. Sed at suscipit dolor. Pellentesque iaculis dui eu est viverra, gravida ultricies augue consectetur.
+
+2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque odio odio, rhoncus sit amet mattis sed, volutpat eu lectus. Sed et eros massa. Cras blandit non leo quis porta. Sed at suscipit dolor. Pellentesque iaculis dui eu est viverra, gravida ultricies augue consectetur.

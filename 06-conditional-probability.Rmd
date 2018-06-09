@@ -1,0 +1,157 @@
+# Conditional Probability
+
+The chances of an airplane crashing are pretty low. But they're considerably higher if there's a bomber on board. Probabilities change depending on the conditions.
+
+We symbolize this idea by writing $\p(A \given B)$, the probability that $A$ is true *given* that $B$ is true. And we call this kind of probability ***conditional probability***.
+
+For example, to say the probability of $A$ given $B$ is 30%, we write:
+$$ \p(A \given B) = .3. $$
+To say that $B$ makes $A$ more likely, we write:
+$$ \p(A \given B) > \p(A). $$
+And the following says that $B$ doubles the chance of $A$:
+$$ \p(A \given B) = 2 \times \p(A). $$
+
+But how do we calculate conditional probabilities?
+
+
+## Calculating Conditional Probability
+
+Suppose I roll a fair, six-sided die behind a screen. You can't see the result, but I tell you it's an even number. What's the probability it's also a "high" number, that is, either a $4$, $5$, or $6$?
+
+Maybe you figured the correct answer: $2/3$. But why is that correct? Because, out of the three even numbers ($2$, $4$, and $6$), two of them are high ($4$ and $6$). So $2/3$ of the possible outcomes are high once we know the outcome is even.
+
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Conditional probability in a fair die roll"}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+This hints at a formula for $\p(A \given B)$.
+
+Conditional Probability
+
+:   
+    $$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)}. $$
+
+In the die-roll example, we considered how many of the $B$-possibilities were also $A$-possibilities. Which means we divided $\p(A \wedge B)$ by $\p(B)$.
+
+In terms of an Euler diagram, the formula for conditional probability compares the size of the $A \wedge B$-region to the size of the $B$-region as a whole:
+
+```{r echo=FALSE, fig.cap="Conditional probability in a fair die roll"}
+knitr::include_graphics("img/fig.png")
+```
+
+Or, if you don't mind getting a little colourful with your algebra:
+
+$$
+    \p(A \given B) = \frac{\color{purple}{\blacksquare}}{\color{purple}{\blacksquare} + \color{red}{\blacksquare}}.
+$$
+
+So the formula works because, informally speaking, $\p(A \wedge B)/\p(B)$ is the portion of the $B$ outcomes that are also $A$ outcomes.
+
+`r newthought("\"Black holes are where God divided by zero,\"")` the comedian Steven Wright once quipped. And dividing by zero is a common pitfall with conditional probability.
+
+Notice how the definition of $\p(A \given B)$ depends on $\p(B)$ being larger than zero. If $\p(B) = 0$, then the formula
+$$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)} $$
+doesn't even make any sense. There is no number that results from the division on the right hand side.
+
+In such cases we say that $\p(A \given B)$ is *undefined*. It's not zero, or some special number. It just isn't a number.
+
+There are alternative mathematical systems of probability, where conditional probability is defined slightly differently, to avoid this problem. But in this book we'll stick to the standard system. And in the standard system, there's just no such thing as "the probability of $A$ given $B$" when $B$ has probability zero.
+
+
+## Conditional Probability & Trees
+
+We've actually encountered conditional probabilities before, when we used a tree diagram to solve the Monty Hall problem.
+
+In a tree diagram, each branch represents a possible outcome. The number placed on that branch represents the chance of that outcome occurring. But that number is based on the assumption that all branches leading up to it occur. So the probability on that branch is conditional on all previous branches.
+
+For example, suppose there are two urns of coloured marbles:
+
+- Urn B contains 3 black marbles, 1 white.
+- Urn W contains 1 black marble, 3 white.
+
+I flip a fair coin to decide which urn to draw from, heads for Urn B and tails for Urn W. Then I draw one marble at random.
+
+```{r echo=FALSE, fig.cap="Tree diagram for a simple urn problem"}
+knitr::include_graphics("img/fig.png")
+```
+
+The probability of drawing a black marble on the top branch is $3/4$ because we are assuming there that the coin landed heads, and thus I'm drawing from Urn B. If the coin lands tails instead, and I draw from Urn W, then the chance of a black marble is instead $1/4$. So these quantities are conditional probabilities:
+$$
+  \begin{aligned}
+    \p(B \given H) &= 3/4,\\
+    \p(B \given T) &= 1/4.
+  \end{aligned}
+$$
+
+The first level of branching in a tree diagram is the exception here. Take the $H$-vs.-$T$ branch in our example: the probabilities here are *un*conditional, since they are not based on what happens at any prior tier in the tree. So the complete picture looks like this:
+
+```{r echo=FALSE, fig.cap="Fully labeled tree for a simple urn problem"}
+knitr::include_graphics("img/fig.png")
+`````
+
+
+## More Examples
+
+`r newthought("Imagine")` an urn contains marbles of three different colours: 20 are red, 30 are blue, and 40 are green. I draw a marble at random. What is $\p(R \given \neg B)$, the probability it's red given that it's not blue?
+$$
+  \begin{aligned}
+    \p(R \given \neg B) &= \frac{\p(R \wedge \neg B)}{\p(\neg B)}\\
+                        &= \frac{\p(R)}{\p(\neg B)}\\
+                        &= \frac{20/90}{60/90}\\
+                        &= 1/3.
+  \end{aligned}
+$$
+
+`r newthought("Suppose")` a university has 10,000 students, and each student is studying under on of four broad headings: Humanities, Social Sciences, STEM, or Professional. Within each of these categories, the number of students with an average grade of A, B, C, or D is as follows:
+
+```{r echo=FALSE}
+df <- data.frame(
+    `Humanities`      = c(200, 500, 250, 50),
+    `Social Sciences` = c(600, 800, 400, 200),
+    `STEM`            = c(400, 1600, 1500, 500),
+    `Professional`    = c(900, 900, 750, 450)
+)
+
+colnames(df) <- c("Humanities", "Social Sciences", "STEM", "Professional")
+rownames(df) <- c("A", "B", "C", "D")
+
+knitr::kable(df, align = "c")
+```
+
+What is the probability a randomly selected student will have an A average, given that they are studying either Humanities or Social Sciences?
+$$
+  \begin{aligned}
+    \p(A \given H \vee S) &= \frac{\p(A \wedge [H \vee S])}{\p(H \vee S)}\\
+                           &= \frac{800/10,000}{3,000/10,000}\\
+                           &= 4/15.
+  \end{aligned}
+$$
+
+What about the reverse probability, that a student is studying either Humanities or Social Sciences given that they have an A average?
+$$
+  \begin{aligned}
+    \p(H \vee S \given A) &= \frac{\p([H \vee S] \wedge A)}{\p(A)}\\
+                           &= \frac{800/10,000}{2,100/10,000}\\
+                           &= 8/21.
+  \end{aligned}
+$$
+Notice how we get a different number now.
+
+## Order Matters
+
+In general, the probability of $A$ given $B$ will be different from the probability of $B$ given $A$, because these are different concepts. For example, university students are usually young, but young people aren't usually university students.
+
+Once in a while we do find cases where $\p(A \given B) = \p(B \given A)$. For example, imagine we throw a dart at random at a circular board divided into four sectors. The chance the dart will land on the left half given that it lands on the top half is the same as the chance it lands on the top half given it lands on the left. Both probabilities are 1/2.
+
+But this kind of thing is the exception rather than the rule. Usually, $\p(A \given B)$ will be a different number from $\p(B \given A)$. So it's important to remember how order matters.
+
+```{block, type='warning'}
+When we write $\p(A \given B)$, we are discussing the probability of $A$. But we are considering $A$'s probability under certain background assumptions, stated to the right of the "$\given$" symbol in $B$.
+```
+
+
+## Exercises
+
+1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus gravida lectus ut augue vehicula, a varius est ultricies. 
+
+2. Integer condimentum odio vel nibh volutpat, sit amet malesuada nulla lacinia. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.

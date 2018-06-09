@@ -1,0 +1,281 @@
+# Calculating Probabilities, Part II
+
+We learned these two rules back in [Chapter 5][Calculating Probabilities]:
+
+The Addition Rule
+
+:    $\p(A \vee B) = \p(A) + \p(B)$ if $A$ and $B$ are mutually exclusive.
+
+The Multiplication Rule
+
+:    $\p(A \& B) = \p(A) \times \p(B)$ if $A$ and $B$ are independent.
+
+So we have a rule for $\vee$ and a rule for $\wedge$. In this chapter we'll learn new, more powerful rules for $\vee$ and $\wedge$. But we'll start with negation, a rule for calculating $\p(\neg A)$.
+
+
+## The Negation Rule
+
+If there's a 70% chance of rain, then there's a 30% chance it won't rain. So the rule for $\p(\neg A)$ is:
+
+The Negation Rule
+
+:   $\p(\neg A) = 1 - \p(A)$.
+
+If $\p(R) = .7$ then $\p(\neg R) = .3$.
+
+In terms of an Euler diagram, the probability of $\neg A$ is the size of the area outside the $A$ region:
+
+```{r echo=FALSE, fig.cap="A proposition and its negation"}
+knitr::include_graphics("img/fig.png")
+```
+So $\p(\neg A)$ is one minus the size of the red region, namely $1 - \p(A)$.
+
+`r newthought("It's important to notice")`, this rule can be flipped around to calculate the probability of a positive statement:
+
+$$ \p(A) = 1 - \p(\neg A). $$
+
+Sometimes we really want the probability of $A$, $\p(A)$, but it turns out to be much easier to calculate $\p(\neg A)$ first. Then we use this flipped version of the negation rule to get what we're after.
+
+
+## The General Addition Rule
+
+The Addition rule for calculating $\p(A \vee B)$ depends on $A$ and $B$ being mutually exclusive. What if they're not? Then we can use:
+
+The General Addition Rule
+
+:    $\p(A \vee B) = \p(A) + \p(B) - \p(A \wedge B)$.
+
+This rule always applies, whether $A$ and $B$ are mutually exclusive or not.
+
+To understand the rule, consider an Euler diagram where $A$ and $B$ are not mutually exclusive:
+
+```{r echo=FALSE, fig.cap="The General Addition Rule in an Euler diagram"}
+knitr::include_graphics("img/fig.png")
+```
+
+To put it colourfully, the size of the $A \vee B$-region is:
+$$ \color{red}{\blacksquare} + \color{purple}{\blacksquare} + \color{blue}{\blacksquare}.$$
+Which is the same as:
+$$ 
+  (\color{red}{\blacksquare} + \color{purple}{\blacksquare}) + 
+  (\color{blue}{\blacksquare} + \color{purple}{\blacksquare}) - 
+  \color{purple}{\blacksquare}.
+$$
+In algebraic terms this is:
+$$ \p(A) + \p(B) - \p(A \wedge B).$$
+
+To think of it another way, when we add $\p(A) + \p(B)$ to get the size of the $A \vee B$ region, we double-count the $A \wedge B$ region. So we have to subtract it out at the end.
+
+`r newthought("What if")` there's no $A \wedge B$ region? Then $\p(A \wedge B) = 0$, so subtracting it at the end has no effect. Then we just have the old Addition Rule:
+$$
+  \begin{aligned}
+    \p(A \vee B) &= \p(A) + \p(B) - \p(A \wedge B)\\
+                 &= \p(A) + \p(B) - 0\\
+                 &= \p(A) + \p(B).\\
+  \end{aligned}
+$$
+And this makes sense. If there is no $A \wedge B$ region, that means $A$ and $B$ are mutually exclusive. So the old Addition Rule applies.
+
+That's why we call the new rule the *General* Addition Rule. It applies in general, even when $A$ and $B$ are not mutually exclusive. And in the special case where they are mutually exclusive, it gives the same result as the Addition Rule we already learned.
+
+`r newthought("A tree diagram")` also works to explain the General Addition Rule. Consider this diagram, where we start with branches for $A$ and $\neg A$, which then subdivide into branches for $B$ and $\neg B$:
+
+```{r echo=FALSE, fig.cap="The General Addition Rule in a tree diagram"}
+knitr::include_graphics("img/fig.png")
+```
+
+There are three leaves where $A \vee B$ is true, marked with asterisks (*). So, if we add the two leaves where $A$ is true to the two leaves where $B$ is true, we'll double-count the $A \wedge B$ leaf. So if we add $\p(A)$ to $\p(B)$, we have to subtract one of those $\p(A \wedge B)$ quantities to get $\p(A \vee B)$ in the end.
+
+`r newthought("There is a catch")` to the General Addition Rule. You need to know $\p(A \wedge B)$ in order to apply it. Sometimes that information is given to us. When it's not though, we have to figure it out somehow. If $A$ and $B$ are mutually exclusive, then it's easy: $\p(A \wedge B) = 0$. Or, if they're independent, then we can calculate $\p(A \wedge B) = \p(A) \times \p(B)$. But in other cases, we have to turn elsewhere.
+
+
+## The General Multiplication Rule
+
+How can we calculate $\p(A \wedge B)$ in general?
+
+The General Multiplication Rule
+
+:    $$ \p(A \wedge B) = \p(A \given B) \p(B). $$
+
+The intuitive idea is: if you want to know how likely it is $A$ and $B$ will both turn out to be true, first ask yourself how likely $A$ is to be true *if* $B$ is true. Then weight the answer according to $B$'s chances of being true.
+
+Notice, if $A$ and $B$ are independent, then this rule just collapses into the familiar Multiplication rule we already learned. If they're independent, then $\p(A \given B) = \p(A)$, so substituting into the General Multiplication Rule gives:
+
+$$
+  \begin{aligned}
+    \p(A \wedge B) &= \p(A \given B) \p(B)\\
+                   &= \p(A) \p(B).
+  \end{aligned}
+$$
+
+So we now have two rules for calculating the probability of an $\wedge$ statement. The first one only applies when the two sides of the $\wedge$ are independent. The second applies whether they're independent or not. And the second, more general rule ends up being the same as the first specific rule when they are independent.
+
+`r newthought("A tree diagram helps")` us understand this rule too. Suppose there are two urns of coloured marbles:
+
+- Urn B contains 3 black marbles, 1 white.
+- Urn W contains 1 black marble, 3 white.
+
+I flip a fair coin to decide which urn to draw from, heads for Urn B and tails for Urn W. Then I draw one marble at random.
+
+```{r echo=FALSE, fig.cap="Tree diagram for a simple urn problem"}
+knitr::include_graphics("img/fig.png")
+```
+
+Now suppose we want to know $\p(T \wedge W)$, the probability the coin will land tails and the marble drawn willl be white. The General Multiplication Rule tells us the answer is:
+$$
+  \begin{aligned}
+    \p(T \wedge W) &= \p(W \wedge T)\\
+                   &= \p(W \given T) \p(T)\\
+                   &= 3/4 \times 1/2\\
+                   &= 3/8.
+  \end{aligned}
+$$
+In the tree diagram, this corresponds to following the bottom-most path, multiplying the probabilities as we go. And this makes sense: half the time the coin will land tails, and on $3/4$ of those occasions the marble drawn will be white. So, if we were to repeat the experiment again and again, we would get tails followed by a white marble in $3$ out of every $8$ trials.
+
+
+## Laplace's Urn Puzzle
+
+The same urn scenario was used by the mathematician Laplace in one of his favourite puzzles. Suppose we choose an urn the same as before, by a fair coin flip, but then we do *two* draws, *with* replacement. What is the probability both draws will come up black?
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Pierre Simone Laplace (1749--1827)"}
+knitr::include_graphics("img/laplace.png")
+```
+
+It's tempting to say $1/4$. The probability of drawing a black marble on each draw is $1/2$. So it *seems* the probability of two blacks is just $1/2 \times 1/2 = 1/4$.
+
+But the correct answer is actually $5/16$. Why?
+
+Let's use a probability tree again. Depending on how the coin lands, you could be drawing either from Urn B or from Urn W with equal probability:
+
+```{r echo=FALSE, cache=TRUE}
+knitr::include_graphics("img/fig.png")
+```
+
+Now *if* you end up drawing from Urn B, the probability of a black marble on any given draw is $3/4$. Because these draws are independent (we're drawing with replacement), the probability they'll both come up black is $3/4 \times 3/4 = 9/16$.
+
+```{r echo=FALSE, cache=TRUE}
+knitr::include_graphics("img/fig.png")
+```
+
+But what if you end up drawing from Urn W? Then the probability of a black on any given draw is $1/4$. The draws are still independent though, so the chance of both being black in this case is $1/4 \times 1/4 = 1/16$:
+
+```{r echo=FALSE, cache=TRUE}
+knitr::include_graphics("img/fig.png")
+```
+
+So the probability of drawing two black marbles from Urn B is:
+$$
+  \begin{aligned}
+    \p(H \wedge BB) &= \p(H) \p(BB \given H)\\
+                    &= 1/2 \times 9/16\\
+                    &= 9/32.
+  \end{aligned}
+$$
+And the probability of drawing two black marbles from Urn W is:
+$$
+  \begin{aligned}
+    \p(T \wedge BB) &= \p(T) \p(BB \given T)\\
+                    &= 1/2 \times 1/16\\
+                    &= 1/32.
+  \end{aligned}
+$$
+Now we can apply the Addition Rule to calcualte $\p(BB)$:
+$$
+  \begin{aligned}
+    \p(BB) &= \p(H \wedge BB) + \p(T \wedge BB)\\
+           &= 9/32 + 1/32\\
+           &= 5/16.
+  \end{aligned}
+$$
+
+
+## The Law of Total Probability
+
+This kind of calculation comes up a lot. And it would be a real pain to figure it out from scratch every time. So there's a general rule instead:
+
+The Law of Total Probability
+
+:    $\p(A) = \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B)$.
+
+There's an intuitive idea at work here. To figure out how likely $A$ is to be true, consider how likely it would be if $B$ were true, and how likely it would be if $B$ were false. Then weight each of those hypothetically possibilities according to their probabilities.
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+We can also use an Euler diagram. The size of the $A$ region is the sum of the $A \wedge B$ region and the $A \wedge \neg B$ region: $\color{red}{\blacksquare} + \color{blue}{\blacksquare}$. And each of those regions can be calculated using the General Multiplication Rule. For example, $\p(A \wedge B) = \p(A \given B) \p(B)$. So in algebraic terms we have:
+$$
+  \begin{aligned}
+    \p(A) &= \color{red}{\blacksquare} + \color{blue}{\blacksquare}\\
+          &= \p(A \wedge B) + \p(A \wedge \neg B)\\
+          &= \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B).
+  \end{aligned}
+$$
+Which is just the Law of Total Probability.
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+We can use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked 😄 and 😸. To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$ we add up the two leaves:
+$$
+  \begin{aligned}
+    \p(A) &= 😄 + 😸\\
+          &= \p(A \wedge B) + \p(A \wedge \neg B)\\
+          &= \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B).
+  \end{aligned}
+$$
+And once again the result is the Law of Total Probability.
+
+
+## Example
+
+Every day Professor X either drives her car to campus or takes the bus. Mostly she drives, but one time in four she takes the bus. When she drives, she's on time 80% of the time. When she takes the bus, she's on-time 90% of the time.
+
+What is the probability she'll be on time for class tomorrow?
+
+First let's solve this by just applying the Law of Total Probability directly:
+$$
+  \begin{aligned}
+    \p(O) &= \p(O \given B)\p(B) + \p(O \given D)\p(D)\\
+          &= (9/10)(1/4) + (8/10)(3/4)\\
+          &= 33/40.
+  \end{aligned}
+$$
+
+Now let's solve it slightly differently, thinking the problem through from more basic principles.
+
+There are two, mutually exclusive cases where Professor X is on time: one where she takes the bus, one where she drives.
+$$ \p(O) = \p(O \wedge B) + \p(O \wedge D). $$
+We can use the General Multiplication Rule to calculate the probability she'll take the bus and be on time:
+$$ \p(O \wedge B) = \p(O \given B)\p(B). $$
+And we can do the same for the probability she'll drive and be on time:
+$$ \p(O \wedge D) = \p(O \given D)\p(D)$$
+Putting all the pieces together:
+$$
+  \begin{aligned}
+    \p(O) &= \p(O \wedge B) + \p(O \wedge D)\\
+          &= \p(O \given B)\p(B) + \p(O \given D)\p(D)\\
+          &= (9/10)(1/4) + (8/10)(3/4)\\
+          &= 33/40.
+  \end{aligned}
+$$
+
+Notice, we didn't just get the same answer, the calculation ended up being the same too. Our second approach just reconstructed, from scratch, the reasoning behind the Law of Total Probability. It's a very good idea to understand the rationale behind the Law of Total Probability. But once you get used to the formula, it's also fine to skip straight to applying it directly.
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+You can also use a tree diagram. Again, the calculation will be the same. But the diagram helps you get started, and also check that you've applied the formula correctly.
+
+```{block, type='warning'}
+Black hole warning: notice that the Law of Total Probability depends on $\p(A \given B)$ and $\p(A \given \neg B)$ both being well-defined. So it only applies when $\p(B) \gt 0$ and $\p(\neg B) \gt 0$.
+```
+
+
+## Exercises
+
+1. In the urn puzzle, what is $\p(H \vee B)$?
+2. In a three-urn variation, what is $\p(B)$?
+3. Formulate a three-case version of the LTP. Explain why this equation is true.
