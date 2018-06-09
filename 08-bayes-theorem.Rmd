@@ -1,1 +1,155 @@
 # Bayes' Theorem
+
+```{r echo=FALSE, fig.margin = TRUE, fig.cap="Psychologists Daniel Kahneman and Amos Tversky"}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+In 1972, two psychologists gave the following problem to the subjects in one of their experiments:
+
+```{block, type='problem'}
+A cab was involved in a hit and run accident at night. Two cab companies, the Green and the Blue, operate in the city. You are given the following data:
+
+1.  85% of the cabs in the city are Green and 15% are Blue.
+2.  A witness identified the cab as Blue. The court tested the reliability of the witness under the same circumstances that existed on the night of the accident and concluded that the witness correctly identified each one of the two colors 80% of the time and failed 20% of the time.
+
+What is the probability that the cab involved in the accident was blue rather green?
+```
+
+Most people answer wrong: they say 80%, because the witness is 80% reliable. But the right answer is $12/29$, which is about $41\%$.
+
+How could the right answer be so low when the witness is 80% reliable? The short answer is: because blue cabs are pretty rare. So, most of the time, when the witness says a cab is blue, it's one of the 20% of green cabs they misidentify as blue. But this answer still needs some explaining.
+
+As usual, it helps to look at a diagram. Imagine there are just 100 cabs in town, 85 of them blue and the other 15 green.
+
+```{r echo=FALSE, fig.cap="Green cab/blue cab"}
+knitr::include_graphics("img/fig.png")
+```
+
+The dashed blue outline represents the cabs the witness identifies as blue (rightly or wrongly). It encompasses $20\%$ of the green cabs ($17$), and $80\%$ of the blue ones ($12$). That's a total of $29$ cabs, only $12$ of which are actually blue. So out of the $29$ cabs the witness calls "blue", only $12$ really are blue. So the probability the cab really is blue given the witness says so is only $12/29$, or about $41\%$.
+
+Another way to think about the problem is that there are *two* pieces of information relevant to whether the cab is blue. The witness says the cab is blue, but also, most cabs are not blue. So there's evidence for proposition $B$, but also strong evidence against it. The diagram helps us see how to balance these two, competing pieces of evidence to come to the correct answer.
+
+What trips people up so much in the taxicab problem? Well remember how order matters with conditional probability. We're asked to find $\p(B \given W)$, the probability the cab is blue given that the witness says it is. That's not the same as $\p(W \given B)$, the probability the witness will say the cab is blue if it really is. The problem tells us $\p(W \given B) = 8/10$, but it doesn't tell us a number for $\p(B \given W)$. We have to figure that out.
+
+We saw back in [Chapter 6][Conditional Probability] that $\p(A \given B)$ is usually a different number from $\p(B \given A)$. A university student will probably be young, but a young person will probably not be a university student. That's an example where it's easy to see that order matters. The taxicab example makes it much less obvious, in fact it tempts us to confuse $\p(B \given W)$ with $\p(W \given B)$.
+
+
+## Bayes' Theorem
+
+Problems where we're given $\p(B \given A)$ and we have to figure out $\p(A \given B)$ are extremely common. Luckily, there's a famous formula for solving them.
+
+Bayes' Theorem
+
+:   If $\p(A),\p(B)>0$, then
+    $$ \p(A \given B) = \frac{\p(A)\p(B \given A)}{\p(B)}. $$
+
+Notice two things here. First, we need $\p(A)$ and $\p(B)$ to both be positive because otherwise $\p(A \given B)$ and $\p(B \given A)$ wouldn't be well-defined. Second, we need to know more than just $\p(B \given A)$ to apply the formula. We also need $\p(A)$ and $\p(B)$.
+
+In the taxicab problem we're given two out of these three pieces of information. Here's Bayes' theorem for the taxicab example:
+$$ \p(B \given W) = \frac{\p(B) \p(W \given B)}{\p(W)}. $$
+Whereas the problem gives us the following information:
+
+- $\p(W \given B) = 80/100$.
+- $\p(W \given \neg B) = 20/100$.
+- $\p(B) = 15/100$.
+- $\p(\neg B) = 85/100$.
+
+What's missing for Bayes' Theorem is $\p(W)$. Fortunately, we can calculate it with the Law of Total Probability!
+$$
+  \begin{aligned}
+    \p(W) &= \p(W \given B)\p(B) + \p(W \given \neg B)\p(\neg B)\\
+          &= 80/100 \times 15/100 + 20/100 \times 85/100\\
+          &= 29/100.
+  \end{aligned}
+$$
+And now we have everything we need to plug into Bayes' Theorem:
+$$
+  \begin{aligned}
+    \p(B \given W) &= \frac{\p(B) \p(W \given B)}{\p(W)}\\
+                   &= \frac{15/100 \times 80/100}{29/100}\\
+                   &= 12/29.
+  \end{aligned}
+$$
+
+And this is the same answer we got with our diagram.
+
+## Understanding Bayes' Theorem
+
+Why does Bayes' theorem work? One way to think about it is to start by recalling the definition of conditional probability:
+$$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)}. $$
+Then apply the General Multiplication Rule to the numerator:
+$$ \p(A \wedge B) = \p(B \wedge A)\p(A).$$
+Now plug back into the first equation (and swap the order in the numerator):
+$$ \p(A \given B) = \frac{\p(A) \p(B \given A)}{\p(B)}. $$
+
+This proves that Bayes' theorem is correct. But it doesn't really give us an intuitive or visual way of thinking about it. We will come back to an intuitive interpretation later, when we discuss the more philosophical aspects of probability theory. And our taxicab diagram is one way to think about Bayes' theorem visually.
+
+There are lots of other visual explanations of Bayes' theorem you can find online. There's even [one using Legos](https://www.countbayesie.com/blog/2015/2/18/bayes-theorem-with-lego)! But they tend to come down to the same thing, a two step explanation that goes:
+
+1. Start with the definition of conditional probability, visualized as in [Chapter 6][Calculating Conditional Probability].
+2. Apply the General Multiplication Rule, visualized as in [Chapter 7][The General Multiplication Rule].
+
+This is a perfectly good and helpful way to think about Bayes' theorem. But it's not really a visualization of the theorem itself, in my opinion. It's two separate visualizations of the ingredients we used to prove that the theorem is correct.
+
+In any case, Bayes' theorem comes up so often that it's good to memorize the formula itself. For which the following visualization is probably about as helpful as it gets:
+
+```{r echo=FALSE, fig.cap="Bayes' theorem displayed at the offices of HP Autonomy in Cambridge, UK"}
+knitr::include_graphics("img/neon_bayes.png")
+```
+
+
+## Bayes' Long Theorem
+
+To solve the taxicab problem using Bayes' theorem we needed to apply the Law of Total Probability first, to calculate the denominator. This again is really common. So much so that you'll often see Bayes' theorem written with this calculation built in. That is, the denominator $\p(B)$ is broken down with the Law of Total Probability.
+
+Bayes' Theorem (long version)
+
+:   If $1 > \p(A) > 0$ and $\p(B)>0$, then
+    $$ \p(A \given B) = \frac{\p(A)\p(B \given A)}{\p(A)\p(B \given A) + \p(\neg A)\p(B \given \neg A)}. $$
+
+Notice how there's some duplication in the numerator and the denominator. The term $\p(A)\p(B \given A)$ appears both above and below. So, when you're doing a calculation with this formula, you can just do that bit once and then copy it in both the top and bottom. Then you just have to do the bottom-right term to complete the formula.
+
+
+## Example
+
+```{block, type='problem'}
+Joe has just heard about the Zika virus and wonders if he has it. His doctor tells him only $1\%$ of the population has the virus, but he's still worried. There's a blood test he can take, but it's not perfect. The test always comes up either negative or positive, but:
+
+- 95% of people who have the virus test positive.
+- 85% of people who don't have the virus test negative.
+
+If Joe tests positive, what is the probability he really has the Zika virus?
+```
+We're asked to calculate $\p(Z \given P)$, and we're given the following:
+
+- $\p(Z) = 1/100$.
+- $\p(P \given Z) = 95/100$.
+- $\p(P \given \neg Z) = 15/100$.
+
+So we can calculate $\p(Z \given P)$ using the long form of Bayes' theorem:
+$$
+  \begin{aligned}
+    \p(Z \given P) &= \frac{\p(Z)\p(P \given Z)}{\p(Z)\p(P \given Z) + \p(\neg Z)\p(P \given \neg Z)}\\
+                   &= \frac{(1/100)(95/100)}{(1/100)(95/100) + (99/100)(15/100)}\\
+                   &= \frac{95}{95 + 1,485}\\
+                   &= 19/316\\
+                   &\approx .06.
+  \end{aligned}
+$$
+So there's only about a $6\%$ chance Joe has the virus. Even though he tested positive with a fairly reliable blood test! It's counterintuitive, but the reason is the same as with the taxicab problem. There are two pieces of evidence: the positive blood test, *and* the rarity of the virus. It turns out the virus is so rare that the positive blood test doesn't too much to increase Joe's chances of being infected.
+
+Note: Bayes' theorem doesn't always give such surprising results. In fact the results are often very intuitive. But professors like to use the counterintuitive examples to illustrate just how important Bayes' theorem is. Without it, it's easy to go astray.
+
+
+## The Base Rate Fallacy
+
+In the Zika example, the rate of infection is very low, just $1\%$. The rate at which something happens in general is called the *base rate*. In the taxicab example, the base rate for blue cabs was $15\%$.
+
+One lesson of this chapter is that you have to take the base rate into account to get the right answer, via Bayes' theorem. Humans have a tendency to ignore the base rate, and focus solely on the "test" performed: the blood test in the Zika example, the testimony of the witness in the taxicab example. This mistake is called the *base rate fallacy*. The base rate fallacy is so tempting, even trained statisticians and medical doctors [are liable to make this mistake](http://journals.cambridge.org/action/displayAbstract?fromPage=online&aid=6740580&fileId=S0140525X00041261)!
+
+"In no other branch of mathematics is it so easy for experts to blunder as in probability theory," wrote Martin Gardner in *Scientific American*.^[Gardner attributes this sentiment to the philosopher Charles Sanders Peirce. The source in Peirce's writings is unknown.]
+
+## Exercises
+
+1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+2. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
