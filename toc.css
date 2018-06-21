@@ -4,6 +4,26 @@ dt {
   font-weight: bold !important;
 }
 
+div.problem {
+  border-left: 3px double maroon;
+  padding-left: 1em;
+}
+
+div.info {
+  border-left: 3px double teal;
+  padding-left: 1em;
+}
+
+div.warning {
+  border-left: 3px double red;
+  padding-left: 1em;
+}
+
+div.argument {
+  border-left: 3px double silver;
+  padding-left: 1em;
+}
+
 #TOC ul,
 #TOC li,
 #TOC span,

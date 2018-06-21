@@ -1,0 +1,126 @@
+# Probability & Induction
+
+We met some common forms of inductive argument back in [Chapter 2][Logic]. Now that we know how to work with probability, let's use what we know to better understand how those argument forms work.
+
+
+## Generalizing from Observed Instances
+
+Generalizing from observed instances was the first major form of inductive argument we encountered. Suppose you want to know what colour a particular species of bird tends to be, for example. Then you might go out and look at a bunch of examples:
+
+> I've seen 10 ravens and they've all been black.\
+> Therefore, all ravens are black.
+
+How strong is this argument?
+
+Observing ravens is a lot like sampling from an urn. Each raven is a marble, and the population of all ravens is the urn. We don't know what nature's urn contains at first: it might contain only black ravens, or it might contain ravens of other colours too. To assess the argument's strength, we have to calculate $\p(A \given B_1 \wedge B_2 \wedge \ldots \wedge B_{10})$: the probability that all ravens in nature's urn are black, given that the first raven we observed was black, and the second, and so on up to the tenth raven.
+
+We learned how to solve simple problems of this form in the last chapter. For example, imagine you face another of our mystery urns, and this time there are two equally likely possibilities:
+$$
+  \begin{aligned}
+    A      &: \mbox{The urn contains only black marbles.} \\
+    \neg A &: \mbox{The urn contains an equal mix of black and white marbles.} \\
+  \end{aligned}
+$$
+If we do two random draws with replacement, and both are black, we calculate $\p(A \given B_1 \wedge B_2)$ using Bayes' theorem:
+$$
+  \begin{aligned}
+    \p(A \given B_1 \wedge B_2) &= \frac{\p(B_1 \wedge B_2 \given A)\p(A)}{\p(B_1 \wedge B_2 \given A) \p(A) + \p(B_1 \wedge B_2 \given \neg A) \p(\neg A)} \\ 
+    &= \frac{(1)^2(1/2)}{(1)^2(1/2) + (1/2)^2(1/2)}\\
+    &= 4/5.
+  \end{aligned}
+$$
+If we do a third draw with replacement, and it too comes up black, we replace the squares with cubes. On the fourth draw we'd raise to the fourth power. And so on. When we get to the tenth black draw, the calculation becomes:
+$$
+  \begin{aligned}
+    \p(A \given B_1 \wedge B_2) &= \frac{\p(B_1 \wedge B_2 \given A)\p(A)}{\p(B_1 \wedge B_2 \given A) \p(A) + \p(B_1 \wedge B_2 \given \neg A) \p(\neg A)} \\ 
+    &= \frac{(1)^{10}(1/2)}{(1)^{10}(1/2) + (1/2)^{10}(1/2)}\\
+    &= 1,024/1,025\\
+    &\approx .999.
+  \end{aligned}
+$$
+So after ten black draws, we can be about $99.9\%$ certain the urn contains only black marbles.
+
+But that doesn't mean our argument that all ravens are black has a strength of $99.9%$.
+
+
+## Real Life Is More Complicated 
+
+There are two major limitations to the analogy between our hypothetical urn  and real-world observations of ravens.
+
+`r newthought("The first limitation")` is that the ravens we observe in real life aren't randomly sampled from nature's "urn". We only observe ravens in certain locations, for example. But our solution to the urn problem relied on random sampling. For example, we assumed $\p(B_1 \given \neg A) = 1/2$ because the black marbles are just as likely to be drawn as the white ones, if there are any white ones.
+
+But if there are white ravens in the world, they might be limited to certain locales. So the fact we're only observing ravens in our part of the world could make a big difference to what we find. It matters whether your sample really is random.
+
+`r newthought("The second limitation")` is that we pretended there were only two possibilities: either all the marbles in the urn are black, or half of them are. And, accordingly, we assumed there was already a 1/2 chance all the marbles are black, before we even looked at any of them.
+
+In real life though, when we encounter a new species, it could be that $90\%$ of them are black, or $31\%$, or $42.718\%$, or any portion from $0\%$ and $100\%$. So there are many, many more possibilities. The possibility that *all* members of the new species ($100\%$) are black is just one of these many possibilities. So it would start with a much lower probability than $1/2$.
+
+We could make our analysis more realistic by taking these complications into account. But the calculations would get ugly, and we'd have to use calculus to solve the problem. This is the kind of technical topic you'd cover in a math or statistics class on probability. But it's not the kind thing this book is about.
+
+For our purposes, the key ideas that matter are as follows. First, the strength of an inductive argument is a question of conditional probability: how probable is the argument's conclusion given its premises? Second, an argument that generalizes from observed instances is similar to an urn problem, where we guess the contents of the urn by repeated sampling. And third, we know how to solve simple versions of these urn problems using Bayes' theorem. In principle, we could also solve more complicated and realistic versions using the same fundamental ideas, it's just the math would be more difficult.
+
+
+## Inference to the Best Explanation
+
+Another common form of inductive argument we met in [Chapter 2][Logic] was Inference to the Best Explanation, or *IBE* for short. An example:
+
+```{block, type="argument"}
+My car won't start and the gas gauge reads 'empty'.\
+Therefore, my car is out of gas.
+```
+
+My car being out of gas is a very good explanation for the facts that it won't start and the gauge reads 'empty'. So this is a strong argument.
+
+How do we evaluate this strength using probability? This is actually a controversial topic, currently being studied by researchers. There are different, competing theories about how IBE fits into probability theory. So we'll just look at one popular way of understanding this connection.
+
+Let's start by thinking about what makes an explanation a good one.
+
+A good explanation should fit well with whatever we're trying to explain. For example, if we're trying to explain why my car won't start and the gauge reads 'empty', I'd be skeptical if my mechanic said it's because the brakes are broken. That doesn't fit the symptoms! I'd also be skeptical if they said the gas gauge was broken. That might fit okay with one of the symptoms (the gauge reads 'empty'), but it doesn't fit with the fact the car won't start.
+
+The explanation that my car is out of gas, however, fits both symptoms. It would account for both the 'empty' reading on the gauge and the car's refusal to start.
+
+But a good explanation should also fit with other things I know. For example, suppose my mechanic tries to explain my car troubles by saying that both the gauge and the ignition broke down at the same time. But I know my car is new, it's a highly reliable model, and it was recently serviced. So my mechanic's explanation doesn't fit well with the other things I know. It's not a very good explanation.
+
+So we have two criteria for a good explanation:
+
+1. it should fit well with all the things we're trying to explain, and
+2. it should fit well with other things we know.
+
+These criteria match up with terms in Bayes' theorem. Imagine we have some evidence $E$ we're trying to explain, and some hypothesis $H$ that's meant to explain it. Bayes' theorem says:
+$$ \p(H \given E) = \frac{\p(H)\p(E \given H)}{\p(E)}. $$
+How probable is our explanation $H$ given our evidence $E$? Well, the larger the terms in the numerator are, the higher that probability is. And the terms in the numerator correspond to our two criteria for a good explanation.
+
+1. $\p(E \given H)$ corresponds to how well our hypothesis $H$ fits with our evidence $E$. If $H$ is the hypothesis that the car is out of gas, then $\p(E \given H) \approx 1$. After all, if there's no gas in the car, it's virtually guaranteed that it won't start and the gauge will read 'empty'. (It's not perfectly guaranteed because the gauge could be broken after all, though that's not very likely.)
+
+2. $\p(H)$ corresponds to how well our hypothesis fits with other things we know. For example, suppose I know it's been a while since I put gas in the car. If $H$ is the hypothesis that the car is out of gas, this fits well with what I already know, so $\p(H)$ will be pretty high.
+
+    Whereas if $H$ is the hypothesis that the gauge and the ignition both broke down at the same time, this hypothesis starts out pretty improbable given what else I know (it's a new car, a reliable model, and recently serviced). So in that case, $\p(H)$ would be low
+
+So the better $H$ fits with the evidence, the larger $\p(E \given H)$ will be. And the better $H$ fits with my background information, the larger $\p(H)$ will be. Thus, the better $H$ is as an explanation, the larger $\p(H \given E)$ will be. And thus the stronger $E$ will be as an argument for $H$.
+
+What about the last term in Bayes' theorem though, the denominator $\p(E)$? It also corresponds to a virtue of good explanations!
+
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The hammer/feather experiment performed on the moon in 1971"}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The hammer/feather experiment performed in a vaccuum chamber on Earth"}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+Scientists love theories that explain the unexplained. For example, Newton's theory of physics is able to explain why a heavy object, like a hammer, and a light object, like a feather, fall to the ground at the same speed (as long as there's no air resistance). If you'd never performed this experiment before, you'd probably expect the hammer to fall faster. You'd be surprised to find that the hammer and feather actually hit the ground at the same time. The fact that Newton's theory explains this surprising fact offers strong support for the theory.
+
+So the ability to explain surprising facts is a third virtue of a good explanation. And this virtue corresponds to our third term in Bayes' theorem:
+
+3. $\p(E)$ corresponds to how surprising the evidence $E$ is. If $E$ is surprising, then $\p(E)$ will be low, since $E$ isn't something we expect to be true. 
+
+And since $\p(E)$ is in the denominator of Bayes' theorem, a smaller number there means a *bigger* value for $\p(H \given E)$. So the more surprising the finding $E$ is, the more it supports a hypothesis $H$ that explains it.
+
+According to this analysis then, each term in Bayes' theorem corresponds to a virtue of a good explanation. And that's why Inference to the Best Explanation works as a form of inductive inference.
+
+
+## Exercises
+
+1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

@@ -1,0 +1,236 @@
+# Multiple Conditions
+
+It often happens that we need to take account of multiple items of information. 
+
+
+## Multiple Draws
+
+Imagine you're faced with another one of our mystery urns. There are two equally likely possibilities:
+$$
+  \begin{aligned}
+    A      &: \mbox{The urn contains $70$ black marbles, $30$ white marbles.}\\
+    \neg A &: \mbox{The urn contains $20$ black marbles, $80$ white marbles.}\\
+  \end{aligned}
+$$
+Now suppose you draw a marble at random and it's black. You put it back, give the urn a good shake, and then draw another: black again. What's the probability the urn has $70$ black marbles? We need to calculate $\p(A \given B_1 \wedge B_2)$, the probability of $A$ given that the first and second draws were both black.
+
+We already know how to do this calculation for one draw. We use Bayes' theorem (or a probability tree). In this case Bayes' theorem says:
+$$
+  \begin{aligned}
+    \p(A \given B_1) &= \frac{\p(B_1 \given A)\p(A)}{\p(B_1 \given A) \p(A) + \p(B_1 \given \neg A) \p(\neg A)} \\
+      &= \frac{(70/100)(1/2)}{(70/100)(1/2) + (20/100)(1/2)}\\
+      &= 7/9.
+  \end{aligned}
+$$
+
+But for two draws, Bayes' theorem gives us:
+$$
+  \begin{aligned}
+    \p(A \given B_1 \wedge B_2) &= \frac{\p(B_1 \wedge B_2 \given A)\p(A)}{\p(B_1 \wedge B_2 \given A) \p(A) + \p(B_1 \wedge B_2 \given \neg A) \p(\neg A)}.
+  \end{aligned}
+$$
+To fill in the values on the right hand side, we need to know these quantities:
+
+- $\p(B_1 \wedge B_2 \given A)$,
+- $\p(B_1 \wedge B_2 \given \neg A)$.
+
+To get the first quantity, remember that we replaced the first marble before doing the second draw. So, given $A$, the second draw is independent of the first. There are still $70$ black marbles out of $100$ on the second draw, so the chance of black on the second draw is still $70/100$. In other words:
+$$
+  \begin{aligned}
+    \p(B_1 \wedge B_2 \given A) &= \p(B_1 \given A) \p(B_2 \given A)\\
+      &= (70/100)^2.
+  \end{aligned}
+$$
+The same reasoning applies given $\neg A$, too, except the chance of black on each draw is $20/100$. So:
+$$
+  \begin{aligned}
+    \p(B_1 \wedge B_2 \given \neg A) &= \p(B_1 \given A) \p(B_2 \given \neg A)\\
+      &= (20/100)^2.
+  \end{aligned}
+$$
+
+Returning to Bayes' theorem, we can now finish the calculation:
+$$
+  \begin{aligned}
+    \p(A \given B_1 \wedge B_2) &= \frac{\p(B_1 \wedge B_2 \given A)\p(A)}{\p(B_1 \wedge B_2 \given A) \p(A) + \p(B_1 \wedge B_2 \given \neg A) \p(\neg A)} \\ 
+    &= \frac{(70/100)^2(1/2)}{(70/100)^2(1/2) + (20/100)^2(1/2)}\\
+    &= 49/53.
+  \end{aligned}
+$$
+You might be able to guess now what would happen after three black draws. Instead of squaring, we'd cube the same probabilities. And using the same logic, we could keep going, using Bayes' theorem to  calculate $\p(A \given B_1 \wedge \ldots \wedge B_n)$ for any number $n$ you like.
+
+
+## Multiple Witnesses
+
+Let's try a different sort of problem with multiple conditions. Recall the taxicab problem from [Chapter 8][Bayes' Theorem].
+
+```{block, type='problem'}
+A cab was involved in a hit and run accident at night. Two cab companies, the Green and the Blue, operate in the city. You are given the following data:
+
+1.  85% of the cabs in the city are Green and 15% are Blue.
+2.  A witness identified the cab as Blue. The court tested the reliability of the witness under the same circumstances that existed on the night of the accident and concluded that the witness correctly identified each one of the two colors 80% of the time and failed 20% of the time.
+
+What is the probability that the cab involved in the accident was blue rather green?
+```
+
+We saw it's only about $41\%$ likely the cab was really blue, even with the witness' testimony. But what if there had been two witnesses, both saying the cab was blue?
+
+Let's use Bayes' theorem again:
+$$
+  \begin{aligned}
+    \p(B \given W_1 \wedge W_2) &= \frac{\p(B)\p(W_1 \wedge W_2 \given B)}{\p(W_1 \wedge W_2)}.
+  \end{aligned}
+$$
+We have one of the terms here already: $\p(B) = 15/100$. What about the other two terms?:
+
+- $\p(W_1 \wedge W_2 \given B)$,
+- $\p(W_1 \wedge W_2)$.
+
+Let's make things easy on ourselves by assuming our two witnesses are reporting independently. They don't talk to each other, or influence one another in any way. They're only reporting what they saw (or think they saw). Then we can "factor" these probabilities like we did when sampling with replacement:
+$$
+  \begin{aligned}
+    \p(W_1 \wedge W_2 \given B) &= \p(W_1 \given B) \p(W_2 \given B)\\
+                                &= (80/100)^2.
+  \end{aligned}
+$$
+And for the denominator we use the Law of Total Probability:
+$$
+  \begin{aligned}
+    \p(W_1 \wedge W_2) &= \p(W_1 \wedge W_2 \given B)\p(B) + 
+                          \p(W_1 \wedge W_2 \given \neg B)\p(\neg B)\\
+                       &= (80/100)^2(15/100) + (20/100)^2(85/100)\\
+                       &= 96/1000 + 34/1000\\
+                       &= 13/100.
+  \end{aligned}
+$$
+
+Now we can return to Bayes' theorem to finish the problem:
+$$
+  \begin{aligned}
+    \p(B \given W_1 \wedge W_2) &= \frac{(15/100)(80/100)^2}{13/100}\\
+                                &= 96/130\\
+                                &\approx .74.
+  \end{aligned}
+$$
+So, with two witnesses independently agreeing that the cab was blue, the probability goes up from less than $1/2$ to almost $3/4$.
+
+
+## Without Replacement
+
+The problems we've done so far were simplified by assuming independence.  We sampled with replacement in the urn problem, and we assumed our two witnesses were independently reporting what they saw in the taxicab problem. What about cases where independence doesn't hold?
+
+Let's go back to our urn problem, but this time suppose we won't replace the marble after the first draw. How do we calculate $\p(A \given B_1 \wedge B_2)$ then?
+
+We're still going to start with Bayes' theorem:
+$$
+  \begin{aligned}
+    \p(A \given B_1 \wedge B_2) &= \frac{\p(B_1 \wedge B_2 \given A)\p(A)}{\p(B_1 \wedge B_2 \given A) \p(A) + \p(B_1 \wedge B_2 \given \neg A) \p(\neg A)}.
+  \end{aligned}
+$$
+But to calculate terms like $\p(B_1 \wedge B_2 \given A)$ now, we need to think things through in two steps.
+
+We know the first draw has a $70/100$ chance of coming up black if $A$ is true:
+$$ \p(B_1 \given A) = 70/100. $$
+And once the first draw has come up black, if $A$ is true then there are 69 black balls remaining and 30 white. So:
+$$ \p(B_2 \given B_1 \wedge A) = 69/99. $$
+So instead of multiplying $70/100$ by itself, we're multiplying $70/100$ by *almost* $70/100$:
+$$
+  \begin{aligned}
+    \p(B_1 \wedge B_2 \given A) &= (70/100)(69/99)\\
+       &= 161/300.
+  \end{aligned}
+$$
+
+Using similar reasoning for the possibility that $\neg A instead$, we can calculate
+$$
+  \begin{aligned}
+    \p(B_1 \wedge B_2 \given \neg A) &= (20/100)(19/99)\\
+       &= 19/495.
+  \end{aligned}
+$$
+
+Returning to Bayes' theorem to finish the calculation:
+$$
+  \begin{aligned}
+    \p(A \given B_1 \wedge B_2) &= \frac{\p(B_1 \wedge B_2 \given A)\p(A)}{\p(B_1 \wedge B_2 \given A) \p(A) + \p(B_1 \wedge B_2 \given \neg A) \p(\neg A)} \\
+      &= \frac{(161/300)(1/2)}{(161/300)(1/2) + (19/495)(1/2)} \\
+      &= 5313/5693 \\
+      &\approx .93. 
+  \end{aligned}
+$$
+Notice how similar this answer is to the $.92$ we got when sampling with replacement. With so many black and white marbles in the urn, taking one out doesn't make much difference. The second draw is almost the same as the first, so the final answer isn't much affected.
+
+
+## Multiplying Conditional Probabilities
+
+The calculation we just did relied on a new rule, which we should make explicit. Start by recalling a familiar rule:
+
+The General Multiplication Rule
+
+:    $\p(A \wedge B) = \p(A \given B) \p(B).$
+
+Our new rule applies the same idea to situations where some proposition $C$ is taken as a given.
+
+The General Multiplication Rule (Conditional Version)
+
+:    $\p(A \wedge B \given C) = \p(A \given B \wedge C) \p(B \given C).$
+
+In a way, the new rule isn't really new. We just have to realize that the probabilities we get when we take a condition $C$ as given are still probabilities. They obey all the same rules as unconditional probabilities, and this includes the General Multiplication Rule.
+
+Another example which illustrates the point is the Negation Rule. The following conditional version is also valid:
+
+The Negation Rule (Conditional Version)
+
+:    $\p(\neg A \given C) = 1 - \p(A \given C).$
+
+We could go through all the rules of probability we've learned and write out the conditional version for each one. But we've already got enough rules and equations to keep track of. So let's just remember this mantra instead:
+
+```{block, type='info'}
+Conditional probabilities are probabilities.
+```
+
+So if we have a rule of probability, the same rule will hold if we add a condition $C$ into each of the $\p(\ldots)$ terms.
+
+
+## Summary
+
+We've learned two strategies for calculating conditional probabilities with multiple conditions.
+
+The first strategy is easier, but it only works when the conditions are appropriately independent. Like when we sample with replacement, or when two witnesses independently report what they saw.
+
+In this kind of case, we first use Bayes' theorem, then "factor" the terms:
+$$
+  \begin{aligned}
+    \p(A \given B_1 \wedge B_2) &= 
+      \frac{\p(B_1 \wedge B_2 \given A)\p(A)}{%
+            \p(B_1 \wedge B_2 \given A)\p(A) +%
+              \p(B_1 \wedge B_2 \given \neg A)\p(\neg A)}\\
+      &= \frac{\p(B_1 \given A)\p(B_2 \given A)\p(A)}{%
+                \p(B_1 \given A)\p(B_2 \given A)\p(A) +%
+                  \p(B_1 \given \neg A)\p(B_2 \given \neg A)\p(\neg A)}\\
+      &= \frac{[\p(B_1 \given A)]^2\p(A)}{%
+                [\p(B_1 \given A)]^2\p(A) +%
+                  [\p(B_1 \given \neg A)]^2\p(\neg A)}.
+  \end{aligned}
+$$
+
+Our second strategy is a little more difficult. But it works even when the conditions aren't independent. We still start with Bayes' theorem, but then we apply the conditional form of the General Multiplication Rule:
+$$
+  \begin{aligned}
+    \p(A \given B_1 \wedge B_2) &= 
+      \frac{\p(B_1 \wedge B_2 \given A)\p(A)}{%
+            \p(B_1 \wedge B_2 \given A)\p(A) +%
+              \p(B_1 \wedge B_2 \given \neg A)\p(\neg A)}\\
+      &= \frac{\p(B_2 \given B_1 \wedge A)\p(B_1 \given A)\p(A)}{%
+                \p(B_2 \given B_1 \wedge A)\p(B_1 \given A)\p(A) +%
+                  \p(B_2 \given B_1 \wedge \neg A)\p(B_1 \given \neg A)\p(\neg A)}.
+  \end{aligned}
+$$ 
+
+These are some pretty hairy formulas, so memorizing them probably isn't a good idea. Better to understand how they flow from Bayes' theorem or a tree diagram.
+
+## Exercises
+
+1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+
+2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
