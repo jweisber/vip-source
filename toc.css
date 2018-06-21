@@ -1,3 +1,5 @@
+/* MY CUSTOM STUFF */
+
 dt {
   text-indent: 1rem;
   font-size: 1.4rem;
@@ -23,6 +25,17 @@ div.argument {
   border-left: 3px double silver;
   padding-left: 1em;
 }
+
+button {
+  background: none!important;
+  color: inherit;
+  border: none; 
+  padding: 1!important;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* TOC STUFF */
 
 #TOC ul,
 #TOC li,
@@ -150,13 +163,4 @@ div.argument {
 }
 #TOC ul {
   font-size: 1.2rem;
-}
-
-button {
-  background: none!important;
-  color: inherit;
-  border: none; 
-  padding: 1!important;
-  font: inherit;
-  cursor: pointer;
 }
