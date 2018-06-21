@@ -8,22 +8,22 @@ dt {
 
 div.problem {
   border-left: 3px double maroon;
-  padding-left: 1em;
+  padding-left: 1rem;
 }
 
 div.info {
   border-left: 3px double teal;
-  padding-left: 1em;
+  padding-left: 1rem;
 }
 
 div.warning {
   border-left: 3px double red;
-  padding-left: 1em;
+  padding-left: 1rem;
 }
 
 div.argument {
   border-left: 3px double silver;
-  padding-left: 1em;
+  padding-left: 1rem;
 }
 
 button {
@@ -33,6 +33,11 @@ button {
   padding: 1!important;
   font: inherit;
   cursor: pointer;
+}
+
+/* DOESN'T WORK. WHY NOT? */
+#TOC ul li ul {
+  z-index: 2147483647 !important;
 }
 
 /* TOC STUFF */
