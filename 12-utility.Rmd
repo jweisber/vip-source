@@ -1,0 +1,193 @@
+# Utility
+
+Imagine your university's student union is holding a lottery. There are a thousand tickets, and the prize is $\$500$. Tickets cost $\$1$. Would you buy one?
+
+The expected monetary value of buying a ticket is $-\$0.50$:
+$$
+  \begin{aligned}
+    \E(T) &= (1/1,000)(\$499) + (999/1,000)(-\$1)\\
+          &= -\$0.50.
+  \end{aligned}
+$$
+So it seems like a bad deal.
+
+But some people do buy tickets in lotteries like this one, and not just because they're bad at math. Maybe they enjoy the thrill of winning, or at least having a shot at winning. Or maybe they want to support the student union and foster fun and community on campus.
+
+Imagine your friend is one of these people. How might they respond to the calculation we just did? One thing they could do is replace the dollar amounts with different numbers that represent their personal values.
+
+Instead of just a $\$499$ gain for winning, for example, they might use $599$, to capture the added value that comes from the thrill of winning. And instead of $-\$1$ for losing, they might put $10$ to capture the contribution to campus community that comes from participating in the event.
+
+Then the calculation looks like this:
+$$
+  \begin{aligned}
+    \E(T) &= (1/1,000)(599) + (999/1,000)(9)\\
+          &= 9.59
+  \end{aligned}
+$$
+So buying a ticket has positive expected value now.
+
+Notice how there are no dollar signs anymore. In fact there's no explicit unit of measurement at all. So what do these numbers represent, if not monetary value?
+
+They represent how good or bad an outcome is, from your friend's point of view. In decision theory, we call these numbers *utilities*, or *utils* for short.
+
+
+## Subjectivity & Objectivity
+
+People have different desires, needs, and interests. Some value friendship most, others value family more. Some prioritize professional success, others favour activism. Some people like '80s music, others prefer hip-hop---and still others (to my constant surprise) enjoy reggae.
+
+So the value of a decision's outcome depends on the person: it is *subjective*. And that raises a big question: if utility is subjective, how can we measure it objectively? Does it even make sense to treat personal tastes and preferences using mathematical equations?
+
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Frank Ramsey (1903--1930). Sadly Ramsey died very young, at the age of 26, before his discovery could become widely known. Luckily the idea was rediscovered by economists and statisticians in the 1940's and 1950's."}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+The classic solution to this problem was discovered by the philosopher Frank Ramsey in the 1920's. The key insight was that you can measure how much a person values a thing by seeing how much they'd risk to get it.
+
+For example, imagine you have three options for lunch: pizza, curry, or noodles. And let's suppose you prefer them in that order: pizza $\succ$ curry $\succ$ noodles. We want to know: how does curry compare with the best option (pizza) and the worst option (noodles)? Is curry almost as good as pizza for you? Is it not so great, almost as bad as noodles perhaps?
+
+Here's how we find out. We offer you a choice: you can either have a curry, or you can have a gamble. The gamble might win you pizza, but you might end up with noodles instead.
+
+- The probability you'll get pizza is some number $p$.
+- The probability you'll get curry is $1-p$.
+
+Question: how high does the probability of pizza $p$ have to be before you are *indifferent* between your two options? How good does your shot at pizza have to be before you'd trade curry for a chance at pizza, with a risk of noodles instead?
+
+Well suppose your answer is $p \geq 2/3$. You'd need at least a $2/3$ chance at the pizza to risk getting noodles instead of curry. Since noodles is the worst option, let's say it has utility zero: $\u(N)=0$. And since pizza is the best option, let's say it has utility one: $\u(P)=1$.
+
+What is the utility of curry $\u(C)$ then? We know that you view it as a fair trade to exchange the curry for the gamble when the probability of winning the gamble is $2/3$. So:
+$$
+  \begin{aligned}
+    \u(C) &= \E(G)\\
+      &= \p(P)\u(P) + \p(N)\u(N)\\
+      &= (2/3)(1) + (1/3)(0)\\
+      &= 2/3
+  \end{aligned}
+$$
+So curry has utility $2/3$ for you.
+
+Hey look! We just took something personal and subjective and gave it an objective measurement. We've managed to precisely quantify your lunch preferences.
+
+
+## Another Example
+
+But suppose your friend gives a different answer: they'd need at least a $4/5$ chance at the pizza to risk getting noodles instead of curry. So for them, $p \geq 4/5$. Then the calculation goes:
+$$
+  \begin{aligned}
+    \u(C) &= \p(P)\u(P) + \p(N)\u(N)\\
+      &= (4/5)(1) + (1/5)(0)\\
+      &= 4/5.
+  \end{aligned}
+$$
+So your friend likes curry even more. For them it has utility $4/5$!
+
+In general, if we know that someone's best option is $B$, and their worst option is $W$, we make the following assignments:
+$$
+  \begin{aligned}
+    \u(B) &= 1,\\
+    \u(W) &= 0.
+  \end{aligned}
+$$
+And if we want to know how much utility some consequence $C$ has for them, we follow this recipe. We find the *lowest* probability $p$ at which they would be indifferent between having $C$ for sure vs. accepting the following gamble.
+
+- Probability $p$ of getting $B$.
+- Probability $1-p$ of getting $W$.
+
+Then we know consequence $C$ has utility $p$ for them.
+
+Why does this method work? Because our subject is indifferent between having option $C$ for sure and taking the gamble $G$. So, for them, the utility of $C$ is the same as the expected utility of the gamble $G$. And the expected utility of gamble $G$ is just $p$:
+$$
+  \begin{aligned}
+    \u(C) &= \E(G)\\
+          &= p \times \u(B) + (1-p) \times \u(W)\\
+          &= p \times 1 + (1-p) \times 0\\
+          &= p.
+  \end{aligned}
+$$
+
+
+## Choosing Scales
+
+This method assumes that $\u(W) = 0$ and $\u(B) = 1$. What justifies this assumption? These values were actually chosen somewhat arbitrarily. We could measure someone's utilities on a scale from $0$ to $10$ instead, or $-1$ to $1$, or any interval.
+
+It's just convenient to use $0$ and $1$. Because then, once we've identified the relevant probability $p$, we can immediately set $\u(C) = p$. If we used a scale from $0$ to $10$ instead, we'd have to multiply $p$ by $10$ to get $\u(C)$, which would add some unnecessary nuisance. (Question: how would we calculate $\u(C)$ on a scale from $-1$ to $1$?)
+
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The best possible gamble"}
+knitr::include_graphics("img/marg_fig.png")
+```
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The worst possible gamble"}
+knitr::include_graphics("img/marg_fig.png")
+```
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="A gamble of intermediate value"}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+It's also nice and inuitive to use the same $0$-to-$1$ scale for both probability and utility. And it make our visualizations of expected values especially tidy. Expected utility can then be thought of as a portion of the unit square. The best possible option is a $100\%$ chance of the best outcome, i.e. probability 1 of getting utility $1$. So the best possible choices have area $1$. Whereas the worst gamble has no chance of getting any outcome with positive utility, and has area $0$.
+
+You can think of $0$ and $1$ as being a bit like the choices we make when setting a scale for temperature. On the celsius scale, the freezing point of water is $0$ degrees and the boiling point is $100$. On the Fahrenheit scale we use $32$ and $212$ instead. The celsius scale is more intuitive, so that's what most people use. But the Fahrenheit scale works fine too, as long as you don't get confused by it.
+
+Notice, by the way, that a person's body temperature is another example of  something personal and subjective, yet also precisely and objectively measurable. Different people have different body temperatures. But that doesn't mean we can't quantify and measure them.
+
+
+## A Limitation: The Expected Utility Assumption
+
+Of course, a measurement is only as good as the method used to generate it. An oral thermometer only works when the temperature in your mouth is the same as your general body temperature. If you've got an ice cubes tucked in your cheeks, or a mouthful of hot tea, even the best thermometer will give the wrong reading.
+
+The same goes for our method of measuring utility. It's based on the assumption that our subject is making their choices using the expected value formula. When the probability of pizza $p$ was $2/3$, we assumed you were indifferent between keeping the curry and taking gamble on pizza/noodles because $\u(C) = \E(G)$.
+
+But people don't always make their choices according to the expected value formula. Some famous experiments in psychology demonstrate this, as we'll learn later. So it's important to keep in mind that our "utility thermometer" doesn't always give the right reading.
+
+```{block, type='warning'}
+Ramsey's method for measuring utilities only works when the subject is following the expected value formula.
+```
+
+
+## The Value of Money
+
+If you saw 50 cents on the ground while walking, would you stop to pick it up? I probably wouldn't, but I would have when I was younger. Back then I had a lot less money, so an additional 50 cents made a bigger difference to my day. The more money you have, the less an additional dollar will be worth to you.
+
+Imagine you win $\$1$ million in the lottery. Your life would be changed radically, unless you already happen to be a millionaire. If you win another $\$1$ million in a second lottery, that extra million wouldn't make as big a difference. It's still a big deal, but not as big a deal as the first million.
+
+For most people, gaining more money adds less and less value as the gains increase. In graphical terms:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="The diminishing value of additional money"}
+bernoulli_utility <- function(x) {
+  log(x + 1) / log(101)
+}
+ggplot(data.frame(x = c(0, 100))) + 
+  stat_function(aes(x), fun = bernoulli_utility) +
+  xlab("dollars") + ylab("utility")
+```
+
+We can use Ramsey's technique to quantify this idea precisely. For example, let's figure out how much utility a gain of \$50 has, compared with \$0 and \$100.
+
+As usual we set the end-points of our scale at $0$ and $1$:
+$$
+  \begin{aligned}
+    \u(\$0)   &= 0,\\
+    \u(\$100) &= 1.
+  \end{aligned}
+$$
+Then we ask: how high would $p$ have to be before you would trade a guaranteed gain of $\$50$ for the following gamble?
+
+- Chance $p$ of winning $\$100$.
+- Chance $1-p$ of winning $\$0$.
+
+For me, I'd only be willing to take the gamble if $p \geq .85$. So, for me, $\u(\$50) = .85$.
+$$
+  \begin{aligned}
+    \u(\$50) &= \p(\$100)\u(\$100) + \p(\$0)\u(\$0)\\
+             &= (.85)(1) + (.15)(0)\\
+             &= .85.
+  \end{aligned}
+$$
+
+Notice how this fits with what we said earlier about the value of additional money. At least for me, \$100 isn't simply twice as valuable as \$50. In fact it's not even really close to being twice as valuable. A gain of $\$50$ is almost as good as a gain of $\$100$: utility $.85$ vs. utility $1$.
+
+Now what about you: how does a gain of $\$50$ compare to a gain of $\$100$ for you?
+
+
+## Exercises
+
+1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+
+2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

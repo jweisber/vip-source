@@ -1,3 +1,5 @@
+# (PART\*) Part I {-}
+
 # The Monty Hall Problem
 
 `r tufte::newthought("Imagine")` you're on a game show. There are three doors, one with a prize behind it. You're allowed to pick any door, so you choose the first one at random. Let's call that door A.
