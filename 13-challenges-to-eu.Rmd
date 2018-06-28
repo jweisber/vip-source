@@ -1,0 +1,294 @@
+# Challenges to Expected Utility
+
+We've learned two key elements of modern decision theory. First, people's desires, values, and priorities can be quantified, a quantity we call *utility*. Second, when faced with a decision, we should evaluate our options using the expected value formula. We should choose the option with highest *expected utility*.
+
+These ideas have been extremely popular and influential in the last hundred years. But they've faced challenges, too.
+
+
+## The Allais Paradox
+
+Suppose you face a choice between two options:
+
+```{block, type='problem'}
+- Option 1A is just $\$1$ million dollars, guaranteed.
+- Option 1B is a gamble:
+    - $1\%$ chance of $\$0$,
+    - $89\%$ chance of $\$1$ million,
+    - $10\%$ chance of $\$5$ million.
+```
+
+Which would you choose, 1A or 1B? Write your answer down and set it aside. We'll come back to it in a moment.
+
+Now, what if you had to choose instead between these two options:
+
+```{block, type='problem'}
+- Option 2A is another gamble:
+    - $90\%$ chance of $\$0$,
+    - $10\%$ chance of $\$5$ million.
+- Option 2B is also a gamble:
+    - $89\%$ chance of $\$0$,
+    - $11\%$ chance of $\$5$ million.
+```
+
+Most people choose $1A$ over $1B$ in the first decision. Faced with the safe option of walking away $\$1$ million dollars richer, they don't want to take the chance at $\$5$ million. Even though there's only a small, $1\%$ risk of walking away empty handed if they take the gamble, it's not worth it to them in exchange for the $10\%$ shot at $\$5$ million.
+
+But in the second decision, most people choose $2B$ over $2A$. There's no safe option now, in fact you'll probably walk away empty handed whatever you choose. And, under these circumstances, most people prefer to take on an extra $1\%$ risk of empty-handedness in exchange for a shot at $\$5$ million instead of just $\$1$ million.
+
+But here's the thing: these choices contradict the rule of maximizing expected utility! It's not obvious at first. But a few lines of algebra will prove that it's so.
+
+Suppose someone did choose 1A over 1B, and 2B over 2A, by applying the expected utility formula. Then we would know that $\E(1A) > \E(1B)$ and $\E(2B) > \E(2A)$. In other words:
+$$
+  \begin{aligned}
+    \E(1A) - \E(1B) &> 0,\\
+    \E(2A) - \E(2B) &< 0.
+  \end{aligned}
+$$
+But it turns out that's impossible, because:
+$$ \E(1A) - \E(1B) = \E(2A) - \E(2B). $$
+To see why, let's first write out the expected utility formula for each option:
+$$
+  \begin{aligned}
+     \E(1A) &= \u(\$1M),\\
+     \E(1B) &= .89 \times \u(\$1M) + .1 \times \u(\$5M) + .01 \times \u(\$0M),\\
+     \E(2A) &= .9 \times \u(\$0M) + .1 \times\u(\$5M),\\
+     \E(2B) &= .89 \times \u(\$0M) + .11 \times \u(\$1M).
+  \end{aligned}
+$$
+Now a little arithmetic will show that we get the same result when we subtract the first two formulas and the second two:
+$$
+  \begin{aligned}
+    \E(1A) - \E(1B) &= -.01 \times \u(\$0M) + .11 \times \u(\$1M) - .1 \times \u(\$5M),\\
+    \E(2A) - \E(2B) &= -.01 \times \u(\$0M) + .11 \times \u(\$1M) - .1 \times \u(\$5M).\\
+  \end{aligned}
+$$
+Notice how both formulas are exactly the same. The difference in expected value between the first two options is exactly the same as the difference in value between the second two options. Which means if you're making decisions using the expected utility rule, you can't prefer the A-option in one decision and the B-option in the other.
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Maurice Allais"}
+knitr::include_graphics("img/marg_fig.png")
+```
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Leonard Savage"}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+This is called the *Allais paradox*. Maurice Allais was a French economist who disliked the idea of reducing decision making to a simple equation. The American statistician Leonard Savage, on the other hand, very much liked the idea of expected utility. So Allais cooked up this problem to prove Savage wrong.
+
+When Savage was first presented with Allais' example, he did exactly what most people do. He chose 1A over 1B, but 2B over 2A. He violated the principles of his own theory!
+
+Savage responded by acknowledging that people will often be tempted to make exactly the choices Allais predicted. But, he pointed out, people sometimes make irrational choices. And this temptation is irrational, he argued.
+
+To make his case, Savage imagined the outcomes of Allais' gambles being determined by a sort of lottery. A random ticket is drawn from a hat with tickets numbered $\#1$ through $\#100$. The outcome of each option is then determined according to the following table, where each row represents one of Allais' options:
+
+```{r echo=FALSE, cache=TRUE}
+df <- data.frame(
+    A = c("1A", "1B", "2A", "2B"),
+    B = c("$1M", "$0", "$1M", "$0"),
+    C = c("$1M", "$5M", "$1M", "$5M"),
+    D = c("$1M", "$1M", "$0", "$0")
+)
+colnames(df) <- c("", "#1", "#2--11", "#12--100")
+knitr::kable(df, align = "c", caption = "Savage's lottery representation of the Allais paradox")
+```
+
+In the first row you're guaranteed to get $\$1$ million, just as in Allais' puzzle. In the second row you have a $1\%$ chance of getting nothing, an $89\%$ chance of getting $\$1$ million, and a $10\%$ chance of getting $\$5$ million. And so on.
+
+Viewed this way, we can see that there's no difference between 1A and 1B if the ticket drawn is one of $\#12$--$100$, and likewise for 2A vs. 2B. So you must choose based on what will happen if the ticket drawn is $\#1$ or one of $\#2$--$11$. In other words, you should ignore the third column and just look at the first two.
+
+But, in the first two columns, choosing 1A over 1B is the same as choosing 2A over 2B. So, to be consistent, you must choose 2A if you choose 1A.
+
+`r newthought("Here's another way")` of thinking about Savage's argument. If you choose 2B over 2A, then you must be willing to trade a $1\%$ chance of getting nothing in exchange for a $10\%$ chance at $\$5$ million. And if you're willing to make that trade, you should be willing to give up option 1A and take option 2B instead.
+
+
+## The Sure-Thing Principle
+
+Savage's argument is based on a famous principle of decision theory:
+
+The Sure-Thing Principle
+
+:   If you would choose $X$ over $Y$ if you knew that $E$ was true, and you'd also choose $X$ over $Y$ if you knew $E$ wasn't true, then you should choose $X$ over $Y$ when you don't know whether $E$ is true or not.
+
+To see how the Sure-Thing Principle applies, interpret $E$ as the proposition *One of tickets #$12$--$100$ will be drawn*. And then imagine someone who chooses 1A over 1B. Would it make sense for them to prefer 2B over 2A?
+
+Well, first imagine they know $E$ is true: they know one of tickets \#$12$--$100$ will be drawn. Then they wouldn't prefer 2B over 2A. They wouldn't care about 2B vs. 2A because they'll get $\$0$ either way.
+
+Now imagine they know $E$ isn't true: they know one of tickets #$1$--$11$ will  be drawn instead. Then they still wouldn't prefer 2B over 2A. They chose 1A over 1B, so they prefer not to take a small risk of getting $\$0$ in order to have a chance at $\$5$ million. And that's exactly the same tradeoff they're considering with 2A vs. 2B.
+
+So the Sure-thing Principle says they should choose 2A over 2B, if they chose 1A over 1B. They wouldn't choose 2B if they knew $E$ was true, and they wouldn't choose it if they knew $E$ was false. So, even when they don't know whether $E$ is true or false, they should still choose 2A.
+
+
+## Prescriptive vs. Descriptive
+
+Some decision theorists use the expected utility formula to *describe* the way people make choices. If you want to predict when people will buy/sell a stock, for example, you might use the expected utility formula to predict what people will do.
+
+But others use the formula to *prescribe* decisions: to determine what we *ought* to do. Sometimes people do what they should, but sometimes they make mistakes or do foolish things.
+
+Savage's answer to the Allais paradox is based on the prescriptive approach to decision theory. According to Savage, people *should* make decisions according to the expected utility formula. But sometimes they don't, as Allais' example demonstrates.
+
+
+## The Ellsberg Paradox
+
+Here's another puzzle that challenges expected utility and the Sure-thing Principle:
+
+```{block, type='puzzle'}
+An urn contains 90 balls, 30 of which are red. The other 60 are either black or white, but the proportion of black to white is not known. A ball will be drawn at random, and you must choose between the following:
+
+- 1A: win $100 if the ball is red,
+- 1B: win $100 if the ball is black.
+
+You also face a second choice:
+
+- 2A: win $100 if the ball is either red or white,
+- 2B: win $100 if the ball is either black or white.
+```
+
+Most people choose 1A over 1B, since you know what you're getting with 1A: a $1/3$ chance at the $\$100$. Whereas 1B might give worse odds; it may even have no chance at all of winning, if there are no black balls.
+
+At the same time, most people choose 2B over 2A, and for a similar reason. With 2B, you know you're getting a $2/3$ chance at the $\$100$. While 2A might give much worse odds, maybe even as low as $1/3$ if there are no white balls in the urn.
+
+Like in the Allais paradox, this popular combination of choices violates the expected utility rule. The calculation that shows this is pretty similar to the one we did with Allais (so we won't rehearse it here).
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Daniel Ellsberg (b. 1931). Ellsberg is most famous as the leaker of the Pentagon Papers, depicted in the 2017 movie *The Post*."}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+Instead let's think about what this puzzle, devised by Daniel Ellsberg, is showing us.
+
+
+## Ellsberg & Allais
+
+Ellsberg's paradox is strongly reminiscent of Allais'. Both exploit a human preference for the known. In the Allais paradox we prefer the sure million, and in the Ellsberg paradox we prefer to know our chances.
+
+But notice that the kind of risk at play in each paradox is different. In the Allais paradox, all the probabilities are known, and in one case we can even know the outcome. If you choose the safe million, you know what your fate will be.
+
+But in the Ellsberg paradox, you never know the outcome. The most you can know is the chance of each outcome. And yet, our preference for the known still takes hold. We still prefer to go with what we know, even when all we can know is the chance of each outcome.
+
+Is this preference for known risks rational? Well, it violates Savage's Sure-thing Principle. Picture Ellsberg's dilemma as a table:
+
+```{r echo=FALSE, cache=TRUE}
+df <- data.frame(
+    A = c("1A", "1B", "2A", "2B"),
+    B = c("$100", "$0", "$100", "$0"),
+    C = c("$0", "$100", "$0", "$100"),
+    D = c("$0", "$0", "$100", "$100")
+)
+colnames(df) <- c("", "Red", "Black", "White")
+knitr::kable(df, align = "c", caption = "The Ellsberg paradox")
+```
+
+If you knew a white ball was going to be drawn, you wouldn't care which option you chose. In the first decision, you'd get $\$0$ either way, and in the second you'd get $\$100$ either way.
+
+And if you knew a white ball wouldn't be drawn, then options 1A and 2A would be equivalent. The first two rows are identical to the second two rows, if we ignore the "White" column. So consistency seems to demand selecting 2A if you selected 1A.
+
+Most decision theorists find this reasoning compelling. But some turn it on its head. They say: so much the worse for the Sure-thing Principle. The debate has yet to settle into any universal consensus.
+
+
+## The St. Petersburg Puzzle
+
+Our last challenge is of a very different sort from the previous two. It's based on the following game, known as the St. Petersburg Game.
+
+```{block, type='puzzle'}
+I'm going to flip a fair coin, and I'm going to keep flipping it until it comes up heads. Once the coin comes up heads, the game is over.
+
+- If it comes up heads on the first flip, you win $\$2$.
+- If it comes up heads on the second flip, you win $\$4$.
+- If it comes up heads on the third flip, you win $\$8$.
+- Etc.
+```
+
+How much would you be willing to pay to play this game? Most people aren't willing to pay very much. After all, you probably won't win more than a few dollars. Most likely you'll only win $\$2$ or $\$4$ dollars. And the chance you'll win more than say \$32, is about $.03$.
+
+And yet, bizarrely, the expected value of this game is infinite! There's a $1/2$ chance you'll win $\$2$, a $1/4$ chance you'll win $\$4$, a $1/8$ chance you'll win $\$8$, and so on. So:
+$$
+  \begin{aligned}
+    \E(G) &= \p(\$2) \times \$2 + \p(\$4) \times \$4 + \p(\$8) \times \$8 + \ldots\\
+          &= (1/2)(\$2) + (1/4)(\$4) + (1/8)(\$8) + \ldots\\
+          &= \$1 + \$1 + \$1 + \ldots\\
+          &= \$\infty.
+  \end{aligned}
+$$
+And doesn't that mean a fair price for the game would be infinity dollars? So even if you only have a finite bankroll, you should be willing to stake it all to play! 
+
+`r newthought("Visually")`, the St. Petersburg game looks like this:
+
+```{r echo=FALSE, fig.cap="The St. Petersburg game"}
+knitr::include_graphics("img/fig.png")
+# geom_area
+```
+
+As the number of potential flips grows, the rectangles get narrower because the outcomes become less probable. But they also get proportionally taller, because the payoff doubles every time the probability halves. The net result is an infinite sequence of rectangles, each with area $1$. So the total area is infinite.
+
+`r newthought("Most people")`, when they first encounter this puzzle, try to take the easy way out. "The game is impossible", they say. "Nobody could actually fund this game in real life. No casino (or government) has an unlimited amount of money. Besides, the coin would wear out after a while, so the house couldn't truly guarantee they'd be able to come through."
+
+There are two serious problems with this solution, however. 
+
+First, consider: would you be willing to risk your life to play the St. Petersburg game, if only the bank had enough cash on hand, and enough coins to keep the game going as long as it takes? If God descended from heaven and offered to run the game, would you gamble your life to play then?
+
+Second, even if the game had a finite limit---let's suppose it's 100 flips---would you be willing to pay $\$100$ to play? The chance you'd make any money at all is less than 1%.
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Nicolaus Bernoulli"}
+knitr::include_graphics("img/marg_fig.png")
+```
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Daniel Bernoulli"}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+## Bernoulli's Solution
+
+The St. Petersburg game was invented by the mathematician Nicolaus Bernoulli, in the 18th Century. He discussed it with his brother Daniel Bernoulli, who published a famous solution in 1738 in the *St. Petersburg Academy Proceedings*.
+
+The solution: replace monetary value with *real* value, a.k.a. *utility*. Remember, we saw in [Chapter 12][Utility] that the more money you have, the less value additional money brings. So, as the monetary payoffs in the St. Petersburg game double from \$2 to \$4 to \$8, etc., the *real* value grows more slowly.
+
+So what is the real value of gaining $\$x$? What is $\u(\$x)$? Bernoulli proposed that utility increases "logarithmically" with money. In terms of dollars, $\u(\$x)=\log(\$x)$:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="The diminishing value of additional money"}
+log_utility <- function(x) {
+  log(x + 1)
+}
+ggplot(data.frame(x = c(0, 100))) + 
+  stat_function(aes(x), fun = log_utility) +
+  xlab("dollars") + ylab("utility")
+```
+
+For example, on Bernoulli's scale winning $\$64$ is only about *twice* as good as winning $\$8$, not eight times as good:
+$$
+  \begin{aligned}
+    \log(64) &\approx 4.09,\\
+    \log(8)  &\approx 2.08.
+  \end{aligned}
+$$
+
+How does this help solve the St. Petersburg Paradox? Bernoulli demonstrated that the expected *utility* of the St. Petersburg game is a reasonably small finite value, approximately $1.39$, equivalent to about $\$4$ (because $\log(4) \approx 1.39$). So if Bernoulli is right about the real value of money, you should only be willing to pay about $\$4$ to play the St. Petersburg game. And, in fact, that's around what most people say they would pay!
+
+
+## St. Petersburg's Revenge
+
+Unfortunately, Bernoulli was probably right that money decreases in value the more of it you have, but that doesn't actually resolve the paradox. Because we can just modify the game so that the monetary payoffs grow even faster.
+
+Instead of the payoffs increasing like this:
+$$ \$2, \$4, \$8, \ldots $$
+Let's change the game so they increase like this:
+$$ \$e^2, \$e^4, \$e^8, \ldots $$
+You may remember from math class that $e$ is a special number^[The decimal value is $e \approx 2.71828$, and was used as the key-code for a locked room in the *X-Files* episode "Paper Clip" (except they seem to have forgetten the 1). The same scene also references Monty Hall.] with the property that:
+$$ \log(e^x) = x. $$
+So the utility of winning $\$e^8$ is $\u(\$e^8) = 8$. And thus the expected *utility* of this variation on the St. Petersburg is the same as the expected *monetary value* of the original:
+$$
+  \begin{aligned}
+     \E(G) &= \p(\$e^2) \times \u(\$e^2) + \p(\$e^4) \times \u(\$e^4) + \p(\$8) \times \u(\$e^8) + \ldots\\
+          &= (1/2)(2) + (1/4)(4) + (1/8)(8) + \ldots\\
+          &= 1 + 1 + 1 + \ldots\\
+          &= \infty.
+  \end{aligned}
+$$
+So once again, you should be willing to give anything to play. Or so the expected utility rule seems to demand.
+
+`r newthought("If you're still worried")` there's not enough money in the world to guarantee this game, try another variation. Imagine God offers to substitute days in heaven for dollars. Unlike dollars, days in heaven don't lose value the more you have. Every day in heaven is a day of pure bliss!
+
+`r newthought("So what's the solution?")` Nobody knows, really. Once infinities get involved, the whole expected value framework seems to go off the rails. Some decision theorists respond by insisting that there's a finite limit on utility. There's only so good an outcome can be. 
+
+But others don't find this response plausible. There may be a limit on how much good you can get out of money. Because there's only so many things you can by with money. But money is only a means to an end, a medium we can exchange for the things we really want---things of intrinsic value like pleasure, happiness, beauty, and love. Is there really a finite limit on how much value these things can bring into the world? If so, what is that limit? And why?
+
+
+## Exercises
+
+1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

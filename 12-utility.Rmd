@@ -30,6 +30,15 @@ Notice how there are no dollar signs anymore. In fact there's no explicit unit o
 
 They represent how good or bad an outcome is, from your friend's point of view. In decision theory, we call these numbers *utilities*, or *utils* for short.
 
+If the real value of something is its utility, we should calculate *expected utilities* instead of expected monetary values:
+
+Definition
+
+:   If an act $A$ has possible consequences $C_1, C_2, \ldots,C_n$, then the *expected utility* of $A$ is defined:
+$$ \E(A) = \p(C_1)\u(C_1) + \p(C_2)\u(C_2) + \ldots + \p(C_n)\u(C_n). $$
+
+According to orthodox decision theory, the right choice is the act that has the highest expected utility. (Or, if there's a tie for highest, then any of the acts tied for highest is fine.)
+
 
 ## Subjectivity & Objectivity
 

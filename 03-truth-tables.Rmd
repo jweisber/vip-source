@@ -15,7 +15,7 @@ The bold propositions here are used to build up the longer, more complex ones  u
 
 The three connectives just listed are the only ones we'll need in this book. Each has a name and a shorthand symbol:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     Name = c("conjunction", "disjunction", "negation"),
     English = c("and", "either/or", "it's not true that"),    
@@ -27,7 +27,7 @@ knitr::kable(df)
 
 When you use these connectives, the truth of the complex proposition depends on the truth of its components. For example, $\sim\! A$ is false if $A$ is true, and it's true if $A$ is false:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "F"),
     NotA = c("F", "T")
@@ -38,7 +38,7 @@ knitr::kable(df, align = "c", caption="Truth table for $\\sim$")
 
 Slightly more complicated is the rule for $\&$ ("and"):
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -54,7 +54,7 @@ Notice that in only one of these situations is $A \& B$ true, namely the first r
 
 The table for $\vee$ ("either/or") is a little more surprising:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -83,7 +83,7 @@ Which is just a very explicit way of saying: either one or the other, but not bo
 
 In fact we can verify as much with a truth-table. We start with an empty table, where the header lists all the formulas we use to build up to the final, complex one we're interested in:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = rep("$\\;$", 4),
     B = rep(" ", 4),
@@ -98,7 +98,7 @@ knitr::kable(df, align = "c")
 
 Then we fill in the possible truth-values for the simplest propositions, $A$ and $B$:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -113,7 +113,7 @@ knitr::kable(df, align = "c")
 
 Next we consult the truth-tables above for $\&$ and $\vee$ to fill in the columns at the next level of complexity:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -128,7 +128,7 @@ knitr::kable(df, align = "c")
 
 Then move up to the next level of complexity. To fill in the column for $\sim\!(A \,\&\, B)$, we consult the column for $A \,\&\, B$ and apply the rules from the table for $\sim$:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -143,7 +143,7 @@ knitr::kable(df, align = "c")
 
 Finally, we consult the columns for $A \vee B$ and $\sim\!(A \,\&\, B)$, and the table for $\&$, to fill in the column $(A \vee B) \,\&\, \sim\!(A \& B)$:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -163,7 +163,7 @@ Complex constructions like this are difficult at first. Practice is the only way
 
 Some propositions are come out true in every row of the truth table. Consider $A \vee \sim\! A$ for example:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "F"),
     NotA = c("F", "T"),
@@ -177,7 +177,7 @@ These propositions are especially interesting because they *must* be true. Their
 
 The other side of this coin is propositions that are false in every row of the truth table, like $A \,\&\, \sim\!A$:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "F"),
     NotA = c("F", "T"),
@@ -191,7 +191,7 @@ These propositions are called ***contradictions***.
 
 Notice that the negation of a contradiction is a logical truth. For example, consider the truth table for $\sim\! (A \,\&\, \sim\! A)$:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "F"),
     NotA = c("F", "T"),
@@ -207,7 +207,7 @@ knitr::kable(df, align = "c")
 
 `r newthought("Truth tables can be used")` to establish that two propositions are mutually exclusive. A very simple example is the propositions $A$ and $\sim\! A$:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "F"),
     NotA = c("F", "T")
@@ -220,7 +220,7 @@ There is no row in the table where both propositions are true. And if two propos
 
 A slightly more complex example is the propositions $A \vee B$ and $\sim\! A \,\&\, \sim\! B$:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -246,7 +246,7 @@ Here again, there's no row where $A \vee B$ and $\sim\! A \,\&\, \sim\! B$ are b
 
 Obviously it's not possible for the first line to be true and the second line false, so the argument is valid (if a bit silly). Accordingly, there is no line of the truth table where $A \,\&\, B$ comes out true, yet $A$ comes out false:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -266,7 +266,7 @@ One more example:
 
 This argument is valid because the first premise says that at least one of the two propositions must be true, and the second line says it's not $A$. So it must be $B$ that's true, as the conclusion asserts. And once again there is no line of the truth table where both $A \vee B$ and $\sim\! A$ are true, yet $B$ is false:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -290,7 +290,7 @@ When one proposition entails another, there is no line of the truth table where 
 
 We say such propositions are ***logically equivalent***. In terms of truth tables, their columns match perfectly. They are identical copies of T's and F's.
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -303,7 +303,7 @@ knitr::kable(df, align = "c")
 
 A more complex example is the propositions $\sim\! (A \vee B)$ and $\sim\! A \,\&\, \sim\! B$:
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),

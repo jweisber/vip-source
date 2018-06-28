@@ -178,36 +178,13 @@ $$
 So driving has a higher expected value---measured in terms of free time, rather than money.
 
 
-## The St. Petersburg Game
+## Decision Tables & Dominance Reasoning
 
-```{r echo=FALSE, fig.cap="Nicolaus I Bernoulli (1687–1759)", fig.margin=TRUE}
-knitr::include_graphics("img/marg_fig.png")
-```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-Still, the concept of expected monetary value does have its limitations. One of these limitations was discovered by Nicolas Bernoulli in the early 1700's.
 
-```{block, type='problem'}
-I'm going to flip a fair coin until it comes up heads, at which point the game ends.
+## Exercises
 
-- If it comes up heads on the first flip, you get $\$2$.
-- If it comes up heads on the second flip, you get $\$4$.
-- If it comes up heads on the third flip, you get $\$8$.
-- Etc.
+1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 
-What is a fair price to demand for playing this game?
-```
-
-Well, how much would you be willing to pay to play this game? You probably won't win more than a few dollars. Half the time people just win $\$2$. $3/4$ of the time they only win $\$4$. Etc. So most people are only willing to pay a few dollars to play this game.
-
-But what is the expected monetary value?
-$$
-  \begin{aligned}
-    \E(\mbox{St. Petersburg Game}) &= \p(\$2) \times \$2 + \p(\$4) \times \$4 + \p(\$8) \times \$8 + \ldots\\
-       &= (1/2)(\$2) + (1/4)(\$4) + (1/8)(\$8) + \ldots\\
-       &= 1 + 1 + 1 + \ldots\\
-       &= \infty.
-  \end{aligned}
-$$
-So the game has infinite expected value! And doesn't that mean you should be willing to pay however much money you have to play?? After all, however much you pay, it's still a bargain. The fair price is $\$\infty$!
-
-Well, maybe. We'll dig more deeply into this famous puzzle in the next chapter.
+2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

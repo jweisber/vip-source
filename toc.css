@@ -11,6 +11,11 @@ div.problem {
   padding-left: 1rem;
 }
 
+div.puzzle {
+  border-left: 3px double teal;
+  padding-left: 1rem;
+}
+
 div.info {
   border-left: 3px double teal;
   padding-left: 1rem;
