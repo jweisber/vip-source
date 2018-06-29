@@ -32,9 +32,9 @@ Now, what if you had to choose instead between these two options:
 
 Most people choose $1A$ over $1B$ in the first decision. Faced with the safe option of walking away $\$1$ million dollars richer, they don't want to take the chance at $\$5$ million. Even though there's only a small, $1\%$ risk of walking away empty handed if they take the gamble, it's not worth it to them in exchange for the $10\%$ shot at $\$5$ million.
 
-But in the second decision, most people choose $2B$ over $2A$. There's no safe option now, in fact you'll probably walk away empty handed whatever you choose. And, under these circumstances, most people prefer to take on an extra $1\%$ risk of empty-handedness in exchange for a shot at $\$5$ million instead of just $\$1$ million.
+But in the second decision, most people choose 2B over 2A. There's no safe option now, in fact you'll probably walk away empty handed whatever you choose. And, under these circumstances, most people prefer to take on an extra $1\%$ risk of empty-handedness in exchange for a shot at $\$5$ million instead of just $\$1$ million.
 
-But here's the thing: these choices contradict the rule of maximizing expected utility! It's not obvious at first. But a few lines of algebra will prove that it's so.
+But here's the thing: these choices contradict the expected utility rule! It's not obvious at first. But a few lines of algebra will prove that it's so.
 
 Suppose someone did choose 1A over 1B, and 2B over 2A, by applying the expected utility formula. Then we would know that $\E(1A) > \E(1B)$ and $\E(2B) > \E(2A)$. In other words:
 $$
@@ -207,18 +207,33 @@ $$
 $$
 And doesn't that mean a fair price for the game would be infinity dollars? So even if you only have a finite bankroll, you should be willing to stake it all to play! 
 
-`r newthought("Visually")`, the St. Petersburg game looks like this:
+`r newthought("Visually")`, the St. Petersburg game looks something like the following. Except that we can't show every possible outcome, because the payoffs get larger and larger without limit. So we have to cut things of at some point. Here I've arbitrarily chosen to cut things off after the first five possible outcomes:
 
-```{r echo=FALSE, fig.cap="The St. Petersburg game"}
-knitr::include_graphics("img/fig.png")
-# geom_area
+```{r echo=FALSE, cache=TRUE, fig.cap="The St. Petersburg game"}
+st_petersburg <- function(x) {
+  case_when(
+    x <= 1/2   ~ 2,
+    x <= 3/4   ~ 4,
+    x <= 7/8   ~ 8,
+    x <= 15/16 ~ 16,
+    x <= 31/32 ~ 32,
+    x <= 63/64 ~ 64,
+    x <= 127/128 ~ 128
+  )
+}
+
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = st_petersburg, geom = "area", n = 1000, fill = "#619cff") +
+  scale_y_continuous(breaks = seq(0, 128, 16)) +
+  xlab("probability") +
+  ylab("payoff ($)")
 ```
 
 As the number of potential flips grows, the rectangles get narrower because the outcomes become less probable. But they also get proportionally taller, because the payoff doubles every time the probability halves. The net result is an infinite sequence of rectangles, each with area $1$. So the total area is infinite.
 
-`r newthought("Most people")`, when they first encounter this puzzle, try to take the easy way out. "The game is impossible", they say. "Nobody could actually fund this game in real life. No casino (or government) has an unlimited amount of money. Besides, the coin would wear out after a while, so the house couldn't truly guarantee they'd be able to come through."
+`r newthought("Most people")`, when they first encounter this puzzle, try to take the easy way out. "The game is impossible," they say. "Nobody could actually fund this game in real life. No casino has an unlimited money, not even the government. Besides, the coin would wear out after a while. So the house couldn't truly guarantee they'd be able to follow through."
 
-There are two serious problems with this solution, however. 
+There are two serious problems with this solution. 
 
 First, consider: would you be willing to risk your life to play the St. Petersburg game, if only the bank had enough cash on hand, and enough coins to keep the game going as long as it takes? If God descended from heaven and offered to run the game, would you gamble your life to play then?
 
@@ -248,10 +263,10 @@ ggplot(data.frame(x = c(0, 100))) +
   xlab("dollars") + ylab("utility")
 ```
 
-For example, on Bernoulli's scale winning $\$64$ is only about *twice* as good as winning $\$8$, not eight times as good:
+For example, on Bernoulli's scale winning $\$64$ is only *twice* as good as winning $\$8$, not eight times as good:
 $$
   \begin{aligned}
-    \log(64) &\approx 4.09,\\
+    \log(64) &\approx 4.16,\\
     \log(8)  &\approx 2.08.
   \end{aligned}
 $$
