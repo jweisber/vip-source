@@ -1,0 +1,252 @@
+# Infinity & Beyond
+
+Infinity poses a very different sort of challenge to expected utility. In this chapter we'll meet two classic examples.
+
+
+## The St. Petersburg Paradox
+
+Consider the following game.
+
+```{block, type='puzzle'}
+I'm going to flip a fair coin, and I'm going to keep flipping it until it comes up heads. Once it does, the game is over.
+
+- If it comes up heads on the first flip, you win $\$2$.
+- If it comes up heads on the second flip, you win $\$4$.
+- If it comes up heads on the third flip, you win $\$8$.
+- Etc.
+```
+
+How much would you be willing to pay to play this game? Most people aren't willing to pay very much. After all, you probably won't win more than a few dollars. Most likely you'll only win $\$2$ or $\$4$ dollars. And the chance you'll win more than say \$32 is only about $.03$.
+
+And yet, bizarrely, the expected value of this game is infinite! There's a $1/2$ chance you'll win $\$2$, a $1/4$ chance you'll win $\$4$, a $1/8$ chance you'll win $\$8$, and so on. So:
+$$
+  \begin{aligned}
+    \E(G) &= \p(\$2) \times \$2 + \p(\$4) \times \$4 + \p(\$8) \times \$8 + \ldots\\
+          &= (1/2)(\$2) + (1/4)(\$4) + (1/8)(\$8) + \ldots\\
+          &= \$1 + \$1 + \$1 + \ldots\\
+          &= \$\infty.
+  \end{aligned}
+$$
+And doesn't that mean a fair price for the game would be infinity dollars? So even if you only have a finite bankroll, you should be willing to stake it all to play! 
+
+`r newthought("Visually")`, the St. Petersburg game looks something like the following. We can't show every possible outcome, because the payoffs get larger and larger without limit. So we have to cut things of at some point. But we can get the idea by diagramming, say, the first five possible outcomes:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="The St. Petersburg game"}
+st_petersburg <- function(x) {
+  case_when(
+    x <= 1/2   ~ 2,
+    x <= 3/4   ~ 4,
+    x <= 7/8   ~ 8,
+    x <= 15/16 ~ 16,
+    x <= 31/32 ~ 32,
+    x <= 63/64 ~ 64,
+    x <= 127/128 ~ 128
+  )
+}
+
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = st_petersburg, geom = "area", n = 1000, fill = "#619cff") +
+  scale_y_continuous(breaks = seq(0, 128, 16)) +
+  xlab("probability") +
+  ylab("payoff ($)")
+```
+
+As the number of potential flips grows, the rectangles get narrower because the outcomes become less probable. But they also get taller. The payoff doubles every time the probability is cut in half. The net result is an infinite sequence of rectangles, each with the same area, namely $1$. So the total area is infinite.
+
+`r newthought("Most people")`, when they first encounter this puzzle, try to take the easy way out. "The game is impossible," they say. "Nobody could actually fund this game in real life. No casino has unlimited money, not even the government does. Besides, the coin would wear out after a while. So the house couldn't even guarantee they'd be able to finish the game."
+
+There are two serious problems with this answer. 
+
+First, consider: would you be willing to risk your life to play the St. Petersburg game if the casino did have enough cash on hand, and enough coins to keep the game going as long as it takes? Imagine if God descended from heaven and offered to run the game. Would you gamble your life to play then?
+
+Second, even if the game had a finite limit---let's suppose it's 100 flips---would you be willing to pay $\$100$ to play? The chance you'd make any money at all is less than 1%.
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Nicolaus Bernoulli"}
+knitr::include_graphics("img/marg_fig.png")
+```
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Daniel Bernoulli"}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+## Bernoulli's Solution
+
+The St. Petersburg game was invented by the mathematician Nicolaus Bernoulli in the 18th Century. He discussed it with his cousin Daniel Bernoulli, who published a famous solution in 1738 in the *St. Petersburg Academy Proceedings* (hence the name "St. Petersburg").
+
+His solution: replace monetary value with *real* value, i.e. *utility*. Remember, we saw in [Chapter 12][Utility] that the more money you have, the less value additional money brings. So, as the payoffs in the St. Petersburg game double from \$2 to \$4 to \$8 etc., the *real* value doesn't double. It grows more slowly.
+
+What is the real value of gaining $\$x$ then? What is $\u(\$x)$? Bernoulli proposed that utility increases "logarithmically" with money. In terms of dollars, $\u(\$x)=\log(\$x)$:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="The diminishing value of additional money"}
+log_utility <- function(x) {
+  log(x + 1)
+}
+ggplot(data.frame(x = c(0, 100))) + 
+  stat_function(aes(x), fun = log_utility) +
+  xlab("dollars") + ylab("utility")
+```
+
+So on Bernoulli's scale winning $\$64$ is only *twice* as good as winning $\$8$, not eight times as good:
+$$
+  \begin{aligned}
+    \log(64) &\approx 4.16,\\
+    \log(8)  &\approx 2.08.
+  \end{aligned}
+$$
+
+How does this help solve the St. Petersburg Paradox? Bernoulli demonstrated that, while the expected *monetary value* of the game is infinite, the expected *utility* is small: approximately $1.39$. We won't get into the math of Bernoulli's calculation here. What's important is that a utility of $1.39$ is equivalent to about $\$4$ (because $\log(4) \approx 1.39$). So if Bernoulli is right about the real value of money, you should only be willing to pay about $\$4$ to play the St. Petersburg game. And in fact that's about what most people say they would pay!
+
+
+## St. Petersburg's Revenge
+
+Unfortunately, although Bernoulli was probably right that money decreases in value the more of it you have, that doesn't actually resolve the paradox. Because we can just modify the game so that the monetary payoffs grow even faster.
+
+Instead of the payoffs increasing like this:
+$$ \$2, \$4, \$8, \ldots $$
+Let's change the game so they increase like this:
+$$ \$e^2, \$e^4, \$e^8, \ldots $$
+You may remember from math class that $e$ is a special number^[The decimal value is $e \approx 2.71828$, and was used as the key-code for a locked room in the *X-Files* episode "Paper Clip" (except they seem to have forgetten the 1). The same scene also references Monty Hall.] with the property that:
+$$ \log(e^x) = x. $$
+So the utility of winning $\$e^8$ is $\u(\$e^8) = 8$. And thus the expected *utility* of this variation on the St. Petersburg is the same as the expected *monetary value* of the original version:
+$$
+  \begin{aligned}
+     \E(G) &= \p(\$e^2) \u(\$e^2) + \p(\$e^4) \u(\$e^4) + \p(\$8) \u(\$e^8) + \ldots\\
+          &= (1/2)(2) + (1/4)(4) + (1/8)(8) + \ldots\\
+          &= 1 + 1 + 1 + \ldots\\
+          &= \infty.
+  \end{aligned}
+$$
+So once again, you should be willing to give anything to play. Or so the expected utility rule seems to demand.
+
+`r newthought("If you're still worried")` there's not enough money in the world to guarantee this game, try another variation. Imagine God offers to substitute days in heaven for dollars. Unlike dollars, days in heaven don't lose value the more you have. Every day in heaven is a day of pure bliss!
+
+`r newthought("So what's the right solution")` to the St. Petersburg paradox? Nobody knows, really. Once infinities get involved, the whole expected value framework seems to go off the rails. Some decision theorists respond by insisting that there's a finite limit on utility. There's only so good an outcome can be. 
+
+But others don't find this response plausible. There may be a limit on how much good you can get out of money. Because there's only so many things you can by with money. But money is only a means to an end, a medium we can exchange for the things we really want---things of intrinsic value like pleasure, happiness, beauty, and love. Is there really a finite limit on how much value these things can bring into the world? If so, what is that limit? And why?
+
+
+## Pascal's Wager
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Blaise Pascal"}
+knitr::include_graphics("img/marg_fig.png")
+```
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Pierre de Fermat"}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+The modern theories of probability and decision have a curious origin. They started with Blaise Pascal, a French mathematician and philosopher living in the 1600's. Pascal had a friend who has an avid gambler, who came to him for advice on gambling problems. Pascal discussed these problems in letters with another famous mathematician, Pierre de Fermat. And, out of their correspondence, the laws of probability and the idea of expected value were born.
+
+Pascal was also a devout Catholic, as it happens. So, once he developed the tools of decision theory, he applied them to religious questions. Like, is it rational to believe in God?
+
+Pascal realized he could think of this question as a decision problem. If God exists, then believing gets you into heaven, which is very good. Whereas not believing gets you a one-way ticket to hell, which is terribly bad. So believing in God looks like the better option.
+
+But Pascal also realized that probabilities matter as much as the potential payoffs when making decisions. Playing the lottery might win you millions, but the odds are very poor. So spending your money on a cup of coffee might be the smarter choice.
+
+Likewise, believing in God might be such a long shot that it's not worth it, even if the potential payoff of heaven is fantastic. Of course, Pascal himself already believed in God. But he wanted to convince others to do the same, even if they thought it very unlikely that God exists.
+
+So Pascal pointed out that the potential payoff of believing in God is special: it's not just very good, it's *infinitely good*. If you believe in god and you're right, you go to heaven for eternity, a neverending existence of pure ecstacy. Whereas if you don't believe in god and you're wrong, the payoff is *infinitely bad*: an eternity in hell.
+
+So Pascal figured the decision problem looks something like this:
+
+```{r echo=FALSE, cache=TRUE}
+df <- data.frame(
+    A = c("Believe", "Don't Believe"),
+    B = c("$+\\infty$", "$-\\infty$"),
+    C = c("$-10$", "$+10$")
+)
+colnames(df) <- c("", "God Exists", "God Doesn't Exist")
+knitr::kable(df, align = "c", caption = "Pascal's Wager")
+```
+
+Note that I've chosen the finite values $+10$ and $-10$ somewhat arbitrarily. The idea behind the $-10$ is that there's some finite cost to believing in God if he doesn't exist. People generally prefer to believe the truth. And if there's no God, many people would prefer not to spend their time and energy on religious matters. Whereas if you don't believe, you get the benefit of living life your own way, and also being right. (Or at least you weren't wrong, if you stayed neutral on God's existence.)
+
+But it turns out not to matter whether we use $10$, $20$, or any other finite numbers for those gains or losses. *Any* finite number will do, Pascal said. Because the infinite rewards/costs will drown them out. Why?
+
+Well, said Pascal, even atheists must admit that there's some small chance God exists. Nobody can be 100% sure there is no God. So when we calculate the expected utility of believing in god, we get the following result:
+$$
+  \begin{aligned}
+    \E(\mbox{Believe}) &= \p(G) \cdot \infty + \p(\neg G) \cdot -10\\
+                       &= \infty - \mbox{something finite}\\
+                       &= \infty.
+  \end{aligned}
+$$
+As long as $\p(G)$ is some positive number, multiplying it by $\infty$ results in $\infty$. No matter how small a number is, adding it to itself infinitely many times results in an infinite quantity. No matter how small your steps, if you take infinitely many of them, you can travel any distance.
+
+Also, infinity minus any finite quantity is still infinite. If I start with an infinite list of numbers:
+$$ 1, 2, 3, 4, 5, \ldots $$
+and I remove finitely many of them, say the numbers $1$ throught $10$, I'm still left with an infinite list:
+$$ 11, 12, 13, 14, 15, \ldots $$
+So, Pascal argued, believing in God has infinite expected value.
+
+What about not believing? It has infinitely negative expected value:
+$$
+\begin{aligned}
+    \E(\mbox{Don't Believe}) &= \p(G) \cdot -\infty + \p(\neg G) \cdot 10\\
+                             &= -\infty + \mbox{something finite}\\
+                             &= -\infty.
+  \end{aligned}
+$$
+So believing in God is an infinitely better decision than not believing! Or so Pascal thought.
+
+
+## Objections to Pascal's Wager
+
+Some people criticized Pascal's argument on the grounds that belief is not a decision. Whether you believe something isn't voluntary, like deciding what shirt to wear in the morning. You can't just decide to believe in God, you can only believe what seems plausible to you based on what you know.
+
+But, Pascal famously replied, you can decide how you spend your days. And you can decide to spend them  with religious people, reading religious books, and going to a house of worship. So you can decide to take steps that will, eventually, make you a believer. And since believing is so much better than not, that's how you should spend your days.
+
+`r newthought("A more serious")` problem with Pascal's argument is known as *the many gods* problem.
+
+In Pascal's day in France, Catholicism was by far the dominant religion. So, for him, believing in God just meant believing in *Catholicism's* conception of God. But there are many possible gods besides the Catholic god, like the god of Islam, the god of Judaism, the gods of Hinduism, and so on.
+
+What happens if you choose the wrong God? You might go to hell! The god of Mormonism might send you to hell for believing in Catholicism, for example. There might even be an anti-Catholic god, who sends all Catholics to hell and everyone else to heaven!
+
+So the correct decision table looks more like this:
+
+```{r echo=FALSE, cache=TRUE}
+df <- data.frame(
+    A = c("Believe Catholic", "Believe Anti-Catholic", "$\\vdots$", "Don't Believe"),
+    B = c("$+\\infty$", "$-\\infty$", "$\\vdots$", "$-\\infty$"),
+    C = c("$-\\infty$", "$+\\infty$", "$\\vdots$", "$+\\infty$"),
+    D = c("...", "...", "$\\ddots$", "..."),
+    E = c("$-10$", "$-10$", "$\\vdots$", "$+10$")
+)
+colnames(df) <- c("", "Catholic God Exists", "Anti-Catholic God Exists", "...", "No God Exists")
+knitr::kable(df, align = "c", caption = "Pascal's Wager with many gods")
+```
+
+What's the expected utility of believing in the Catholic god now? It turns out there's no answer! The calculation comes out undefined:
+$$
+  \begin{aligned}
+  \E(\mbox{Believe Catholic}) %
+    &= \p(\mbox{Catholic})\u(\mbox{Catholic}) +%
+       \p(\mbox{Anti-Catholic})\u(\mbox{Anti-Catholic}) + \ldots\\
+    &= \p(\mbox{Catholic}) \times \infty + \p(\mbox{Anti-Catholic}) \times%
+        -\infty + \ldots\\
+    &= \infty - \infty + \ldots\\
+    &= \mbox{undefined}
+  \end{aligned}
+$$
+Why is this undefined? Why isn't $\infty - \infty = 0$? Because taking an infinite quantity away from an infinite quantity can result in any quantity left over.
+
+Imagine we start with a list of all the counting numbers:
+$$ 0, 1, 2, 3, 4, 5 \ldots $$
+Now remove all the even numbers from that list. There's still an infinite list of numbers remaining:
+$$ 1, 3, 5 \ldots $$
+After removing an infinite quantity from an infinite quantity, we still have a neverending list left over. So it *looks* at first as though $\infty - \infty = \infty$.
+
+But not so fast! Suppose we start again with all the counting numbers:
+$$ 0, 1, 2, 3, 4, 5 \ldots $$
+But this time we remove *all* the numbers. Not just the evens, but the odds too. Then there would be nothing left on our list. So now it looks like $\infty - \infty = 0$ instead of $\infty$!
+
+The moral: there are many ways to take an infinite quantity away from an infinite quantity. Some of these leave an infinite quantity remaining. Others leave nothing remaining. There are still others that would leave just one, two, or three items remaining. (Can you think of your own examples here?)
+
+So $\infty - \infty$ is not a well-defined quantity. 
+
+Like we said about the St. Petersburg paradox, the expected value framework doesn't seem to work well when infinities show up. Researchers are still trying to figure out how to make decisions that involve infinite quantities.
+
+
+## Exercises
+
+1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

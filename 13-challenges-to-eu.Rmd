@@ -70,13 +70,20 @@ knitr::include_graphics("img/marg_fig.png")
 knitr::include_graphics("img/marg_fig.png")
 ```
 
-This is called the *Allais paradox*. Maurice Allais was a French economist who disliked the idea of reducing decision making to a simple equation. The American statistician Leonard Savage, on the other hand, very much liked the idea of expected utility. So Allais cooked up this problem to prove Savage wrong.
+`r newthought("It's important to understand")` that these calculations don't depend on the utility of money.
 
-When Savage was first presented with Allais' example, he did exactly what most people do. He chose 1A over 1B, but 2B over 2A. He violated the principles of his own theory!
+In [Chapter 12][Utility] we saw that different people have different desires, values, and priorities. So, for example, the difference in utility between $\$0$ and $\$1$ million might be larger for some people than for others. Could these individual differences explain why people prefer 1A over 1B yet 2B over 2A?
 
-Savage responded by acknowledging that people will often be tempted to make exactly the choices Allais predicted. But, he pointed out, people sometimes make irrational choices. And this temptation is irrational, he argued.
+No. In the Allais paradox, the way you personally value money is actually irrelevant. It doesn't matter how much (or how little) you value $\$1$ million vs. $\$0$. The calculations made no assumptions about the numerical values of $\u(\$0)$, $\u(\$1M)$, or $\u(\$5M)$. We left those terms untouched, treating them as unknown placeholders. Whatever your personal utilities are, there's just no way to prefer 1A over 1B and 2B over 2A, if you're following the expected utility rule.
 
-To make his case, Savage imagined the outcomes of Allais' gambles being determined by a sort of lottery. A random ticket is drawn from a hat with tickets numbered $\#1$ through $\#100$. The outcome of each option is then determined according to the following table, where each row represents one of Allais' options:
+
+`r newthought("This challenge is called")` the *Allais paradox*. Maurice Allais was a French economist who disliked the idea of reducing decision making to a simple equation. The American statistician Leonard Savage, on the other hand, very much liked the idea of expected utility. So Allais cooked up this example to prove Savage wrong.
+
+When Savage first encountered Allais' example, he did exactly what most people do. He chose 1A over 1B, but 2B over 2A. He violated the principles of his own theory!
+
+Savage responded by acknowledging that people will be tempted to make exactly the choices Allais predicted. But, he pointed out, people sometimes make irrational choices. And this temptation is irrational, Savage argued.
+
+To make his case, Savage reimagined Allais' example in concrete terms. Imagine a random ticket will be drawn from a hat containing tickets $\#1$ through $\#100$. The outcome of each options is determined according to the following table, where each row represents one of Allais' options:
 
 ```{r echo=FALSE, cache=TRUE}
 df <- data.frame(
@@ -95,7 +102,7 @@ Viewed this way, we can see that there's no difference between 1A and 1B if the 
 
 But, in the first two columns, choosing 1A over 1B is the same as choosing 2A over 2B. So, to be consistent, you must choose 2A if you choose 1A.
 
-`r newthought("Here's another way")` of thinking about Savage's argument. If you choose 2B over 2A, then you must be willing to trade a $1\%$ chance of getting nothing in exchange for a $10\%$ chance at $\$5$ million. And if you're willing to make that trade, you should be willing to give up option 1A and take option 2B instead.
+`r newthought("Here's another way")` of thinking about Savage's argument. If you choose 2B over 2A, then you must be willing to trade a $1\%$ chance of getting nothing in exchange for a $10\%$ chance at $\$5$ million. And if you're willing to make that trade, you should be willing to give up option 1A and take option 1B instead.
 
 
 ## The Sure-Thing Principle
@@ -179,127 +186,6 @@ If you knew a white ball was going to be drawn, you wouldn't care which option y
 And if you knew a white ball wouldn't be drawn, then options 1A and 2A would be equivalent. The first two rows are identical to the second two rows, if we ignore the "White" column. So consistency seems to demand selecting 2A if you selected 1A.
 
 Most decision theorists find this reasoning compelling. But some turn it on its head. They say: so much the worse for the Sure-thing Principle. The debate has yet to settle into any universal consensus.
-
-
-## The St. Petersburg Paradox
-
-Our last challenge is of a very different sort from the previous two. It's based on the following game, known as the St. Petersburg Game.
-
-```{block, type='puzzle'}
-I'm going to flip a fair coin, and I'm going to keep flipping it until it comes up heads. Once the coin comes up heads, the game is over.
-
-- If it comes up heads on the first flip, you win $\$2$.
-- If it comes up heads on the second flip, you win $\$4$.
-- If it comes up heads on the third flip, you win $\$8$.
-- Etc.
-```
-
-How much would you be willing to pay to play this game? Most people aren't willing to pay very much. After all, you probably won't win more than a few dollars. Most likely you'll only win $\$2$ or $\$4$ dollars. And the chance you'll win more than say \$32, is about $.03$.
-
-And yet, bizarrely, the expected value of this game is infinite! There's a $1/2$ chance you'll win $\$2$, a $1/4$ chance you'll win $\$4$, a $1/8$ chance you'll win $\$8$, and so on. So:
-$$
-  \begin{aligned}
-    \E(G) &= \p(\$2) \times \$2 + \p(\$4) \times \$4 + \p(\$8) \times \$8 + \ldots\\
-          &= (1/2)(\$2) + (1/4)(\$4) + (1/8)(\$8) + \ldots\\
-          &= \$1 + \$1 + \$1 + \ldots\\
-          &= \$\infty.
-  \end{aligned}
-$$
-And doesn't that mean a fair price for the game would be infinity dollars? So even if you only have a finite bankroll, you should be willing to stake it all to play! 
-
-`r newthought("Visually")`, the St. Petersburg game looks something like the following. Except that we can't show every possible outcome, because the payoffs get larger and larger without limit. So we have to cut things of at some point. Here I've arbitrarily chosen to cut things off after the first five possible outcomes:
-
-```{r echo=FALSE, cache=TRUE, fig.cap="The St. Petersburg game"}
-st_petersburg <- function(x) {
-  case_when(
-    x <= 1/2   ~ 2,
-    x <= 3/4   ~ 4,
-    x <= 7/8   ~ 8,
-    x <= 15/16 ~ 16,
-    x <= 31/32 ~ 32,
-    x <= 63/64 ~ 64,
-    x <= 127/128 ~ 128
-  )
-}
-
-ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = st_petersburg, geom = "area", n = 1000, fill = "#619cff") +
-  scale_y_continuous(breaks = seq(0, 128, 16)) +
-  xlab("probability") +
-  ylab("payoff ($)")
-```
-
-As the number of potential flips grows, the rectangles get narrower because the outcomes become less probable. But they also get proportionally taller, because the payoff doubles every time the probability halves. The net result is an infinite sequence of rectangles, each with area $1$. So the total area is infinite.
-
-`r newthought("Most people")`, when they first encounter this puzzle, try to take the easy way out. "The game is impossible," they say. "Nobody could actually fund this game in real life. No casino has unlimited money, not even the government does. Besides, the coin would wear out after a while. So the house couldn't guarantee they'd be able to follow through on the game."
-
-There are two serious problems with this solution. 
-
-First, consider: would you be willing to risk your life to play the St. Petersburg game if the casino did have enough cash on hand, and enough coins to keep the game going as long as it takes? Imagine if God descended from heaven and offered to run the game. Would you gamble your life to play then?
-
-Second, even if the game had a finite limit---let's suppose it's 100 flips---would you be willing to pay $\$100$ to play? The chance you'd make any money at all is less than 1%.
-
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Nicolaus Bernoulli"}
-knitr::include_graphics("img/marg_fig.png")
-```
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Daniel Bernoulli"}
-knitr::include_graphics("img/marg_fig.png")
-```
-
-## Bernoulli's Solution
-
-The St. Petersburg game was invented by the mathematician Nicolaus Bernoulli, in the 18th Century. He discussed it with his cousin Daniel Bernoulli, who published a famous solution in 1738 in the *St. Petersburg Academy Proceedings* (hence the name).
-
-The solution: replace monetary value with *real* value, a.k.a. *utility*. Remember, we saw in [Chapter 12][Utility] that the more money you have, the less value additional money brings. So, as the monetary payoffs in the St. Petersburg game double from \$2 to \$4 to \$8, etc., the *real* value grows more slowly.
-
-So what is the real value of gaining $\$x$? What is $\u(\$x)$? Bernoulli proposed that utility increases "logarithmically" with money. In terms of dollars, $\u(\$x)=\log(\$x)$:
-
-```{r echo=FALSE, cache=TRUE, fig.cap="The diminishing value of additional money"}
-log_utility <- function(x) {
-  log(x + 1)
-}
-ggplot(data.frame(x = c(0, 100))) + 
-  stat_function(aes(x), fun = log_utility) +
-  xlab("dollars") + ylab("utility")
-```
-
-For example, on Bernoulli's scale winning $\$64$ is only *twice* as good as winning $\$8$, not eight times as good:
-$$
-  \begin{aligned}
-    \log(64) &\approx 4.16,\\
-    \log(8)  &\approx 2.08.
-  \end{aligned}
-$$
-
-How does this help solve the St. Petersburg Paradox? Bernoulli demonstrated that the expected *utility* of the St. Petersburg game is a reasonably small finite value, approximately $1.39$, equivalent to about $\$4$ (because $\log(4) \approx 1.39$). So if Bernoulli is right about the real value of money, you should only be willing to pay about $\$4$ to play the St. Petersburg game. And, in fact, that's around what most people say they would pay!
-
-
-## St. Petersburg's Revenge
-
-Unfortunately, Bernoulli was probably right that money decreases in value the more of it you have, but that doesn't actually resolve the paradox. Because we can just modify the game so that the monetary payoffs grow even faster.
-
-Instead of the payoffs increasing like this:
-$$ \$2, \$4, \$8, \ldots $$
-Let's change the game so they increase like this:
-$$ \$e^2, \$e^4, \$e^8, \ldots $$
-You may remember from math class that $e$ is a special number^[The decimal value is $e \approx 2.71828$, and was used as the key-code for a locked room in the *X-Files* episode "Paper Clip" (except they seem to have forgetten the 1). The same scene also references Monty Hall.] with the property that:
-$$ \log(e^x) = x. $$
-So the utility of winning $\$e^8$ is $\u(\$e^8) = 8$. And thus the expected *utility* of this variation on the St. Petersburg is the same as the expected *monetary value* of the original:
-$$
-  \begin{aligned}
-     \E(G) &= \p(\$e^2) \times \u(\$e^2) + \p(\$e^4) \times \u(\$e^4) + \p(\$8) \times \u(\$e^8) + \ldots\\
-          &= (1/2)(2) + (1/4)(4) + (1/8)(8) + \ldots\\
-          &= 1 + 1 + 1 + \ldots\\
-          &= \infty.
-  \end{aligned}
-$$
-So once again, you should be willing to give anything to play. Or so the expected utility rule seems to demand.
-
-`r newthought("If you're still worried")` there's not enough money in the world to guarantee this game, try another variation. Imagine God offers to substitute days in heaven for dollars. Unlike dollars, days in heaven don't lose value the more you have. Every day in heaven is a day of pure bliss!
-
-`r newthought("So what's the solution?")` Nobody knows, really. Once infinities get involved, the whole expected value framework seems to go off the rails. Some decision theorists respond by insisting that there's a finite limit on utility. There's only so good an outcome can be. 
-
-But others don't find this response plausible. There may be a limit on how much good you can get out of money. Because there's only so many things you can by with money. But money is only a means to an end, a medium we can exchange for the things we really want---things of intrinsic value like pleasure, happiness, beauty, and love. Is there really a finite limit on how much value these things can bring into the world? If so, what is that limit? And why?
 
 
 ## Exercises
