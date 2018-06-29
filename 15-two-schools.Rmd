@@ -1,0 +1,114 @@
+# (PART\*) Part III {-}
+
+# Two Schools
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Ned Flanders informs us that, well sir, there are two schools of thought on the matter."}
+knitr::include_graphics("img/flanders.png")
+```
+
+What does "probability" mean? There are two competing philosophies of probability, and two very different schools of statistics to go with them.
+
+
+## Probability as Frequency
+
+Statisticians tend to think of probability in terms of *frequency*. What's the probability a coin will land heads? That just depends on how often it lands heads---the *frequency* of heads.
+
+If a coin lands heads half the time, then the probability of heads on any given toss is $1/2$. If it lands heads $9/10$ of the time, then the probability of heads is $9/10$.
+
+This is probably the most common way of understanding 'probability'. You may even be thinking to yourself, "isn't it *obvious* that's what probability is about?"
+
+
+## Probability as Belief
+
+But many statements about probability don't fit the frequency mold. At least, not very well.
+
+Consider the statement, "the probability the dinosaurs were wiped out by a meteor is 90%." That doesn't mean that 90% of the times dinosaurs existed on earth, they were wiped out. They only existed once! This probability is about an event that doesn't repeat. So there's no frequency with which it happens.
+
+Here's another example: "the main cause of climate change is probably humans." That doesn't mean that, most of the time, when climate change happens, humans are the cause. Humans haven't even been around for most of the climate changes in Earth's history. So again: this doesn't seem to be a statement about the frequency with which humans cause global warming.
+
+These statements appear instead to be about what beliefs are supported by the evidence.
+
+When someone says it's $90\%$ likely the dinosaurs were wiped out by a meteor, they mean the evidence warrants being $90\%$ confident that's what happened. (What evidence? Often, people don't say what evidence they're relying on. But sometimes they do: fossil records, geological traces, etc.) Similarly, when someone says humans are probably the main cause of climate change, they mean that the evidence warrants being more than $50\%$ confident it's true.
+
+So, some probability statements appear to be about *belief*, not frequency. If a proposition has high probability, that means the evidence warrants strong belief in it. If a proposition has low probability, the evidence only warrants low confidence.
+
+
+## Which Kind of Probability?
+
+Which kind of probability are scientists using when they use probability theory? Is science about the frequency with which certain events happen?  Or is it about what beliefs are warranted by the evidence?
+
+There is a deep divide among scientists on this issue, especially statisticians.
+
+The *frequentists* think that science deals in the first kind of probability, frequency. They prefer this interpretation because it promises to be more conrete and objective. How often something happens can be observed and measured objectively. And science is all about observation and objectivity.
+
+The *Bayesians* think instead that science deals in the second kind of probability, belief-type probability. Science is supposed to tell us what to believe given our evidence, after all. So it has to go beyond observed frequency and deal with belief-type probability.
+
+Let's consider strengths and weaknesses of each approach.
+
+
+## Frequentism
+
+According to frequentists, probability is all about how often something happens. But what if it only ever has one opportunity to happen?
+
+For example, suppose we take an ordinary coin fresh from the mint, and we flip it once. It lands heads. Then we melt it down and destroy it. Was the probability of heads $1$ on that flip? The coin landed heads one out of one times, so isn't that what the frequency view implies? And yet, common sense says the probability of heads was $1/2$. It was an ordinary coin, it could have landed either way.
+
+Well, we can distinguish *actual* frequency from *hypothetical* frequency.
+
+*Actual frequency* is the number of times the coin actually lands heads divided by the number of flips. If there's only one flip and it's a heads, then the actual frequency is $1/1$, which is just $1$. If there's ten flips and four are heads, then the actual frequency is $4/10$.
+
+But *hypothetical frequency* is the number of times the coin *would* land heads, if you flipped it over and over for a long time, divided by the total number of hypothetical flips. If we flipped the coin over and over a million times, it would land heads about half the time (probably).
+
+Now, it's presumably the *hypothetical* frequency that is the real probability of heads, according to frequentists. So doesn't that solve our problem with one-off events? Even if a coin is only ever flipped once, what matters is how it would have landed if we'd flipped it many times.
+
+`r newthought("But there are serious problems")` with hypothetical frequency.
+
+The first problem is that it makes our definition of "probability" circular. Because hypothetical frequency is defined in terms of probability. If you flipped the coin over and over, it would *probably* land heads half the time. But not necessarily: it might land heads only a few times, or even not at all. So what we're really saying is: "probability" = most probable hypothetical frequency. But you can't define a concept in terms of itself!
+
+The second problem is about observability. You can observe actual frequencies, but not hypothetical frequencies. We never actually get to flip a coin more than a few hundred times. So hypothetical frequencies aren't observable and objective, which undermines the main appeal of the frequency theory.
+
+A third problem has to do with how probable scientific theories are. Part of the point of science is establish which theory is most probable. But theories don't have frequencies. Recall the example from earlier, about the dinosaurs being made extinct by a meteor. Or take the theory that DNA has a double-helix structure. When we say these theories are highly probable, how would we translate that into a statement about hypothetical frequencies?
+
+A fourth and final problem is that how often an event happens depends on what you compare it to. It depends on the *reference class*. Consider Tweety, who has wings and is coloured black-and-white. What is the probability that Tweety can fly? Most things with wings can fly. Most things that are black-and-white cannot. Which reference class determines the probability that Tweety can fly? The class of winged things, or the class of black-and-white things?
+
+It's problems like these that drive many philosophers and scientists away from frequentism, and towards the alternative offered by so-called "Bayesian"  probability.
+
+
+## Bayesianism: Belief-Type Probability
+
+According to Bayesians, probability is ultimately about belief. It's about how certain you should be that something is true.
+
+For example, $\p(A)=.9$ means that $A$ is certain to degree $0.9$. We can be 90% confident that $A$ is true. Whereas $\p(A)=.3$ means that $A$ is certain to degree $0.3$. We can only be 30% confident that $A$ is true.
+
+Why is this view called "Bayesianism"? Because it uses Bayes' theorem to explain how science works.
+
+Suppose we have a hypothesis, $H$, and some evidence $E$. Should we believe $H$ given the evidence $E$? That depends on how high $\p(H \given E)$ is. Bayes' Theorem tells us that $\p(H \given E)$ can be calculated:
+$$
+  \begin{aligned}
+    \p(H \given E) &= \frac{\p(H)\p(E \given H)}{\p(E)}.
+  \end{aligned}
+$$
+
+And as we saw in [Chapter 10][Probability & Induction], each term in Bayes' theorem corresponds to a rule of good scientific reasoning.
+
+The better a theory explains the evidence, the more believable it is. And $\p(E \given H)$ corresponds to how well the hypothesis explains the evidence. Since this term appears in the numerator of Bayes' theorem, it makes $\p(H \given E)$ larger.
+
+The more surprising (or "novel") a finding is, the more it supports a theory that explains it. The term $\p(E)$ corresponds to how surprising the evidence is. And since it appears in the denominator of Bayes' theorem, surprising evidence makes $\p(H \given E)$ larger if $H$ can successfully explain $E$.
+
+Finally, new evidence has to be weighed against previous evidence and existing considerations. The term $\p(H)$ corresponds to the prior plausibility of the hypothesis $H$, and it appears in the numerator of Bayes' theorem. So the more the hypothesis fits with prior considerations, the larger $\p(H \given E)$ will be.
+
+So, Bayesians say, we should understand probability as the degree of belief it's rational to have. The laws of probability, like Bayes' theorem, show us how to be good, objective scientists, shaping our beliefs according to the evidence.
+
+`r newthought("The main challenge for Bayesians")` is objectivity.  Critics complain that science is objective, but belief is subjective. How so?
+
+First, belief is something personal and mental, so it can't be quantified objectively. What does it even mean to be $90\%$ confident that something is true, you might ask? How can you pin a number on a belief?
+
+And second, belief varies from person to person. People from different communities and with different personalities bring different opinions and assumptions to the scientific table. But science is supposed to eliminate personal, subjective elements like opinion and bias.
+
+`r newthought("So frequentists and Bayesians both")` have their work cut out for them. In the next few chapters we'll see how they address these issues.
+
+
+## Exercises
+
+1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+
+2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
