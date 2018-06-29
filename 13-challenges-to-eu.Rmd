@@ -181,7 +181,7 @@ And if you knew a white ball wouldn't be drawn, then options 1A and 2A would be 
 Most decision theorists find this reasoning compelling. But some turn it on its head. They say: so much the worse for the Sure-thing Principle. The debate has yet to settle into any universal consensus.
 
 
-## The St. Petersburg Puzzle
+## The St. Petersburg Paradox
 
 Our last challenge is of a very different sort from the previous two. It's based on the following game, known as the St. Petersburg Game.
 
@@ -231,11 +231,11 @@ ggplot(NULL, aes(c(0, 1))) +
 
 As the number of potential flips grows, the rectangles get narrower because the outcomes become less probable. But they also get proportionally taller, because the payoff doubles every time the probability halves. The net result is an infinite sequence of rectangles, each with area $1$. So the total area is infinite.
 
-`r newthought("Most people")`, when they first encounter this puzzle, try to take the easy way out. "The game is impossible," they say. "Nobody could actually fund this game in real life. No casino has an unlimited money, not even the government. Besides, the coin would wear out after a while. So the house couldn't truly guarantee they'd be able to follow through."
+`r newthought("Most people")`, when they first encounter this puzzle, try to take the easy way out. "The game is impossible," they say. "Nobody could actually fund this game in real life. No casino has unlimited money, not even the government does. Besides, the coin would wear out after a while. So the house couldn't guarantee they'd be able to follow through on the game."
 
 There are two serious problems with this solution. 
 
-First, consider: would you be willing to risk your life to play the St. Petersburg game, if only the bank had enough cash on hand, and enough coins to keep the game going as long as it takes? If God descended from heaven and offered to run the game, would you gamble your life to play then?
+First, consider: would you be willing to risk your life to play the St. Petersburg game if the casino did have enough cash on hand, and enough coins to keep the game going as long as it takes? Imagine if God descended from heaven and offered to run the game. Would you gamble your life to play then?
 
 Second, even if the game had a finite limit---let's suppose it's 100 flips---would you be willing to pay $\$100$ to play? The chance you'd make any money at all is less than 1%.
 
@@ -248,7 +248,7 @@ knitr::include_graphics("img/marg_fig.png")
 
 ## Bernoulli's Solution
 
-The St. Petersburg game was invented by the mathematician Nicolaus Bernoulli, in the 18th Century. He discussed it with his brother Daniel Bernoulli, who published a famous solution in 1738 in the *St. Petersburg Academy Proceedings*.
+The St. Petersburg game was invented by the mathematician Nicolaus Bernoulli, in the 18th Century. He discussed it with his cousin Daniel Bernoulli, who published a famous solution in 1738 in the *St. Petersburg Academy Proceedings* (hence the name).
 
 The solution: replace monetary value with *real* value, a.k.a. *utility*. Remember, we saw in [Chapter 12][Utility] that the more money you have, the less value additional money brings. So, as the monetary payoffs in the St. Petersburg game double from \$2 to \$4 to \$8, etc., the *real* value grows more slowly.
 
