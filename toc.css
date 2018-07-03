@@ -128,7 +128,7 @@ button {
 }
 
 #TOC > ul > li > a:hover::after{
-  content: ">";
+  /*content: ">";*/
 }
 
 #TOC .has-sub ul li a {

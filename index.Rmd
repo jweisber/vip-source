@@ -1,5 +1,5 @@
 ---
-title: "Odds & Ends: A Visual Introduction to Probability & Decision"
+title: "Odds & Ends: An Introduction to Probability & Decision (with a Visual Emphasis)"
 author: "Jonathan Weisberg"
 ---
 

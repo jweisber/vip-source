@@ -1,0 +1,222 @@
+# Bayesianism & Objectivity
+
+For Bayesians, probabilities are beliefs. When I say it'll probably rain today, I'm telling you something about my level of confidence. I mean that I'm over $50\%$ confident it will rain today. 
+
+But how can we quantify something as personal as confidence? Bayesians quantify confidence using the same basic idea we used for utility. They look at people's choices, at what risks they're willing to accept.
+
+
+## Measuring Personal Probabilities
+
+The more confident someone is about something, the more they'll be willing to bet on it. So Bayesians use betting rates to quantify personal probabilities.
+
+For example, consider how much you would bet on Donald Trump being reelected President of the United States in 2020. At this point (July 2018) I'd take even odds on Trump being reelected. In other words, I'd accept a deal that pays $\$1$ if he's reelected, and costs $\$1$ otherwise.
+
+In this example I'm putting a dollar on the table, and so is the house. Whoever wins the bet keeps both dollars. The sum of all the money on the table is called the *stake*. In this case the stake is $\$1 + \$1 = \$2$.
+
+If Trump isn't reelected, my loss will be $\$1$. To find my *betting rate*, we divide this *potential loss* by the stake:
+$$
+  \begin{aligned}
+    \mbox{betting rate} &= \frac{\mbox{potential loss}}{\mbox{stake}}\\
+                        &= \frac{\$1}{\$1 + \$1}\\
+                        &= \frac{1}{2}.
+  \end{aligned}
+$$
+
+A person's betting rate reflects their degree of confidence. The more confident they are of winning, the more they'll be willing to risk losing. In this example my betting rate is $1/2$ because I'm $1/2$ confident Trump will be reelected. That's my *personal probability*: $\p(R) = 1/2$.
+
+Notice that a bet at one-to-one odds has zero expected value given my personal probability of $1/2$:
+$$ (1/2)(\$1) + (1/2)(-\$1) = 0. $$
+This makes sense: it's a fair bet from my point of view.
+
+What if I were less confident in Trump's reelection, like say just $1/10$ confident? Then the bet would need to have nine-to-one odds in order to have zero expected value:
+$$ (1/10)(\$9) + (9/10)(-\$1) = 0. $$
+In other words, for the bet to be fair in my eyes, I'd have to be promised $\$9$ upon his reelection instead of just $\$1$.
+
+Here's the general recipe for quantifying someone's personal probability in proposition $A$:
+
+1. Find a bet on $A$ they deem fair. Call the potential winnings $w$ and the potential losses $l$.
+2. Because they deem the bet fair, set the expected value of the bet equal to zero:
+    $$ \p(A) \times w + (1-\p(A)) \times -l = 0. $$
+3. Now solve for $\p(A)$:
+    $$
+      \begin{aligned}
+        \p(A) \times w + (1-\p(A)) \times -l &= 0 \\
+                              \p(A) \times w &= (1-\p(A)) \times l \\
+             \p(A) \times w + \p(A) \times l &= l \\
+                                       \p(A) &= \frac{l}{w + l}.
+      \end{aligned}
+    $$
+
+Notice how we got the same formula we started with: potential loss divided by total stake. You can memorize this formula, but personally I prefer to apply the recipe. It shows why the formula works, but it also exposes the formula's weak-points. It helps us understand when the formula *won't* work.
+
+
+## Things to Watch Out For
+
+Personal probabilities aren't revealed in just any old betting rate a person will accept. They're only exposed by the person's *fair* betting rates.
+
+Consider: I'd take a bet where you pay me a million dollars of Trump is reelected and I pay you just $\$1$ otherwise. But that's because I think this bet is *advantageous*. I don't think this is a fair bet, which is why I'd only take one side of it. I wouldn't take the reverse deal, where I win $\$1$ if Trump *isn't* reelected and I pay you a million dollars if he is. That's a terrible deal from my point of view!
+
+So you can't just look at a bet a person is willing to accept. You have to look at a bet they're willing to accept *because they think it's fair*.
+
+`r newthought("Another caveat")` is that we're cheating by using dollars instead of utilities.  When we learned about utility, we saw that utility and dollars can be quite different. Gaining a dollar and losing a dollar aren't necessarily comparable. Especially if it's your last dollar!
+
+So, to really measure personal probabilities accurately, we'd have to substitute utilities for dollars. But we'll just pretend dollars and utilities are equal for simplicity. Dollars are a decent approximation of utilities for many people, as long as we stick to small sums.
+
+`r newthought("Last but definitely not least,")` our method only works when the person is following the expected value formula. Setting the expected value equal to zero was the key to deriving the formula:
+$$ \p(A) = \frac{\mbox{potential loss}}{\mbox{stake}}. $$
+But we know people don't always follow the expected value formula, that's one of the lessons of [the Allais paradox]. So this way of measuring personal probabilities is limited.
+
+
+## Indirect Measurements
+
+Sometimes we don't have the betting rate we need in order to apply the loss/stake formula directly. But we can still figure things out indirectly, given the betting rates we do have.
+
+For example, I'm not very confident there's intelligent life on other planets. But I'd be much more confident if we learned there was life of any kind on another planet. If NASA finds bacteria living on Mars, I'll be much less surprised to learn there are intelligent aliens on Alpha Centauri.
+
+Exactly how confident will I be? What is $\p(I \given L)$, my personal probability that there is intelligent life on other planets given that there is life on other planets at all?
+
+Suppose I tell you my betting rates for $I$ and $L$. I deem the following bets fair:
+
+- I win $\$9$ if $I$ is true, otherwise I pay $\$1$.
+- I win $\$6$ if $L$ is true, otherwise I pay $\$4$.
+
+You can apply the loss/stake formula to figure $\p(I) = 1/10$ and $\p(L) = 4/10$. But what about $\p(I \given L)$? You can figure that out by starting with the definition of conditional probability:
+$$
+\begin{aligned}
+    \p(I \given L) &= \p(I \wedge L)/\p(L) \\
+                   &= \p(I)/\p(L) \\
+                   &= 1/4.
+\end{aligned}
+$$
+The second line in this calculation uses the fact that $I$ is equivalent to $I \wedge L$. If there's intelligent life, then there must be life, by definition. So $I \wedge L$ is redundant. We can drop the second half and replace the whole statement with just $I$.
+
+The general strategy here is: 1) identify what betting rates you have, 2) apply the loss/stakes formula to get those personal probabilities, and then 3) apply familiar rules of probability to derive other personal probabilities.
+
+We have to be careful though. This technique only works if the subject's betting rates follow the familiar rules of probability. If my betting rate for rain tomorrow is $3/10$, you might expect my betting rate for no rain to be $7/10$. But people don't always follow the laws of probability, just as they don't always follow the expected value rule. The taxicab problem from [Chapter 8][Bayes' Theorem] illustrates one way people commonly violate the rules of probability.
+
+`r newthought("This point raises a new question,")` one of central importance to the Bayesian way of thinking.
+
+
+## Dutch Books
+
+The critics still aren't happy. "Ok," they concede, "maybe personal probabilities can be quantified using betting rates. But a person's betting rates may not obey the laws of probability. What's to stop someone being, say, $9/10$ confident it will rain tomorrow but also $9/10$ confident it won't? How do we enforce laws of probability like
+$$\p(A) = 1 - \p(\neg A)$$
+if probability is just subjective opinion?"
+
+The Bayesian answer appeals to a special betting technique. If someone violates the laws of probability, we can use this technique to take advantage of them. We can sucker them into a deal that will lose them money no matter what.
+
+For example, suppose Sam violates a very simple rule of probability. His personal probability in the proposition $2+2=4$ is only $9/10$, when it should be $1$. (It's impossible for $2+2$ to be anything other than $4$.) Because Sam has violated the laws of probability, he'll be willing to accept a very bad deal, as follows.
+
+We put two marbles into an empty bucket, and then two more. We then offer Sam the following deal.
+
+- We pay Sam $\$0.90$. In exchange, he pays us $\$1$ if the bucket has a total of four marbles in it.
+
+This deal should be fair according to Sam. As he sees it, there's a $90\%$ chance he'll have to pay us $\$1$, for a net loss of $\$0.10$. But there's also a $10\%$ chance he won't have to pay us anything, for a net gain of $\$0.90$.  So the expected value is zero according to Sam's personal probabilities:
+
+$$ (9/10)(-\$.10) + (1/10)(\$.90) = 0. $$
+
+And yet, Sam will lose money no matter what! There's no way for him to win, he's bound to end up paying us that $\$1$ when we only paid him $\$0.90$ to get in on the deal.
+
+```{marginfigure}
+Why is it called a "Dutch book"? Lorem ipsum...
+```
+
+This kind of deal is called a *Dutch book*. A Dutch book has two defining features.
+
+1. The arrangement is fair according to the subject's personal probabilities.
+2. The subject will lose money *no matter what*.
+
+If you are vulnerable to a Dutch book, then it looks like there's something very wrong with your personal probabilities. A deal looks fair to you when it clearly isn't. It's impossible for you to win!
+
+Almost nobody in real life would be foolish enough accept the deal we just offered Sam. Real people have enough sense not to violate the laws of probability in such obvious ways. But there are subtler ways to violate the laws of probability, which people do fall prey to. And we can create Dutch books for them too.
+
+
+## The Bankteller Fallacy
+
+Consider this famous problem:
+
+```{marginfigure}
+This problem was devised by the same psychologists who introduced the taxicab problem: Daniel Kahneman and Amos Tversky. They introduced this problem in 1983.
+```
+
+```{block, type="puzzle"}
+Linda is 31 years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice, and also participated in anti-nuclear demonstrations. Which is more probable?
+
+1. Linda is a bank teller.
+2. Linda is a bank teller and is active in the feminist movement.
+```
+
+In psychology experiments, almost everyone chooses (2). But that can't be right, and you don't need to know anything about Linda to prove it.
+
+In general, the probability of a conjunction $B \wedge F$ cannot be greater than the probability of $B$. There are simply more possibilities where $B$ is true than there are possibilities where *both* $B$ *and* $F$ are true: 
+
+```{r echo=FALSE, cache=TRUE, fig.cap="Bank tellers and feminist bank tellers"}
+euler_diagram <- function(propositions) {
+    ggplot(data = propositions) + theme_void() + coord_fixed() +
+        xlim(-3,3) + ylim(-2,2) +
+        theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+        geom_circle(aes(x0 = cirx, y0 = ciry, r = r)) +
+        geom_text(aes(x = labx, y = laby, label = labl), 
+                  parse = TRUE, size = 6, family=c("serif"))
+}
+
+propositions <- data.frame(
+    cirx = c(0     , 0),
+    ciry = c(0     , 0),
+    r    = c(1.25  , .5),
+    labx = c(-.5   , -.95),
+    laby = c(.5    , 1.15),
+    labl = c("paste(italic(B), '&', italic(F))", "italic(B)")
+)
+
+euler_diagram(propositions)
+```
+
+So it's a law of probability that $\p(B \wedge F) \leq \p(B)$. Which means it can't be more likely that Linda is both a bankteller and a feminist than that she is a bankteller.
+
+Here's another way to think about it. Imagine everyone who fits the description of Linda gathered in a room. The people in the room who happen to be bank tellers are gathered inside a circle at the center of the room. Now, some of the people in that circle will also be feminists. But there can't be more feminists inside that circle than people! Feminist bank tellers are just less common than bank tellers in general.
+
+How do we Dutch book someone who mistakenly thinks $B$ is more probable than $B \wedge F$? We offer them two deals, one involving a bet on $B$ and the other a bet on $B \wedge F$.
+
+Suppose for example that their betting rate for $B$ is $1/5$, and their betting rate for $B \wedge F$ is $1/4$. Then:
+
+- Bet #1. We pay them $\$0.20$. In exchange they agree to pay us $\$1$ if $B$ is true.
+- Bet #2. They pay us $\$0.25$. In exchange we agree to pay them $\$1$ if $B \wedge F$ is true.
+
+Both of these deals are fair according to their betting rates. So our victim will be willing accept both.
+
+And yet, they'll lose money no matter what. Notice how they've already paid us more than we've paid them before the bets are even settled. We're up $\$0.05$ from the get go. For them to come out ahead, they'll have to win the second bet. But if they do win the second bet, we win the first bet. They only win the second bet if $B \wedge F$ is true, in which case $B$ is automatically true and we win the first bet. Since both bets pay off $\$1$, they cancel each other out. So even if they win the second bet, they're still out a net loss of $\$0.05$.
+
+
+## Dutch Books in General
+
+In general, anyone who violates any law of probability can be suckered via a Dutch book. If you obey the laws of probability however, it's impossible to have a Dutch book made against you. That's why the laws of probability are objectively correct, according to Bayesians.
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Frank Ramsey first noticed the connection between Dutch books and the laws of probability in the 1920s."}
+knitr::include_graphics("img/marg_fig.png")
+```
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Bruno de Finetti first proved that the laws of probability are the only safegaurd against Dutch books in the 1930s."}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+What's the general recipe for constructing a Dutch book against someone who violates the laws of probability?
+
+First, use bets with a $\$1$ stake. This makes things simple, because the victim's personal probability will be the same as their fair price for the bet. If their personal probability is $1/2$, they'll be willing to pay $\$0.50$ for a bet with a $\$1$ payoff. If their personal probability is $1/4$, they'll be willing to pay $\$0.25$ for a bet with a $\$1$ payoff.
+
+Second, remember that if a bet is fair then a person should be willing to take *either side* of the bet. Suppose they think it's fair to pay $\$0.25$ in exchange for $\$1$ if $A$ turns out to be true. Then they should also be willing to *accept* $\$0.25$ instead and *pay you* $\$1$ if $A$ turns out to be true. It's a fair bet, so either side is acceptable.
+
+Third is the trickiest bit. Which propositions should you get them to bet on, and which should you get them to bet against? Think about which propositions they are overconfident of, and which they are underconfident of.
+
+For example, Sam was underconfident in $2+2=4$. He was only $9/10$ confident instead of $1$. So we underpaid him for a bet on that proposition: $\$0.90$ in exchange for $\$1$ if it was true. His underconfidence meant he was willing to accept too little in exchange for a $\$1$ payoff.
+
+Whereas in the bank teller example, the victim was overconfident of $B \wedge F$, and underconfident in $B$. So we underpaid them for a bet on $B$, and got them to overpay us for a bet on $B \wedge F$.
+
+Here's one more example. Suppose Suzy the Scientist is conducting an experiment. The experiment could have either of two outcomes, $E$ or $\neg E$. Suzy thinks there's a $70\%$ chance of $E$, and a $40\%$ chance of $\neg E$. She's violated the Additivity rule: $\p(E) = 7/10$ and $\p(\neg E) = 4/10$, which adds up to more than $1$.
+
+So we can make a Dutch book against Suzy. In this case she's overconfident in the propositions $E$ and $\neg E$. So we get her to overpay us for bets on $E$ and on $\neg E$:
+
+- Bet \#1: Suzy pays us $\$0.70$. In exchange we pay her $\$1$ if $E$ is true.
+- Bet \#2: Suzy pays us $\$0.40$. In exchange we pay her $\$1$ if $\neg E$ is true.
+
+The end result is that Suzy loses $\$0.10$ no matter what. At the beginning she pays us $\$0.70 + \$0.40 = \$1.10$. Then she wins back $\$1$, either for the bet on $E$ or the bet on $\neg E$. In the end, she has a net loss of $\$0.10$.
+
