@@ -73,7 +73,7 @@ A fourth and final problem is that how often an event happens depends on what yo
 It's problems like these that drive many philosophers and scientists away from frequentism, and towards the alternative offered by so-called "Bayesian"  probability.
 
 
-## Bayesianism: Belief-Type Probability
+## Bayesianism
 
 According to Bayesians, probability is ultimately about belief. It's about how certain you should be that something is true.
 
@@ -81,16 +81,15 @@ For example, $\p(A)=.9$ means that $A$ is certain to degree $0.9$. We can be 90%
 
 Why is this view called "Bayesianism"? Because it uses Bayes' theorem to explain how science works.
 
-Suppose we have a hypothesis, $H$, and some evidence $E$. Should we believe $H$ given the evidence $E$? That depends on how high $\p(H \given E)$ is. Bayes' Theorem tells us that $\p(H \given E)$ can be calculated:
+Suppose we have a hypothesis, $H$, and some evidence $E$. How believable is $H$ given the evidence $E$? Bayes' Theorem tells us $\p(H \given E)$ can be calculated:
 $$
   \begin{aligned}
     \p(H \given E) &= \frac{\p(H)\p(E \given H)}{\p(E)}.
   \end{aligned}
 $$
+And we saw in [Chapter 10][Probability & Induction] how each term on the right corresponds to a rule of good scientific reasoning.
 
-And as we saw in [Chapter 10][Probability & Induction], each term in Bayes' theorem corresponds to a rule of good scientific reasoning.
-
-The better a theory explains the evidence, the more believable it is. And $\p(E \given H)$ corresponds to how well the hypothesis explains the evidence. Since this term appears in the numerator of Bayes' theorem, it makes $\p(H \given E)$ larger.
+The better a theory fits with the evidence, the more believable it is. And $\p(E \given H)$ corresponds to how well the hypothesis explains the evidence. Since this term appears in the numerator of Bayes' theorem, it makes $\p(H \given E)$ larger.
 
 The more surprising (or "novel") a finding is, the more it supports a theory that explains it. The term $\p(E)$ corresponds to how surprising the evidence is. And since it appears in the denominator of Bayes' theorem, surprising evidence makes $\p(H \given E)$ larger if $H$ can successfully explain $E$.
 
@@ -104,7 +103,7 @@ First, belief is something personal and mental, so it can't be quantified object
 
 And second, belief varies from person to person. People from different communities and with different personalities bring different opinions and assumptions to the scientific table. But science is supposed to eliminate personal, subjective elements like opinion and bias.
 
-`r newthought("So frequentists and Bayesians both")` have their work cut out for them. In the next few chapters we'll see how they address these issues.
+`r newthought("So frequentists and Bayesians both")` have their work cut out for them. In the coming chapters we'll see how they address these issues.
 
 
 ## Exercises

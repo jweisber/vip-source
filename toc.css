@@ -47,7 +47,110 @@ button {
 
 /* TOC STUFF */
 
-#TOC ul,
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+    to { opacity: 1; }
+}  
+@keyframes fadeIn {
+  from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#TOC::before {
+  content: "☰ Contents";
+  font-size: 1.7rem;
+  font-variant: small-caps;
+  cursor: pointer;
+  width: fit-content;
+}
+
+#TOC:hover {
+  text-decoration: underline overline;
+}
+
+#TOC ul {
+  padding: 0;
+  margin: 0;
+  display: none;
+  position: absolute;
+}
+
+#TOC:hover > ul {
+  display: block;
+  -webkit-animation: fadeIn .5s;
+  animation: fadeIn .5s;
+}
+
+#TOC li {
+  padding: 0 0 0 0;
+  position: relative;
+  display: block;
+  width: 20rem;
+}
+
+#TOC ul ul {
+  position: absolute;
+  display: none;
+  left: 100%;
+  top: 0;
+}
+
+#TOC li:hover ul {
+  width: fit-content;
+  display: block;
+  -webkit-animation: fadeIn .5s;
+  animation: fadeIn .5s;
+}
+
+#TOC li:hover > ul {
+  display: block;
+}
+
+#TOC a, .part {
+  background: #141414;
+  background: linear-gradient(to bottom, #333333 0%, #141414 100%);
+  color: #ffffff;
+  display: block;
+  padding: 19px 20px;
+  text-decoration: none;
+  text-shadow: none;
+}
+
+#TOC .part {
+  background: #0fa1e0;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+#TOC > ul > li > a:hover{
+  background: #070707;
+  background: linear-gradient(to bottom, #095480 0%, #070707 100%);  
+}
+
+#TOC > ul > li > a:hover::after{
+  content: ">";
+}
+
+#TOC .has-sub ul li a {
+  background: #0fa1e0;
+  border-bottom: 1px dotted #31b7f1;
+  filter: none;
+  display: block;
+  line-height: 120%;
+  padding: 10px;
+  color: #ffffff;
+}
+
+#TOC .has-sub ul li:hover a {
+  background: #0c7fb0;
+}
+
+#TOC ul ul li:hover > a {
+  color: #ffffff;
+}
+*/
+
+/*#TOC ul,
 #TOC li,
 #TOC span,
 #TOC a {
@@ -173,4 +276,4 @@ button {
 }
 #TOC ul {
   font-size: 1.2rem;
-}
+}*/
