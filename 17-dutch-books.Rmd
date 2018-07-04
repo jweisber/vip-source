@@ -1,107 +1,13 @@
-# Bayesianism & Objectivity
+# Dutch Books
 
-For Bayesians, probabilities are beliefs. When I say it'll probably rain today, I'm telling you something about my level of confidence. I mean that I'm over $50\%$ confident it will rain today. 
+Alas, Bayesianism's critics still aren't happy. 
 
-But how can we quantify something as personal as confidence? Bayesians quantify confidence using the same basic idea we used for utility. They look at people's choices, at what risks they're willing to accept.
-
-
-## Measuring Personal Probabilities
-
-The more confident someone is about something, the more they'll be willing to bet on it. So Bayesians use betting rates to quantify personal probabilities.
-
-For example, consider how much you would bet on Donald Trump being reelected President of the United States in 2020. At this point (July 2018) I'd take even odds on Trump being reelected. In other words, I'd accept a deal that pays $\$1$ if he's reelected, and costs $\$1$ otherwise.
-
-In this example I'm putting a dollar on the table, and so is the house. Whoever wins the bet keeps both dollars. The sum of all the money on the table is called the *stake*. In this case the stake is $\$1 + \$1 = \$2$.
-
-If Trump isn't reelected, my loss will be $\$1$. To find my *betting rate*, we divide this *potential loss* by the stake:
-$$
-  \begin{aligned}
-    \mbox{betting rate} &= \frac{\mbox{potential loss}}{\mbox{stake}}\\
-                        &= \frac{\$1}{\$1 + \$1}\\
-                        &= \frac{1}{2}.
-  \end{aligned}
-$$
-
-A person's betting rate reflects their degree of confidence. The more confident they are of winning, the more they'll be willing to risk losing. In this example my betting rate is $1/2$ because I'm $1/2$ confident Trump will be reelected. That's my *personal probability*: $\p(R) = 1/2$.
-
-Notice that a bet at one-to-one odds has zero expected value given my personal probability of $1/2$:
-$$ (1/2)(\$1) + (1/2)(-\$1) = 0. $$
-This makes sense: it's a fair bet from my point of view.
-
-What if I were less confident in Trump's reelection, like say just $1/10$ confident? Then the bet would need to have nine-to-one odds in order to have zero expected value:
-$$ (1/10)(\$9) + (9/10)(-\$1) = 0. $$
-In other words, for the bet to be fair in my eyes, I'd have to be promised $\$9$ upon his reelection instead of just $\$1$.
-
-Here's the general recipe for quantifying someone's personal probability in proposition $A$:
-
-1. Find a bet on $A$ they deem fair. Call the potential winnings $w$ and the potential losses $l$.
-2. Because they deem the bet fair, set the expected value of the bet equal to zero:
-    $$ \p(A) \times w + (1-\p(A)) \times -l = 0. $$
-3. Now solve for $\p(A)$:
-    $$
-      \begin{aligned}
-        \p(A) \times w + (1-\p(A)) \times -l &= 0 \\
-                              \p(A) \times w &= (1-\p(A)) \times l \\
-             \p(A) \times w + \p(A) \times l &= l \\
-                                       \p(A) &= \frac{l}{w + l}.
-      \end{aligned}
-    $$
-
-Notice how we got the same formula we started with: potential loss divided by total stake. You can memorize this formula, but personally I prefer to apply the recipe. It shows why the formula works, but it also exposes the formula's weak-points. It helps us understand when the formula *won't* work.
-
-
-## Things to Watch Out For
-
-Personal probabilities aren't revealed in just any old betting rate a person will accept. They're only exposed by the person's *fair* betting rates.
-
-Consider: I'd take a bet where you pay me a million dollars of Trump is reelected and I pay you just $\$1$ otherwise. But that's because I think this bet is *advantageous*. I don't think this is a fair bet, which is why I'd only take one side of it. I wouldn't take the reverse deal, where I win $\$1$ if Trump *isn't* reelected and I pay you a million dollars if he is. That's a terrible deal from my point of view!
-
-So you can't just look at a bet a person is willing to accept. You have to look at a bet they're willing to accept *because they think it's fair*.
-
-`r newthought("Another caveat")` is that we're cheating by using dollars instead of utilities.  When we learned about utility, we saw that utility and dollars can be quite different. Gaining a dollar and losing a dollar aren't necessarily comparable. Especially if it's your last dollar!
-
-So, to really measure personal probabilities accurately, we'd have to substitute utilities for dollars. But we'll just pretend dollars and utilities are equal for simplicity. Dollars are a decent approximation of utilities for many people, as long as we stick to small sums.
-
-`r newthought("Last but definitely not least,")` our method only works when the person is following the expected value formula. Setting the expected value equal to zero was the key to deriving the formula:
-$$ \p(A) = \frac{\mbox{potential loss}}{\mbox{stake}}. $$
-But we know people don't always follow the expected value formula, that's one of the lessons of [the Allais paradox]. So this way of measuring personal probabilities is limited.
-
-
-## Indirect Measurements
-
-Sometimes we don't have the betting rate we need in order to apply the loss/stake formula directly. But we can still figure things out indirectly, given the betting rates we do have.
-
-For example, I'm not very confident there's intelligent life on other planets. But I'd be much more confident if we learned there was life of any kind on another planet. If NASA finds bacteria living on Mars, I'll be much less surprised to learn there are intelligent aliens on Alpha Centauri.
-
-Exactly how confident will I be? What is $\p(I \given L)$, my personal probability that there is intelligent life on other planets given that there is life on other planets at all?
-
-Suppose I tell you my betting rates for $I$ and $L$. I deem the following bets fair:
-
-- I win $\$9$ if $I$ is true, otherwise I pay $\$1$.
-- I win $\$6$ if $L$ is true, otherwise I pay $\$4$.
-
-You can apply the loss/stake formula to figure $\p(I) = 1/10$ and $\p(L) = 4/10$. But what about $\p(I \given L)$? You can figure that out by starting with the definition of conditional probability:
-$$
-\begin{aligned}
-    \p(I \given L) &= \p(I \wedge L)/\p(L) \\
-                   &= \p(I)/\p(L) \\
-                   &= 1/4.
-\end{aligned}
-$$
-The second line in this calculation uses the fact that $I$ is equivalent to $I \wedge L$. If there's intelligent life, then there must be life, by definition. So $I \wedge L$ is redundant. We can drop the second half and replace the whole statement with just $I$.
-
-The general strategy here is: 1) identify what betting rates you have, 2) apply the loss/stakes formula to get those personal probabilities, and then 3) apply familiar rules of probability to derive other personal probabilities.
-
-We have to be careful though. This technique only works if the subject's betting rates follow the familiar rules of probability. If my betting rate for rain tomorrow is $3/10$, you might expect my betting rate for no rain to be $7/10$. But people don't always follow the laws of probability, just as they don't always follow the expected value rule. The taxicab problem from [Chapter 8][Bayes' Theorem] illustrates one way people commonly violate the rules of probability.
-
-`r newthought("This point raises a new question,")` one of central importance to the Bayesian way of thinking.
+"Ok," they concede, "maybe personal probabilities can be quantified using betting rates. But a person's betting rates may not obey the laws of probability. What's to stop someone being, say, $9/10$ confident it will rain tomorrow but also $9/10$ confident it won't? How do we enforce laws of probability like
+$$\p(A) = 1 - \p(\neg A)$$
+if probability is just subjective opinion?"
 
 
 ## Dutch Books
-
-The critics still aren't happy. "Ok," they concede, "maybe personal probabilities can be quantified using betting rates. But a person's betting rates may not obey the laws of probability. What's to stop someone being, say, $9/10$ confident it will rain tomorrow but also $9/10$ confident it won't? How do we enforce laws of probability like
-$$\p(A) = 1 - \p(\neg A)$$
-if probability is just subjective opinion?"
 
 The Bayesian answer appeals to a special betting technique. If someone violates the laws of probability, we can use this technique to take advantage of them. We can sucker them into a deal that will lose them money no matter what.
 
