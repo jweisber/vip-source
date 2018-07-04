@@ -136,7 +136,7 @@ There is no accepted solution to Bertrand's paradox.
 
 Some people think it shows that probability is subjective. You have to follow the probability axioms to avoid Dutch books, but you can start with whatever prior probabilities seem right to you. There are no objective rules of probability beyond the ones we learned in this book.
 
-Others think the paradox shows that the whole idea of "prior" and "posterior" probabilities is a mistake. Frequentists say that probability isn't a matter of personal beliefs, and there are objective rules for using probability to evaluate hypotheses. Conditionalization is just the wrong way to go about it.
+Others think the paradox shows that the whole idea of "prior" and "posterior" probabilities is a mistake. Frequentists say that probability isn't a matter of personal beliefs, and there are objective rules for using probability to evaluate hypotheses. Bayes' theorem is just the wrong way to go about it.
 
 What's the right way according to frequentism?
 
