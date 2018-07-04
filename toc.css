@@ -6,6 +6,11 @@ dt {
   font-weight: bold !important;
 }
 
+div.epitaph {
+  font-style: italic;
+  text-align: right;
+}
+
 div.problem {
   border-left: 3px double maroon;
   padding-left: 1rem;

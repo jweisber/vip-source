@@ -1,5 +1,13 @@
 # Utility
 
+```{block, type="epitaph"}
+Here, have a dollar.\
+In fact, no brotherman here, have two.\
+Two dollars means a snack for me\
+But it means a big deal to you.\
+---Arrested Development, "Mr. Wendal"
+```
+
 Imagine your university's student union is holding a lottery. There are a thousand tickets, and the prize is $\$500$. Tickets cost $\$1$. Would you buy one?
 
 The expected monetary value of buying a ticket is $-\$0.50$:

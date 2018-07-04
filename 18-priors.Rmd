@@ -1,0 +1,148 @@
+# Priors
+
+```{block, type="epitaph"}
+When my information changes, I alter my conclusions. What do you do, sir?\
+---attributed to John Maynard Keynes
+```
+
+The last couple chapters showed how Bayesians render personal probabilities objective. They can be quantified using betting rates. And they are bound to the laws of probability by Dutch books.
+
+But what about learning from evidence? Observation, and evidence-based reasoning, are the hallmarks of science. They are supposed to be what separate the scientific method from other ways of understanding the world, like superstition or faith. Isn't that what makes science objective? So where do observation and evidence fit into the Bayesian picture?
+
+
+## Priors & Posteriors
+
+When we make new observations, we change our beliefs. Your doctor sees the results of your lab tests and concludes that you don't have strep throat after all, you just have a bad cold.
+
+In Bayesian terms, the beliefs we have before we change them are called the *priors*. Because probabilities are beliefs on the Bayesian picture, we represent your beliefs with the probability operator $\pr$. The new beliefs we form based on the evidence are called the *posteriors*. We write $\po$ to distinguish them from what we believed before.
+
+What's the rule for changing your beliefs from $\pr$ to $\po$? Before you test a sample using litmus paper, you believe that it's probably an acid if the paper turns red, and it's probably a base if the paper turns blue. Suppose the paper turns red. Conclusion: the sample is probably an acid. Your new belief in hypothesis $H$ upon acquiring evidence $E$ is determined by your prior *conditional* belief.
+
+Conditionalization
+
+:   When you learn new evidence $E$, your posterior probability in hypothesis $H$ should match your prior conditional probability:
+$$ \po(H) = \pr(H \given E). $$
+
+For example, imagine I'm going to roll a six-sided die behind a screen and tell you whether the result is odd or even. Before I tell you the result, what is your personal probability that the die will land on a high number (either 4, 5, or 6)? Answer: $\p(H) = 1/2.$ Also before I tell you the result, what is your personal probability that the die will land on a high number *given that it lands on an even number*? Answer: $\p(H \given E) = 2/3.$
+
+Now suppose I do the roll and I tell you that it did in fact land on an even number. Now what is your personal probability that it landed in a high number? Following the Conditionalization rule, $\p^*(H) = 2/3.$
+
+In [Chapter 8][Bayes' Theorem] we learned how to use Bayes' theorem to calculate $\pr(H \given E)$. If we combine Bayes' theorem with Conditionalization we get:
+$$ \po(H) = \pr(H) \frac{\pr(E \given H)}{\pr(E)}. $$
+Because this formula is so useful for figuring out what conclusion to draw from new evidence, the Bayesian school of thought is named after it. Bayesian statisticians use it to evaluate evidence in actual scientific research. And Bayesian philosophers use it to explain the logic behind the scientific method.^[We saw how this explanation works in [Chapter 15][Bayesianism].]
+
+
+## The Principle of Indifference
+
+Bayes' theorem provides an objective guide for *changing* your personal probabilities. Given the prior probabilities on the right hand side, you can calculate what your new probabilities should be on the left. But where do the prior probabilities on the right come from? Are there any objective rules for determining them? How do we calculate $\pr(H)$, for example?
+
+Let's go back to our example where I roll a die hidden behind a screen. Before I tell you whether the die landed on an even number, it seems reasonable to assign probability $1/2$ to the proposition that the die will land on a high number (4, 5, or 6). But what if someone had a different prior probability, like $\pr(H) = 1/10$?
+
+That seems like a strange thing to do. Why would they think the die is so much unlikely to land on a high number, when there are just as many high numbers as low ones? Still, if you don't know whether the die is fair, it's possible that it's biased against high numbers. So maybe they're on to something. And notice, assigning $\pr(H) = 1/10$ doesn't violate the probability axioms, as long as they also assign $\p(\neg H) = 9/10$. So we couldn't make a Dutch book against them.
+
+Where do prior probabilities come from then? How do we decide whether to start with $\pr(H) = 1/2$ or $\pr(H) = 1/10$? Here is a very natural proposal:
+
+```{marginfigure}
+Some history of the PoI: Laplace, Keynes, etc.
+```
+
+The Principle of Indifference
+
+:   If there are $n$ possible outcomes, each outcome should have the same prior probability: $1/n$.
+
+In the die example, there are six possible outcomes. So each would have prior probability $1/6$, and thus $\pr(H) = 1/2$:
+$$
+  \begin{aligned}
+    \p(H) &= \pr(4) + \pr(5) + \pr(6)\\
+          &= 1/6 + 1/6 + 1/6\\
+          &= 1/2.
+  \end{aligned}
+$$
+
+Here's one more example. In North American roulette, the wheel has 18 red spaces, 18 black spaces, and 2 green spaces (zero and double-zero). If you don't know whether the wheel is fair, what should your prior probability be that the wheel will land on green?
+
+According to the Principle of Indifference, each space has equal probability, $1/38$, so $\pr(G) = 1/19$:
+$$
+  \begin{aligned}
+    \pr(G) &= \pr(\mathtt{0}) + \pr(\mathtt{00})\\
+           &= 1/38 + 1/38\\
+           &= 1/19.
+  \end{aligned}
+$$
+
+
+## The Continuous Principle of Indifference
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="The continuous roulette wheel"}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+So far so good, but often there is a continuum of possibile outcomes. For example, suppose a casino has a roulette wheel that doesn't have red, green, and black spaces. It just has a line marking the top of the wheel. The wheel is spun hard and players bet on what angle it will stop at. What is the probability the wheel will stop at an angle between $180^{\circ}$ and $270^{\circ}$?
+
+The range from $180^{\circ}$ and $270^{\circ}$ is $1/4$ of the whole range of possibilities from $0^{\circ}$ to $360^{\circ}$. So the natural answer is $1/4$. Generalizing this idea gives us another version of the Principle of Indifference. 
+
+Principle of Indifference (Continuous Version)
+
+:   If there is an interval of possible outcomes from $a$ to $b$, the probability of any subinterval from $c$ to $d$ is: $$\frac{d-c}{b-a}$$
+
+The general idea is that the prior probability of $H$ is just the portion out of all the possibilities where $H$ occurs. If the full range of possibilities goes from $a$ to $b$, and the subrange of $H$ possibilities is from $c$ to $d$, then we just calculate how big that subrange is compared to the whole range.
+
+
+## Bertrand's Paradox
+
+Unfortunately, there's a serious problem with this way of thinking. In fact it's so serious that the Principle of Indifference hasn't been accepted as part of the modern theory of probability. You won't find it in a standard mathematics or statistics textbook on probbility.
+
+What's the problem? Well imagine a factory makes square pieces of paper, whose sides always have length somewhere between $1$ and $3$ inches. What is the probability that the sides of the next piece of paper they manufacture will be between $1$ and $2$ inches long?
+
+Applying the Principle of Indifference we get $1/2$:
+$$
+  \begin{aligned}
+    \frac{d-c}{b-a} &= \frac{2-1}{3-1}\\
+                    &= 1/2.
+  \end{aligned}
+$$
+That seems reasonable, but now suppose we rephrase the question. What is the probability that the *area* of the next piece of paper will be between $1$ in$^2$ and $4$ in$^2$? Applying the Principle of Indifference again, we get a different number, $3/8$:
+$$
+  \begin{aligned}
+    \frac{d-c}{b-a} &= \frac{4-1}{9-1}\\
+                    &= 3/8.
+  \end{aligned}
+$$
+But the answer should have been the same as before! It's the same questions as before, just rephrased. If the sides are between $1$ and $2$ inches long, that's the same as the area being between $1$ in$^2$ and $4$ in$^2$.
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Some history on Bertrand's paradox: Lorem ipsum dolor sit amet..."}
+knitr::include_graphics("img/marg_fig.png")
+```
+
+So which answer is right, $1/2$ or $3/8$? It depends on which dimension we apply the Principle of Indifference to, length or area. And there doesn't seem to be any principled way of deciding that question. So there doesn't seem to be any principled way of applying the Principle of Indifference.
+
+This problem comes up all the time, there's nothing special about the example of the paper factory. Take the continuous roulette wheel. Suppose the final angle of the wheel depends on how hard it's spun. The wheel's starting speed can be anywhere between $1$ and $10$ miles per hour. If it is between $2$ and $5$ miles per hour, it lands at an angle between $180^{\circ}$ and $270^{\circ}$ degrees. Otherwise, it lands at an angle outside that range.
+
+If we apply the Principle of Indifference to the wheel's starting speed we get a probability of $1/3$ that it will land at an angle between $180^{\circ}$ and $270^{\circ}$:
+$$
+  \begin{aligned}
+    \frac{d-c}{b-a} &= \frac{5-2}{10-1}\\
+                    &= 1/3.
+  \end{aligned}
+$$
+But we got a different answer before, $1/4$.
+
+Again the answer we get depends on how we apply the Principle of Indifference. If we apply it to the final angle we get $1/4, if we apply it to the starting speed we get $1/3$. And there doesn't seem to be any principled way of deciding which way to go.
+
+
+## The Problem of Priors
+
+There is no accepted solution to Bertrand's paradox.
+
+Some people think it shows that probability is subjective. You have to follow the probability axioms to avoid Dutch books, but you can start with whatever prior probabilities seem right to you. There are no objective rules of probability beyond the ones we learned in this book.
+
+Others think the paradox shows that the whole idea of "prior" and "posterior" probabilities is a mistake. Frequentists say that probability isn't a matter of personal beliefs, and there are objective rules for using probability to evaluate hypotheses. Conditionalization is just the wrong way to go about it.
+
+What's the right way according to frequentism?
+
+
+## Exercises
+
+#. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+
+#. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

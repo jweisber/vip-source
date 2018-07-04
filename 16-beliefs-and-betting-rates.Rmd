@@ -1,4 +1,4 @@
-# Betting Rates & Beliefs
+# Beliefs & Betting Rates
 
 For Bayesians, probabilities are beliefs. When I say it'll probably rain today, I'm telling you something about my personal level of confidence in rain today. I'm saying I'm more than $50\%$ confident it'll rain. 
 
