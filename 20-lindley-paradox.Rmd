@@ -1,0 +1,144 @@
+# Frequentism & Objectivity
+
+## Objectivity & Subjectivity
+
+How much of a coincidence is too much?
+
+- If a result is significant at the $.05$-level, does that mean the hypothesis is false?
+- What if it's significant at the $.01$-level?
+
+There is no universal rule that can be applied here.
+
+- Sometimes a result is significant even at the $.01$-level, and yet the hypothesis shouldn't be rejected.
+- Example: you're playing poker at a Las Vegas casino and you're dealt a straight. Should you reject the hypothesis that the deck is an ordinary, randomly-shuffled deck of cards?
+    - The probability of being dealt a straight is less than 1%.
+    - But it's probably just a coincidence.
+    - So you should continue to assume the deck is ordinary and randomly-shuffled.
+- Just because a result was improbable, doesn't mean something fishy is going on.
+    - Improbable stuff happens all the time: people win the lottery, have surprising chance-encounters, etc.
+    - What is the probability that the people in our class would have exactly the distribution of astrological signs that we do? Really small!
+
+So scientists and statisticians have adopted *conventions*: rules-of-thumb for when a result should be considered important and worth pursuing further.
+
+- In social sciences like psychology, the usual significance level (or "$p$-value") is $.05$.
+- In physical sciences, $.01$ is more common.
+- But these conventions are somewhat arbitrary: they are just conventions.
+
+If these conventions are arbitrary, why do they exist? Bayesian critics of significance testing say they shouldn't exist.
+
+- When we calculate significance levels, we're really calculating an estimate of $p(E|H)$: the probability of the result if the hypothesis is true.
+- And Bayes' theorem tells us that this is just part of the information we need to calculate $\p(H|E)$: $$\begin{aligned}
+              \p(H|E) &= \p(H)\frac{\p(E|H)}{\p(E)}
+            \end{aligned}$$
+
+- We also need $\p(H)$ and $\p(E)$: we need to know how plausible the hypothesis was to begin with, and how surprising the evidence is.
+- In the Las Vegas poker example, $\p(H)$ is very high: it's a major casino, and they use standard decks and automated shuffling machines.
+    - Relatedly, $\p(E)$ is about the same as $\p(E|H)$: a straight was improbable simply because it's probably an ordinary deck and ordinary decks rarely produce a straight.
+    - So we don't reject $H$ because $\p(H|E)$ is about the same as $\p(H)$.
+- So, the Bayesians say, significance testing is just a crude way of approximating Bayes' theorem.
+- Significance testing only *looks* objective on the surface, they say.
+    - The choice of significance level is subjective, based on a personal judgment about $\p(H)$.
+    - In other words: frequentist statistics is subjective in exactly the same way as Bayesian statistics.
+        - It all depends on the scientist's prior probabilities.
+        - And prior probabilities are subjective.
+
+This criticism is sharpened by a famous problem: *Lindley's paradox*.
+
+
+## Lindley's Paradox
+
+Suppose a store receives a large shipment of tulip bulbs with the label scratched off. The company that sent them only sends two kinds of shipments:
+
+1. 25% red bulbs, 75% yellow.
+2. 50% red bulbs, 50% yellow.
+
+The two kinds of shipments are equally common. So the store owner figures this shipment could be of either kind, with equal probability.
+
+So she takes a sample of $48$ bulbs and plants them to see what colour they grow.
+
+- $36$ of them grow red, the rest yellow.
+
+Suppose her null hypothesis is the first one: 25% of the bulbs in the shipment are red, the rest yellow. Should she reject this hypothesis?
+
+- First we need to calculate $\mu$ and $\sigma$: $$\begin{aligned}
+              \mu &= np\\
+                  &= (48)(1/4)\\
+                  &= 12\\
+              \sigma &= \sqrt{np(1-p)}\\
+                         &= \sqrt{(48)(1/4)(3/4)}\\
+                         &= 3
+            \end{aligned}$$
+
+- So the result, $36$ red bulbs, is significant even at the $.01$ level: $$\p(3 \leq k \leq 21) \approx .99$$
+- So she rejects the hypothesis.
+
+But now suppose she makes the second possibility her null hypothesis: 50% of the bulbs in the shipment are red, the rest yellow.
+
+- First we calculate $\mu$ and $\sigma$: $$\begin{aligned}
+              \mu &= np\\
+                  &= (48)(1/2)\\
+                  &= 24\\
+              \sigma &= \sqrt{np(1-p)}\\
+                         &= \sqrt{(48)(1/2)(1/2)}\\
+                         &\approx 3.5
+            \end{aligned}$$
+
+- So the result, $36$ red bulbs, is significant even at the $.01$ level: $$\p(13.5 \leq k \leq 34.5) \approx .99$$
+- So she rejects this hypothesis too.
+
+But that means she will reject both hypotheses!
+
+- Yet they're the only two possibilities!
+- Something seems to have gone wrong.
+
+
+## A Bayesian Analysis
+
+Here is what Bayesian critics of significance testing say: the problem is that it ignores the prior probabilities.
+
+- If we include the prior probabilities and apply Bayes' theorem, we find that the store owner should believe the second hypothesis.
+- And that seems right: $36$ red bulbs out of $48$ fits much better with the 50% hypothesis than with the 25% hypothesis.
+
+How do we apply Bayes' theorem in the tulip example?
+
+- First we label our two hypotheses: $$\begin{aligned}
+                H_{25\%} &= \mbox{\emph{25\% of the bulbs are red}}\\
+                H_{50\%} &= \mbox{\emph{50\% of the bulbs are red}}
+            \end{aligned}$$ And we label the result of the experiment: $$\begin{aligned}
+                E &= \mbox{\emph{Out of 48 randomly selected bulbs, 36 grew red}}
+            \end{aligned}$$
+
+- We already know the prior probabilities of our hypotheses: $$\begin{aligned}
+                \p(H_{25\%}) &= 1/2\\
+                \p(H_{50\%}) &= 1/2
+            \end{aligned}$$
+
+- So we just need to calculate $\p(E|H_{25\%})$ and $\p(E|H_{50\%})$.
+    - That's actually not so simple, so I'll go to my computer and get it to do the calculation...
+
+    - ...ok I'm back, here are the results: $$\begin{aligned}
+                        \p(E|H_{25\%}) &\approx 4.7 \times 10^{-13}\\
+                        \p(E|H_{50\%}) &\approx 2.5 \times 10^{-4}
+                    \end{aligned}$$
+
+- Now we can plug these numbers into Bayes' Theorem: $$\begin{aligned}
+                \p(H_{25\%}|E) &= \frac{\p(E|H_{25\%})\p(H_{25\%})}{\p(E|H_{25\%})\p(H_{25\%}) + \p(E|H_{50\%})\p(H_{50\%})}\\
+                    &\approx \frac{(4.7 \times 10^{-13})(1/2)}{(4.7 \times 10^{-13})(1/2) + (2.5 \times 10^{-4})(1/2)}\\
+                    &\approx .000000002\\
+                \p(H_{50\%}|E) &= \frac{\p(E|H_{50\%})\p(H_{50\%})}{\p(E|H_{50\%})\p(H_{50\%}) + \p(E|H_{25\%})\p(H_{25\%})}\\
+                    &\approx \frac{(2.5 \times 10^{-4})(1/2)}{(2.5 \times 10^{-4})(1/2) + (4.7 \times 10^{-13})(1/2)}\\
+                    &\approx .999999998
+            \end{aligned}$$
+
+So the probability of the first hypothesis has gone way down: from $1/2$ to $.000000002$.
+
+- And the probability of the second hypothesis has gone way up, from $1/2$ to $.999999998$!
+- So we should believe the second hypothesis, not reject it!
+
+According to Bayesian critics, this shows that significance testing is misguided. It ignores crucial background information:
+
+- There are only two possible hypotheses, and they are equally likely.
+- So whichever one fits the results best is supported by the evidence.
+    - In fact, the second hypothesis is *strongly* supported by the evidence, even though it fits the result quite poorly!
+
+*"When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth."* —Sherlock Holmes
