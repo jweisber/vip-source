@@ -6,6 +6,9 @@ author: "Jonathan Weisberg"
 # Preface {-}
 
 ```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  dev.args = list(bg = "transparent")
+)
 library(tufte)
 library(dplyr)
 library(ggplot2)
