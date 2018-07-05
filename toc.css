@@ -16,7 +16,8 @@
 }
 
 #TOC:hover {
-  text-decoration: underline overline;
+  color: LightGrey;
+  transition: color .25s ease-in-out;
 }
 
 #TOC ul {
@@ -24,10 +25,12 @@
   margin: 0;
   display: none;
   position: absolute;
+  font-size: 1.2rem;
 }
 
 #TOC:hover > ul {
   display: block;
+  z-index: 1;
   -webkit-animation: fadeIn .5s;
   animation: fadeIn .5s;
 }
@@ -62,7 +65,7 @@
   background: linear-gradient(to bottom, #333333 0%, #141414 100%);
   color: #ffffff;
   display: block;
-  padding: 19px 20px;
+  padding: 10px;
   text-decoration: none;
   text-shadow: none;
 }
@@ -70,12 +73,11 @@
 #TOC .part {
   background: #0fa1e0;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 #TOC > ul > li > a:hover{
   background: #070707;
-  background: linear-gradient(to bottom, #095480 0%, #070707 100%);  
 }
 
 #TOC .has-sub ul li a {
