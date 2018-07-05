@@ -1,0 +1,49 @@
+dt {
+  text-indent: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold !important;
+}
+
+div.epitaph {
+  font-style: italic;
+  text-align: right;
+}
+
+div.example {
+  border-left: 3px double teal;
+  padding-left: 1rem;
+}
+
+div.problem {
+  border-left: 3px double maroon;
+  padding-left: 1rem;
+}
+
+div.puzzle {
+  border-left: 3px double teal;
+  padding-left: 1rem;
+}
+
+div.info {
+  border-left: 3px double teal;
+  padding-left: 1rem;
+}
+
+div.warning {
+  border-left: 3px double red;
+  padding-left: 1rem;
+}
+
+div.argument {
+  border-left: 3px double silver;
+  padding-left: 1rem;
+}
+
+button {
+  background: none!important;
+  color: inherit;
+  border: none; 
+  padding: 1!important;
+  font: inherit;
+  cursor: pointer;
+}

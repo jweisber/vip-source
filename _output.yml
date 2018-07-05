@@ -1,7 +1,9 @@
 output_dir: "docs"
 bookdown::tufte_html_book:
   toc: yes
-  css: toc.css
+  css:
+    - toc.css
+    - custom.css
   split_by: chapter
   includes:
       before_body: preamble.html
