@@ -1,144 +1,127 @@
-# Frequentism & Objectivity
+# Lindley's Paradox
 
-## Objectivity & Subjectivity
+```{block, type="epitaph"}
+When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.\
+---Sherlock Holmes
+```
 
-How much of a coincidence is too much?
+Significance testing is all about deciding whether the data would have to be too much of a coincidence for the hypothesis to be true. But how much of a coincidence is too much? Should we reject a hypothesis when we find results that are significant at the $.05$-level? At the $.01$-level?
 
-- If a result is significant at the $.05$-level, does that mean the hypothesis is false?
-- What if it's significant at the $.01$-level?
 
-There is no universal rule that can be applied here.
+## Significance & Subjectivity
 
-- Sometimes a result is significant even at the $.01$-level, and yet the hypothesis shouldn't be rejected.
-- Example: you're playing poker at a Las Vegas casino and you're dealt a straight. Should you reject the hypothesis that the deck is an ordinary, randomly-shuffled deck of cards?
-    - The probability of being dealt a straight is less than 1%.
-    - But it's probably just a coincidence.
-    - So you should continue to assume the deck is ordinary and randomly-shuffled.
-- Just because a result was improbable, doesn't mean something fishy is going on.
-    - Improbable stuff happens all the time: people win the lottery, have surprising chance-encounters, etc.
-    - What is the probability that the people in our class would have exactly the distribution of astrological signs that we do? Really small!
+There seems to be a subjective element here. Researchers in the social sciences have mainly adopted $.05$ as the conventional cutoff. In other sciences the convention is to use $.01$. But we saw there's nothing special about these numbers (except they're easy to estimate without the help of a computer).
 
-So scientists and statisticians have adopted *conventions*: rules-of-thumb for when a result should be considered important and worth pursuing further.
+But it makes a big difference what cutoff we use. The lower the cutoff, the less often a result will be deemed significant. A lower cutoff means fewer hypotheses ruled out, which means fewer potential scientific discoveries.
 
-- In social sciences like psychology, the usual significance level (or "$p$-value") is $.05$.
-- In physical sciences, $.01$ is more common.
-- But these conventions are somewhat arbitrary: they are just conventions.
+Think of all the studies of potential cancer treatments being done around the world. In each study, the researcher is testing the hypothesis that their treatment has no effect, in the hopes of disproving this hypothesis. They're hoping enough patients get better in their study to show the treatment genuinely helps. If only a few more patients improve with their treatment compared to a placebo, it could just be a fluke. But if a lot more improve, that means the treatment is probably making a real difference.
 
-If these conventions are arbitrary, why do they exist? Bayesian critics of significance testing say they shouldn't exist.
+The lower the significance level, the more patients have to improve before they can call their study's results "significant". So a lower significance level means fewer treatments will be adopted by the medical community. That might seem like a bad thing, but it has a big upside. It also means fewer *bogus* treatments being adopted.
 
-- When we calculate significance levels, we're really calculating an estimate of $p(E|H)$: the probability of the result if the hypothesis is true.
-- And Bayes' theorem tells us that this is just part of the information we need to calculate $\p(H|E)$: $$\begin{aligned}
-              \p(H|E) &= \p(H)\frac{\p(E|H)}{\p(E)}
-            \end{aligned}$$
+```{marginfigure}
+Medical treatments are often expensive, painful, or dangerous. So it's a serious problem to approve ones that don't actually work.
+```
 
-- We also need $\p(H)$ and $\p(E)$: we need to know how plausible the hypothesis was to begin with, and how surprising the evidence is.
-- In the Las Vegas poker example, $\p(H)$ is very high: it's a major casino, and they use standard decks and automated shuffling machines.
-    - Relatedly, $\p(E)$ is about the same as $\p(E|H)$: a straight was improbable simply because it's probably an ordinary deck and ordinary decks rarely produce a straight.
-    - So we don't reject $H$ because $\p(H|E)$ is about the same as $\p(H)$.
-- So, the Bayesians say, significance testing is just a crude way of approximating Bayes' theorem.
-- Significance testing only *looks* objective on the surface, they say.
-    - The choice of significance level is subjective, based on a personal judgment about $\p(H)$.
-    - In other words: frequentist statistics is subjective in exactly the same way as Bayesian statistics.
-        - It all depends on the scientist's prior probabilities.
-        - And prior probabilities are subjective.
+After all, some studies will see lots of patients improve just by luck. When that happens, the medical community adopts a treatment that doesn't actually work. And there might be lots of studies out there experimenting with treatments that don't actually help. If we do enough studies, we're bound to get flukey results in some of them, and adopt a treatment that doesn't actually work by mistake.
 
-This criticism is sharpened by a famous problem: *Lindley's paradox*.
+The moral: when we choose where to set the cutoff, we're choosing based on "subjective" assumptions. How many studies do we suspect are researching treatments that don't actually work? If it's only a few, then we can set the significance level higher, since we don't have to worry so much about approving bogus treatments. But if we suspect there are lots of bogus treatments being tried out, then we should set the significance level lower. Otherwise, we're liable to approve lots of useless treatments, maybe even some harmful ones.
+
+Critics conclude that frequentism faces exactly the same subjectivity problem as Bayesianism. Bayesians use Bayes' theorem to evaluate hypothesis $H$ in light of evidence $E$:
+$$ \p(H \given E) = \p(H) \frac{\p(E \given H)}{\p(E)} .$$
+But we saw there's no recipe for calculating the prior probability of $H$, $\p(H)$. You just have to start with your best guess about how plausible $H$ is. Likewise, frequentists have to start with their best guess about how many of the potential cancer treatments being studied are bogus, and how many are real. That's how we decide where to set the cutoff for statistical significance.
+
+From a Bayesian point of view, significance testing basically focuses on just one term in Bayes' theorem, the numerator $\p(E \given H)$. We suppose the hypothesis is true, and then consider how likely the sort of outcome we've observed is. But Bayes' theorem tells us that we need additional information to find what we really want, namely $\p(H \given E)$. We need to know $\p(H)$, how plausible $H$ is to begin with. Before we do the study, how likely is it this cancer treatment actually works?
+
+This critique of frequentism is sharpened by a famous problem, Lindley's paradox.
 
 
 ## Lindley's Paradox
 
-Suppose a store receives a large shipment of tulip bulbs with the label scratched off. The company that sent them only sends two kinds of shipments:
+```{marginfigure}
+This example comes from Howson & Urbach's *Scientific Reasoning: A Bayesian Approach*, who draw it from Kyburg. TODO: flesh out this citation.
+```
 
-1. 25% red bulbs, 75% yellow.
-2. 50% red bulbs, 50% yellow.
+Suppose a florist receives a large shipment of tulip bulbs with the label scratched off. The company that sent the shipment only sends two kinds of shipments. The first kind contains $25\%$ red bulbs, the second kind has $50\%$ red bulbs.
 
-The two kinds of shipments are equally common. So the store owner figures this shipment could be of either kind, with equal probability.
+The two kinds of shipment are equally common. So the store owner figures this shipment could be of either kind, with equal probability.
 
-So she takes a sample of $48$ bulbs and plants them to see what colour they grow.
+To figure out which kind of shipment she has, she takes a sample of $48$ bulbs and plants them to see what colour they grow. $36$ grow red. What should she conclude? Intuitively, this result fits much better with the $50\%$ hypothesis than the $25\%$ hypothesis. So she should conclude she got the second, $50\%$ kind of shipment. (It's just a coincidence that significantly more than half red bulbs in her experiment.)
 
-- $36$ of them grow red, the rest yellow.
+But if she uses significance testing, she won't get this result. In fact she won't get *any* result. Why not? Let's see.
 
-Suppose her null hypothesis is the first one: 25% of the bulbs in the shipment are red, the rest yellow. Should she reject this hypothesis?
+Our florist starts by testing the hypothesis that 25% of the bulbs in the shipment are red. She starts by calculating $\mu$ and $\sigma$:
+$$
+  \begin{aligned}
+    \mu    &= np\\
+           &= (48)(1/4)\\
+           &= 12,\\
+    \sigma &= \sqrt{np(1-p)}\\
+           &= \sqrt{(48)(1/4)(3/4)}\\
+           &= 3.
+  \end{aligned}
+$$
+The $99\%$ range is $12 \pm (3)(3)$, or from $3$ to $21$, and her finding of $k = 36$ is nowhere close to this range. So the result is significant at the $.01$ level. She rejects the $25\%$ hypothesis.
 
-- First we need to calculate $\mu$ and $\sigma$: $$\begin{aligned}
-              \mu &= np\\
-                  &= (48)(1/4)\\
-                  &= 12\\
-              \sigma &= \sqrt{np(1-p)}\\
-                         &= \sqrt{(48)(1/4)(3/4)}\\
-                         &= 3
-            \end{aligned}$$
+So far so good, but what if she tests the $50\%$ hypothesis too? She calculates the new $\mu$ and $\sigma$:
+$$
+  \begin{aligned}
+    \mu    &= np\\
+           &= (48)(1/2)\\
+           &= 24,\\
+    \sigma &= \sqrt{np(1-p)}\\
+           &= \sqrt{(48)(1/2)(1/2)}\\
+           &\approx 3.5.
+  \end{aligned}
+$$
+So her result $k = 36$ is significant at the $.01$ here too! The $99\%$ range is $13.5$ to $34.5$, which doesn't include $k = 36$. So she rejects the $50\%$ hypothesis too.
 
-- So the result, $36$ red bulbs, is significant even at the $.01$ level: $$\p(3 \leq k \leq 21) \approx .99$$
-- So she rejects the hypothesis.
-
-But now suppose she makes the second possibility her null hypothesis: 50% of the bulbs in the shipment are red, the rest yellow.
-
-- First we calculate $\mu$ and $\sigma$: $$\begin{aligned}
-              \mu &= np\\
-                  &= (48)(1/2)\\
-                  &= 24\\
-              \sigma &= \sqrt{np(1-p)}\\
-                         &= \sqrt{(48)(1/2)(1/2)}\\
-                         &\approx 3.5
-            \end{aligned}$$
-
-- So the result, $36$ red bulbs, is significant even at the $.01$ level: $$\p(13.5 \leq k \leq 34.5) \approx .99$$
-- So she rejects this hypothesis too.
-
-But that means she will reject both hypotheses!
-
-- Yet they're the only two possibilities!
-- Something seems to have gone wrong.
+But now she's rejected the only two possible hypotheses! There were only two kinds of shipment, and she's ruled them both out. Something seems to have gone wrong.
 
 
 ## A Bayesian Analysis
 
-Here is what Bayesian critics of significance testing say: the problem is that it ignores the prior probabilities.
+Bayesians will happily point out the source of the trouble: our florist has ignored the prior probabilities. If we use Bayes' theorem instead of significance testing, we'll find that the store owner should believe the second hypothesis, which seems right. $36$ red bulbs out of $48$ fits much better with the $50\%$ hypothesis than with the $25\%$ hypothesis.
 
-- If we include the prior probabilities and apply Bayes' theorem, we find that the store owner should believe the second hypothesis.
-- And that seems right: $36$ red bulbs out of $48$ fits much better with the 50% hypothesis than with the 25% hypothesis.
+How do we apply Bayes' theorem in the tulip example? First we label our two hypotheses and the evidence:
+$$
+  \begin{aligned}
+    H      &= \mbox{$25\%$ of the bulbs are red},\\
+    \neg H &= \mbox{$50\%$ of the bulbs are red,}\\
+    E      &= \mbox{Out of 48 randomly selected bulbs, 36 grew red.}
+  \end{aligned}
+$$
+We already know the prior probabilities of our hypotheses:
+$$
+  \begin{aligned}
+    \p(H) &= 1/2,\\
+    \p(\neg H) &= 1/2.
+  \end{aligned}
+$$
+So we just need to calculate $\p(E \given H)$ and $\p(E \given \neg H)$. That's actually not so easy, but with the help of a computer we get:
+$$
+  \begin{aligned}
+    \p(E \given H) &\approx 4.7 \times 10^{-13},\\
+    \p(E \given \neg H) &\approx 2.5 \times 10^{-4}.
+  \end{aligned}
+$$
+So we plug these numbers into Bayes' theorem:
+$$
+  \begin{aligned}
+    \p(H \given E) &= \frac{\p(E \given H)\p(H)}{\p(E \given H)\p(H) + \p(E \given \neg H)\p(\neg H)}\\
+        &\approx \frac{(4.7 \times 10^{-13})(1/2)}{(4.7 \times 10^{-13})(1/2) + (2.5 \times 10^{-4})(1/2)}\\
+        &\approx .000000002,\\
+    \p(\neg H \given E) &= \frac{\p(E \given \neg H)\p(\neg H)}{\p(E \given \neg H)\p(\neg H) + \p(E \given H)\p(H)}\\
+        &\approx \frac{(2.5 \times 10^{-4})(1/2)}{(2.5 \times 10^{-4})(1/2) + (4.7 \times 10^{-13})(1/2)}\\
+        &\approx .999999998.
+  \end{aligned}
+$$
+Conclusion: the probability of the first hypothesis $H$ has gone way down: from $1/2$ to about $.000000002$. But the probability of the second hypothesis $\neg H$ has gone way up from $1/2$ to about $.999999998$! So we should believe the second hypothesis, not reject it!
 
-How do we apply Bayes' theorem in the tulip example?
+According to Bayesian critics, this shows that significance testing is misguided. It ignores crucial background information. In this example, there were only two possible hypotheses, and they were equally likely. So whichever one fits the results best is supported by the evidence. In fact, the second hypothesis is *strongly* supported by the evidence, even though it fits the result quite poorly! The trouble with significance testing is that it can't respond to such subtleties.
 
-- First we label our two hypotheses: $$\begin{aligned}
-                H_{25\%} &= \mbox{\emph{25\% of the bulbs are red}}\\
-                H_{50\%} &= \mbox{\emph{50\% of the bulbs are red}}
-            \end{aligned}$$ And we label the result of the experiment: $$\begin{aligned}
-                E &= \mbox{\emph{Out of 48 randomly selected bulbs, 36 grew red}}
-            \end{aligned}$$
 
-- We already know the prior probabilities of our hypotheses: $$\begin{aligned}
-                \p(H_{25\%}) &= 1/2\\
-                \p(H_{50\%}) &= 1/2
-            \end{aligned}$$
+## Exercises {-}
 
-- So we just need to calculate $\p(E|H_{25\%})$ and $\p(E|H_{50\%})$.
-    - That's actually not so simple, so I'll go to my computer and get it to do the calculation...
+#. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 
-    - ...ok I'm back, here are the results: $$\begin{aligned}
-                        \p(E|H_{25\%}) &\approx 4.7 \times 10^{-13}\\
-                        \p(E|H_{50\%}) &\approx 2.5 \times 10^{-4}
-                    \end{aligned}$$
-
-- Now we can plug these numbers into Bayes' Theorem: $$\begin{aligned}
-                \p(H_{25\%}|E) &= \frac{\p(E|H_{25\%})\p(H_{25\%})}{\p(E|H_{25\%})\p(H_{25\%}) + \p(E|H_{50\%})\p(H_{50\%})}\\
-                    &\approx \frac{(4.7 \times 10^{-13})(1/2)}{(4.7 \times 10^{-13})(1/2) + (2.5 \times 10^{-4})(1/2)}\\
-                    &\approx .000000002\\
-                \p(H_{50\%}|E) &= \frac{\p(E|H_{50\%})\p(H_{50\%})}{\p(E|H_{50\%})\p(H_{50\%}) + \p(E|H_{25\%})\p(H_{25\%})}\\
-                    &\approx \frac{(2.5 \times 10^{-4})(1/2)}{(2.5 \times 10^{-4})(1/2) + (4.7 \times 10^{-13})(1/2)}\\
-                    &\approx .999999998
-            \end{aligned}$$
-
-So the probability of the first hypothesis has gone way down: from $1/2$ to $.000000002$.
-
-- And the probability of the second hypothesis has gone way up, from $1/2$ to $.999999998$!
-- So we should believe the second hypothesis, not reject it!
-
-According to Bayesian critics, this shows that significance testing is misguided. It ignores crucial background information:
-
-- There are only two possible hypotheses, and they are equally likely.
-- So whichever one fits the results best is supported by the evidence.
-    - In fact, the second hypothesis is *strongly* supported by the evidence, even though it fits the result quite poorly!
-
-*"When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth."* —Sherlock Holmes
+#. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
