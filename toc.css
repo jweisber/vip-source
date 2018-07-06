@@ -16,7 +16,7 @@
 }
 
 #TOC:hover {
-  color: LightGrey;
+  color: Grey;
   transition: color .25s ease-in-out;
 }
 
