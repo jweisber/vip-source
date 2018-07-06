@@ -1,6 +1,13 @@
 body {
   background-color: #fefefe;
+  /* font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif; */
 }
+
+/*.numeral, .sidenote-number { 
+  font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif; 
+}
+
+html { font-size: 1px; }*/
 
 dt {
   text-indent: 1rem;

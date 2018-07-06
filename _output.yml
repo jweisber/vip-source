@@ -6,4 +6,5 @@ bookdown::tufte_html_book:
     - custom.css
   split_by: chapter
   includes:
-      before_body: preamble.html
+    in_header: header.html
+    before_body: preamble.html
