@@ -16,21 +16,21 @@ library(ggforce)
 theme_set(theme_minimal())
 ```
 
-This book is designed for introductory philosophy courses on probability, decision theory, and inductive logic. It is based on a course I teach here at the University of Toronto, where we offer "Probability & Inductive Logic" in the second year as a counterpart to the standard deductive logic intro.$\,$
+This book is designed for introductory philosophy courses on probability, decision, and inductive logic. It is based on a course I teach at the University of Toronto, where we offer "Probability & Inductive Logic" in the second year as a counterpart to the standard deductive logic intro.$\,$
 
 The book assumes no knowledge of deductive logic. The little that's used is introduced in the early chapters. In fact almost no formal background is presumed. Very simple high school algebra is all that's required.
 
-The book is inspired and influenced by predecessors like Brian Skyrms' *Choice & Chance* and Ian Hacking's *An Introduction to Probability and Inductive Logic*. Both books are widely used, and with very good reason: they are excellent. I've used them both many times, with great success. In part this book is just an attempt to blend my favourite aspects of each, in the sequence and style I prefer.
+The book is inspired and influenced by predecessors like Brian Skyrms' *Choice & Chance* and Ian Hacking's *An Introduction to Probability and Inductive Logic*. Both books are widely used, and with very good reason: they are excellent. I've used them both many times, with great success. This book is partly just an attempt to blend my favourite aspects of each, in the sequence and style I prefer.
 
 But I also hope it offers more objective benefits:
 
-1. The book is open access, i.e. free.
-2. It's also open source, so instructors can modify it to their liking.
-3. It's available in both HTML and PDF, so it can be read on a variety of devices, or printed.
+1. The book is open access, hence free.
+2. It's also open source, so other instructors can modify it to their liking.
+3. It's available in both HTML and PDF, so it can be read comfortably on a variety of devices, or printed.
 4. It capitalizes on the digital medium with hyperlinks, animations, interactive tools, margin notes highlighting points of curiosity and history, and more. 
 5. It emphasizes visual explanations and techniques, to make the material more approachable.
 
-`r newthought("The book is divided")` into three parts. The first explains the basics of logic and probability, the second covers basic decision theory, and the last introduces the Bayesianism-frequentism controversy. Supplementary chapters in the Appendix cover the axiomatic construction of probability theory, Hume's problem of induction, and Goodman's new ridle of induction.
+`r newthought("The book is divided")` into three parts. The first explains the basics of logic and probability, the second covers basic decision theory, and the last introduces the Bayesianism-frequentism controversy. Optional chapters in the Appendix cover the axiomatic construction of probability theory, Hume's problem of induction, and Goodman's new ridle of induction.
 
 When I teach this material I want students to leave with a clear view of the realities of our statistics-steeped society. Media bombard them with nutritional fads, overhyped "significant" findings, fantastical (or fantastical sounding) advances in machine learning and artificial intelligence, and more. I want them to understand what these items do and don't mean. I don't want them to become too skeptical or jaded about scientific research just because the news overhypes nutritional studies, then overhypes the backlash. Nor do I want them to be naive science-worshippers, unaware of the ideologies and assumptions that underpin the modern worldview.
 
@@ -40,6 +40,6 @@ I usually get a mix of students in my course, with different ideological inclina
 
 By the end of the course, the students with little formal background have a bevy of tools for thinking about uncertainty. They can understand much more of the statistical and scientific discourse they encounter, and hopefully they have a greater appreciation for the value of formal methods. Students who already have strong formal tools and skills will, I hope, better understand their limitations. I want them to understand why these tools leave big questions open, not just philosophically, but in very pressing and practical ways too.
 
-`r newthought("The book")` is written using the `bookdown` package created by Yihui Xie. It's a wonderful tool, built on a bunch of other technologies I love, especially the R programming language and the pandoc conversion tool created by philosopher John MacFarlane. The style of the book emulates the famous designs of Edward Tufte, thanks to more software created by Yihui Xie, J. J. Allaire, and many others who adapted Tufte's designs to HTML and PDF (via $\rm\LaTeX$).
+`r newthought("The book")` was assembled using the `bookdown` package created by Yihui Xie. It's a wonderful tool, built on a bunch of other technologies I love, especially the R programming language and the pandoc conversion tool created by philosopher John MacFarlane. The book's visual style emulates the famous designs of Edward Tufte, thanks to more software created by Yihui Xie, J. J. Allaire, and many others who adapted Tufte's designs to HTML and PDF (via $\rm\LaTeX$).
 
-If it weren't for these tools, I never would have written this book. It wouldn't have been possible to create a book that does all the things this books is meant to do. I also owe inspiration to Kieran Healy, whose wonderful book [*Data Visualization: A Practical Introduction*](http://socviz.co/) uses the same suite of tools. His book gave me the idea to use these tools for an updated, open, and visually enhanced rendition of the classic Skyrms/Hacking material.
+If it weren't for all these tools, I never would have written this book. It wouldn't have been possible to create a book that does all the things this books is meant to do. I also owe inspiration to Kieran Healy, whose wonderful book [*Data Visualization: A Practical Introduction*](http://socviz.co/) uses the same suite of tools. His book gave me the idea to use these tools for an updated, open, and visually enhanced rendition of the classic material from Skyrms and Hacking.
