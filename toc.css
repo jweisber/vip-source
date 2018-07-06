@@ -60,7 +60,7 @@
   display: block;
 }
 
-#TOC a, .part {
+#TOC a, .part, .appendix {
   background: #141414;
   background: linear-gradient(to bottom, #333333 0%, #141414 100%);
   color: #ffffff;
@@ -70,7 +70,7 @@
   text-shadow: none;
 }
 
-#TOC .part {
+#TOC .part, .appendix {
   background: #0fa1e0;
   text-align: center;
   font-size: 1.2rem;
