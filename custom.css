@@ -5,9 +5,7 @@ body {
 
 /*.numeral, .sidenote-number { 
   font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif; 
-}
-
-html { font-size: 1px; }*/
+}*/
 
 dt {
   text-indent: 1rem;
@@ -15,9 +13,16 @@ dt {
   font-weight: bold !important;
 }
 
+h1 > .header-section-number {
+   padding-right: .15em;
+}
+
 div.epitaph {
   font-style: italic;
   text-align: right;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 div.example {
@@ -57,4 +62,13 @@ button {
   padding: 1!important;
   font: inherit;
   cursor: pointer;
+}
+
+a:nth-last-child(even) > .btn.btn-default:before{
+  content: "☜ ";
+}
+
+a:nth-last-child(odd) > .btn.btn-default:after{
+  content: " ☞";
+  line-height: 60%;
 }
