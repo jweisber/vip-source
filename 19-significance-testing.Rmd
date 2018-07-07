@@ -26,15 +26,14 @@ df <- data.frame(heads = 0:100, probability = dbinom(0:100, 100, 0.5))
 ggplot(df, aes(x = heads, y = probability)) + 
   geom_bar(stat = "identity", fill = "firebrick")
 ```
-Notice how much it resembles the famous "bell curve" shape:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Lorem ipsum"}
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="The famous normal distribution, sometimes called the \"bell curve\""}
 ggplot(data.frame(x = c(0, 100))) + 
   stat_function(aes(x), fun = dnorm, args = list(mean = 50, sd = 5), n = 201, colour = "steelblue", size = .75) +
   theme_void()
 ```
 
-In fact they line up almost perfectly:
+Notice how much it resembles the famous "bell curve" shape. In fact they line up almost perfectly:
 
 ```{r echo=FALSE, cache=TRUE, fig.cap="Lorem ipsum"}
 ggplot(df, aes(x = heads, y = probability)) + 
@@ -42,20 +41,20 @@ ggplot(df, aes(x = heads, y = probability)) +
   stat_function(aes(heads), fun = dnorm, args = list(mean = 50, sd = 5), n = 201, colour = "steelblue", size = .75)
 ```
 
-Which means we can use the bell curve to figure out pretty accurately what's within the realm of plausibility and what isn't. This turns out to make the math way easier, as we're about to see.
+The bell curve's formal name is the ***normal distribution***, and it has some very handy mathematical features. We'll get to the deails in a moment, but basically, some simple calculations can tell us where the normal distribution starts to flatten out to zero on each side. Which makes it easy to estimate when the number of heads is too high (or too low) to be within the realm of plausibility.
 
 ```{marginfigure}
-You *really* don't need to know this to follow this book. But for those readers who are curious, here's the formula for the bell curve:
+The normal distribution itself actually has a very complicated mathematical formula. You *really* don't need to know it for this book. But for those who are curious, here it is:
 $$ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x - \mu)^2}{2\sigma^2}} .$$
 ```
 
-The bell curve actually has a pretty complicated mathematical formula. But we won't need it here. The only two features of the bell curve we need to worry about are pretty simple.
+Two features of the normal distribution are required for the calculation.
 
 ```{marginfigure}
-The symbol $\mu$ is from Greek, and is called *mu* (rhymes with *stew*). It looks like the English letter *u*, but it actually corresponds to the letter *m*, as in *m*ean. It helps to picture it as a cursive *m*, written very sloppily by someone in a hurry.
+The symbol $\mu$ is from Greek and is called *mu* (rhymes with *stew*). It looks like the English letter *u*, but it actually corresponds to the letter *m*, as in *m*ean. It helps to picture it as a cursive *m*, written very sloppily by someone in a hurry.
 ```
 
-First, where is the bell located? What's the center? This is called the *mean*, or $\mu$ for short. In our example $\mu = 50$. That's the most likely outcome for $100$ flips of a fair coin. The general formula is
+First, where is the bell located, what's its center? This is called the *mean*, or $\mu$ for short. In our example $\mu = 50$. That's the most likely outcome for $100$ flips of a fair coin. The general formula is
 $$ \mu = np, $$
 where $n$ is the number of tosses, and $p$ is the probability of heads on each toss. So in our example $np = (100)(1/2) = 50$.
 
@@ -67,7 +66,7 @@ knitr::include_graphics("img/marg_fig.png")
 The Greek symbol $\sigma$ is called *sigma*. It corresponds to the English letter *s*, as in *s*tandard deviation.
 ```
 
-The second thing we need to know is how wide the bell is. This is called the *standard deviation*, or $\sigma$ for short. The formula for $\sigma$ is a bit mysterious:
+Second, how wide is the bell? This is called the *standard deviation*, or $\sigma$ for short. The formula for $\sigma$ is a bit mysterious:
 $$ \sigma = \sqrt{np(1-p)}. $$
 The derivation of this formula is pretty advanced, so we'll just take it on faith here. Applying the formula to our example we get:
 $$
@@ -79,7 +78,7 @@ $$
 
 Now for the punchline: we can use the numbers $\mu$ and $\sigma$ to get a pretty accurate estimate of how probable different outcomes are. Mathematicians have proved that about $99\%$ of the time, the number of heads will be within the range $\mu \pm 3\sigma$. In our example $3\sigma = (3)(5) = 15$, so $\mu \pm 3\sigma$ is the range from $35$ to $65$.
 
-Now, we got 67 heads, which falls outside the $35$-to-$65$ range. Which means it's a pretty far out possibility! It's the kind of thing that should happen less than $1\%$ of the time, if the coin is fair.
+We got 67 heads, which falls outside the $35$-to-$65$ range. Which means it's a pretty far out possibility! It's the kind of thing that should happen less than $1\%$ of the time, if the coin is fair.
 
 So the hypothesis that your friend's coin is fair has failed our test. If it were fair, you'd expect something closer to $50$ heads out of $100$ flips.
 
@@ -122,10 +121,12 @@ Binomial probabilities are very common. We saw that they apply to flips of a fai
 
 If the event is repeated enough times, the binomial probabilities will closely match the bell curve. So if you do a big enough study, you can use the 68-95-99 rule as a reliable estimate.
 
+This is called a ***normal approximation***. We use the smooth bell curve of the normal distribution (in blue) to approximate the exact binomial probabilities (red).
+
 
 ## Significance Testing
 
-The method of testing hypotheses we've developed here is called *significance testing*. We want to know whether the number of heads we observed is "signficiant", whether it tells us something about the coin being biased.
+This method of evaluating hypotheses is called *significance testing*. We want to know whether the number of heads we observed is "significant", whether it tells us something about the coin being biased.
 
 Here is the general recipe for significance testing with binomial probabilities:
 
