@@ -73,6 +73,10 @@ a:nth-last-child(odd) > .btn.btn-default:after{
   line-height: 60%;
 }
 
+.title {
+  width: 55%;
+}
+
 ol, ul {
   width: 50%;
 }
