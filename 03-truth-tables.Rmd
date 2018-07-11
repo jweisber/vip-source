@@ -11,7 +11,11 @@ In this chapter we'll introduce the last few concepts we need from deductive log
 - **Either** Aegon is a tyrant **or** Brandon is a wizard.
 - **It's not true that** Aegon is a tyrant.
 
-Here we've used two simple propositions to build up longer, more complex ones using the terms *and*, *either/or*, and *it's not true that*. Such terms are called ***connectives***.^[Notice, we call *it's not true that* a connective even though it doesn't actually connect two propositions together.]
+```{marginfigure}
+Notice, we call *it's not true that* a connective even though it doesn't actually connect two propositions together.
+```
+
+Here we've used two simple propositions to build up longer, more complex ones using the terms *and*, *either/or*, and *it's not true that*. Such terms are called ***connectives***.
 
 The three connectives just listed are the only ones we'll need in this book. Each has a name and a shorthand symbol:
 
@@ -25,16 +29,16 @@ df <- data.frame(
 knitr::kable(df)
 ```
 
-Here are some more examples using these symbols:
+Here are some more examples of complex propositions:
 
 - $F \wedge \neg G$: Florida is warm and Geneva is not.
-- $\neg J \vee \neg K$: Either Jing will not be at the party or Kamal won't be.
+- $\neg J \vee \neg K$: Either Jing won't come to the party or Kamal won't come.
 
-Sometimes we also need parentheses to avoid ambiguity. Consider the statement:
+Sometimes we also need parentheses to avoid ambiguity. Consider this example from arithmetic:
 $$ 4 \div 2 \times 2 = 1. $$
-Is it correct? That depends on what you mean. Does the division operation come first, or the multiplication? So we use parentheses to clarify: $4 \div (2 \times 2) = 1$, but $(4 \div 2) \times 2 = 4$.
+Is this equation true? That depends on what you mean. Does the division operation come first, or the multiplication? So we use parentheses to clarify: $4 \div (2 \times 2) = 1$, but $(4 \div 2) \times 2 = 4$.
 
-Likewise in logic, we use parentheses to prevent ambiguity. Consider:
+In logic we also use parentheses to prevent ambiguity. Consider:
 $$ A \vee B \wedge C. $$
 This proposition is ambiguous. It has two interpretations, which in English we can distinguish with a comma:
 
@@ -370,7 +374,7 @@ Connectives can be used to build more complex propositions, like $A \wedge B$ or
 - $A \wedge B$ means both $A$ and $B$ are true.
 - $A \vee B$ means either $A$ is true, or $B$ is true, *or both are true*.
 
-The main connective is the last one used to build up the proposition. In $A \vee \neg B$ the main connective is the $\vee$.
+In a complex proposition, the main connective is the last one used to build it up from simpler components. In $A \vee \neg B$ the main connective is the $\vee$.
 
 An argument's validity can be established with a truth table, if there's no row where all the premises have a T and yet the conclusion has an F.
 
@@ -381,5 +385,31 @@ Logically equivalent propositions entail one another. When two propositions have
 
 ## Exercises {-}
 
-1. Lorem ipsum dolor sit amet...
-2. Lorem ipsum dolor sit amet...
+#. For each pair of propositions, use a truth table to determine whether they are mutually exclusive.
+
+    a. $A \wedge B$ and $A \wedge \neg B$.
+    #. $A$ and $\neg B$.
+    #. $A \vee \neg A$ and $A \wedge \neg A$.
+	
+#. For each pair of propositions, use a truth table to determine whether they are logically equivalent.
+
+    a. $\neg A \vee B$ and $\neg (A \wedge \neg B)$.
+    #. $A$ and $(A \wedge B) \vee (A \wedge \neg B)$.
+    #. $A$ and $(B \wedge A) \vee (B \wedge \neg A)$.
+
+#. The proposition $A \vee (B \wedge C)$ features three simple propositions, so its truth table has 8 rows. Fill in the rest of the table:
+
+    ```{r echo=FALSE, cache=TRUE}
+    df <- data.frame(
+        A = c("T", "T", "T", "T", "F", "F", "F", "F"),
+        B = c("T", "T", "F", "F", "T", "T", "F", "F"),
+        C = c("T", "F", "T", "F", "T", "F", "T", "F"),
+        BandC = c("", "", "", "", "", "", "", ""),
+        AorBandC = c("", "", "", "", "", "", "", "")
+    )
+    colnames(df) <- c("$A$", "$B$", "$C$", "$B \\wedge C$", 
+                      "$A \\vee (B \\wedge C)$")
+    knitr::kable(df, align = "c")
+    ```
+
+#. Use a truth table to determine whether the propositions $A \vee (B \wedge C)$ and $(A \vee B) \wedge (A \vee C)$ are equivalent.
