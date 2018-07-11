@@ -356,7 +356,7 @@ What makes one explanation better than another? That turns out to be a very hard
         Therefore the moon is made of green cheese.\
         ```
 
-#. For each pair of propositions, say whether they are mutually exclusive or compatible?
+#. For each pair of propositions, say whether they are mutually exclusive or compatible.
 
     a. Regarding the roll of an ordinary die:
 
