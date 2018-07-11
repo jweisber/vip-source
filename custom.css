@@ -77,19 +77,7 @@ ol, ul {
   width: 50%;
 }
 
-ol ol {
-  width: 91%;
-}
-
-ol ul {
-  width: 91%;
-}
-
-ul ol {
-  width: 91%;
-}
-
-ul ul {
+ol ol, ol ul, ul ol, ul ul {
   width: 91%;
 }
 
@@ -97,3 +85,4 @@ ul ul {
   ol, ul { width: 90%; }
   ul { width: 85%; }
 }
+
