@@ -72,3 +72,28 @@ a:nth-last-child(odd) > .btn.btn-default:after{
   content: " ☞";
   line-height: 60%;
 }
+
+ol, ul {
+  width: 50%;
+}
+
+ol ol {
+  width: 91%;
+}
+
+ol ul {
+  width: 91%;
+}
+
+ul ol {
+  width: 91%;
+}
+
+ul ul {
+  width: 91%;
+}
+
+@media screen and (max-width: 760px) { 
+  ol, ul { width: 90%; }
+  ul { width: 85%; }
+}
