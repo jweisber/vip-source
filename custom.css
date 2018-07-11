@@ -81,7 +81,7 @@ ol, ul {
   width: 50%;
 }
 
-ol ol, ol ul, ul ol, ul ul {
+ol ol, ol ul, ul ol, ul ul, ol table, ul table {
   width: 91%;
 }
 
