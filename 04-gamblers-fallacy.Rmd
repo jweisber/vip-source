@@ -1,6 +1,5 @@
 # The Gambler's Fallacy
 
-
 My wife's family keeps having girls. My wife has two sisters (no brothers), and she and her sisters each have two daughters (no sons). That's nine girls in a row!
 
 So, are they due for a boy next? Here are three possible answers:
@@ -12,7 +11,6 @@ So, are they due for a boy next? Here are three possible answers:
 3. No, the next baby is equally likely to be a boy vs. girl. Each baby's sex is determined by a purely random event, similar to a coin flip. So it's a 50-50 shot every time. The nine girls so far is just a coincidence.
 
 Which answer is correct?
-
 
 
 ## Independence

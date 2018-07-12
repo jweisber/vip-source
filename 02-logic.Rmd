@@ -200,7 +200,7 @@ propositions <- data.frame(
     ciry = c(0     , 0  , 0),
     r    = c(1     , 1  , 1),
     labx = c(-1.25 ,  1.25, 0),
-    laby = c(1.15     , 1.15, 1.5),
+    laby = c(1.15     , 1.15, 1.15),
     labl = c("italic(A)", "italic(B)", "italic(C)")
 )
 
@@ -223,7 +223,7 @@ propositions <- data.frame(
 euler_diagram(propositions)
 ```
 
-This diagram allows for the possibility that $A$ and $B$ are both true yet $C$ is false. Part of the $A \wedge B$ region outside the $C$ circle. 
+This diagram allows for the possibility that $A$ and $B$ are both true yet $C$ is false. Part of the $A \wedge B$ region falls outside the $C$ circle. 
 
 
 ## Strength

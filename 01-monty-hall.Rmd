@@ -22,7 +22,7 @@ Pause a moment to think about your answer before reading on.
 Marilyn vos Savant made the Monty Hall problem famous when she solved it correctly in her "Ask Marilyn" column for *Parade* magazine. Read more about it in [*The New York Times*](https://www.nytimes.com/1991/07/21/us/behind-monty-hall-s-doors-puzzle-debate-and-answer.html).
 ```
 
-If so, you're in good company. Most people find this answer sensible, including some professors of statistics and mathematics. They figure there are only two possibilities remaining, door A and door B, each has the same one-in-two chance of being the winner. So it doesn't matter which one you pick.
+If so, you're in good company. Most people find this answer sensible, including some professors of statistics and mathematics. They figure there are only two possibilities remaining, door A and door B, each with the same one-in-two chance of being the winner. So it doesn't matter which one you pick.
 
 But the right answer is you should switch. Door B is now twice as likely to be the winner as door A. Why?
 
@@ -33,7 +33,7 @@ The reason is subtle. One way to think about it is that the host's choice of whi
 The hundred-door version of the Monty Hall problem, suggested by Marilyn vos Savant
 ```
 
-Here's another way to think about it. Imagine the game had a hundred doors instead of just three. And suppose again you start by picking the first door at random. Then the host opens *all the other doors but one*, door $59$ let's imagine. You have to ask yourself: why did they pick door $59$ to leave closed?? Almost certainly because that's where the prize is hidden! Maybe you got really lucky and picked right with the first door at the beginning. But it's way more likely you didn't, and the host had to keep door $59$ closed to avoid giving away the game.
+Here's another way to think about it. Imagine the game had a hundred doors instead of just three. And suppose again you start by picking the first door at random. Then the host opens *all the other doors but one*, door $59$ let's say. You have to ask yourself: why did they pick door $59$ to leave closed?? Almost certainly because that's where the prize is hidden! Maybe you got really lucky and picked right with the first door at the beginning. But it's way more likely you didn't, and the host had to keep door $59$ closed to avoid giving away the game.
 
 
 ## Diagramming the Solution

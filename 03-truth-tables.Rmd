@@ -1,6 +1,6 @@
 # Truth Tables
 
-In this chapter we'll introduce the last few concepts we need from deductive logic, and we'll learn a helpful tool: truth tables.
+In this chapter we'll introduce the last few concepts we need from deductive logic, and we'll learn a useful technique in the process: truth tables.
 
 
 ## Connectives
@@ -34,13 +34,13 @@ Here are some more examples of complex propositions:
 - $F \wedge \neg G$: Florida is warm and Geneva is not.
 - $\neg J \vee \neg K$: Either Jing won't come to the party or Kamal won't come.
 
-Sometimes we also need parentheses to avoid ambiguity. Consider this example from arithmetic:
+`r newthought("Sometimes")` we also need parentheses, to avoid ambiguity. Consider an example from arithmetic:
 $$ 4 \div 2 \times 2 = 1. $$
 Is this equation true? That depends on what you mean. Does the division operation come first, or the multiplication? So we use parentheses to clarify: $4 \div (2 \times 2) = 1$, but $(4 \div 2) \times 2 = 4$.
 
-In logic we also use parentheses to prevent ambiguity. Consider:
+In logic we use parentheses to prevent ambiguity similarly. Consider:
 $$ A \vee B \wedge C. $$
-This proposition is ambiguous. It has two interpretations, which in English we can distinguish with a comma:
+This proposition is ambiguous, it has two interpretations. In English we can distinguish them with a comma:
 
 - Either Aegon is a tyrant or Brandon is a wizard, and Cerci is the queen.
 - Either Aegon is a tyrant, or Brandon is a wizard and Cerci is the queen.
@@ -64,13 +64,17 @@ Two more examples:
 - $\neg (A \vee B)$: main connective is $\neg$.
 - $\neg A \vee B$: main connective is $\vee$.
 
-Notice a parallel between $\neg$ and the subtraction symbol $-$ in arithmetic. We could have written the last example more rigorously using parentheses: $(\neg A) \vee B$. But things get cluttered and hard to read if we add parentheses around every negation. So we have a special understanding for $\neg$ in order to keep things tidy.
+Technically, the last example should have parentheses to prevent ambiguity, like so: $(\neg A) \vee B$. But things get cluttered and hard to read if we add parentheses around every negation. So we have a special understanding for $\neg$ in order to keep things tidy.
 
 ```{block, type="warning"}
 The negation symbol $\mathbin{\sim}$ only applies to the proposition immediately following it.
 ```
 
-So in the proposition $\neg (A \wedge B) \vee C$ the $\neg$ applies to $A \wedge B$. And in the proposition $\neg A \wedge (B \vee C)$ it applies to just $A$.
+```{marginfigure}
+This special understanding for $\mathbin{\sim}$ mirrors the one for minus signs in arithmetic.
+```
+
+So in the proposition $\neg A \vee B$, the $\neg$ only applies to $A$. And in $\neg (A \wedge B) \vee C$, it only applies to $A \wedge B$.
 
 
 ## Truth Tables
