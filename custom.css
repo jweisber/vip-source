@@ -51,8 +51,8 @@ div.warning {
 }
 
 div.argument {
-  border-left: 3px double silver;
-  padding-left: 1rem;
+  /*border-left: 3px double silver;*/
+  padding-left: 2rem;
 }
 
 button {
@@ -77,11 +77,11 @@ a:nth-last-child(odd) > .btn.btn-default:after{
   width: 55%;
 }
 
-ol, ul {
+ol, ul, hr {
   width: 50%;
 }
 
-ol ol, ol ul, ul ol, ul ul, ol table, ul table {
+ol ol, ol ul, ul ol, ul ul, ol table, ul table, ol hr, ul hr {
   width: 91%;
 }
 
