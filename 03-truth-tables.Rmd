@@ -389,6 +389,22 @@ Logically equivalent propositions entail one another. When two propositions have
 
 ## Exercises {-}
 
+#.	Using the following abbreviations:
+
+    $$
+      \begin{aligned}
+         A &= \mbox{Asha loves Cerci},\\
+         B &= \mbox{Balon loves Cerci},
+      \end{aligned}
+    $$
+
+    translate each of the following into logicese (e.g. $\neg A \vee B$).
+
+    a.	Asha doesn't love Cerci.
+    b.	Asha loves Cerci and Balon loves Cerci.
+    c.	Asha loves Cerci but Balon does not.
+    d.  Neither Asha nor Balon loves Cerci.
+
 #. For each pair of propositions, use a truth table to determine whether they are mutually exclusive.
 
     a. $A \wedge B$ and $A \wedge \neg B$.
