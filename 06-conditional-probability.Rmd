@@ -1,28 +1,54 @@
 # Conditional Probability
 
-The chances of an airplane crashing are pretty low. But they're considerably higher if there's a bomber on board. Probabilities change depending on the conditions.
+The chances of crashing your car are pretty low, but they're considerably higher if you're drunk. Probabilities change depending on the conditions.
 
 We symbolize this idea by writing $\p(A \given B)$, the probability that $A$ is true *given* that $B$ is true. And we call this kind of probability ***conditional probability***.
 
+```{marginfigure}
+To say $B$ increases the chance of $A$ we write $\p(A \given B) \gt \p(A)$.
+And to say $B$ doubles the chance of $A$ write $\p(A \given B) = 2 \times \p(A)$.
+```
+
 For example, to say the probability of $A$ given $B$ is 30%, we write:
 $$ \p(A \given B) = .3. $$
-To say that $B$ makes $A$ more likely, we write:
-$$ \p(A \given B) > \p(A). $$
-And the following says that $B$ doubles the chance of $A$:
-$$ \p(A \given B) = 2 \times \p(A). $$
-
 But how do we calculate conditional probabilities?
 
 
 ## Calculating Conditional Probability
 
-Suppose I roll a fair, six-sided die behind a screen. You can't see the result, but I tell you it's an even number. What's the probability it's also a "high" number, that is, either a $4$, $5$, or $6$?
+```{r echo=FALSE, cache=TRUE, fig.show='hold', fig.margin=TRUE, fig.cap="Conditional probability in a fair die roll"}
 
-Maybe you figured the correct answer: $2/3$. But why is that correct? Because, out of the three even numbers ($2$, $4$, and $6$), two of them are high ($4$ and $6$). So $2/3$ of the possible outcomes are high once we know the outcome is even.
+die1 <- readPNG("img/die/die1.png") %>% rasterGrob()
+die2 <- readPNG("img/die/die2.png") %>% rasterGrob()
+die3 <- readPNG("img/die/die3.png") %>% rasterGrob()
+die4 <- readPNG("img/die/die4.png") %>% rasterGrob()
+die5 <- readPNG("img/die/die5.png") %>% rasterGrob()
+die6 <- readPNG("img/die/die6.png") %>% rasterGrob()
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="Conditional probability in a fair die roll"}
-knitr::include_graphics("img/marg_fig.png")
+rect1 <- geom_rect(aes(xmin = 0, ymin = 0, xmax = 3, ymax = 1), 
+                   size = 1, fill = "firebrick", alpha = .75)
+rect2 <- geom_rect(aes(xmin = 1.05, ymin = 0.05, xmax = 2.95, ymax = .95), 
+                   size = 1, fill = "steelblue", alpha = .75)
+
+p <- ggplot() + 
+  theme_void() + coord_fixed() +
+  xlim(0, 3) + ylim(0, 2) +
+  rect1 +
+  annotation_custom(die1, xmin = 0, xmax = 1, ymin = 1, ymax = 2) +
+  annotation_custom(die3, xmin = 1, xmax = 2, ymin = 1, ymax = 2) +
+  annotation_custom(die5, xmin = 2, xmax = 3, ymin = 1, ymax = 2) +
+  annotation_custom(die2, xmin = 0, xmax = 1, ymin = 0, ymax = 1) +
+  annotation_custom(die4, xmin = 1, xmax = 2, ymin = 0, ymax = 1) +
+  annotation_custom(die6, xmin = 2, xmax = 3, ymin = 0, ymax = 1)
+
+p
+p$layers <- append(p$layers, rect2, 3)
+p
 ```
+
+Suppose I roll a fair, six-sided die behind a screen. You can't see the result, but I tell you it's an even number. What's the probability it's also a "high" number: either a $4$, $5$, or $6$?
+
+Maybe you figured the correct answer: $2/3$. But why is that correct? Because, out of the three even numbers ($2$, $4$, and $6$), two of them are high ($4$ and $6$). And since the die is fair, we expect it to land on a high number $2/3$ of the times it lands on an even number.
 
 This hints at a formula for $\p(A \given B)$.
 
@@ -31,51 +57,118 @@ Conditional Probability
 :   
     $$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)}. $$
 
-In the die-roll example, we considered how many of the $B$-possibilities were also $A$-possibilities. Which means we divided $\p(A \wedge B)$ by $\p(B)$.
+In the die-roll example, we considered how many of the $B$ possibilities were also $A$ possibilities. Which means we divided $\p(A \wedge B)$ by $\p(B)$.
 
-In terms of an Euler diagram, the formula for conditional probability compares the size of the $A \wedge B$-region to the size of the $B$-region as a whole:
+In fact, this formula is our official definition for the concept of conditional probability. When we write the sequence of symbols $\p(A \given B)$, it's really just shorthand for the fraction $\p(A \wedge B) / \p(B)$.
 
-```{r echo=FALSE, fig.cap="Conditional probability in a fair die roll"}
-knitr::include_graphics("img/fig.png")
+In terms of an Euler diagram, the definition of conditional probability compares the size of the $A \wedge B$ region to the size of the whole $B$ region:
+
+```{r echo=FALSE, cache=TRUE, fig.cap="Conditional probability is the size of the $A \\wedge B$ region compared to the entire $B$ region."}
+
+propositions <- data.frame(
+    cirx = c(-.75   , .75),
+    ciry = c(0      , 0),
+    r    = c(1.5    , 1.5),
+    labx = c(-2.25  , 2.25),
+    laby = c(1      , 1),
+    labl = c("A", "B")
+)
+
+ggplot(propositions) + 
+  theme_void() + coord_fixed() +
+  xlim(-3,3) + ylim(-2,2) +
+  theme(panel.border = element_rect(colour = "black", fill = NA, size = 1)) +
+  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), data = propositions[2,], fill = "firebrick", alpha = .75) +
+  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), data = propositions[1,], fill = "steelblue", alpha = .75) +
+  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), fill = "transparent") +
+  geom_text(aes(x = labx, y = laby, label = labl), 
+            fontface = "italic", size = 8, family = "serif")
 ```
 
-Or, if you don't mind getting a little colourful with your algebra:
+If you don't mind getting a little colourful with your algebra:
 
 $$
-    \p(A \given B) = \frac{\color{purple}{\blacksquare}}{\color{purple}{\blacksquare} + \color{red}{\blacksquare}}.
+  \definecolor{intersection}{RGB}{108,122,158}
+  \definecolor{outersection}{RGB}{187,104,105}
+  \p(A \given B) = \frac{\color{intersection}{\blacksquare}}{\color{intersection}{\blacksquare} + \color{outersection}{\blacksquare}}.
 $$
 
-So the formula works because, informally speaking, $\p(A \wedge B)/\p(B)$ is the portion of the $B$ outcomes that are also $A$ outcomes.
+So the definition works because, informally speaking, $\p(A \wedge B)/\p(B)$ is the proportion of the $B$ outcomes that are also $A$ outcomes.
 
-`r newthought("\"Black holes are where God divided by zero,\"")` the comedian Steven Wright once quipped. And dividing by zero is a common pitfall with conditional probability.
+```{marginfigure}
+"Black holes are where God divided by zero," comedian Steven Wright once quipped.
+```
 
-Notice how the definition of $\p(A \given B)$ depends on $\p(B)$ being larger than zero. If $\p(B) = 0$, then the formula
+`r newthought("Dividing by zero")` is a common pitfall with conditional probability. Notice how the definition of $\p(A \given B)$ depends on $\p(B)$ being larger than zero. If $\p(B) = 0$, then the formula
 $$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)} $$
 doesn't even make any sense. There is no number that results from the division on the right hand side.
 
+```{marginfigure}
+There are alternative mathematical systems of probability, where conditional probability is defined differently to avoid this problem. But in this book we'll stick to the standard system. Where there's just no such thing as "the probability of $A$ given $B$" when $B$ has zero probability.
+```
+
 In such cases we say that $\p(A \given B)$ is *undefined*. It's not zero, or some special number. It just isn't a number.
 
-There are alternative mathematical systems of probability, where conditional probability is defined slightly differently, to avoid this problem. But in this book we'll stick to the standard system. And in the standard system, there's just no such thing as "the probability of $A$ given $B$" when $B$ has probability zero.
 
 
 ## Conditional Probability & Trees
 
-We've actually encountered conditional probabilities before, when we used a tree diagram to solve the Monty Hall problem.
+We already encountered conditional probabilities informally, when we used a tree diagram to solve [the Monty Hall problem][The Monty Hall Problem].
 
 In a tree diagram, each branch represents a possible outcome. The number placed on that branch represents the chance of that outcome occurring. But that number is based on the assumption that all branches leading up to it occur. So the probability on that branch is conditional on all previous branches.
 
 For example, suppose there are two urns of coloured marbles:
 
-- Urn B contains 3 black marbles, 1 white.
-- Urn W contains 1 black marble, 3 white.
+- Urn X contains 3 black marbles, 1 white.
+- Urn Y contains 1 black marble, 3 white.
 
 I flip a fair coin to decide which urn to draw from, heads for Urn B and tails for Urn W. Then I draw one marble at random.
 
-```{r echo=FALSE, fig.cap="Tree diagram for a simple urn problem"}
-knitr::include_graphics("img/fig.png")
+```{r echo=FALSE, cache=TRUE, fig.cap="Tree diagram for an urn problem"}
+df_nodes <- rbind(
+  data.frame(text = "H", x = .5, y = .75),
+  data.frame(text = "T", x = .5, y = .25),  
+  data.frame(text = "B", x = 1,  y = .9),  
+  data.frame(text = "W", x = 1,  y = .6),
+  data.frame(text = "B", x = 1,  y = .4),
+  data.frame(text = "W", x = 1,  y = .1)
+)
+
+df_segments <- rbind(
+  data.frame(x1 = 0, y1 = .5, x2 = .48, y2 = .75),
+  data.frame(x1 = 0, y1 = .5, x2 = .48, y2 = .25),  
+  data.frame(x1 = .52, y1 = .75, x2 = .98, y2 = .9),  
+  data.frame(x1 = .52, y1 = .75, x2 = .98, y2 = .6),
+  data.frame(x1 = .52, y1 = .25, x2 = .98, y2 = .4),
+  data.frame(x1 = .52, y1 = .25, x2 = .98, y2 = .1)
+)
+
+df_segment_labels <- rbind(
+  data.frame(text = "1/2", x = .25, y = .67),
+  data.frame(text = "1/2", x = .25, y = .40),  
+  data.frame(text = "3/4", x = .75, y = .86),
+  data.frame(text = "1/4", x = .75, y = .71),
+  data.frame(text = "1/4", x = .75, y = .36),
+  data.frame(text = "3/4", x = .75, y = .21)
+)
+
+df_leaf_labels <- rbind(
+  data.frame(text = "3/8", x = 1.1, y = .9),
+  data.frame(text = "1/8", x = 1.1, y = .6),
+  data.frame(text = "1/8", x = 1.1, y = .4),
+  data.frame(text = "3/8", x = 1.1, y = .1)
+)
+
+ggplot() +
+  geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) + 
+  geom_text(aes(x, y, label = text), data = df_segment_labels) + 
+  geom_text(aes(x, y, label = text), data = df_leaf_labels, fontface = "bold") + 
+  xlim(0, 1.1) + ylim(0, 1) +
+  theme_void()
 ```
 
-The probability of drawing a black marble on the top branch is $3/4$ because we are assuming there that the coin landed heads, and thus I'm drawing from Urn B. If the coin lands tails instead, and I draw from Urn W, then the chance of a black marble is instead $1/4$. So these quantities are conditional probabilities:
+The probability of drawing a black marble on the top path is $3/4$ because we are assuming the coin landed heads, and thus I'm drawing from Urn X. If the coin lands tails instead, and I draw from Urn Y, then the chance of a black marble is instead $1/4$. So these quantities are conditional probabilities:
 $$
   \begin{aligned}
     \p(B \given H) &= 3/4,\\
@@ -83,11 +176,7 @@ $$
   \end{aligned}
 $$
 
-The first level of branching in a tree diagram is the exception here. Take the $H$-vs.-$T$ branch in our example: the probabilities here are *un*conditional, since they are not based on what happens at any prior tier in the tree. So the complete picture looks like this:
-
-```{r echo=FALSE, fig.cap="Fully labeled tree for a simple urn problem"}
-knitr::include_graphics("img/fig.png")
-`````
+Notice, though, the first branch in a tree diagram is different. In the $H$-vs.-$T$ branch, the probabilities are *un*conditional, since there are no previous branches for them to be conditional on.
 
 
 ## More Examples
@@ -101,8 +190,9 @@ $$
                         &= 1/3.
   \end{aligned}
 $$
+This calculation relies on the fact that $R \wedge \neg B$ is logically equivalent to $R$. A red marble is automatically not blue, so $R$ is true under exactly the same circumstances as $R \wedge \neg B$. The [Equivalence Rule][Tautologies, Contradictions, and Equivalent Propositions] thus tells us $\p(R \wedge \neg B) = \p(R)$.
 
-`r newthought("Suppose")` a university has 10,000 students, and each student is studying under on of four broad headings: Humanities, Social Sciences, STEM, or Professional. Within each of these categories, the number of students with an average grade of A, B, C, or D is as follows:
+`r newthought("Suppose")` a university has 10,000 students, and each student is studying under one of four broad headings: Humanities, Social Sciences, STEM, or Professional. Within each of these categories, the number of students with an average grade of A, B, C, or D is as follows:
 
 ```{r echo=FALSE}
 df <- data.frame(
@@ -121,7 +211,7 @@ knitr::kable(df, align = "c")
 What is the probability a randomly selected student will have an A average, given that they are studying either Humanities or Social Sciences?
 $$
   \begin{aligned}
-    \p(A \given H \vee S) &= \frac{\p(A \wedge [H \vee S])}{\p(H \vee S)}\\
+    \p(A \given H \vee S) &= \frac{\p(A \wedge (H \vee S))}{\p(H \vee S)}\\
                            &= \frac{800/10,000}{3,000/10,000}\\
                            &= 4/15.
   \end{aligned}
@@ -130,7 +220,7 @@ $$
 What about the reverse probability, that a student is studying either Humanities or Social Sciences given that they have an A average?
 $$
   \begin{aligned}
-    \p(H \vee S \given A) &= \frac{\p([H \vee S] \wedge A)}{\p(A)}\\
+    \p(H \vee S \given A) &= \frac{\p((H \vee S) \wedge A)}{\p(A)}\\
                            &= \frac{800/10,000}{2,100/10,000}\\
                            &= 8/21.
   \end{aligned}
@@ -139,19 +229,82 @@ Notice how we get a different number now.
 
 ## Order Matters
 
-In general, the probability of $A$ given $B$ will be different from the probability of $B$ given $A$, because these are different concepts. For example, university students are usually young, but young people aren't usually university students.
+In general, the probability of $A$ given $B$ will be different from the probability of $B$ given $A$. These are different concepts.
 
-Once in a while we do find cases where $\p(A \given B) = \p(B \given A)$. For example, imagine we throw a dart at random at a circular board divided into four sectors. The chance the dart will land on the left half given that it lands on the top half is the same as the chance it lands on the top half given it lands on the left. Both probabilities are 1/2.
+For example, university students are usually young, but young people aren't usually university students. Most aren't even old enough to be in university. So the probability someone is young given they are in university is high. But the probability someone is in university given that they are young is low. So $\p(Y \given U) \neq \p(U \given Y)$.
+
+Once in a while we do find cases where $\p(A \given B) = \p(B \given A)$. For example, suppose we throw a dart at random at a circular board, divided into four quadrants. The chance the dart will land on the left half given that it lands on the top half is the same as the chance it lands on the top half given it lands on the left. Both probabilities are $1/2$.
 
 But this kind of thing is the exception rather than the rule. Usually, $\p(A \given B)$ will be a different number from $\p(B \given A)$. So it's important to remember how order matters.
 
 ```{block, type='warning'}
-When we write $\p(A \given B)$, we are discussing the probability of $A$. But we are considering $A$'s probability under certain background assumptions, stated to the right of the "$\given$" symbol in $B$.
+When we write $\p(A \given B)$, we are discussing the probability of $A$. But we are discussing it under the assumption that $B$ is true.
 ```
 
 
 ## Exercises
 
-1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus gravida lectus ut augue vehicula, a varius est ultricies. 
+#. Answer each of the following:
 
-2. Integer condimentum odio vel nibh volutpat, sit amet malesuada nulla lacinia. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
+    a.  What is the probability of rolling a low number (1, 2, or 3) given that you roll an even number.
+    #.  On a fair, eight-sided die, what is the probability of rolling an even number given that you roll a high number (5, 6, 7, or 8)?
+
+#. Suppose $\p(B) = 4/10$, $\p(A) = 7/10$, and $\p(B \wedge A) = 2/10$.
+    What are each of the following probabilities?
+
+    a.  $\p(A \vee B)$
+    #.  $\p(A \given B)$
+    #.  $\p(B \given A)$
+
+#. Five percent of tablets made by the company Ixian have factory defects. Ten percent of the tablets made by their competitor company Guild do. A computer store buys $40\%$ of its tablets from Ixian, and $60\%$ from Guild.
+
+    ```{marginfigure}
+    This exercise and the next one are based on very similar exercises from Ian Hacking's wonderful book, *An Introduction to Probability and Inductive Logic*.
+    ```
+
+    Draw a probability tree to answer the following questions.
+
+    a. What is the probability a randomly selected tablet in the store is made by Ixian and has a factory defect?
+    #. What is the probability a randomly selected tablet in the store has a factory defect?
+    #. What is the probability a tablet from this store is made by Ixian, given that it has a factory defect?
+
+#. In the city of Elizabeth, the neighbourhood of Southside has lots of chemical plants. $2\%$ of Elizabeth's children live in Southside, and $14\%$ of those children have been exposed to toxic levels of lead. Elsewhere in the city, only $1\%$ of the children have toxic levels of exposure.
+
+    Draw a probability tree to answer the following questions.
+
+    a. What is the probability that a randomly chosen child from Elizabeth  lives in Southside and has toxic levels of lead exposure?
+    b. What is the probability that a randomly chosen child from Elizabeth has toxic levels of lead exposure?
+    c. What is the probability that a randomly chosen child from Elizabeth who has toxic levels of lead exposure lives in Southside?
+
+#. Imagine 100 prisoners are sentenced to death. 70 of them are housed in cell block A, the other 30 are in cell block B. Of the prisoners in cell block A, 9 are innocent. Only 1 prisoner in cell block B is innocent.
+
+    The law requires that one prisoner be pardoned. The lucky prisoner will be selected by flipping a fair coin to choose either cell block A or B. Then a fair lottery will be used to select a random prisoner from the chosen cell block.
+
+    What is the probability the pardoned prisoner comes from cell block A if she is innocent? Answer each of the following to find out.
+
+    $I$ = The pardoned prisoner is innocent.\
+    $A$ = The pardoned prisoner comes from cell block A.
+
+    a.  What is $Pr(I \given A)$?
+    b.  What is $Pr(A \wedge I)$?
+    c.  What is $Pr(I \given B)$?
+    d.  What is $Pr(B \wedge I)$?
+    e.  What is $Pr(I)$?
+    f.  What is $Pr(A \given I)$?
+    g.  Draw a probability tree to visualize and verify your calculations.
+
+#. Suppose $A$, $B$, and $C$ are independent, and they each have the
+    same probability: $1/3$. What is $\p(A \wedge B \given C)$?
+
+#. If $A$ and $B$ are mutually exclusive, what is $\p(A \given B)$? Justify your answer using the definition of conditional probability.
+
+#. Which of the following situations is impossible? Justify your answer.
+
+    a.  $\p(A) = 1/2, \p(A \given B) = 1/2, \p(B \given A) = 1/2$.
+    b.  $\p(A) = 1/2, \p(A \given B) = 1, \p(A \given \neg B) = 1$.
+
+#. Is the following statement true or false: if $A$ and $B$ are mutually exclusive, then $Pr(A \vee B \given C) = Pr(A \given C) + Pr(B \given C)$. Justify your answer. 
+
+    Note that this exercise is about determining whether the [Addition Rule][Adding Probabilities] also applies to conditional probability.
+
+    
