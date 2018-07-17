@@ -25,7 +25,7 @@ If $\p(R) = .7$ then $\p(\neg R) = .3$.
 
 In terms of an Euler diagram, the probability of $\neg A$ is the size of the area outside the $A$ region:
 
-```{r echo=FALSE, fig.cap="A proposition and its negation"}
+```{r fig.cap="A proposition and its negation"}
 knitr::include_graphics("img/fig.png")
 ```
 So $\p(\neg A)$ is one minus the size of the red region, namely $1 - \p(A)$.
@@ -49,7 +49,7 @@ This rule always applies, whether $A$ and $B$ are mutually exclusive or not.
 
 To understand the rule, consider an Euler diagram where $A$ and $B$ are not mutually exclusive:
 
-```{r echo=FALSE, fig.cap="The General Addition Rule in an Euler diagram"}
+```{r fig.cap="The General Addition Rule in an Euler diagram"}
 knitr::include_graphics("img/fig.png")
 ```
 
@@ -80,7 +80,7 @@ That's why we call the new rule the *General* Addition Rule. It applies in gener
 
 `r newthought("A tree diagram")` also works to explain the General Addition Rule. Consider this diagram, where we start with branches for $A$ and $\neg A$, which then subdivide into branches for $B$ and $\neg B$:
 
-```{r echo=FALSE, fig.cap="The General Addition Rule in a tree diagram"}
+```{r fig.cap="The General Addition Rule in a tree diagram"}
 knitr::include_graphics("img/fig.png")
 ```
 
@@ -117,7 +117,7 @@ So we now have two rules for calculating the probability of an $\wedge$ statemen
 
 I flip a fair coin to decide which urn to draw from, heads for Urn B and tails for Urn W. Then I draw one marble at random.
 
-```{r echo=FALSE, fig.cap="Tree diagram for a simple urn problem"}
+```{r fig.cap="Tree diagram for a simple urn problem"}
 knitr::include_graphics("img/fig.png")
 ```
 
@@ -137,7 +137,7 @@ In the tree diagram, this corresponds to following the bottom-most path, multipl
 
 The same urn scenario was used by the mathematician Laplace in one of his favourite puzzles. Suppose we choose an urn the same as before, by a fair coin flip, but then we do *two* draws, *with* replacement. What is the probability both draws will come up black?
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Pierre Simone Laplace (1749--1827)"}
+```{r fig.margin=TRUE, fig.cap="Pierre Simone Laplace (1749--1827)"}
 knitr::include_graphics("img/laplace.png")
 ```
 
@@ -147,19 +147,19 @@ But the correct answer is actually $5/16$. Why?
 
 Let's use a probability tree again. Depending on how the coin lands, you could be drawing either from Urn B or from Urn W with equal probability:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 knitr::include_graphics("img/fig.png")
 ```
 
 Now *if* you end up drawing from Urn B, the probability of a black marble on any given draw is $3/4$. Because these draws are independent (we're drawing with replacement), the probability they'll both come up black is $3/4 \times 3/4 = 9/16$.
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 knitr::include_graphics("img/fig.png")
 ```
 
 But what if you end up drawing from Urn W? Then the probability of a black on any given draw is $1/4$. The draws are still independent though, so the chance of both being black in this case is $1/4 \times 1/4 = 1/16$:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 knitr::include_graphics("img/fig.png")
 ```
 
@@ -199,7 +199,7 @@ The Law of Total Probability
 
 There's an intuitive idea at work here. To figure out how likely $A$ is to be true, consider how likely it would be if $B$ were true, and how likely it would be if $B$ were false. Then weight each of those hypothetically possibilities according to their probabilities.
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE}
+```{r fig.margin=TRUE}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
@@ -213,7 +213,7 @@ $$
 $$
 Which is just the Law of Total Probability.
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE}
+```{r fig.margin=TRUE}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
@@ -263,7 +263,7 @@ $$
 
 Notice, we didn't just get the same answer, the calculation ended up being the same too. Our second approach just reconstructed, from scratch, the reasoning behind the Law of Total Probability. It's a very good idea to understand the rationale behind the Law of Total Probability. But once you get used to the formula, it's also fine to skip straight to applying it directly.
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE}
+```{r fig.margin=TRUE}
 knitr::include_graphics("img/marg_fig.png")
 ```
 

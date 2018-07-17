@@ -11,7 +11,7 @@ In this chapter we'll introduce the last few concepts we need from deductive log
 - **Either** Aegon is a tyrant **or** Brandon is a wizard.
 - **It's not true that** Aegon is a tyrant.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 Notice, we call *it's not true that* a connective even though it doesn't actually connect two propositions together.
 ```
 
@@ -19,7 +19,7 @@ Here we've used two simple propositions to build up longer, more complex ones us
 
 The three connectives just listed are the only ones we'll need in this book. Each has a name and a shorthand symbol:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
   Name = c("conjunction", "disjunction", "negation"),
   English = c("and", "either/or", "it's not true that"),    
@@ -70,7 +70,7 @@ Technically, the last example should have parentheses to prevent ambiguity, like
 The negation symbol $\mathbin{\sim}$ only applies to the proposition immediately following it.
 ```
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 This special understanding for $\mathbin{\sim}$ mirrors the one for minus signs in arithmetic.
 ```
 
@@ -81,7 +81,7 @@ So in the proposition $\neg A \vee B$, the $\neg$ only applies to $A$. And in $\
 
 The truth of a complex proposition built using our three connectives depends on the truth of its components. For example, $\neg A$ is false if $A$ is true, and it's true if $A$ is false:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "F"),
     NotA = c("F", "T")
@@ -92,7 +92,7 @@ knitr::kable(df, align = "c", caption="Truth table for $\\neg$")
 
 Slightly more complicated is the rule for $\&$:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -108,7 +108,7 @@ Notice that in only one of these situations is $A \& B$ true, namely the first r
 
 The truth table for $\vee$ ("either/or") is a little more surprising:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -137,7 +137,7 @@ Which is just a very explicit way of saying: either one or the other, but not bo
 
 We can even verify that the complex construction captures the meaning we want using a truth table. We start with an empty table, where the header lists all the formulas we use to build up to the final, complex one we're interested in:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = rep("$\\;$", 4),
     B = rep(" ", 4),
@@ -152,7 +152,7 @@ knitr::kable(df, align = "c")
 
 Then we fill in the possible truth values for the simplest propositions, $A$ and $B$:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -167,7 +167,7 @@ knitr::kable(df, align = "c")
 
 Next we consult the truth tables above for $\&$ and $\vee$ to fill in the columns at the next level of complexity:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -182,7 +182,7 @@ knitr::kable(df, align = "c")
 
 Then move up to the next level of complexity. To fill in the column for $\neg(A \wedge B)$, we consult the column for $A \wedge B$ and apply the rules from the table for $\neg$:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -197,7 +197,7 @@ knitr::kable(df, align = "c")
 
 Finally, we consult the columns for $A \vee B$ and $\neg(A \wedge B)$, and the table for $\&$, to fill in the column for $(A \vee B) \wedge \neg(A \& B)$:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -217,7 +217,7 @@ Complex constructions like this are difficult at first, but don't worry. With pr
 
 Some propositions come out true in every row of the truth table. Consider $A \vee \neg A$ for example:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "F"),
     NotA = c("F", "T"),
@@ -231,7 +231,7 @@ Such propositions are especially interesting because they *must* be true. Their 
 
 The other side of this coin is propositions that are false in every row of the truth table, like $A \wedge \neg A$:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "F"),
     NotA = c("F", "T"),
@@ -245,7 +245,7 @@ These propositions are called ***contradictions***.
 
 Notice that the negation of a contradiction is a logical truth. For example, consider the truth table for $\neg (A \wedge \neg A)$:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "F"),
     NotA = c("F", "T"),
@@ -261,7 +261,7 @@ knitr::kable(df, align = "c")
 
 `r newthought("Truth tables can be used")` to establish that two propositions are mutually exclusive. A very simple example is the propositions $A$ and $\neg A$:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "F"),
     NotA = c("F", "T")
@@ -274,7 +274,7 @@ There is no row in the table where both propositions are true. And if two propos
 
 A slightly more complex example is the propositions $A \vee B$ and $\neg A \wedge \neg B$:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -300,7 +300,7 @@ Again there's no row where $A \vee B$ and $\neg A \wedge \neg B$ are both true. 
 
 Obviously it's not possible for the premise to be true and the conclusion false, so the argument is valid (if a bit silly). Accordingly, there is no line of the truth table where $A \wedge B$ comes out true, yet $A$ comes out false:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -320,7 +320,7 @@ One more example:
 
 This argument is valid because the first premise says that at least one of the two propositions $A$ and $B$ must be true, and the second line says it's not $A$. So it must be $B$ that's true, as the conclusion asserts. And once again there is no line of the truth table where both $A \vee B$ and $\neg A$ are true, yet $B$ is false:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -339,7 +339,7 @@ In the [previous chapter][Visualizing Propositions] we introduced the concept of
 
 We say such propositions are ***logically equivalent***. In terms of truth tables, their columns match perfectly, they are identical copies of T's and F's.
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -352,7 +352,7 @@ knitr::kable(df, align = "c")
 
 A more complex example is the propositions $\neg (A \vee B)$ and $\neg A \wedge \neg B$:
 
-```{r echo=FALSE, cache=TRUE}
+```{r}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -419,7 +419,7 @@ Logically equivalent propositions entail one another. When two propositions have
 
 #. The proposition $A \vee (B \wedge C)$ features three simple propositions, so its truth table has 8 rows. Fill in the rest of the table:
 
-    ```{r echo=FALSE, cache=TRUE}
+    ```{r}
     df <- data.frame(
         A = c("T", "T", "T", "T", "F", "F", "F", "F"),
         B = c("T", "T", "F", "F", "T", "T", "F", "F"),

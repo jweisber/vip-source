@@ -2,7 +2,7 @@
 
 # Two Schools
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Ned Flanders informs us that, well sir, there are two schools of thought on the matter."}
+```{r fig.margin=TRUE, fig.cap="Ned Flanders informs us that, well sir, there are two schools of thought on the matter."}
 knitr::include_graphics("img/flanders.png")
 ```
 

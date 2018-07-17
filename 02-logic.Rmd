@@ -15,7 +15,7 @@ This book is about inductive logic and probability. But we need a few concepts f
 
 `r newthought("In deductive logic")` we study "valid" arguments. An argument is ***valid*** when the conclusion must be true if the premises are true. Take this example again:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 Tweety is a bird.\
 All birds are animals.\
 Therefore, Tweety is an animal.
@@ -25,7 +25,7 @@ The first two lines are called the *premises* of the argument. The last line is 
 
 Here's another example of a valid argument:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 Tweety is taller than Kwazi.\
 Kwazi is taller than Peso.\
 Therefore, Tweety is taller than Peso.
@@ -35,7 +35,7 @@ The argument is valid because it's just not possible for the premises to be true
 
 Here's an example of an *invalid* argument:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 Tweety is a bird.\
 Most birds can fly.\
 Therefore, Tweety can fly.
@@ -49,7 +49,7 @@ Valid arguments are interesting because their logic is airtight. If the assumpti
 $$ \mbox{sound = valid + true premises}.$$
 For example, here's a sound argument:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 The author of this book is human.\
 All humans are animals.\
 Therefore, the author of this book is an animal.
@@ -72,7 +72,7 @@ Instead we suspend what we know about the topic, and just imagine the premises t
 
 `r newthought("Arguments are made out of statements")`, assertions that something is true. In logic we call these statements ***propositions***. And we use capital letters of the English alphabet to stand for them. For example, this argument:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 If Aegon is a tyrant, then Brandon is a wizard.\
 Aegon is a tyrant.\
 Therefore, Brandon is a wizard.
@@ -80,7 +80,7 @@ Therefore, Brandon is a wizard.
 
 can be summarized like this:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 If $A$, then $B$.\
 $A$.\
 Therefore, $B$.
@@ -104,7 +104,7 @@ One way to distinguish propositions from other kinds of sentences is: propositio
 
 There is no way for both of these propositions to be true, and we can visualize this relationship in a diagram:
 
-```{r echo=FALSE, fig.cap="Mutually exclusive propositions", cache=TRUE}
+```{r fig.cap="Mutually exclusive propositions"}
 
 euler_diagram <- function(propositions) {
     ggplot(data = propositions) + theme_void() + coord_fixed() +
@@ -136,7 +136,7 @@ In contrast, these two propositions are not mutually exclusive:
 
 When propositons are not mutually exclusive, we say they are ***compatible***. Compatible propositions overlap:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Compatible propositions", cache=TRUE}
+```{r fig.cap="Compatible propositions"}
 propositions <- data.frame(
     cirx = c(-.5   , .5),
     ciry = c(0     , 0),
@@ -151,7 +151,7 @@ euler_diagram(propositions)
 
 The region where the circles overlap represents the possible scenarios where both propositions are true (the "$A \wedge B$ region").
 
-```{r echo=FALSE, fig.cap="Leonhard Euler (1707–1783)", fig.margin = TRUE, out.width = '60%'}
+```{r fig.cap="Leonhard Euler (1707–1783)", fig.margin = TRUE, out.width = '60%'}
 knitr::include_graphics("img/euler.png")
 ```
 
@@ -164,14 +164,14 @@ These are called ***Euler diagrams***, after the mathematician Leonhard Euler (p
 
 These propositions aren't just compatible. If the first is true, then the second *must* be true. Imagine an argument with the first proposition as the premise and the second proposition as the conclusion. The argument would be valid:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 Confucius was born in Asia.\
 Therefore, Confucius was born.
 ```
 
 In this case we say that the first proposition ***logically entails*** the second. In terms of an Euler diagram:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Logical entailment"}
+```{r fig.cap="Logical entailment"}
 propositions <- data.frame(
     cirx = c(0     , 0),
     ciry = c(0     , 0),
@@ -194,7 +194,7 @@ What if an argument has multiple premises? For example:
 
 This argument is valid, and the diagram might look like this:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="A valid argument with two premises"}
+```{r fig.cap="A valid argument with two premises"}
 propositions <- data.frame(
     cirx = c(-.75  , .75, 0),
     ciry = c(0     , 0  , 0),
@@ -210,7 +210,7 @@ Notice how the $A \wedge B$ region lies entirely within the $C$ circle. This ref
 
 In contrast, an invalid argument would have a diagram like this:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="An invalid argument with two premises"}
+```{r fig.cap="An invalid argument with two premises"}
 propositions <- data.frame(
     cirx = c(-.75  , .75   , 0),
     ciry = c(-.5   , -.5   , 0.45),
@@ -230,12 +230,12 @@ This diagram allows for the possibility that $A$ and $B$ are both true yet $C$ i
 
 Inductive logic studies arguments that aren't necessarily valid, but still "strong". A ***strong*** argument is one where the conclusion is highly probable, if the premises are true. For example:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 The sun has risen every day so far.\
 Therefore, the sun will rise again tomorrow.
 ```
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 ![](img/stolen_earth.png)
 In the *Doctor Who* episode "The Stolen Earth", aliens teleport our planet out of its solar system. The sun doesn't rise that day, strange planets fill the sky instead.
 ```
@@ -246,7 +246,7 @@ These possibilities aren't very likely, of course. So the argument is strong, ev
 
 In terms of an Euler diagram then, the premise circle isn't contained entirely within the conclusion circle. We have to leave some room for the possibility that the premise is true and the conclusion false. But we can still convey that this possibility has only a very slight chance of being true, by making it slim:
 
-```{r echo=FALSE, fig.cap="A strong argument"}
+```{r fig.cap="A strong argument"}
 propositions <- data.frame(
     cirx = c(-.5   , .5),
     ciry = c(0     , 0),
@@ -274,7 +274,7 @@ What kinds of strong arguments are there, and how strong are they? That's what t
 
 `r newthought("Generalizing from observed instances")` is one extremely common form of argument:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 Every raven I have every seen has been black.\
 Therefore, all ravens are black.
 ```
@@ -285,7 +285,7 @@ It also helps to observe different kinds of instances. If you've only observed r
 
 `r newthought("Going in the opposite direction")`, we can use what we know about a general population to draw conclusions about particular instances. We saw an example of this earlier:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 Most birds can fly.\
 Tweety is a bird.\
 Therefore, Tweety can fly.
@@ -298,7 +298,7 @@ It also helps to know that Tweety is similar to the birds that can fly, and diss
 
 `r newthought("Inference to the best explanation")` is another common form of argument, quite different from the previous two. Here's an example:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 My car won't start and the gas gauge reads 'empty'.\
 Therefore, my car is out of gas.
 ```
@@ -313,13 +313,13 @@ What makes one explanation better than another? That turns out to be a very hard
 #. For each of the following arguments, say whether it is valid or invalid.
 
     a.  
-        ```{block, type="argument"}
+        ```{block, type="argument", echo=TRUE}
         All cats have whiskers.\
         Simba has whiskers.\
         Therefore, Simba is a cat.
         ```
     #.  
-        ```{block, type="argument"}
+        ```{block, type="argument", echo=TRUE}
         Ada Lovelace wrote the world's first computer program.\
         Ada Lovelace was Lord Byron's daughter.\
         Therefore, the first computer program was written by Lord Byron's daughter.
@@ -328,14 +328,14 @@ What makes one explanation better than another? That turns out to be a very hard
         Hint: the premises of this argument are true.
 
     #.  
-        ```{block, type="argument"}
+        ```{block, type="argument", echo=TRUE}
         All Canadian residents are Russian citizens.\
         Vladimir Putin is a Canadian resident.\
         Therefore, Vladimir Putin is a Russian citizen.
         ```
 
     #.  
-        ```{block, type="argument"}
+        ```{block, type="argument", echo=TRUE}
         Manitoba is located in either Saskatchewan, Ontario, or Quebec.\
         Manitoba is not located in Saskatchewan.\
         Manitoba is not located in Ontario.\
@@ -343,14 +343,14 @@ What makes one explanation better than another? That turns out to be a very hard
         ```
 
     #.  
-        ```{block, type="argument"}
+        ```{block, type="argument", echo=TRUE}
         If snow is black then pigs can fly.\
         Snow is not black.\
         Therefore, pigs cannot fly.
         ```
     
     #.  
-        ```{block, type="argument"}
+        ```{block, type="argument", echo=TRUE}
         Either the moon is made of green cheese or pigs can fly.\
         Pigs can't fly.\
         Therefore the moon is made of green cheese.\

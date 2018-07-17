@@ -20,14 +20,14 @@ We need to figure out just how unlikely it is to get $67$ or more heads. This wo
 
 If you flip a fair coin $100$ times, the most likely outcome is $50$ heads. A bit less likely is $51$ heads, or $49$ heads. Still less likely is $52$ heads, or $48$ heads. And so on. The overall pattern looks like this:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Lorem ipsum"}
+```{r fig.cap="Lorem ipsum"}
 df <- data.frame(heads = 0:100, probability = dbinom(0:100, 100, 0.5))
 
 ggplot(df, aes(x = heads, y = probability)) + 
   geom_bar(stat = "identity", fill = "firebrick")
 ```
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="The famous normal distribution, sometimes called the \"bell curve\""}
+```{r fig.margin=TRUE, fig.cap="The famous normal distribution, sometimes called the \"bell curve\""}
 ggplot(data.frame(x = c(0, 100))) + 
   stat_function(aes(x), fun = dnorm, args = list(mean = 50, sd = 5), n = 201, colour = "steelblue", size = .75) +
   theme_void()
@@ -35,7 +35,7 @@ ggplot(data.frame(x = c(0, 100))) +
 
 Notice how much it resembles the famous "bell curve" shape. In fact they line up almost perfectly:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Lorem ipsum"}
+```{r fig.cap="Lorem ipsum"}
 ggplot(df, aes(x = heads, y = probability)) + 
   geom_bar(stat = "identity", fill = "firebrick") +
   stat_function(aes(heads), fun = dnorm, args = list(mean = 50, sd = 5), n = 201, colour = "steelblue", size = .75)
@@ -43,14 +43,14 @@ ggplot(df, aes(x = heads, y = probability)) +
 
 The bell curve's formal name is the ***normal distribution***, and it has some very handy mathematical features. We'll get to the deails in a moment, but basically, some simple calculations can tell us where the normal distribution starts to flatten out to zero on each side. Which makes it easy to estimate when the number of heads is too high (or too low) to be within the realm of plausibility.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 The normal distribution itself actually has a very complicated mathematical formula. You *really* don't need to know it for this book. But for those who are curious, here it is:
 $$ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x - \mu)^2}{2\sigma^2}} .$$
 ```
 
 Two features of the normal distribution are required for the calculation.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 The symbol $\mu$ is from Greek and is called *mu* (rhymes with *stew*). It looks like the English letter *u*, but it actually corresponds to the letter *m*, as in *m*ean. It helps to picture it as a cursive *m*, written very sloppily by someone in a hurry.
 ```
 
@@ -58,11 +58,11 @@ First, where is the bell located, what's its center? This is called the *mean*, 
 $$ \mu = np, $$
 where $n$ is the number of tosses, and $p$ is the probability of heads on each toss. So in our example $np = (100)(1/2) = 50$.
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Bell curves with various standard deviations, making them wider or thinner"}
+```{r fig.margin=TRUE, fig.cap="Bell curves with various standard deviations, making them wider or thinner"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 The Greek symbol $\sigma$ is called *sigma*. It corresponds to the English letter *s*, as in *s*tandard deviation.
 ```
 
@@ -95,7 +95,7 @@ You don't have to set the cutoff for plausibility at $99\%$. In fact there are t
 
 In terms of a diagram:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="The 68-95-99 rule"}
+```{r fig.cap="The 68-95-99 rule"}
 knitr::include_graphics("img/fig.png")
 ```
 
@@ -138,7 +138,7 @@ Here is the general recipe for significance testing with binomial probabilities:
 
 Let's do another example:
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 The VisioPerfect example is from page 205 of Ian Hacking's excellent textbook, *An Introduction to Probability & Inductive Logic*.
 ```
 
@@ -177,7 +177,7 @@ Different sciences have different conventions about where to put the cutoff. Soc
 
 ## Warnings
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 The American Statistical Association [recently released a statement](https://www.amstat.org/newsroom/pressreleases/P-ValueStatement.pdf) to clarify the ideas behind significance testing, and prevent their misuse. It's also the punchline of [one of my favourite cartoons](https://imgs.xkcd.com/comics/significant.png).
 ```
 
@@ -185,7 +185,7 @@ Significance testing is very, *very* confusing. Scientists, and even statisticia
 
 So what exactly does it mean for a result to be "significant at level $\alpha$"?
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 The Greek letter $\alpha$ is called *alpha* and corresponds to the English letter *a*. It's customarily used for significance levels, I don't know why.
 ```
 

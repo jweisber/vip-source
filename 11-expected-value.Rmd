@@ -68,7 +68,7 @@ The expected value isn't the amount you expect to win from a game. It's the amou
 
 Long run averages aren't the only way to help make expectations intuitive. You can also visualize them as the area of a diagram like this one:
 
-```{r echo=FALSE, fig.cap="Expected value as area"}
+```{r fig.cap="Expected value as area"}
 knitr::include_graphics("img/fig.png")
 ```
 
@@ -78,13 +78,13 @@ Notice how a rectangle's area can enlarged by increasing either its width or its
 
 We started this chapter wondering how to reconcile conflicting arguments for and against making a certain choice. One choice had better odds, the other had a greater potential payoff. The expected value formula answers the question by giving equal weight to these competing reasons. Width (odds) and height (payoff) are treated the same: neither one is given greater weight. We just multiply one against the other and take the total area that results.
 
-```{r echo=FALSE, fig.margin = TRUE, fig.cap="A gamble with one negative payoff"}
+```{r fig.margin = TRUE, fig.cap="A gamble with one negative payoff"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
 Negative outcomes are represented by rectangles below the $x$-axis. We colour these red, as a reminder that they are to be subtracted from the area above the $x$-axis. So to get the expected value, we subtract the red area from the blue area.
 
-```{r echo=FALSE, fig.margin = TRUE, fig.cap="A gamble with four possible outcomes"}
+```{r fig.margin = TRUE, fig.cap="A gamble with four possible outcomes"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 

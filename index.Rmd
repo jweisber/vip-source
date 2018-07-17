@@ -7,6 +7,8 @@ author: "Jonathan Weisberg"
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
+  echo = FALSE,
+  cache = TRUE,
   dev.args = list(bg = "transparent")
 )
 library(tufte)

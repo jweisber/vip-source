@@ -64,7 +64,7 @@ For our purposes, the key ideas that matter are as follows. First, the strength 
 
 Another common form of inductive argument we met in [Chapter 2][Logic] was Inference to the Best Explanation, known as *IBE* for short. An example:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 My car won't start and the gas gauge reads 'empty'.\
 Therefore, my car is out of gas.
 ```
@@ -100,11 +100,11 @@ So the better $H$ accounts for the evidence, the larger $\p(E \given H)$ will be
 
 What about the last term in Bayes' theorem though, the denominator $\p(E)$? It corresponds to a virtue of good explanations too!
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="The hammer/feather experiment performed on the moon in 1971"}
+```{r fig.margin=TRUE, fig.cap="The hammer/feather experiment performed on the moon in 1971"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="The hammer/feather experiment performed in a vaccuum chamber on Earth"}
+```{r fig.margin=TRUE, fig.cap="The hammer/feather experiment performed in a vaccuum chamber on Earth"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 

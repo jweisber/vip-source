@@ -42,7 +42,7 @@ That seems like a strange thing to do. Why would they think the die is so much u
 
 Where do prior probabilities come from then? How do we decide whether to start with $\pr(H) = 1/2$ or $\pr(H) = 1/10$? Here is a very natural proposal:
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 Some history of the PoI: Laplace, Keynes, etc.
 ```
 
@@ -73,7 +73,7 @@ $$
 
 ## The Continuous Principle of Indifference
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="The continuous roulette wheel"}
+```{r fig.margin=TRUE, fig.cap="The continuous roulette wheel"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
@@ -110,7 +110,7 @@ $$
 $$
 But the answer should have been the same as before! It's the same questions as before, just rephrased. If the sides are between $1$ and $2$ inches long, that's the same as the area being between $1$ in$^2$ and $4$ in$^2$.
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Some history on Bertrand's paradox: Lorem ipsum dolor sit amet..."}
+```{r fig.margin=TRUE, fig.cap="Some history on Bertrand's paradox: Lorem ipsum dolor sit amet..."}
 knitr::include_graphics("img/marg_fig.png")
 ```
 

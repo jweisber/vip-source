@@ -54,7 +54,7 @@ People have different desires, needs, and interests. Some value friendship most,
 
 So the value of a decision's outcome depends on the person: it is *subjective*. And that raises a big question: if utility is subjective, how can we measure it objectively? Does it even make sense to treat personal tastes and preferences using mathematical equations?
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="Frank Ramsey (1903--1930). Sadly Ramsey died very young, at the age of 26, before his discovery could become widely known. Luckily the idea was rediscovered by economists and statisticians in the 1940's and 1950's."}
+```{r fig.margin=TRUE, fig.cap="Frank Ramsey (1903--1930). Sadly Ramsey died very young, at the age of 26, before his discovery could become widely known. Luckily the idea was rediscovered by economists and statisticians in the 1940's and 1950's."}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
@@ -128,13 +128,13 @@ This method assumes that $\u(W) = 0$ and $\u(B) = 1$. What justifies this assump
 
 It's just convenient to use $0$ and $1$. Because then, once we've identified the relevant probability $p$, we can immediately set $\u(C) = p$. If we used a scale from $0$ to $10$ instead, we'd have to multiply $p$ by $10$ to get $\u(C)$, which would add some unnecessary nuisance. (Question: how would we calculate $\u(C)$ on a scale from $-1$ to $1$?)
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="The best possible gamble"}
+```{r fig.margin=TRUE, fig.cap="The best possible gamble"}
 knitr::include_graphics("img/marg_fig.png")
 ```
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="The worst possible gamble"}
+```{r fig.margin=TRUE, fig.cap="The worst possible gamble"}
 knitr::include_graphics("img/marg_fig.png")
 ```
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="A gamble of intermediate value"}
+```{r fig.margin=TRUE, fig.cap="A gamble of intermediate value"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
@@ -166,7 +166,7 @@ Imagine you win $\$1$ million in the lottery. Your life would be changed radical
 
 For most people, gaining more money adds less and less value as the gains increase. In graphical terms:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="The diminishing value of additional money"}
+```{r fig.cap="The diminishing value of additional money"}
 bernoulli_utility <- function(x) {
   log(x + 1) / log(101)
 }

@@ -5,7 +5,7 @@
 
 My wife's family keeps having girls. My wife has two sisters and she and her sisters each have two daughters, with no other siblings or children. That's nine girls in a row!
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 Note that girl and boy aren't the only two possibilities. The next child could also be intersex.
 
 Boy and girl are the likely alternatives, since fewer than $2\%$ of children born are intersex. (The exact percentage is unclear because the exact definition of "interesex" is controversial.)
@@ -35,7 +35,7 @@ A clear example of independence is ***sampling with replacement***. Suppose we h
 
 Even if you were to draw ten white balls in a row, the eleventh draw would still be a $50$-$50$ shot! It would just be a coincidence that you drew ten white balls in a row. Because there's always an even mix of black and white marbles, and you're always picking one at random.
 
-But now imagine sampling ***without replacement***. The situation is the same, except now you set aside each ball you draw rather than put it back.  Now the draws are ***dependent***. If you draw a black ball on the first draw, the odds of black on the next draw go down. There are only 49 black balls in the urn now, vs. 50 white.
+But now imagine sampling ***without replacement***. The situation is the same, except now you set aside each ball you draw rather than put it back.  Now the draws are ***dependent***. If you draw a black ball on the first draw, the odds of black on the next draw go down. There are only $49$ black balls in the urn now, vs. $50$ white.
 
 
 ## Fairness
@@ -95,7 +95,7 @@ Things might actually be even more complicated than that, though. [Some recent s
 
 It's still being researched, but one possibility is: defense. When a basketball player gets in the zone, the other team ups their defense. The hot player has to take harder shots. So one of the recent studies added a correction to account for increased difficulty. And another looked at baseball instead, where they did find evidence of streaks.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 But here's [Selena Gomez and Nobel prize winner Richard Thaler](https://www.youtube.com/watch?v=WStmFKp1x3g) telling a bit of the story in a clip from the 2015 movie *The Big Short*.
 ```
 

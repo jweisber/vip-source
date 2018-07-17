@@ -4,7 +4,7 @@ The chances of crashing your car are pretty low, but they're considerably higher
 
 We symbolize this idea by writing $\p(A \given B)$, the probability that $A$ is true *given* that $B$ is true. And we call this kind of probability ***conditional probability***.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 To say $B$ increases the chance of $A$ we write $\p(A \given B) \gt \p(A)$.
 And to say $B$ doubles the chance of $A$ write $\p(A \given B) = 2 \times \p(A)$.
 ```
@@ -16,7 +16,7 @@ But how do we calculate conditional probabilities?
 
 ## Calculating Conditional Probability
 
-```{r echo=FALSE, cache=TRUE, fig.show='hold', fig.margin=TRUE, fig.cap="Conditional probability in a fair die roll"}
+```{r fig.show='hold', fig.margin=TRUE, fig.cap="Conditional probability in a fair die roll"}
 
 die1 <- readPNG("img/die/die1.png") %>% rasterGrob()
 die2 <- readPNG("img/die/die2.png") %>% rasterGrob()
@@ -63,7 +63,7 @@ In fact, this formula is our official definition for the concept of conditional 
 
 In terms of an Euler diagram, the definition of conditional probability compares the size of the $A \wedge B$ region to the size of the whole $B$ region:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Conditional probability is the size of the $A \\wedge B$ region compared to the entire $B$ region."}
+```{r fig.cap="Conditional probability is the size of the $A \\wedge B$ region compared to the entire $B$ region."}
 
 propositions <- data.frame(
     cirx = c(-.75   , .75),
@@ -95,7 +95,7 @@ $$
 
 So the definition works because, informally speaking, $\p(A \wedge B)/\p(B)$ is the proportion of the $B$ outcomes that are also $A$ outcomes.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 "Black holes are where God divided by zero," comedian Steven Wright once quipped.
 ```
 
@@ -103,7 +103,7 @@ So the definition works because, informally speaking, $\p(A \wedge B)/\p(B)$ is 
 $$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)} $$
 doesn't even make any sense. There is no number that results from the division on the right hand side.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 There are alternative mathematical systems of probability, where conditional probability is defined differently to avoid this problem. But in this book we'll stick to the standard system. Where there's just no such thing as "the probability of $A$ given $B$" when $B$ has zero probability.
 ```
 
@@ -124,7 +124,7 @@ For example, suppose there are two urns of coloured marbles:
 
 I flip a fair coin to decide which urn to draw from, heads for Urn B and tails for Urn W. Then I draw one marble at random.
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Tree diagram for an urn problem"}
+```{r fig.cap="Tree diagram for an urn problem"}
 df_nodes <- rbind(
   data.frame(text = "H", x = .5, y = .75),
   data.frame(text = "T", x = .5, y = .25),  
@@ -258,7 +258,7 @@ When we write $\p(A \given B)$, we are discussing the probability of $A$. But we
 
 #. Five percent of tablets made by the company Ixian have factory defects. Ten percent of the tablets made by their competitor company Guild do. A computer store buys $40\%$ of its tablets from Ixian, and $60\%$ from Guild.
 
-    ```{marginfigure}
+    ```{marginfigure, echo=TRUE}
     This exercise and the next one are based on very similar exercises from Ian Hacking's wonderful book, *An Introduction to Probability and Inductive Logic*.
     ```
 

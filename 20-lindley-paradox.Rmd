@@ -18,7 +18,7 @@ Think of all the studies of potential cancer treatments being done around the wo
 
 The lower the significance level, the more patients have to improve before they can call their study's results "significant". So a lower significance level means fewer treatments will be adopted by the medical community. That might seem like a bad thing, but it has a big upside. It also means fewer *bogus* treatments being adopted.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 Medical treatments are often expensive, painful, or dangerous. So it's a serious problem to approve ones that don't actually work.
 ```
 
@@ -37,7 +37,7 @@ This critique of frequentism is sharpened by a famous problem, Lindley's paradox
 
 ## Lindley's Paradox
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 This example comes from Howson & Urbach's *Scientific Reasoning: A Bayesian Approach*, who draw it from Kyburg. TODO: flesh out this citation.
 ```
 

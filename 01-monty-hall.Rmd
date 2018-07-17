@@ -4,7 +4,7 @@
 
 `r tufte::newthought("Imagine")` you're on a game show. There are three doors, one with a prize behind it. You're allowed to pick any door, so you choose the first one at random, door A.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 ![](img/lets_make_a_deal.png)
 The Monty Hall problem is named after the creator and host of the game show *Let's Make a Deal*.
 ```
@@ -17,7 +17,7 @@ Pause a moment to think about your answer before reading on.
 
 `r tufte::newthought("What")` did you decide? Did you conclude it doesn't matter whether you stick with door A or switch to door B?
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 ![](img/marilyn_vos_savant.png)
 Marilyn vos Savant made the Monty Hall problem famous when she solved it correctly in her "Ask Marilyn" column for *Parade* magazine. Read more about it in [*The New York Times*](https://www.nytimes.com/1991/07/21/us/behind-monty-hall-s-doors-puzzle-debate-and-answer.html).
 ```
@@ -28,7 +28,7 @@ But the right answer is you should switch. Door B is now twice as likely to be t
 
 The reason is subtle. One way to think about it is that the host's choice of which door to open is a bit of a tell. Maybe they *had* to open door C, because the prize is behind door B and they didn't want to give that away. Of course, it could be behind door A instead, so maybe they just picked door C at random. But there was only a one-in-three chance the prize would be behind door A. Which means there's a two-in-three chance they didn't really have a choice, they had to open door C to avoid showing you the prize behind door B.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 ![](img/marg_fig.png)
 The hundred-door version of the Monty Hall problem, suggested by Marilyn vos Savant
 ```
@@ -40,7 +40,7 @@ Here's another way to think about it. Imagine the game had a hundred doors inste
 
 `r tufte::newthought("A picture helps")` clarify things. At first the prize could be behind any of the three doors, with equal probability each way. So we draw a tree with three branches, each labeled with a probability of $1/3$.
 
-```{r echo=FALSE, cache=TRUE, fig.cap="First stage of a tree diagram for the Monty Hall problem"}
+```{r fig.cap="First stage of a tree diagram for the Monty Hall problem"}
 df_nodes <- rbind(
   data.frame(text = "C", x = .5, y = .9),
   data.frame(text = "B", x = .5, y = .5),  
@@ -90,7 +90,7 @@ Likewise, if the prize is behind door C, then opening door B is their only optio
 
 Only if the prize is behind door A do they have a choice: open either door B or door C. In that case it's a tossup which door they'll open, so each of those possibilities has a 1/2 chance.
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Second stage of a tree diagram for the Monty Hall problem"}
+```{r fig.cap="Second stage of a tree diagram for the Monty Hall problem"}
 ggplot() +
   geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
   geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) + 
@@ -103,7 +103,7 @@ Now imagine playing the game over and over. A third of the time things will foll
 
 When things follow the bottom branches, half of those times the host will open door B, and half the time they'll open door C. So one in every six plays will follow the *A-and-Open-B* path. And one in every six plays will follow the *A-and-Open-C* path.
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Complete tree diagram for the Monty Hall problem"}
+```{r fig.cap="Complete tree diagram for the Monty Hall problem"}
 ggplot() +
   geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
   geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) + 
@@ -137,7 +137,7 @@ When possibilities are mutually exclusive, their probabilities add up. For examp
 - A card drawn from a standard deck must be either red or black.
 - The temperature at noon tomorrow must be either above zero, below zero, or zero.
 
-```{r echo=FALSE, warning=FALSE, cache=TRUE, fig.margin=TRUE, fig.height=10, fig.cap="Three  partitions for a card drawn from a standard deck"}
+```{r warning=FALSE, fig.margin=TRUE, fig.height=10, fig.cap="Three  partitions for a card drawn from a standard deck"}
 
 # setting warning=FALSE to hide buggy warnings arising from geom_tile
 # see https://github.com/tidyverse/ggplot2/issues/1904
@@ -186,7 +186,7 @@ In a way, the fundamental principle of probability is that probabilities over a 
 
 `r tufte::newthought("Tree diagrams")` follow a few simple rules based on these concepts. The parts of a tree are called *nodes*, *branches*, and *leaves*:
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Nodes, branches, and leaves"}
+```{r fig.cap="Nodes, branches, and leaves"}
 ggplot() +
   geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
   geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) + 

@@ -23,7 +23,7 @@ $$ (9/10)(-\$.10) + (1/10)(\$.90) = 0. $$
 
 And yet, Sam will lose money no matter what! There's no way for him to win, he's bound to end up paying us that $\$1$ when we only paid him $\$0.90$ to get in on the deal.
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 Why is it called a "Dutch book"? Lorem ipsum...
 ```
 
@@ -41,7 +41,7 @@ Almost nobody in real life would be foolish enough accept the deal we just offer
 
 Consider this famous problem:
 
-```{marginfigure}
+```{marginfigure, echo=TRUE}
 This problem was devised by the same psychologists who introduced the taxicab problem: Daniel Kahneman and Amos Tversky. They introduced this problem in 1983.
 ```
 
@@ -56,7 +56,7 @@ In psychology experiments, almost everyone chooses (2). But that can't be right,
 
 In general, the probability of a conjunction $B \wedge F$ cannot be greater than the probability of $B$. There are simply more possibilities where $B$ is true than there are possibilities where *both* $B$ *and* $F$ are true: 
 
-```{r echo=FALSE, cache=TRUE, fig.cap="Bank tellers and feminist bank tellers"}
+```{r fig.cap="Bank tellers and feminist bank tellers"}
 euler_diagram <- function(propositions) {
     ggplot(data = propositions) + theme_void() + coord_fixed() +
         xlim(-3,3) + ylim(-2,2) +
@@ -98,10 +98,10 @@ And yet, they'll lose money no matter what. Notice how they've already paid us m
 
 In general, anyone who violates any law of probability can be suckered via a Dutch book. If you obey the laws of probability however, it's impossible to have a Dutch book made against you. That's why the laws of probability are objectively correct, according to Bayesians.
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Frank Ramsey first noticed the connection between Dutch books and the laws of probability in the 1920s."}
+```{r fig.margin=TRUE, fig.cap="Frank Ramsey first noticed the connection between Dutch books and the laws of probability in the 1920s."}
 knitr::include_graphics("img/marg_fig.png")
 ```
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Bruno de Finetti first proved that the laws of probability are the only safegaurd against Dutch books in the 1930s."}
+```{r fig.margin=TRUE, fig.cap="Bruno de Finetti first proved that the laws of probability are the only safegaurd against Dutch books in the 1930s."}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
