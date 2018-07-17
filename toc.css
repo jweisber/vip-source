@@ -107,6 +107,14 @@
   color: #ffffff;
 }
 
+#TOC .has-sub ul li:first-child a {
+  border-radius: 0 5px 0 0;
+}
+
+#TOC .has-sub ul li:last-child a {
+  border-radius: 0 0 5px 0;
+}
+
 #TOC .has-sub ul li:hover a {
   background: #0c7fb0;
 }
