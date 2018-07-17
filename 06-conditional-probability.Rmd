@@ -242,7 +242,7 @@ When we write $\p(A \given B)$, we are discussing the probability of $A$. But we
 ```
 
 
-## Exercises
+## Exercises {-}
 
 #. Answer each of the following:
 

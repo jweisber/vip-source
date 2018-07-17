@@ -274,7 +274,7 @@ Black hole warning: notice that the Law of Total Probability depends on $\p(A \g
 ```
 
 
-## Exercises
+## Exercises {-}
 
 1. In the urn puzzle, what is $\p(H \vee B)$?
 2. In a three-urn variation, what is $\p(B)$?

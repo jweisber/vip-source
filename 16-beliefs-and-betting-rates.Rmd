@@ -95,7 +95,7 @@ The general strategy here is: 1) identify what betting rates you have, 2) apply 
 We have to be careful though. This technique only works if the subject's betting rates follow the familiar rules of probability. If my betting rate for rain tomorrow is $3/10$, you might expect my betting rate for no rain to be $7/10$. But people don't always follow the laws of probability, just as they don't always follow the expected value rule. The taxicab problem from [Chapter 8][Bayes' Theorem] illustrates one way people commonly violate the rules of probability. We'll encounter another in the next chapter.
 
 
-## Exercises
+## Exercises {-}
 
 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 

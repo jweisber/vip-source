@@ -188,7 +188,7 @@ And if you knew a white ball wouldn't be drawn, then options 1A and 2A would be 
 Most decision theorists find this reasoning compelling. But some turn it on its head. They say: so much the worse for the Sure-thing Principle. The debate has yet to settle into any universal consensus.
 
 
-## Exercises
+## Exercises {-}
 
 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 

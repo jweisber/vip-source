@@ -245,7 +245,7 @@ So $\infty - \infty$ is not a well-defined quantity.
 Like we said about the St. Petersburg paradox, the expected value framework doesn't seem to work well when infinities show up. Researchers are still trying to figure out how to make decisions that involve infinite quantities.
 
 
-## Exercises
+## Exercises {-}
 
 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 

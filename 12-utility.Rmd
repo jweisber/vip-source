@@ -203,7 +203,7 @@ Notice how this fits with what we said earlier about the value of additional mon
 Now what about you: how does a gain of $\$50$ compare to a gain of $\$100$ for you?
 
 
-## Exercises
+## Exercises {-}
 
 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 

@@ -141,7 +141,7 @@ Others think the paradox shows that the whole idea of "prior" and "posterior" pr
 What's the right way according to frequentism?
 
 
-## Exercises
+## Exercises {-}
 
 #. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 

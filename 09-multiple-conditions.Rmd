@@ -229,7 +229,7 @@ $$
 
 These are some pretty hairy formulas, so memorizing them probably isn't a good idea. Better to understand how they flow from Bayes' theorem or a tree diagram.
 
-## Exercises
+## Exercises {-}
 
 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 

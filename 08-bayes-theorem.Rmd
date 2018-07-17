@@ -149,7 +149,7 @@ One lesson of this chapter is that you have to take the base rate into account t
 
 "In no other branch of mathematics is it so easy for experts to blunder as in probability theory," wrote Martin Gardner in *Scientific American*.^[Gardner attributes this sentiment to the philosopher Charles Sanders Peirce. The source in Peirce's writings is unknown.]
 
-## Exercises
+## Exercises {-}
 
 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 2. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
