@@ -7,6 +7,10 @@
     to { opacity: 1; }
 }
 
+#TOC {
+  width: 20rem;
+}
+
 #TOC::before {
   content: "☰ Contents";
   font-size: 1.7rem;
@@ -25,9 +29,9 @@
 
 #TOC:hover:before {
   background: #2c2c2c;
-  transition: background .25s ease-in-out;
   border-bottom: 2px double #4f4f4f;
-  transition: border .25s ease-in-out;
+  -webkit-animation: fadeIn .5s;
+  animation: fadeIn .5s;
 }
 
 #TOC ul {
