@@ -246,8 +246,8 @@ When we write $\p(A \given B)$, we are discussing the probability of $A$. But we
 
 #. Answer each of the following:
 
-    a.  What is the probability of rolling a low number (1, 2, or 3) given that you roll an even number.
-    #.  On a fair, eight-sided die, what is the probability of rolling an even number given that you roll a high number (5, 6, 7, or 8)?
+    a.  On a fair die with six sides, what is the probability of rolling a low number (1, 2, or 3) given that you roll an even number.
+    #.  On a fair die with eight sides, what is the probability of rolling an even number given that you roll a high number (5, 6, 7, or 8)?
 
 #. Suppose $\p(B) = 4/10$, $\p(A) = 7/10$, and $\p(B \wedge A) = 2/10$.
     What are each of the following probabilities?
@@ -303,8 +303,6 @@ When we write $\p(A \given B)$, we are discussing the probability of $A$. But we
     a.  $\p(A) = 1/2, \p(A \given B) = 1/2, \p(B \given A) = 1/2$.
     b.  $\p(A) = 1/2, \p(A \given B) = 1, \p(A \given \neg B) = 1$.
 
-#. Is the following statement true or false: if $A$ and $B$ are mutually exclusive, then $Pr(A \vee B \given C) = Pr(A \given C) + Pr(B \given C)$. Justify your answer. 
-
-    Note that this exercise is about determining whether the [Addition Rule][Adding Probabilities] also applies to conditional probability.
+#. Is the following statement true or false: if $A$ and $B$ are mutually exclusive, then $Pr(A \vee B \given C) = Pr(A \given C) + Pr(B \given C)$. Justify your answer.
 
     
