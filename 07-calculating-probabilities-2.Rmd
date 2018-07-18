@@ -20,7 +20,7 @@ ggplot() + theme_void() + coord_fixed() +
   xlim(-3,3) + ylim(-2,2) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=1),
         panel.background = element_rect(fill = "firebrick")) +
-  geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), fill = "steelblue") +
+  geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), fill = "white") +
   geom_text(aes(x = 0, y = 0, label = "A"), 
             fontface = "italic", size = 10, family=c("serif")) +
   geom_text(aes(x = -2, y = 1.5, label = "~A"), 
@@ -33,7 +33,7 @@ The Negation Rule
 
 :   $\p(\neg A) = 1 - \p(A)$.
 
-In terms of an Euler diagram, the probability of $\neg A$ is the size of the red region, outside the $A$ region. So $\p(\neg A)$ is one minus the size of the blue region, $1 - \p(A)$.
+In terms of an Euler diagram, the probability of $\neg A$ is the size of the red region. So $\p(\neg A)$ is $1 - \p(A)$.
 
 `r newthought("It's important")` to notice that this rule can be flipped around, to calculate the probability of a positive statement:
 
@@ -146,14 +146,14 @@ ggplot() + coord_fixed() +
   geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
   geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) +
   geom_text(aes(x, y, label = text), data = df_leaf_labels, fontface = "italic") + 
-  geom_emoji(aes(x = 1, y = .9), emoji = "1f603") +
-  geom_emoji(aes(x = 1, y = .6), emoji = "1f60e") +
-  geom_emoji(aes(x = 1, y = .4), emoji = "1f60d") +
+  geom_emoji(aes(x = 1, y = .9), emoji = "1f60e") +
+  geom_emoji(aes(x = 1, y = .6), emoji = "1f60d") +
+  geom_emoji(aes(x = 1, y = .4), emoji = "1f913") +
   xlim(0, 1) + ylim(0, 1) +
   theme_void()
 ```
 
-There are three leaves where $A \vee B$ is true, marked with emoji. If we add $\p(A) + \p(B)$, we're adding the two leaves where $A$ is true (😃, 😎) to the two leaves where $B$ is true (😃, 😍). So we've double-counted the $A \wedge B$ leaf (😃). To get $\p(A \vee B)$ then, we have to subtract one of those $A \wedge B$ leaves (😃).
+There are three leaves where $A \vee B$ is true, marked with emoji. If we add $\p(A) + \p(B)$, we're adding the two leaves where $A$ is true (😎,😍) to the two leaves where $B$ is true (😎,🤓). So we've double-counted the $A \wedge B$ leaf (😎). To get $\p(A \vee B)$ then, we have to subtract one of those $A \wedge B$ leaves (😎).
 
 `r newthought("There is a catch")` to the General Addition Rule. You need to know $\p(A \wedge B)$ in order to apply it. Sometimes that information is given to us. But when it's not, we have to figure it out somehow. If $A$ and $B$ are mutually exclusive, then it's easy: $\p(A \wedge B) = 0$. Or, if they're independent, then we can calculate $\p(A \wedge B) = \p(A) \times \p(B)$. But in other cases we have to turn elsewhere.
 
@@ -168,23 +168,23 @@ The General Multiplication Rule
 
 The intuitive idea is, if you want to know how likely it is $A$ and $B$ will both turn out to be true, first ask yourself how likely $A$ is to be true *if* $B$ is true. Then weight the answer according to $B$'s chances of being true.
 
-Notice, if $A$ and $B$ are independent, then this rule just collapses into the familiar Multiplication rule we already learned. If they're independent, then $\p(A \given B) = \p(A)$ by definition. So substituting into the General Multiplication Rule gives:
-
+Notice, if $A$ and $B$ are independent, then this rule just collapses into the familiar Multiplication Rule we already learned. If they're independent, then $\p(A \given B) = \p(A)$ by definition. So substituting into the General Multiplication Rule gives:
 $$
   \begin{aligned}
     \p(A \wedge B) &= \p(A \given B) \p(B)\\
                    &= \p(A) \p(B).
   \end{aligned}
 $$
+Which is precisely the Multiplication Rule.
 
-So we now have two rules for $\wedge$. The first one only applies when the two sides of the $\wedge$ are independent. The second applies whether they're independent or not. Of course, the second rule ends up being the same as the first one when they are independent.
+So we now have two rules for $\wedge$. The first one only applies when the two sides of the $\wedge$ are independent. The second applies whether they're independent or not. The second rule ends up being the same as the first one when they are independent.
 
-`r newthought("A tree diagram helps")` us understand this rule too. Recall this problem from [Chapter 6][Conditional Probability], with two urns of coloured marbles:
+`r newthought("A tree diagram")` helps us understand this rule too. Recall this problem from [Chapter 6][Conditional Probability], with two urns of coloured marbles:
 
 - Urn X contains 3 black marbles, 1 white.
 - Urn Y contains 1 black marble, 3 white.
 
-I flip a fair coin to decide which urn to draw from, heads for Urn B and tails for Urn W. Then I draw one marble at random.
+I flip a fair coin to decide which urn to draw from, heads for Urn X and tails for Urn Y. Then I draw one marble at random.
 
 ```{r echo=FALSE, fig.cap="Tree diagram for an urn problem"}
 df_nodes <- rbind(
@@ -230,7 +230,7 @@ ggplot() +
   theme_void()
 ```
 
-Now suppose we want to know the probability the coin will land tails and the marble drawn willl be white, $\p(T \wedge W)$. The General Multiplication Rule tells us the answer is:
+Now suppose we want to know the probability the coin will land tails and the marble drawn will be white, $\p(T \wedge W)$. The General Multiplication Rule tells us the answer is:
 $$
   \begin{aligned}
     \p(T \wedge W) &= \p(W \wedge T)\\
@@ -241,6 +241,9 @@ $$
 $$
 In the tree diagram, this corresponds to following the bottom-most path, multiplying the probabilities as we go. And this makes sense: half the time the coin will land tails, and on $3/4$ of those occasions the marble drawn will be white. So, if we were to repeat the experiment again and again, we would get tails followed by a white marble in $3$ out of every $8$ trials.
 
+```{block, type='warning'}
+Black hole warning: notice that the General Multiplication Rule depends on $\p(A \given B)$ being well-defined. So it only applies when $\p(B) \gt 0$.
+```
 
 ## Laplace's Urn Puzzle
 
@@ -383,50 +386,50 @@ Which is precisely the Law of Total Probability.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="The Law of Total Probability in a tree diagram"}
 df_nodes <- rbind(
-  data.frame(text = "A", x = .35, y = .75),
-  data.frame(text = "~ A", x = .35, y = .25),  
-  data.frame(text = "B", x = .725,  y = .9),  
-  data.frame(text = "~ B", x = .725,  y = .6),
-  data.frame(text = "B", x = .725,  y = .4),
-  data.frame(text = "~ B", x = .725,  y = .1)
+  data.frame(text = "A", x = .335, y = .75),
+  data.frame(text = "~ A", x = .335, y = .25),  
+  data.frame(text = "B", x = .66,  y = .9),  
+  data.frame(text = "~ B", x = .66,  y = .6),
+  data.frame(text = "B", x = .66,  y = .4),
+  data.frame(text = "~ B", x = .66,  y = .1)
 )
 
 df_segments <- rbind(
   data.frame(x1 = 0, y1 = .5, x2 = .3, y2 = .75),
   data.frame(x1 = 0, y1 = .5, x2 = .3, y2 = .25),  
-  data.frame(x1 = .4, y1 = .75, x2 = .68, y2 = .9),  
-  data.frame(x1 = .4, y1 = .75, x2 = .68, y2 = .6),
-  data.frame(x1 = .4, y1 = .25, x2 = .68, y2 = .4),
-  data.frame(x1 = .4, y1 = .25, x2 = .68, y2 = .1)
+  data.frame(x1 = .37, y1 = .75, x2 = .62, y2 = .9),  
+  data.frame(x1 = .37, y1 = .75, x2 = .62, y2 = .6),
+  data.frame(x1 = .37, y1 = .25, x2 = .62, y2 = .4),
+  data.frame(x1 = .37, y1 = .25, x2 = .62, y2 = .1)
 )
 
 df_leaf_labels <- rbind(
-  data.frame(text = "Pr(A&B)", x = .875, y = .9),
-  data.frame(text = "Pr(A&~B)", x = .875, y = .6),
-  data.frame(text = "Pr(~A&B)", x = .875, y = .4),
-  data.frame(text = "Pr(~A&~B)", x = .875, y = .1)
+  data.frame(text = "Pr(A|B)Pr(B)", x = .84, y = .9),
+  data.frame(text = "Pr(A|~B)Pr(~B)", x = .84, y = .6)
 )
 
 ggplot() + coord_fixed() +
   geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
   geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) +
   geom_text(aes(x, y, label = text), data = df_leaf_labels, fontface = "italic") + 
-  geom_emoji(aes(x = 1, y = .9), emoji = "1f604") +
-  geom_emoji(aes(x = 1, y = .6), emoji = "1f638") +
+  geom_emoji(aes(x = 1, y = .9), emoji = "1f60e") +
+  geom_emoji(aes(x = 1, y = .6), emoji = "1f60d") +
   xlim(0, 1) + ylim(0, 1) +
   theme_void()
 ```
 
-We can use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked 😄 and 😸. To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$, we add up the two leaves:
+We can use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked 😎 and 😍. To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$, we add up the two leaves:
 $$
   \begin{aligned}
-    \p(A) &= 😄 + 😸\\
-          &= \p(A \wedge B) + \p(A \wedge \neg B)\\
+    \p(A) &= 😎 + 😍\\
           &= \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B).
   \end{aligned}
 $$
 Once again the result is the Law of Total Probability.
 
+```{block, type='warning'}
+Black hole warning: notice that the Law of Total Probability depends on $\p(A \given B)$ and $\p(A \given \neg B)$ both being well-defined. So it only applies when $\p(B) \gt 0$ and $\p(\neg B) \gt 0$.
+```
 
 ## Example
 
@@ -461,7 +464,7 @@ $$
   \end{aligned}
 $$
 
-Notice that we didn't just get the same answer. The calculation that got us there ended up the same too. Our second approach just reconstructed, from scratch, the reasoning behind the Law of Total Probability. It's a very good idea to understand the rationale behind the Law of Total Probability. But once you get used to the formula, it's also fine to skip straight to applying it directly.
+Notice that we didn't just get the same answer, we ended up doing the same calculation too. Our second approach just reconstructed from scratch the reasoning behind the Law of Total Probability. It's a very good idea to understand the rationale behind the Law of Total Probability. But once you get used to the formula, it's also fine to skip straight to applying it directly.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="A probability tree for Professor X"}
 df_nodes <- rbind(
@@ -505,15 +508,134 @@ ggplot() +
   theme_void()
 ```
 
-You can also use a tree diagram. Again, the calculation will be the same. But the diagram helps you get started, and it helps you check that you've applied the formula correctly too.
-
-```{block, type='warning'}
-Black hole warning: notice that the Law of Total Probability depends on $\p(A \given B)$ and $\p(A \given \neg B)$ both being well-defined. So it only applies when $\p(B) \gt 0$ and $\p(\neg B) \gt 0$.
-```
+You can also use a tree diagram. Again, the calculation will be the same. But the diagram may help you get started, and it helps you check that you've applied the formula correctly too.
 
 
 ## Exercises {-}
 
-1. In the urn puzzle, what is $\p(H \vee B)$?
-2. In a three-urn variation, what is $\p(B)$?
-3. Formulate a three-case version of the LTP. Explain why this equation is true.
+```{r echo=FALSE}
+# TODO: improve ordering of exercises, so they're sensibly graded from easy to difficult
+# TODO: alter and attribute exercises from Skyrms
+```
+
+#. Suppose you have an ordinary deck of $52$ playing cards, and you draw one card at random. What is the probability you will draw:
+
+    a.  A face card (king, queen, or jack)?
+    b.  A card that is not a face card?
+    c.  An ace or a spade?
+    d.  A queen or a heart?
+    e.  A queen or a non-spade?
+
+#.  Suppose that $Pr(A)=1/3$, $Pr(B) = 1/4$, and that $A$ and $B$ are independent. What is $\p(\neg A \wedge \neg B)$?
+
+#. What is $\p(X \vee B)$ in the first version of the urn problem? (The first version is the one where we start with a fair coin flip to choose between Urn X and Urn Y, then draw one marble at random.)
+
+#. Recall Laplace's version of the urn puzzle: we select either Urn X or Urn Y at random, then we do two random draws from it, with replacement. What is $\p(X \vee BB)$?
+
+#. Suppose we add a third urn to Laplace's puzzle: Urn Z contains $2$ black marbles and $2$ white ones. We choose one of the three urns at random, and then do two random draws with replacement. What is $\p(BB)$ then?
+ 
+#. The Law of Total probability calculates $\p(A)$ by considering two cases,  $B$ and $\neg B$. Notice that $B$ and $\neg B$ form a [partition][Lessons Learned]: they are mutually exclusive and exhaustive possibilities.
+
+    Suppose we had a partition of three propositions instead: $B$, $C$, and $D$. Would the following extension of the Law of Total Probability hold then?
+    $$\p(A) = \p(A \given B)\p(B) + \p(A \given C)\p(C) + \p(A \given D)\p(D).$$
+    Justify your answer.
+
+#. Suppose there are two urns with the following contents:
+
+    - Urn I has 8 black balls, 2 white.
+    - Urn II has 2 black balls, 3 white.
+
+    A fair coin will be flipped. If it comes up heads, a ball will be drawn from Urn I at random. Otherwise a ball will be drawn from Urn II at random. What is the probability a black ball will be drawn?
+
+#. Suppose you have an ordinary deck of 52 cards. A card is drawn and is **not replaced**, then another card is drawn. Assume that on each draw all the cards then in the deck have an equal chance of being drawn.
+
+    a.  What is the probability of getting an ace on draw 1?
+    b.  What is the probability of a ten on draw 2 given ace on draw 1?
+    c.  What is the probability of an ace on draw 1 and a ten on draw 2?
+    d.  What is the probability of a ten on draw 1 and an ace on draw 2?
+    e.  What is the probability of an ace and a ten?
+    f.  What is the probability of 2 aces?
+
+#. The probability that George will study for the final is $4/5$. The probability he will pass given that he studies is $3/5$. The probability he will pass given that he does not study is $1/10$. What is the probability George will pass?
+
+#. Calculate each of the following probabilities:
+
+    a. $Pr(P) = 1/2$, $Pr(Q) = 1/2$, $Pr(P \wedge Q) = 1/8$. What is $Pr(P \vee Q)$?
+    b. $Pr(R) = 1/2, Pr(S) = 1/4, Pr(R \vee S) = 3/4$. What is $Pr(R \wedge S)$?
+    c. $Pr(U) = 1/2, Pr(T) = 3/4, Pr(U \wedge \neg T) = 1/8$. What is $Pr(U \vee \neg T)$?
+
+#. $Pr(P) = 1/2, Pr(Q) = 1/2$, and $P$ and $Q$ are independent.
+
+    a.  What is $Pr(P {\,\&\,}Q)$?
+    b.  Are $P$ and $Q$ mutually exclusive?
+    c.  What is $Pr(P \vee Q)$?
+
+#. Suppose $A$, $B$, and $C$ are all mutually exclusive, and they each have the same probability: $1/5$. What is $\p(\neg(A \wedge B) \wedge C)$?
+
+#. Researchers are studying the safety of drug X. They enroll 60 subjects in a study and give drug X to 35 of them. By the end of the study, 5 subjects have developed stomach cancer: 3 who were taking drug X, 2 who were not.
+
+    Draw a Venn diagram and use it to answer the following questions about a randomly selected subject:
+
+    a.  What is the probability they developed stomach cancer?
+    b.  What is the probability they developed stomach cancer given that they were taking drug X?
+    c.  What is the probability they developed stomach cancer given that they were not taking drug X?
+    d.  Based on this study, would you conclude that drug X increases or decreases the risk of stomach cancer?
+
+#. There is a room filled with two types of urns.
+
+    -   Type A urns contain 30 yellow marbles, 70 red.
+    -   Type B urns contain 20 green marbles, 80 yellow.
+
+    The two types of urn look identical, but 80% of them are Type A.
+
+    a.  You pick an urn at random and draw a marble from it at random. What is the probability the marble will be yellow?
+    b.  You look at the marble: it is yellow. What's the probability the urn is a Type B urn?
+
+#. Suppose $A$, $B$, and $C$ are independent of one another. Does it follow that $\p(B \given A  \wedge C) = \p(B)$? Justify your answer.
+
+#. Is the following combination of probabilities possible? $Pr(A) = 2/5$, $Pr(B) = 4/5$, and $Pr(A \vee B) = 3/5$. Justify your answer.
+
+#. Which of the following situations is impossible? Justify your answer.
+
+    a.  $\p(A) = 4/5$, $\p(B) = 1/5$, $\p(\neg A \wedge B) = 3/5$.
+    b.  $\p(\neg X) = 1/3$, $\p(\neg Y) = 2/3$, $\p(X \wedge Y) = 0$.
+
+#. If $Pr(A)=0$, what is $\p(A \given B)$? Justify your answer.
+
+#. Do Exercise 2 from p. 67 of Hacking.
+
+#. Do Exercise 3 from p. 67 of Hacking.
+
+#. If $A$ and $B$ are logically equivalent, what is $\p(A \given B)$? Justify your answer.
+
+#. Suppose $A$, $B$, and $C$ all have the same probability, namely $1/4$. Suppose they are also independent of one another. What is $\p(\neg A \vee \neg B \vee \neg C)$?
+
+    Hint: $\neg A \vee \neg B \vee \neg C$ is logically equivalent to $\neg (A \wedge B \wedge C)$. Why?
+
+#. If $\p(A) = 1/2$ and $\p(B) = 3/5$, are $A$ and $B$ mutually exclusive? Justify your answer.
+
+#. Suppose $\p(A) = 1/4$, $\p(B) = 1/3$, and $A$ and $B$ are independent. What is $\p(A \vee (B \wedge \neg A))$?
+
+#. Suppose $A$ logically entails $C$, and $A$ and $B$ are independent. If $\p(A) = 1/7$, $\p(B) = 1/3$, and $\p(C)=1/3$, what is $\p((A \wedge \neg B) \vee \neg C)$?
+
+#. If $A$ and $B$ are mutually exclusive, must the following hold?
+    $$\p(A \vee B \given C) = \p(A \given C) + \p(B \given C).$$
+    Assume the conditional probabilities are all well-defined, and justify your answer.
+
+    Hint: apply the definition of conditional probability and use the following fact: $(A \vee B) \wedge C$ is logically equivalent to $(A \wedge C) \vee (B \wedge C)$.
+
+#.  Prove that if $A$ and $B$ are mutually exclusive, then
+    $$\p(A \given A \vee B) = \frac{ \p(A) }{ \p(A) + \p(B) }.$$
+
+#.  If $\p(C \given B \wedge A) = \p(C \given B)$, does this follow?
+    $$\p(A \given B \wedge C) = Pr(A \given B).$$
+    Assume all conditional probabilities are well-defined, and justify your answer.
+
+#. Justify the claim from [Chapter 6][Declaring Independence] that independence extends to negations: if $A$ is independent of $B$, then it's also independent of $\neg B$ (provided $\p(\neg A) > 0$).
+
+    Warning: this one is hard. I suggest starting with the equation:
+    $$ \p(A \wedge B) = \p(A) \p(B). $$
+    Then use the Negation Rule which tells us:
+    $$ \p(B) = 1 - \p(\neg B). $$
+    And use the Addition Rule to get:
+    $$ \p(A \wedge B) = \p(A) - \p(A \wedge \neg B).$$ 
