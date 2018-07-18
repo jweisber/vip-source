@@ -110,7 +110,6 @@ There are alternative mathematical systems of probability, where conditional pro
 In such cases we say that $\p(A \given B)$ is *undefined*. It's not zero, or some special number. It just isn't a number.
 
 
-
 ## Conditional Probability & Trees
 
 We already encountered conditional probabilities informally, when we used a tree diagram to solve [the Monty Hall problem][The Monty Hall Problem].
@@ -242,6 +241,53 @@ When we write $\p(A \given B)$, we are discussing the probability of $A$. But we
 ```
 
 
+## Declaring Independence
+
+We explained independence informally back in [Chapter 4][Independence]: $A$ and $B$ are independent if the truth of one doesn't change the probability of the other. Now that we've formally defined conditional probability, we can formally define independence too.
+
+Independence
+
+:    $A$ is independent of $B$ if $\p(A \given B) = \p(A)$ and $\p(A) > 0$.
+
+In other words, they're independent if $A$'s probability is the same after $B$ is given as it was before (and not just for the silly reason that there was no chance of $A$ being true to begin with).
+
+Now we can establish three useful facts about independence.
+
+`r newthought("The first")` is summed up in the mantra "independence means multiply". This actually has two parts.
+
+We already learned the first part with the Multiplication Rule: if $A$ is independent of $B$, then $\p(A \wedge B) = \p(A)\p(B)$. Except now we can see why this rule holds, using the definition of conditional probability and some algebra:
+$$
+  \begin{aligned}
+    \p(A \given B)      &= \frac{\p(A \wedge B)}{\p(B)} & \mbox{by definition}\\
+    \p(A \given B)\p(B) &= \p(A \wedge B)               & \mbox{by algebra}\\
+    \p(A)\p(B)          &= \p(A \wedge B)               & \mbox{by independence}.
+  \end{aligned}
+$$
+
+The second part of the "independence means multiply" mantra is new though. It basically says that the reverse also holds. As long as $\p(A) > 0$ and $\p(B) > 0$, if $\p(A \wedge B) = \p(A)\p(B)$, then $A$ is independent of $B$.
+
+Bottom line: as long as there are no zeros to worry about, independence is the same thing as $\p(A \wedge B) = \p(A)\p(B)$.
+
+`r newthought("Second,")` independence is symmetric. If $A$ is independent of $B$ then $B$ is independent of $A$. Informally speaking, if $B$ makes no difference to $A$'s probability, then $A$ makes no difference to $B$'s probability.
+
+This is why we often say "$A$ and $B$ are independent", without specifying which is independent of which. Since independence goes both ways, they're automatically independent of each other.
+
+`r newthought("Third,")` independence extends to negations. If $A$ is independent of $B$, then it's also independent of $\neg B$ (as long as $\p(\neg B) > 0$, so that $\p(A \given \neg B)$ is well-defined).
+
+Notice, this also means that if $A$ is independent of $B$, then $\neg A$ is independent of $\neg B$ (as long as $\p(\neg A) > 0$).
+
+`r newthought("So far")` our definition of independence only applies to two propositions. We can extend it to three as follows:
+
+Three-way Independence
+
+:    $A$, $B$, and $C$ are independent if
+
+    i. $A$ is independent of $B$, $A$ is independent of $C$, and $B$ is independent of $C$, and
+    ii. $\p(A \wedge B \wedge C) = \p(A)\p(B)\p(C)$.
+
+In other words, a trio of propositions is independent if each pair of them is independent, and the multiplication rule applies to their conjunction. The same idea can be extended to define independence for four propositions, five, etc.
+
+
 ## Exercises {-}
 
 #. Answer each of the following:
@@ -305,4 +351,10 @@ When we write $\p(A \given B)$, we are discussing the probability of $A$. But we
 
 #. Is the following statement true or false: if $A$ and $B$ are mutually exclusive, then $Pr(A \vee B \given C) = Pr(A \given C) + Pr(B \given C)$. Justify your answer.
 
-    
+#. Justify the second part of the "independence means multiply" mantra: if $\p(A) > 0$, $\p(B) > 0$, and $\p(A \wedge B) = \p(A) \p(B)$, then $A$ is independent of $B$.
+
+    Hint: start by supposing $\p(A) > 0$, $\p(B) > 0$, and $\p(A \wedge B) = \p(A)\p(B)$. Then apply some algebra and the definition of conditional probability.
+
+#. Justify the claim that independence is symmetric: if $A$ is independent of $B$, then $B$ is independent of $A$.
+
+    Hint: start by supposing that $A$ is independent of $B$. Then write out $\p(A \given B)$ and apply the definition of conditional probability.
