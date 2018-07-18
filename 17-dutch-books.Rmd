@@ -56,7 +56,7 @@ In psychology experiments, almost everyone chooses (2). But that can't be right,
 
 In general, the probability of a conjunction $B \wedge F$ cannot be greater than the probability of $B$. There are simply more possibilities where $B$ is true than there are possibilities where *both* $B$ *and* $F$ are true: 
 
-```{r fig.cap="Bank tellers and feminist bank tellers"}
+```{r echo=FALSE, fig.cap="Bank tellers and feminist bank tellers"}
 euler_diagram <- function(propositions) {
     ggplot(data = propositions) + theme_void() + coord_fixed() +
         xlim(-3,3) + ylim(-2,2) +
@@ -98,10 +98,10 @@ And yet, they'll lose money no matter what. Notice how they've already paid us m
 
 In general, anyone who violates any law of probability can be suckered via a Dutch book. If you obey the laws of probability however, it's impossible to have a Dutch book made against you. That's why the laws of probability are objectively correct, according to Bayesians.
 
-```{r fig.margin=TRUE, fig.cap="Frank Ramsey first noticed the connection between Dutch books and the laws of probability in the 1920s."}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Frank Ramsey first noticed the connection between Dutch books and the laws of probability in the 1920s."}
 knitr::include_graphics("img/marg_fig.png")
 ```
-```{r fig.margin=TRUE, fig.cap="Bruno de Finetti first proved that the laws of probability are the only safegaurd against Dutch books in the 1930s."}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Bruno de Finetti first proved that the laws of probability are the only safegaurd against Dutch books in the 1930s."}
 knitr::include_graphics("img/marg_fig.png")
 ```
 

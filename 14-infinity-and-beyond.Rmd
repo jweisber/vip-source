@@ -31,7 +31,7 @@ And doesn't that mean a fair price for the game would be infinity dollars? So ev
 
 `r newthought("Visually")`, the St. Petersburg game looks something like the following. We can't show every possible outcome, because the payoffs get larger and larger without limit. So we have to cut things of at some point. But we can get the idea by diagramming, say, the first five possible outcomes:
 
-```{r fig.cap="The St. Petersburg game"}
+```{r echo=FALSE, fig.cap="The St. Petersburg game"}
 st_petersburg <- function(x) {
   case_when(
     x <= 1/2   ~ 2,
@@ -61,10 +61,10 @@ First, consider: would you be willing to risk your life to play the St. Petersbu
 
 Second, even if the game had a finite limit---let's suppose it's 100 flips---would you be willing to pay $\$100$ to play? The chance you'd make any money at all is less than 1%.
 
-```{r fig.margin=TRUE, fig.cap="Nicolaus Bernoulli"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Nicolaus Bernoulli"}
 knitr::include_graphics("img/marg_fig.png")
 ```
-```{r fig.margin=TRUE, fig.cap="Daniel Bernoulli"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Daniel Bernoulli"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
@@ -76,7 +76,7 @@ His solution: replace monetary value with *real* value, i.e. *utility*. Remember
 
 What is the real value of gaining $\$x$ then? What is $\u(\$x)$? Bernoulli proposed that utility increases "logarithmically" with money. In terms of dollars, $\u(\$x)=\log(\$x)$:
 
-```{r fig.cap="The diminishing value of additional money"}
+```{r echo=FALSE, fig.cap="The diminishing value of additional money"}
 log_utility <- function(x) {
   log(x + 1)
 }
@@ -126,10 +126,10 @@ But others don't find this response plausible. There may be a limit on how much 
 
 ## Pascal's Wager
 
-```{r fig.margin=TRUE, fig.cap="Blaise Pascal"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Blaise Pascal"}
 knitr::include_graphics("img/marg_fig.png")
 ```
-```{r fig.margin=TRUE, fig.cap="Pierre de Fermat"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Pierre de Fermat"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 

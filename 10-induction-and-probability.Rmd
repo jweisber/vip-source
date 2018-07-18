@@ -100,11 +100,11 @@ So the better $H$ accounts for the evidence, the larger $\p(E \given H)$ will be
 
 What about the last term in Bayes' theorem though, the denominator $\p(E)$? It corresponds to a virtue of good explanations too!
 
-```{r fig.margin=TRUE, fig.cap="The hammer/feather experiment performed on the moon in 1971"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The hammer/feather experiment performed on the moon in 1971"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
-```{r fig.margin=TRUE, fig.cap="The hammer/feather experiment performed in a vaccuum chamber on Earth"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The hammer/feather experiment performed in a vaccuum chamber on Earth"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 

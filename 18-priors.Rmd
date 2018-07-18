@@ -73,7 +73,7 @@ $$
 
 ## The Continuous Principle of Indifference
 
-```{r fig.margin=TRUE, fig.cap="The continuous roulette wheel"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The continuous roulette wheel"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
@@ -110,7 +110,7 @@ $$
 $$
 But the answer should have been the same as before! It's the same questions as before, just rephrased. If the sides are between $1$ and $2$ inches long, that's the same as the area being between $1$ in$^2$ and $4$ in$^2$.
 
-```{r fig.margin=TRUE, fig.cap="Some history on Bertrand's paradox: Lorem ipsum dolor sit amet..."}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Some history on Bertrand's paradox: Lorem ipsum dolor sit amet..."}
 knitr::include_graphics("img/marg_fig.png")
 ```
 

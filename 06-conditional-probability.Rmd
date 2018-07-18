@@ -16,7 +16,7 @@ But how do we calculate conditional probabilities?
 
 ## Calculating Conditional Probability
 
-```{r fig.show='hold', fig.margin=TRUE, fig.cap="Conditional probability in a fair die roll"}
+```{r echo=FALSE, fig.show='hold', fig.margin=TRUE, fig.cap="Conditional probability in a fair die roll"}
 
 die1 <- readPNG("img/die/die1.png") %>% rasterGrob()
 die2 <- readPNG("img/die/die2.png") %>% rasterGrob()
@@ -63,7 +63,7 @@ In fact, this formula is our official definition for the concept of conditional 
 
 In terms of an Euler diagram, the definition of conditional probability compares the size of the $A \wedge B$ region to the size of the whole $B$ region:
 
-```{r fig.cap="Conditional probability is the size of the $A \\wedge B$ region compared to the entire $B$ region."}
+```{r echo=FALSE, fig.cap="Conditional probability is the size of the $A \\wedge B$ region compared to the entire $B$ region."}
 
 propositions <- data.frame(
     cirx = c(-.75   , .75),
@@ -124,7 +124,7 @@ For example, suppose there are two urns of coloured marbles:
 
 I flip a fair coin to decide which urn to draw from, heads for Urn B and tails for Urn W. Then I draw one marble at random.
 
-```{r fig.cap="Tree diagram for an urn problem"}
+```{r echo=FALSE, fig.cap="Tree diagram for an urn problem"}
 df_nodes <- rbind(
   data.frame(text = "H", x = .5, y = .75),
   data.frame(text = "T", x = .5, y = .25),  
@@ -194,7 +194,7 @@ This calculation relies on the fact that $R \wedge \neg B$ is logically equivale
 
 `r newthought("Suppose")` a university has 10,000 students, and each student is studying under one of four broad headings: Humanities, Social Sciences, STEM, or Professional. Within each of these categories, the number of students with an average grade of A, B, C, or D is as follows:
 
-```{r echo=FALSE}
+```{r echo=FALSE, echo=FALSE}
 df <- data.frame(
     `Humanities`      = c(200, 500, 250, 50),
     `Social Sciences` = c(600, 800, 400, 200),

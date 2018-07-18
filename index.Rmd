@@ -5,9 +5,8 @@ author: "Jonathan Weisberg"
 
 # Preface {-}
 
-```{r setup, include = FALSE, cache = FALSE}
+```{r echo=FALSE, setup, include = FALSE, cache = FALSE}
 knitr::opts_chunk$set(
-  echo = FALSE,
   cache = TRUE,
   dev.args = list(bg = "transparent")
 )

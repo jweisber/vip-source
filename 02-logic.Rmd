@@ -104,7 +104,7 @@ One way to distinguish propositions from other kinds of sentences is: propositio
 
 There is no way for both of these propositions to be true, and we can visualize this relationship in a diagram:
 
-```{r fig.cap="Mutually exclusive propositions"}
+```{r echo=FALSE, fig.cap="Mutually exclusive propositions"}
 
 euler_diagram <- function(propositions) {
     ggplot(data = propositions) + theme_void() + coord_fixed() +
@@ -136,7 +136,7 @@ In contrast, these two propositions are not mutually exclusive:
 
 When propositons are not mutually exclusive, we say they are ***compatible***. Compatible propositions overlap:
 
-```{r fig.cap="Compatible propositions"}
+```{r echo=FALSE, fig.cap="Compatible propositions"}
 propositions <- data.frame(
     cirx = c(-.5   , .5),
     ciry = c(0     , 0),
@@ -151,7 +151,7 @@ euler_diagram(propositions)
 
 The region where the circles overlap represents the possible scenarios where both propositions are true (the "$A \wedge B$ region").
 
-```{r fig.cap="Leonhard Euler (1707–1783)", fig.margin = TRUE, out.width = '60%'}
+```{r echo=FALSE, fig.cap="Leonhard Euler (1707–1783)", fig.margin = TRUE, out.width = '60%'}
 knitr::include_graphics("img/euler.png")
 ```
 
@@ -171,7 +171,7 @@ Therefore, Confucius was born.
 
 In this case we say that the first proposition ***logically entails*** the second. In terms of an Euler diagram:
 
-```{r fig.cap="Logical entailment"}
+```{r echo=FALSE, fig.cap="Logical entailment"}
 propositions <- data.frame(
     cirx = c(0     , 0),
     ciry = c(0     , 0),
@@ -194,7 +194,7 @@ What if an argument has multiple premises? For example:
 
 This argument is valid, and the diagram might look like this:
 
-```{r fig.cap="A valid argument with two premises"}
+```{r echo=FALSE, fig.cap="A valid argument with two premises"}
 propositions <- data.frame(
     cirx = c(-.75  , .75, 0),
     ciry = c(0     , 0  , 0),
@@ -210,7 +210,7 @@ Notice how the $A \wedge B$ region lies entirely within the $C$ circle. This ref
 
 In contrast, an invalid argument would have a diagram like this:
 
-```{r fig.cap="An invalid argument with two premises"}
+```{r echo=FALSE, fig.cap="An invalid argument with two premises"}
 propositions <- data.frame(
     cirx = c(-.75  , .75   , 0),
     ciry = c(-.5   , -.5   , 0.45),
@@ -246,7 +246,7 @@ These possibilities aren't very likely, of course. So the argument is strong, ev
 
 In terms of an Euler diagram then, the premise circle isn't contained entirely within the conclusion circle. We have to leave some room for the possibility that the premise is true and the conclusion false. But we can still convey that this possibility has only a very slight chance of being true, by making it slim:
 
-```{r fig.cap="A strong argument"}
+```{r echo=FALSE, fig.cap="A strong argument"}
 propositions <- data.frame(
     cirx = c(-.5   , .5),
     ciry = c(0     , 0),

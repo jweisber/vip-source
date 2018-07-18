@@ -1,6 +1,6 @@
 # Bayes' Theorem
 
-```{r fig.margin = TRUE, fig.cap="Psychologists Daniel Kahneman and Amos Tversky"}
+```{r echo=FALSE, fig.margin = TRUE, fig.cap="Psychologists Daniel Kahneman and Amos Tversky"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
@@ -21,7 +21,7 @@ How could the right answer be so low when the witness is 80% reliable? The short
 
 As usual, it helps to look at a diagram. Imagine there are just 100 cabs in town, 85 of them blue and the other 15 green.
 
-```{r fig.cap="Green cab/blue cab"}
+```{r echo=FALSE, fig.cap="Green cab/blue cab"}
 knitr::include_graphics("img/fig.png")
 ```
 
@@ -93,7 +93,7 @@ This is a perfectly good and helpful way to think about Bayes' theorem. But it's
 
 In any case, Bayes' theorem comes up so often that it's good to memorize the formula itself. For which the following visualization is probably about as helpful as it gets:
 
-```{r fig.cap="Bayes' theorem displayed at the offices of HP Autonomy in Cambridge, UK"}
+```{r echo=FALSE, fig.cap="Bayes' theorem displayed at the offices of HP Autonomy in Cambridge, UK"}
 knitr::include_graphics("img/neon_bayes.png")
 ```
 

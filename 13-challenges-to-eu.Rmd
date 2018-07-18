@@ -63,10 +63,10 @@ $$
 $$
 Notice how both formulas are exactly the same. The difference in expected value between the first two options is exactly the same as the difference in value between the second two options. Which means if you're making decisions using the expected utility rule, you can't prefer the A-option in one decision and the B-option in the other.
 
-```{r fig.margin=TRUE, fig.cap="Maurice Allais"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Maurice Allais"}
 knitr::include_graphics("img/marg_fig.png")
 ```
-```{r fig.margin=TRUE, fig.cap="Leonard Savage"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Leonard Savage"}
 knitr::include_graphics("img/marg_fig.png")
 ```
 
@@ -153,7 +153,7 @@ At the same time, most people choose 2B over 2A, and for a similar reason. With 
 
 Like in the Allais paradox, this popular combination of choices violates the expected utility rule. The calculation that shows this is pretty similar to the one we did with Allais (so we won't rehearse it here).
 
-```{r fig.margin=TRUE, fig.cap="Daniel Ellsberg (b. 1931). Ellsberg is most famous as the leaker of the Pentagon Papers, depicted in the 2017 movie *The Post*."}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Daniel Ellsberg (b. 1931). Ellsberg is most famous as the leaker of the Pentagon Papers, depicted in the 2017 movie *The Post*."}
 knitr::include_graphics("img/marg_fig.png")
 ```
 

@@ -40,7 +40,7 @@ The Multiplication Rule
 
 :    If $A$ and $B$ are independent, then $Pr(A \,\&\, B) = Pr(A) \times Pr(B)$.
 
-```{r}
+```{r echo=FALSE}
 # TODO: add E&~H-style diagram to motivate the rule
 ```
 
@@ -75,7 +75,7 @@ The Addition Rule
 
 :    If $A$ and $B$ are mutually exclusive, then $Pr(A \vee B) = Pr(A) + Pr(B)$.
 
-```{r}
+```{r echo=FALSE}
 # TODO: add Euelr diagram motivating the rule
 ```
 
@@ -108,7 +108,7 @@ Only use the Addition Rule on mutually exclusive propositions.
 
 ## Exclusivity vs. Independence
 
-```{r fig.margin=TRUE, fig.cap="Mutually exclusive propositions don't overlap"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Mutually exclusive propositions don't overlap"}
 
 euler_diagram <- function(propositions) {
     ggplot(data = propositions) + theme_void() + coord_fixed() +
@@ -133,7 +133,7 @@ euler_diagram(propositions)
 
 `r newthought("Exclusivity and")` independence can be hard to keep straight at first. One way to keep track of the difference is to remember that mutually exclusive propositions don't overlap, but independent propositions usually do. Independence means the truth of one proposition doesn't affect the chances of the other. So if you find out that $A$ is true, $B$ still has the same chance of being true. Which means there have to be some $B$ possibilities within the $A$ circle (unless the probability of $A$ was zero to start with).
 
-```{r fig.margin=TRUE, fig.cap="Independent propositions do overlap (unless one of them has zero probability)."}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Independent propositions do overlap (unless one of them has zero probability)."}
 propositions <- data.frame(
     cirx = c(-.5   , .5),
     ciry = c(0     , 0),
@@ -155,7 +155,7 @@ Another marker that may help you keep these two concepts straight: exclusivity i
 
 ## Tautologies, Contradictions, and Equivalent Propositions
 
-```{r fig.margin=TRUE, fig.cap="The Tautology Rule. Every point falls in either the $A$ region or the $\\neg A$ region, so $\\p(A \\vee \\neg A) = 1$."}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The Tautology Rule. Every point falls in either the $A$ region or the $\\neg A$ region, so $\\p(A \\vee \\neg A) = 1$."}
 ggplot() + theme_void() + coord_fixed() +
   xlim(-3,3) + ylim(-2,2) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=1),
@@ -185,7 +185,7 @@ For example, $A \wedge \neg A$ is a contradiction, so $\p(A \wedge \neg A) = 0$.
 
 `r newthought("Equivalent propositions")` are true under exactly the same circumstances (and false under exactly the same circumstances). So they have the same chance of being true (ditto false).
 
-```{r fig.margin=TRUE, fig.cap="The Equivalence Rule. The $A \\vee B$ region is identical to the $B \\vee A$ region, so they have the same probability."}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The Equivalence Rule. The $A \\vee B$ region is identical to the $B \\vee A$ region, so they have the same probability."}
 propositions <- data.frame(
     cirx = c(-.75   , .75),
     ciry = c(0      , 0),
@@ -224,7 +224,7 @@ In this way of doing things, rather than consider the probability that a proposi
 
 If you're used to seeing probability presented this way, there's an easy way to translate into logic-ese. For any event $E$, there's the corresponding proposition that event $E$ occurs. And you can translate the usual set operations into logic as follows:
 
-```{r fig.cap="Compatible propositions"}
+```{r echo=FALSE, fig.cap="Compatible propositions"}
 df <- data.frame(
     Events = c("$E^c$", "$E \\cap F$", "$E \\cup F$"),
     Propositions = c("$\\sim\\! A$", "$A \\,\\&\\, B$", "$A \\vee B$")
