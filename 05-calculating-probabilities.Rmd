@@ -156,15 +156,6 @@ Another marker that may help you keep these two concepts straight: exclusivity i
 ## Tautologies, Contradictions, and Equivalent Propositions
 
 ```{r fig.margin=TRUE, fig.cap="The Tautology Rule. Every point falls in either the $A$ region or the $\\neg A$ region, so $\\p(A \\vee \\neg A) = 1$."}
-propositions <- data.frame(
-    cirx = 0,
-    ciry = 0,
-    r    = 1.5,
-    labx = 0,
-    laby = 0,
-    labl = "A"
-)
-
 ggplot() + theme_void() + coord_fixed() +
   xlim(-3,3) + ylim(-2,2) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=1),
