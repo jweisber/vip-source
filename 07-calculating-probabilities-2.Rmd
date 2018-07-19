@@ -516,6 +516,7 @@ You can also use a tree diagram. Again, the calculation will be the same. But th
 ```{r echo=FALSE}
 # TODO: improve ordering of exercises, so they're sensibly graded from easy to difficult
 # TODO: alter and attribute exercises from Skyrms
+# TODO: replace Exercises 2 & 3 from p. 67 of Hacking
 ```
 
 #. Suppose you have an ordinary deck of $52$ playing cards, and you draw one card at random. What is the probability you will draw:
