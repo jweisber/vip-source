@@ -288,7 +288,7 @@ Three-way Independence
 In other words, a trio of propositions is independent if each pair of them is independent, and the multiplication rule applies to their conjunction. The same idea can be extended to define independence for four propositions, five, etc.
 
 
-## Exercises {-}
+## Exercises {-#ch6ex}
 
 #. Answer each of the following:
 
