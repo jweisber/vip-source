@@ -159,8 +159,8 @@ Another marker that may help you keep these two concepts straight: exclusivity i
 ggplot() + theme_void() + coord_fixed() +
   xlim(-3,3) + ylim(-2,2) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=1),
-        panel.background = element_rect(fill = "steelblue")) +
-  geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), fill = "firebrick") +
+        panel.background = element_rect(fill = rightcolour)) +
+  geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), fill = leftcolour) +
   geom_text(aes(x = 0, y = 0, label = "A"), 
             fontface = "italic", size = 10, family=c("serif")) +
   geom_text(aes(x = -2, y = 1.5, label = "~A"), 
@@ -173,7 +173,7 @@ The Tautology Rule
 
 :    $\p(T) = 1$ for every tautology $T$.
 
-For example, $A \vee \neg A$ is a tautology, so $\p(A \vee \neg A) = 1$. In terms of an Euler diagram, the $A$ and $\neg A$ regions together take up the whole diagram. To put it a bit colourfully, $\p(A \vee \neg A) = \color{firebrick}{\blacksquare} + \color{steelblue}{\blacksquare} = 1$.
+For example, $A \vee \neg A$ is a tautology, so $\p(A \vee \neg A) = 1$. In terms of an Euler diagram, the $A$ and $\neg A$ regions together take up the whole diagram. To put it a bit colourfully, $\p(A \vee \neg A) = \color{leftcolour}{\blacksquare}\color{black}{} + \color{rightcolour}{\blacksquare}\color{black}{} = 1$.
 
 `r newthought("The flipside of a tautology is a contradiction,")` a proposition that can't possibly be true. So it has probability 0.
 
@@ -199,7 +199,7 @@ ggplot(data = propositions) +
   theme_void() + coord_fixed() +
   xlim(-3,3) + ylim(-2,2) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1)) +
-  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), fill = "firebrick") +
+  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), fill = leftcolour) +
   geom_circle(aes(x0 = cirx, y0 = ciry, r = r), fill = "transparent") +
   geom_text(aes(x = labx, y = laby, label = labl), 
             fontface = "italic", size = 10, family = "serif")

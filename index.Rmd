@@ -6,7 +6,7 @@ author: "Jonathan Weisberg"
 
 # Preface {-}
 
-```{r echo=FALSE, setup, include = FALSE, cache = FALSE}
+```{r setup, echo=FALSE, include=FALSE, cache=FALSE}
 knitr::opts_chunk$set(
   cache = TRUE,
   dev.args = list(bg = "transparent")
@@ -18,7 +18,12 @@ library(ggforce)
 library(png)
 library(grid)
 library(emoGG)
+
 theme_set(theme_minimal())
+
+leftcolour <- rgb(228, 6, 19, maxColorValue = 255)
+rightcolour <- rgb(0, 92, 169, maxColorValue = 255)
+middlecolour <- rgb(114, 49, 94, maxColorValue = 255)
 ```
 
 This book is designed for introductory philosophy courses on probability and inductive logic. It is based on a typical such course I teach at the University of Toronto, where we offer "Probability & Inductive Logic" in the second year, alongside the usual deductive logic intro.$\,$

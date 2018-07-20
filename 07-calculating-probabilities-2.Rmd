@@ -19,7 +19,7 @@ In this chapter we'll learn new, more powerful rules for $\vee$ and $\wedge$. Bu
 ggplot() + theme_void() + coord_fixed() +
   xlim(-3,3) + ylim(-2,2) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=1),
-        panel.background = element_rect(fill = "firebrick")) +
+        panel.background = element_rect(fill = leftcolour)) +
   geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), fill = "white") +
   geom_text(aes(x = 0, y = 0, label = "A"), 
             fontface = "italic", size = 10, family=c("serif")) +
@@ -53,49 +53,37 @@ The General Addition Rule
 This rule always applies, whether $A$ and $B$ are mutually exclusive or not.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="The General Addition Rule in an Euler diagram."}
-
-propositions <- data.frame(
-    cirx = c(-.75   , .75),
-    ciry = c(0      , 0),
-    r    = c(1.5    , 1.5),
-    labx = c(-2.25  , 2.25),
-    laby = c(1      , 1),
-    labl = c("A", "B")
-)
-
-ggplot(propositions) + 
-  theme_void() + coord_fixed() +
+ggplot() + 
+  coord_fixed() + theme_void() +
   xlim(-3,3) + ylim(-2,2) +
-  theme(panel.border = element_rect(colour = "black", fill = NA, size = 1)) +
-  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), data = propositions[2,], fill = "firebrick", alpha = .75) +
-  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), data = propositions[1,], fill = "steelblue", alpha = .75) +
-  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), fill = "transparent") +
-  geom_text(aes(x = labx, y = laby, label = labl), 
-            fontface = "italic", size = 8, family = "serif")
+  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.5), fill = leftcolour) +  
+  geom_circle(aes(x0 = .75, y0 = 0, r = 1.5), fill = rightcolour) +  
+  geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
+              fill = middlecolour, colour = "black") +
+  geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
+            fontface = "italic", size = 10, family = "serif") +
+  theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 
 To understand the rule, consider an Euler diagram where $A$ and $B$ are not mutually exclusive. In terms of colour, the size of the $A \vee B$-region is:
 $$ 
-  \definecolor{left}{RGB}{106,146,187}
-  \definecolor{middle}{RGB}{108,122,158}
-  \definecolor{right}{RGB}{187,104,105}
-  \color{left}{\blacksquare}\color{black}{}
+  \color{leftcolour}{\blacksquare}\color{black}{}
     \,+\,
-  \color{middle}{\blacksquare}\color{black}{}
+  \color{middlecolour}{\blacksquare}\color{black}{}
     \,+\,
-  \color{right}{\blacksquare}\color{black}{}.
+  \color{rightcolour}{\blacksquare}\color{black}{}.
 $$
 Which is the same as:
 $$
-  (\color{left}{\blacksquare}\color{black}{}
+  (\color{leftcolour}{\blacksquare}\color{black}{}
     \,+\,
-  \color{middle}{\blacksquare}\color{black}{})
+  \color{middlecolour}{\blacksquare}\color{black}{})
     \,+\, 
-  (\color{right}{\blacksquare}\color{black}{}
+  (\color{rightcolour}{\blacksquare}\color{black}{}
     \,+\,
-  \color{middle}{\blacksquare}\color{black}{}) 
+  \color{middlecolour}{\blacksquare}\color{black}{}) 
     \,-\,
-  \color{middle}{\blacksquare}\color{black}{}.
+  \color{middlecolour}{\blacksquare}\color{black}{}.
 $$
 In algebraic terms this is:
 $$ \p(A) + \p(B) - \p(A \wedge B).$$
@@ -117,40 +105,47 @@ That's why we call the new rule the *General* Addition Rule. It applies in gener
 `r newthought("A tree diagram")` also works to explain the General Addition Rule. Consider this diagram, where we start with branches for $A$ and $\neg A$, then subdivide into branches for $B$ and $\neg B$:
 
 ```{r echo=FALSE, fig.cap="Tree diagram with the three $A \\vee B$ leaves marked"}
-df_nodes <- rbind(
-  data.frame(text = "A", x = .35, y = .75),
-  data.frame(text = "~ A", x = .35, y = .25),  
-  data.frame(text = "B", x = .725,  y = .9),  
-  data.frame(text = "~ B", x = .725,  y = .6),
-  data.frame(text = "B", x = .725,  y = .4),
-  data.frame(text = "~ B", x = .725,  y = .1)
+nodes <- rbind(
+  data.frame(text = "A",   x = .39, y = 5/6),
+  data.frame(text = "~ A", x = .39, y = 1/6),  
+  data.frame(text = "B",   x = .78, y = 1  ),  
+  data.frame(text = "~ B", x = .78, y = 2/3),
+  data.frame(text = "B",   x = .78, y = 1/3),
+  data.frame(text = "~ B", x = .78, y = 0  )
 )
 
-df_segments <- rbind(
-  data.frame(x1 = 0, y1 = .5, x2 = .3, y2 = .75),
-  data.frame(x1 = 0, y1 = .5, x2 = .3, y2 = .25),  
-  data.frame(x1 = .4, y1 = .75, x2 = .68, y2 = .9),  
-  data.frame(x1 = .4, y1 = .75, x2 = .68, y2 = .6),
-  data.frame(x1 = .4, y1 = .25, x2 = .68, y2 = .4),
-  data.frame(x1 = .4, y1 = .25, x2 = .68, y2 = .1)
+segments <- rbind(
+  data.frame(x1 = 0,   y1 = .5,  x2 = .36, y2 = 5/6 ),
+  data.frame(x1 = 0,   y1 = .5,  x2 = .36, y2 = 1/6 ),  
+  data.frame(x1 = .42, y1 = 5/6, x2 = .75, y2 = 1   ),  
+  data.frame(x1 = .42, y1 = 5/6, x2 = .75, y2 = 2/3 ),
+  data.frame(x1 = .42, y1 = 1/6, x2 = .75, y2 = 1/3 ),
+  data.frame(x1 = .42, y1 = 1/6, x2 = .75, y2 = 0   )
 )
 
-df_leaf_labels <- rbind(
-  data.frame(text = "Pr(A&B)", x = .875, y = .9),
-  data.frame(text = "Pr(A&~B)", x = .875, y = .6),
-  data.frame(text = "Pr(~A&B)", x = .875, y = .4),
-  data.frame(text = "Pr(~A&~B)", x = .875, y = .1)
+leaf_labels <- rbind(
+  data.frame(text = "Pr(A&B)",   x = .9, y = 1),
+  data.frame(text = "Pr(A&~B)",  x = .9, y = 2/3),
+  data.frame(text = "Pr(~A&B)",  x = .9, y = 1/3),
+  data.frame(text = "Pr(~A&~B)", x = .9, y = 0)
 )
 
-ggplot() + coord_fixed() +
-  geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) +
-  geom_text(aes(x, y, label = text), data = df_leaf_labels, fontface = "italic") + 
-  geom_emoji(aes(x = 1, y = .9), emoji = "1f60e") +
-  geom_emoji(aes(x = 1, y = .6), emoji = "1f60d") +
-  geom_emoji(aes(x = 1, y = .4), emoji = "1f913") +
+shades <- readPNG("img/emoji_shades.png") %>% rasterGrob()
+hearts <- readPNG("img/emoji_hearteyes.png") %>% rasterGrob()
+nerd <- readPNG("img/emoji_nerd.png") %>% rasterGrob()
+
+ggplot() +
+  theme_void() +
   xlim(0, 1) + ylim(0, 1) +
-  theme_void()
+  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) +
+  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "italic") + 
+  annotation_custom(shades, xmin = 1 - 1/40, xmax = 1 + 1/40, 
+                            ymin = 1 - 1/40, ymax = 1 + 1/40) +
+  annotation_custom(hearts, xmin = 1 - 1/40, xmax = 1 + 1/40, 
+                            ymin = 2/3 - 1/40, ymax = 2/3 + 1/40) +
+  annotation_custom(nerd, xmin = 1 - 1/40, xmax = 1 + 1/40, 
+                          ymin = 1/3 - 1/40, ymax = 1/3 + 1/40)
 ```
 
 There are three leaves where $A \vee B$ is true, marked with emoji. If we add $\p(A) + \p(B)$, we're adding the two leaves where $A$ is true (😎,😍) to the two leaves where $B$ is true (😎,🤓). So we've double-counted the $A \wedge B$ leaf (😎). To get $\p(A \vee B)$ then, we have to subtract one of those $A \wedge B$ leaves (😎).
@@ -187,47 +182,47 @@ So we now have two rules for $\wedge$. The first one only applies when the two s
 I flip a fair coin to decide which urn to draw from, heads for Urn X and tails for Urn Y. Then I draw one marble at random.
 
 ```{r echo=FALSE, fig.cap="Tree diagram for an urn problem"}
-df_nodes <- rbind(
-  data.frame(text = "H", x = .5, y = .75),
-  data.frame(text = "T", x = .5, y = .25),  
-  data.frame(text = "B", x = 1,  y = .9),  
-  data.frame(text = "W", x = 1,  y = .6),
-  data.frame(text = "B", x = 1,  y = .4),
-  data.frame(text = "W", x = 1,  y = .1)
+nodes <- rbind(
+  data.frame(text = "H", x = 1/2, y = 5/6),
+  data.frame(text = "T", x = 1/2, y = 1/6),  
+  data.frame(text = "B", x = 1,   y = 1  ),  
+  data.frame(text = "W", x = 1,   y = 2/3),
+  data.frame(text = "B", x = 1,   y = 1/3),
+  data.frame(text = "W", x = 1,   y = 0  )
 )
 
-df_segments <- rbind(
-  data.frame(x1 = 0, y1 = .5, x2 = .48, y2 = .75),
-  data.frame(x1 = 0, y1 = .5, x2 = .48, y2 = .25),  
-  data.frame(x1 = .52, y1 = .75, x2 = .98, y2 = .9),  
-  data.frame(x1 = .52, y1 = .75, x2 = .98, y2 = .6),
-  data.frame(x1 = .52, y1 = .25, x2 = .98, y2 = .4),
-  data.frame(x1 = .52, y1 = .25, x2 = .98, y2 = .1)
+segments <- rbind(
+  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
+  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
+  data.frame(x1 = .52, y1 = 5/6, x2 = .98, y2 = 1  ),  
+  data.frame(x1 = .52, y1 = 5/6, x2 = .98, y2 = 2/3),
+  data.frame(x1 = .52, y1 = 1/6, x2 = .98, y2 = 1/3),
+  data.frame(x1 = .52, y1 = 1/6, x2 = .98, y2 = 0  )
 )
 
-df_segment_labels <- rbind(
-  data.frame(text = "1/2", x = .25, y = .67),
-  data.frame(text = "1/2", x = .25, y = .40),  
-  data.frame(text = "3/4", x = .75, y = .86),
-  data.frame(text = "1/4", x = .75, y = .71),
-  data.frame(text = "1/4", x = .75, y = .36),
-  data.frame(text = "3/4", x = .75, y = .21)
+segment_labels <- rbind(
+  data.frame(text = "1/2", x = .25, y = .72),
+  data.frame(text = "1/2", x = .25, y = .38),  
+  data.frame(text = "3/4", x = .75, y = .95),
+  data.frame(text = "1/4", x = .75, y = .78),
+  data.frame(text = "1/4", x = .75, y = .29),
+  data.frame(text = "3/4", x = .75, y = .13)
 )
 
-df_leaf_labels <- rbind(
-  data.frame(text = "3/8", x = 1.1, y = .9),
-  data.frame(text = "1/8", x = 1.1, y = .6),
-  data.frame(text = "1/8", x = 1.1, y = .4),
-  data.frame(text = "3/8", x = 1.1, y = .1)
+leaf_labels <- rbind(
+  data.frame(text = "3/8", x = 1.1, y = 1  ),
+  data.frame(text = "1/8", x = 1.1, y = 2/3),
+  data.frame(text = "1/8", x = 1.1, y = 1/3),
+  data.frame(text = "3/8", x = 1.1, y = 0  )
 )
 
 ggplot() +
-  geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) + 
-  geom_text(aes(x, y, label = text), data = df_segment_labels) + 
-  geom_text(aes(x, y, label = text), data = df_leaf_labels, fontface = "bold") + 
+  theme_void() +
   xlim(0, 1.1) + ylim(0, 1) +
-  theme_void()
+  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) + 
+  geom_text(aes(x, y, label = text), data = segment_labels) + 
+  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "bold")
 ```
 
 Now suppose we want to know the probability the coin will land tails and the marble drawn will be white, $\p(T \wedge W)$. The General Multiplication Rule tells us the answer is:
@@ -254,57 +249,50 @@ It's tempting to say $1/4$. The probability of drawing a black marble on each dr
 But the correct answer is actually $5/16$. Why? Let's use a probability tree again.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="Building a probability tree to solve Laplace's urn puzzle"}
-df_nodes <- rbind(
-  data.frame(text = "X", x = .5, y = .75),
-  data.frame(text = "Y", x = .5, y = .25),  
-  data.frame(text = "BB", x = 1,  y = .9),  
-  data.frame(text = "~BB", x = 1,  y = .6),
-  data.frame(text = "BB", x = 1,  y = .4),
-  data.frame(text = "~BB", x = 1,  y = .1)
+nodes <- rbind(
+  data.frame(text = "X",   x = .5, y = 5/6),
+  data.frame(text = "Y",   x = .5, y = 1/6),  
+  data.frame(text = "BB",  x = 1,  y = 1  ),  
+  data.frame(text = "~BB", x = 1,  y = 2/3),
+  data.frame(text = "BB",  x = 1,  y = 1/3),
+  data.frame(text = "~BB", x = 1,  y = 0  )
 )
 
-df_segments <- rbind(
-  data.frame(x1 = 0, y1 = .5, x2 = .48, y2 = .75),
-  data.frame(x1 = 0, y1 = .5, x2 = .48, y2 = .25),  
-  data.frame(x1 = .52, y1 = .75, x2 = .96, y2 = .9),  
-  data.frame(x1 = .52, y1 = .75, x2 = .96, y2 = .6),
-  data.frame(x1 = .52, y1 = .25, x2 = .96, y2 = .4),
-  data.frame(x1 = .52, y1 = .25, x2 = .96, y2 = .1)
+segments <- rbind(
+  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
+  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
+  data.frame(x1 = .52, y1 = 5/6, x2 = .96, y2 = 1  ),  
+  data.frame(x1 = .52, y1 = 5/6, x2 = .96, y2 = 2/3),
+  data.frame(x1 = .52, y1 = 1/6, x2 = .96, y2 = 1/3),
+  data.frame(x1 = .52, y1 = 1/6, x2 = .96, y2 = 0  )
 )
 
-df_segment_labels <- rbind(
-  data.frame(text = "1/2", x = .25, y = .67),
-  data.frame(text = "1/2", x = .25, y = .40),  
-  data.frame(text = "9/16", x = .75, y = .86),
-  data.frame(text = "7/16", x = .75, y = .71),
-  data.frame(text = "1/16", x = .75, y = .36),
-  data.frame(text = "15/16", x = .75, y = .21)
+segment_labels <- rbind(
+  data.frame(text = "1/2",   x = .25, y = .72),
+  data.frame(text = "1/2",   x = .25, y = .38),  
+  data.frame(text = "9/16",  x = .75, y = .95),
+  data.frame(text = "7/16",  x = .75, y = .78),
+  data.frame(text = "1/16",  x = .75, y = .29),
+  data.frame(text = "15/16", x = .75, y = .12)
 )
 
-df_leaf_labels <- rbind(
-  data.frame(text = "9/32", x = 1.1, y = .9),
-  data.frame(text = "1/32", x = 1.1, y = .4)
+leaf_labels <- rbind(
+  data.frame(text = "9/32", x = 1.1, y = 1  ),
+  data.frame(text = "1/32", x = 1.1, y = 1/3)
 )
 
 ggplot() +
-  geom_text(aes(x, y, label = text), data = df_nodes[0:2,], fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments[0:2, ]) + 
-  geom_text(aes(x, y, label = text), data = df_segment_labels[0:2, ]) + 
+  geom_text(aes(x, y, label = text), data = nodes[0:4,], fontface = "italic") + 
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments[0:4, ]) + 
+  geom_text(aes(x, y, label = text), data = segment_labels[0:4, ]) + 
   xlim(0, 1.1) + ylim(0, 1) +
   theme_void()
 
 ggplot() +
-  geom_text(aes(x, y, label = text), data = df_nodes[0:4,], fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments[0:4, ]) + 
-  geom_text(aes(x, y, label = text), data = df_segment_labels[0:4, ]) + 
-  xlim(0, 1.1) + ylim(0, 1) +
-  theme_void()
-
-ggplot() +
-  geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) + 
-  geom_text(aes(x, y, label = text), data = df_segment_labels) + 
-  geom_text(aes(x, y, label = text), data = df_leaf_labels, fontface = "bold") + 
+  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) + 
+  geom_text(aes(x, y, label = text), data = segment_labels) + 
+  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "bold") + 
   xlim(0, 1.1) + ylim(0, 1) +
   theme_void()
 ```
@@ -349,35 +337,26 @@ The Law of Total Probability
 
 :    $\p(A) = \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B)$.
 
-There's an intuitive idea at work here. To figure out how likely $A$ is, consider how likely it would be if $B$ were true, and how likely it would be if $B$ were false. Then weight each of those hypothetically possibilities according to their probabilities.
+There's an intuitive idea at work here. To figure out how likely $A$ is, consider how likely it would be if $B$ were true, and how likely it would be if $B$ were false. Then weight each of those hypothetical possibilities according to their probabilities.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="The Law of Total Probability calculates the size of the $A$ region by summing its two part."}
-
-propositions <- data.frame(
-    cirx = c(-.75   , .75),
-    ciry = c(0      , 0),
-    r    = c(1.5    , 1.5),
-    labx = c(-2.25  , 2.25),
-    laby = c(1      , 1),
-    labl = c("A", "B")
-)
-
-ggplot(propositions) + 
-  theme_void() + coord_fixed() +
+ggplot() + 
+  coord_fixed() + theme_void() +
   xlim(-3,3) + ylim(-2,2) +
-  theme(panel.border = element_rect(colour = "black", fill = NA, size = 1)) +
-  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), data = propositions[2,], fill = "firebrick", alpha = .75) +
-  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), data = propositions[1,], fill = "steelblue", alpha = .75) +
-  geom_circle(aes(x0 = cirx, y0 = ciry, r = r), fill = "transparent") +
-  geom_text(aes(x = labx, y = laby, label = labl), 
-            fontface = "italic", size = 8, family = "serif")
+  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.5), fill = leftcolour) +  
+  geom_circle(aes(x0 = .75, y0 = 0, r = 1.5), fill = rightcolour) +  
+  geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
+              fill = middlecolour, colour = "black") +
+  geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
+            fontface = "italic", size = 10, family = "serif") +
+  theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 
-We can also use an Euler diagram. The size of the $A$ region is the sum of the $A \wedge B$ region and the $A \wedge \neg B$ region: $\color{middle}{\blacksquare}\color{black}{} + \color{left}{\blacksquare}\color{black}{}$. And each of those regions can be calculated using the General Multiplication Rule. For example, $\p(A \wedge B) = \p(A \given B) \p(B)$. So in algebraic terms we have:
+We can also use an Euler diagram. The size of the $A$ region is the sum of the $A \wedge B$ region and the $A \wedge \neg B$ region: $\color{middlecolour}{\blacksquare}\color{black}{} + \color{leftcolour}{\blacksquare}\color{black}{}$. And each of those regions can be calculated using the General Multiplication Rule. For example, $\p(A \wedge B) = \p(A \given B) \p(B)$. So in algebraic terms we have:
 $$
   \begin{aligned}
-    \p(A) &= \color{middle}{\blacksquare}\color{black}{} 
-             + \color{left}{\blacksquare}\color{black}{}\\
+    \p(A) &= \color{middlecolour}{\blacksquare}\color{black}{} 
+             + \color{leftcolour}{\blacksquare}\color{black}{}\\
           &= \p(A \wedge B) + \p(A \wedge \neg B)\\
           &= \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B).
   \end{aligned}
@@ -385,40 +364,48 @@ $$
 Which is precisely the Law of Total Probability.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="The Law of Total Probability in a tree diagram"}
-df_nodes <- rbind(
-  data.frame(text = "A", x = .335, y = .75),
-  data.frame(text = "~ A", x = .335, y = .25),  
-  data.frame(text = "B", x = .66,  y = .9),  
-  data.frame(text = "~ B", x = .66,  y = .6),
-  data.frame(text = "B", x = .66,  y = .4),
-  data.frame(text = "~ B", x = .66,  y = .1)
+nodes <- rbind(
+  data.frame(text = "A",   x = .39, y = 5/6),
+  data.frame(text = "~ A", x = .39, y = 1/6),  
+  data.frame(text = "B",   x = .78, y = 1  ),  
+  data.frame(text = "~ B", x = .78, y = 2/3),
+  data.frame(text = "B",   x = .78, y = 1/3),
+  data.frame(text = "~ B", x = .78, y = 0  )
 )
 
-df_segments <- rbind(
-  data.frame(x1 = 0, y1 = .5, x2 = .3, y2 = .75),
-  data.frame(x1 = 0, y1 = .5, x2 = .3, y2 = .25),  
-  data.frame(x1 = .37, y1 = .75, x2 = .62, y2 = .9),  
-  data.frame(x1 = .37, y1 = .75, x2 = .62, y2 = .6),
-  data.frame(x1 = .37, y1 = .25, x2 = .62, y2 = .4),
-  data.frame(x1 = .37, y1 = .25, x2 = .62, y2 = .1)
+segments <- rbind(
+  data.frame(x1 = 0,   y1 = .5,  x2 = .36, y2 = 5/6 ),
+  data.frame(x1 = 0,   y1 = .5,  x2 = .36, y2 = 1/6 ),  
+  data.frame(x1 = .42, y1 = 5/6, x2 = .75, y2 = 1   ),  
+  data.frame(x1 = .42, y1 = 5/6, x2 = .75, y2 = 2/3 ),
+  data.frame(x1 = .42, y1 = 1/6, x2 = .75, y2 = 1/3 ),
+  data.frame(x1 = .42, y1 = 1/6, x2 = .75, y2 = 0   )
 )
 
-df_leaf_labels <- rbind(
-  data.frame(text = "Pr(A|B)Pr(B)", x = .84, y = .9),
-  data.frame(text = "Pr(A|~B)Pr(~B)", x = .84, y = .6)
+leaf_labels <- rbind(
+  data.frame(text = "Pr(A&B)",   x = .9, y = 1),
+  data.frame(text = "Pr(A&~B)",  x = .9, y = 2/3),
+  data.frame(text = "Pr(~A&B)",  x = .9, y = 1/3),
+  data.frame(text = "Pr(~A&~B)", x = .9, y = 0)
 )
 
-ggplot() + coord_fixed() +
-  geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) +
-  geom_text(aes(x, y, label = text), data = df_leaf_labels, fontface = "italic") + 
-  geom_emoji(aes(x = 1, y = .9), emoji = "1f60e") +
-  geom_emoji(aes(x = 1, y = .6), emoji = "1f60d") +
+shades <- readPNG("img/emoji_shades.png") %>% rasterGrob()
+hearts <- readPNG("img/emoji_hearteyes.png") %>% rasterGrob()
+nerd <- readPNG("img/emoji_nerd.png") %>% rasterGrob()
+
+ggplot() +
+  theme_void() +
   xlim(0, 1) + ylim(0, 1) +
-  theme_void()
+  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) +
+  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "italic") + 
+  annotation_custom(shades, xmin = 1 - 1/40, xmax = 1 + 1/40, 
+                            ymin = 1 - 1/40, ymax = 1 + 1/40) +
+  annotation_custom(hearts, xmin = 1 - 1/40, xmax = 1 + 1/40, 
+                            ymin = 2/3 - 1/40, ymax = 2/3 + 1/40)
 ```
 
-We can use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked 😎 and 😍. To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$, we add up the two leaves:
+We can also use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked 😎 and 😍. To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$, we add up the two leaves:
 $$
   \begin{aligned}
     \p(A) &= 😎 + 😍\\
@@ -467,43 +454,43 @@ $$
 Notice that we didn't just get the same answer, we ended up doing the same calculation too. Our second approach just reconstructed from scratch the reasoning behind the Law of Total Probability. It's a very good idea to understand the rationale behind the Law of Total Probability. But once you get used to the formula, it's also fine to skip straight to applying it directly.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="A probability tree for Professor X"}
-df_nodes <- rbind(
-  data.frame(text = "B", x = .5, y = .75),
-  data.frame(text = "D", x = .5, y = .25),  
-  data.frame(text = "O", x = 1,  y = .9),  
-  data.frame(text = "~ O", x = 1,  y = .6),
-  data.frame(text = "O", x = 1,  y = .4),
-  data.frame(text = "~ O", x = 1,  y = .1)
+nodes <- rbind(
+  data.frame(text = "B",   x = .5, y = 5/6),
+  data.frame(text = "D",   x = .5, y = 1/6),  
+  data.frame(text = "O",   x = 1,  y = 1  ),  
+  data.frame(text = "~ O", x = 1,  y = 2/3),
+  data.frame(text = "O",   x = 1,  y = 1/3),
+  data.frame(text = "~ O", x = 1,  y = 0  )
 )
 
-df_segments <- rbind(
-  data.frame(x1 = 0, y1 = .5, x2 = .48, y2 = .75),
-  data.frame(x1 = 0, y1 = .5, x2 = .48, y2 = .25),  
-  data.frame(x1 = .52, y1 = .75, x2 = .96, y2 = .9),  
-  data.frame(x1 = .52, y1 = .75, x2 = .96, y2 = .6),
-  data.frame(x1 = .52, y1 = .25, x2 = .96, y2 = .4),
-  data.frame(x1 = .52, y1 = .25, x2 = .96, y2 = .1)
+segments <- rbind(
+  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
+  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
+  data.frame(x1 = .52, y1 = 5/6, x2 = .96, y2 = 1  ),  
+  data.frame(x1 = .52, y1 = 5/6, x2 = .96, y2 = 2/3),
+  data.frame(x1 = .52, y1 = 1/6, x2 = .96, y2 = 1/3),
+  data.frame(x1 = .52, y1 = 1/6, x2 = .96, y2 = 0  )
 )
 
-df_segment_labels <- rbind(
-  data.frame(text = "1/4", x = .25, y = .67),
-  data.frame(text = "3/4", x = .25, y = .40),  
-  data.frame(text = "9/10", x = .75, y = .86),
-  data.frame(text = "1/10", x = .75, y = .71),
-  data.frame(text = "8/10", x = .75, y = .36),
-  data.frame(text = "2/10", x = .75, y = .21)
+segment_labels <- rbind(
+  data.frame(text = "1/4",   x = .25, y = .72),
+  data.frame(text = "3/4",   x = .25, y = .38),  
+  data.frame(text = "9/10",  x = .75, y = .95),
+  data.frame(text = "1/10",  x = .75, y = .78),
+  data.frame(text = "8/10",  x = .75, y = .29),
+  data.frame(text = "2/10",  x = .75, y = .12)
 )
 
-df_leaf_labels <- rbind(
-  data.frame(text = "9/40", x = 1.1, y = .9),
-  data.frame(text = "24/40", x = 1.1, y = .4)
+leaf_labels <- rbind(
+  data.frame(text = "9/40",  x = 1.1, y = 1  ),
+  data.frame(text = "24/40", x = 1.1, y = 1/3)
 )
 
 ggplot() +
-  geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) + 
-  geom_text(aes(x, y, label = text), data = df_segment_labels) + 
-  geom_text(aes(x, y, label = text), data = df_leaf_labels, fontface = "bold") + 
+  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) + 
+  geom_text(aes(x, y, label = text), data = segment_labels) + 
+  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "bold") + 
   xlim(0, 1.1) + ylim(0, 1) +
   theme_void()
 ```
