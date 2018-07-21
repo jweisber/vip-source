@@ -122,45 +122,45 @@ For example, suppose there are two urns of coloured marbles:
 I flip a fair coin to decide which urn to draw from, heads for Urn B and tails for Urn W. Then I draw one marble at random.
 
 ```{r echo=FALSE, fig.cap="Tree diagram for an urn problem"}
-df_nodes <- rbind(
-  data.frame(text = "H", x = .5, y = .75),
-  data.frame(text = "T", x = .5, y = .25),  
-  data.frame(text = "B", x = 1,  y = .9),  
-  data.frame(text = "W", x = 1,  y = .6),
-  data.frame(text = "B", x = 1,  y = .4),
-  data.frame(text = "W", x = 1,  y = .1)
+nodes <- bind_rows(
+  list(text = "H", x = .5, y = .75),
+  list(text = "T", x = .5, y = .25),  
+  list(text = "B", x = 1,  y = .9),  
+  list(text = "W", x = 1,  y = .6),
+  list(text = "B", x = 1,  y = .4),
+  list(text = "W", x = 1,  y = .1)
 )
 
-df_segments <- rbind(
-  data.frame(x1 = 0, y1 = .5, x2 = .48, y2 = .75),
-  data.frame(x1 = 0, y1 = .5, x2 = .48, y2 = .25),  
-  data.frame(x1 = .52, y1 = .75, x2 = .98, y2 = .9),  
-  data.frame(x1 = .52, y1 = .75, x2 = .98, y2 = .6),
-  data.frame(x1 = .52, y1 = .25, x2 = .98, y2 = .4),
-  data.frame(x1 = .52, y1 = .25, x2 = .98, y2 = .1)
+segments <- bind_rows(
+  list(x1 = 0, y1 = .5, x2 = .48, y2 = .75),
+  list(x1 = 0, y1 = .5, x2 = .48, y2 = .25),  
+  list(x1 = .52, y1 = .75, x2 = .98, y2 = .9),  
+  list(x1 = .52, y1 = .75, x2 = .98, y2 = .6),
+  list(x1 = .52, y1 = .25, x2 = .98, y2 = .4),
+  list(x1 = .52, y1 = .25, x2 = .98, y2 = .1)
 )
 
-df_segment_labels <- rbind(
-  data.frame(text = "1/2", x = .25, y = .67),
-  data.frame(text = "1/2", x = .25, y = .40),  
-  data.frame(text = "3/4", x = .75, y = .86),
-  data.frame(text = "1/4", x = .75, y = .71),
-  data.frame(text = "1/4", x = .75, y = .36),
-  data.frame(text = "3/4", x = .75, y = .21)
+segment_labels <- bind_rows(
+  list(text = "1/2", x = .25, y = .67),
+  list(text = "1/2", x = .25, y = .40),  
+  list(text = "3/4", x = .75, y = .86),
+  list(text = "1/4", x = .75, y = .71),
+  list(text = "1/4", x = .75, y = .36),
+  list(text = "3/4", x = .75, y = .21)
 )
 
-df_leaf_labels <- rbind(
-  data.frame(text = "3/8", x = 1.1, y = .9),
-  data.frame(text = "1/8", x = 1.1, y = .6),
-  data.frame(text = "1/8", x = 1.1, y = .4),
-  data.frame(text = "3/8", x = 1.1, y = .1)
+leaf_labels <- bind_rows(
+  list(text = "3/8", x = 1.1, y = .9),
+  list(text = "1/8", x = 1.1, y = .6),
+  list(text = "1/8", x = 1.1, y = .4),
+  list(text = "3/8", x = 1.1, y = .1)
 )
 
 ggplot() +
-  geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) + 
-  geom_text(aes(x, y, label = text), data = df_segment_labels) + 
-  geom_text(aes(x, y, label = text), data = df_leaf_labels, fontface = "bold") + 
+  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) + 
+  geom_text(aes(x, y, label = text), data = segment_labels) + 
+  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "bold") + 
   xlim(0, 1.1) + ylim(0, 1) +
   theme_void()
 ```

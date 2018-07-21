@@ -41,13 +41,13 @@ green_grid <- bind_rows(
 blue_grid <- expand.grid(x = 0:4, y = 7:9)
 
 segments <- bind_rows(
-  data.frame(x = 0, y = 2, xend = 0, yend = 10),
-  data.frame(x = 0, y = 10, xend = 4, yend = 10),
-  data.frame(x = 4, y = 10, xend = 4, yend = 3),
-  data.frame(x = 4, y = 3, xend = 1, yend = 3),
-  data.frame(x = 1, y = 3, xend = 1, yend = 2),
-  data.frame(x = 1, y = 3, xend = 1, yend = 2),
-  data.frame(x = 1, y = 2, xend = 0, yend = 2)
+  list(x = 0, y = 2, xend = 0, yend = 10),
+  list(x = 0, y = 10, xend = 4, yend = 10),
+  list(x = 4, y = 10, xend = 4, yend = 3),
+  list(x = 4, y = 3, xend = 1, yend = 3),
+  list(x = 1, y = 3, xend = 1, yend = 2),
+  list(x = 1, y = 3, xend = 1, yend = 2),
+  list(x = 1, y = 2, xend = 0, yend = 2)
 )
 
 ggplot() + 
@@ -75,7 +75,7 @@ We saw back in [Chapter 6][Conditional Probability] that $\p(A \given B)$ is usu
 `r newthought("Problems where")` we're given $\p(B \given A)$ and we have to figure out $\p(A \given B)$ are extremely common. Luckily, there's a famous formula for solving them.
 
 ```{marginfigure}
-[Thomas Bayes](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce) (1701--1761) was an English minister and mathematician, the first to formulate the theorem that now bears his name.
+[Thomas Bayes](https://en.wikipedia.org/wiki/Thomas_Bayes) (1701--1761) was an English minister and mathematician, the first to formulate the theorem that now bears his name.
 ```
 
 Bayes' Theorem

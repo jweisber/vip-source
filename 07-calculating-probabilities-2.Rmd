@@ -105,29 +105,29 @@ That's why we call the new rule the *General* Addition Rule. It applies in gener
 `r newthought("A tree diagram")` also works to explain the General Addition Rule. Consider this diagram, where we start with branches for $A$ and $\neg A$, then subdivide into branches for $B$ and $\neg B$:
 
 ```{r echo=FALSE, fig.cap="Tree diagram with the three $A \\vee B$ leaves marked"}
-nodes <- rbind(
-  data.frame(text = "A",   x = .39, y = 5/6),
-  data.frame(text = "~ A", x = .39, y = 1/6),  
-  data.frame(text = "B",   x = .78, y = 1  ),  
-  data.frame(text = "~ B", x = .78, y = 2/3),
-  data.frame(text = "B",   x = .78, y = 1/3),
-  data.frame(text = "~ B", x = .78, y = 0  )
+nodes <- bind_rows(
+  list(text = "A",   x = .39, y = 5/6),
+  list(text = "~ A", x = .39, y = 1/6),  
+  list(text = "B",   x = .78, y = 1  ),  
+  list(text = "~ B", x = .78, y = 2/3),
+  list(text = "B",   x = .78, y = 1/3),
+  list(text = "~ B", x = .78, y = 0  )
 )
 
-segments <- rbind(
-  data.frame(x1 = 0,   y1 = .5,  x2 = .36, y2 = 5/6 ),
-  data.frame(x1 = 0,   y1 = .5,  x2 = .36, y2 = 1/6 ),  
-  data.frame(x1 = .42, y1 = 5/6, x2 = .75, y2 = 1   ),  
-  data.frame(x1 = .42, y1 = 5/6, x2 = .75, y2 = 2/3 ),
-  data.frame(x1 = .42, y1 = 1/6, x2 = .75, y2 = 1/3 ),
-  data.frame(x1 = .42, y1 = 1/6, x2 = .75, y2 = 0   )
+segments <- bind_rows(
+  list(x1 = 0,   y1 = .5,  x2 = .36, y2 = 5/6 ),
+  list(x1 = 0,   y1 = .5,  x2 = .36, y2 = 1/6 ),  
+  list(x1 = .42, y1 = 5/6, x2 = .75, y2 = 1   ),  
+  list(x1 = .42, y1 = 5/6, x2 = .75, y2 = 2/3 ),
+  list(x1 = .42, y1 = 1/6, x2 = .75, y2 = 1/3 ),
+  list(x1 = .42, y1 = 1/6, x2 = .75, y2 = 0   )
 )
 
-leaf_labels <- rbind(
-  data.frame(text = "Pr(A&B)",   x = .9, y = 1),
-  data.frame(text = "Pr(A&~B)",  x = .9, y = 2/3),
-  data.frame(text = "Pr(~A&B)",  x = .9, y = 1/3),
-  data.frame(text = "Pr(~A&~B)", x = .9, y = 0)
+leaf_labels <- bind_rows(
+  list(text = "Pr(A&B)",   x = .9, y = 1),
+  list(text = "Pr(A&~B)",  x = .9, y = 2/3),
+  list(text = "Pr(~A&B)",  x = .9, y = 1/3),
+  list(text = "Pr(~A&~B)", x = .9, y = 0)
 )
 
 shades <- readPNG("img/emoji_shades.png") %>% rasterGrob()
@@ -182,38 +182,38 @@ So we now have two rules for $\wedge$. The first one only applies when the two s
 I flip a fair coin to decide which urn to draw from, heads for Urn X and tails for Urn Y. Then I draw one marble at random.
 
 ```{r echo=FALSE, fig.cap="Tree diagram for an urn problem"}
-nodes <- rbind(
-  data.frame(text = "H", x = 1/2, y = 5/6),
-  data.frame(text = "T", x = 1/2, y = 1/6),  
-  data.frame(text = "B", x = 1,   y = 1  ),  
-  data.frame(text = "W", x = 1,   y = 2/3),
-  data.frame(text = "B", x = 1,   y = 1/3),
-  data.frame(text = "W", x = 1,   y = 0  )
+nodes <- bind_rows(
+  list(text = "H", x = 1/2, y = 5/6),
+  list(text = "T", x = 1/2, y = 1/6),  
+  list(text = "B", x = 1,   y = 1  ),  
+  list(text = "W", x = 1,   y = 2/3),
+  list(text = "B", x = 1,   y = 1/3),
+  list(text = "W", x = 1,   y = 0  )
 )
 
-segments <- rbind(
-  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
-  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
-  data.frame(x1 = .52, y1 = 5/6, x2 = .98, y2 = 1  ),  
-  data.frame(x1 = .52, y1 = 5/6, x2 = .98, y2 = 2/3),
-  data.frame(x1 = .52, y1 = 1/6, x2 = .98, y2 = 1/3),
-  data.frame(x1 = .52, y1 = 1/6, x2 = .98, y2 = 0  )
+segments <- bind_rows(
+  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
+  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
+  list(x1 = .52, y1 = 5/6, x2 = .98, y2 = 1  ),  
+  list(x1 = .52, y1 = 5/6, x2 = .98, y2 = 2/3),
+  list(x1 = .52, y1 = 1/6, x2 = .98, y2 = 1/3),
+  list(x1 = .52, y1 = 1/6, x2 = .98, y2 = 0  )
 )
 
-segment_labels <- rbind(
-  data.frame(text = "1/2", x = .25, y = .72),
-  data.frame(text = "1/2", x = .25, y = .38),  
-  data.frame(text = "3/4", x = .75, y = .95),
-  data.frame(text = "1/4", x = .75, y = .78),
-  data.frame(text = "1/4", x = .75, y = .29),
-  data.frame(text = "3/4", x = .75, y = .13)
+segment_labels <- bind_rows(
+  list(text = "1/2", x = .25, y = .72),
+  list(text = "1/2", x = .25, y = .38),  
+  list(text = "3/4", x = .75, y = .95),
+  list(text = "1/4", x = .75, y = .78),
+  list(text = "1/4", x = .75, y = .29),
+  list(text = "3/4", x = .75, y = .13)
 )
 
-leaf_labels <- rbind(
-  data.frame(text = "3/8", x = 1.1, y = 1  ),
-  data.frame(text = "1/8", x = 1.1, y = 2/3),
-  data.frame(text = "1/8", x = 1.1, y = 1/3),
-  data.frame(text = "3/8", x = 1.1, y = 0  )
+leaf_labels <- bind_rows(
+  list(text = "3/8", x = 1.1, y = 1  ),
+  list(text = "1/8", x = 1.1, y = 2/3),
+  list(text = "1/8", x = 1.1, y = 1/3),
+  list(text = "3/8", x = 1.1, y = 0  )
 )
 
 ggplot() +
@@ -249,36 +249,36 @@ It's tempting to say $1/4$. The probability of drawing a black marble on each dr
 But the correct answer is actually $5/16$. Why? Let's use a probability tree again.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="Building a probability tree to solve Laplace's urn puzzle"}
-nodes <- rbind(
-  data.frame(text = "X",   x = .5, y = 5/6),
-  data.frame(text = "Y",   x = .5, y = 1/6),  
-  data.frame(text = "BB",  x = 1,  y = 1  ),  
-  data.frame(text = "~BB", x = 1,  y = 2/3),
-  data.frame(text = "BB",  x = 1,  y = 1/3),
-  data.frame(text = "~BB", x = 1,  y = 0  )
+nodes <- bind_rows(
+  list(text = "X",   x = .5, y = 5/6),
+  list(text = "Y",   x = .5, y = 1/6),  
+  list(text = "BB",  x = 1,  y = 1  ),  
+  list(text = "~BB", x = 1,  y = 2/3),
+  list(text = "BB",  x = 1,  y = 1/3),
+  list(text = "~BB", x = 1,  y = 0  )
 )
 
-segments <- rbind(
-  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
-  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
-  data.frame(x1 = .52, y1 = 5/6, x2 = .96, y2 = 1  ),  
-  data.frame(x1 = .52, y1 = 5/6, x2 = .96, y2 = 2/3),
-  data.frame(x1 = .52, y1 = 1/6, x2 = .96, y2 = 1/3),
-  data.frame(x1 = .52, y1 = 1/6, x2 = .96, y2 = 0  )
+segments <- bind_rows(
+  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
+  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
+  list(x1 = .52, y1 = 5/6, x2 = .96, y2 = 1  ),  
+  list(x1 = .52, y1 = 5/6, x2 = .96, y2 = 2/3),
+  list(x1 = .52, y1 = 1/6, x2 = .96, y2 = 1/3),
+  list(x1 = .52, y1 = 1/6, x2 = .96, y2 = 0  )
 )
 
-segment_labels <- rbind(
-  data.frame(text = "1/2",   x = .25, y = .72),
-  data.frame(text = "1/2",   x = .25, y = .38),  
-  data.frame(text = "9/16",  x = .75, y = .95),
-  data.frame(text = "7/16",  x = .75, y = .78),
-  data.frame(text = "1/16",  x = .75, y = .29),
-  data.frame(text = "15/16", x = .75, y = .12)
+segment_labels <- bind_rows(
+  list(text = "1/2",   x = .25, y = .72),
+  list(text = "1/2",   x = .25, y = .38),  
+  list(text = "9/16",  x = .75, y = .95),
+  list(text = "7/16",  x = .75, y = .78),
+  list(text = "1/16",  x = .75, y = .29),
+  list(text = "15/16", x = .75, y = .12)
 )
 
-leaf_labels <- rbind(
-  data.frame(text = "9/32", x = 1.1, y = 1  ),
-  data.frame(text = "1/32", x = 1.1, y = 1/3)
+leaf_labels <- bind_rows(
+  list(text = "9/32", x = 1.1, y = 1  ),
+  list(text = "1/32", x = 1.1, y = 1/3)
 )
 
 ggplot() +
@@ -364,29 +364,29 @@ $$
 Which is precisely the Law of Total Probability.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="The Law of Total Probability in a tree diagram"}
-nodes <- rbind(
-  data.frame(text = "A",   x = .39, y = 5/6),
-  data.frame(text = "~ A", x = .39, y = 1/6),  
-  data.frame(text = "B",   x = .78, y = 1  ),  
-  data.frame(text = "~ B", x = .78, y = 2/3),
-  data.frame(text = "B",   x = .78, y = 1/3),
-  data.frame(text = "~ B", x = .78, y = 0  )
+nodes <- bind_rows(
+  list(text = "A",   x = .39, y = 5/6),
+  list(text = "~ A", x = .39, y = 1/6),  
+  list(text = "B",   x = .78, y = 1  ),  
+  list(text = "~ B", x = .78, y = 2/3),
+  list(text = "B",   x = .78, y = 1/3),
+  list(text = "~ B", x = .78, y = 0  )
 )
 
-segments <- rbind(
-  data.frame(x1 = 0,   y1 = .5,  x2 = .36, y2 = 5/6 ),
-  data.frame(x1 = 0,   y1 = .5,  x2 = .36, y2 = 1/6 ),  
-  data.frame(x1 = .42, y1 = 5/6, x2 = .75, y2 = 1   ),  
-  data.frame(x1 = .42, y1 = 5/6, x2 = .75, y2 = 2/3 ),
-  data.frame(x1 = .42, y1 = 1/6, x2 = .75, y2 = 1/3 ),
-  data.frame(x1 = .42, y1 = 1/6, x2 = .75, y2 = 0   )
+segments <- bind_rows(
+  list(x1 = 0,   y1 = .5,  x2 = .36, y2 = 5/6 ),
+  list(x1 = 0,   y1 = .5,  x2 = .36, y2 = 1/6 ),  
+  list(x1 = .42, y1 = 5/6, x2 = .75, y2 = 1   ),  
+  list(x1 = .42, y1 = 5/6, x2 = .75, y2 = 2/3 ),
+  list(x1 = .42, y1 = 1/6, x2 = .75, y2 = 1/3 ),
+  list(x1 = .42, y1 = 1/6, x2 = .75, y2 = 0   )
 )
 
-leaf_labels <- rbind(
-  data.frame(text = "Pr(A&B)",   x = .9, y = 1),
-  data.frame(text = "Pr(A&~B)",  x = .9, y = 2/3),
-  data.frame(text = "Pr(~A&B)",  x = .9, y = 1/3),
-  data.frame(text = "Pr(~A&~B)", x = .9, y = 0)
+leaf_labels <- bind_rows(
+  list(text = "Pr(A&B)",   x = .9, y = 1),
+  list(text = "Pr(A&~B)",  x = .9, y = 2/3),
+  list(text = "Pr(~A&B)",  x = .9, y = 1/3),
+  list(text = "Pr(~A&~B)", x = .9, y = 0)
 )
 
 shades <- readPNG("img/emoji_shades.png") %>% rasterGrob()
@@ -454,36 +454,36 @@ $$
 Notice that we didn't just get the same answer, we ended up doing the same calculation too. Our second approach just reconstructed from scratch the reasoning behind the Law of Total Probability. It's a very good idea to understand the rationale behind the Law of Total Probability. But once you get used to the formula, it's also fine to skip straight to applying it directly.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="A probability tree for Professor X"}
-nodes <- rbind(
-  data.frame(text = "B",   x = .5, y = 5/6),
-  data.frame(text = "D",   x = .5, y = 1/6),  
-  data.frame(text = "O",   x = 1,  y = 1  ),  
-  data.frame(text = "~ O", x = 1,  y = 2/3),
-  data.frame(text = "O",   x = 1,  y = 1/3),
-  data.frame(text = "~ O", x = 1,  y = 0  )
+nodes <- bind_rows(
+  list(text = "B",   x = .5, y = 5/6),
+  list(text = "D",   x = .5, y = 1/6),  
+  list(text = "O",   x = 1,  y = 1  ),  
+  list(text = "~ O", x = 1,  y = 2/3),
+  list(text = "O",   x = 1,  y = 1/3),
+  list(text = "~ O", x = 1,  y = 0  )
 )
 
-segments <- rbind(
-  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
-  data.frame(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
-  data.frame(x1 = .52, y1 = 5/6, x2 = .96, y2 = 1  ),  
-  data.frame(x1 = .52, y1 = 5/6, x2 = .96, y2 = 2/3),
-  data.frame(x1 = .52, y1 = 1/6, x2 = .96, y2 = 1/3),
-  data.frame(x1 = .52, y1 = 1/6, x2 = .96, y2 = 0  )
+segments <- bind_rows(
+  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
+  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
+  list(x1 = .52, y1 = 5/6, x2 = .96, y2 = 1  ),  
+  list(x1 = .52, y1 = 5/6, x2 = .96, y2 = 2/3),
+  list(x1 = .52, y1 = 1/6, x2 = .96, y2 = 1/3),
+  list(x1 = .52, y1 = 1/6, x2 = .96, y2 = 0  )
 )
 
-segment_labels <- rbind(
-  data.frame(text = "1/4",   x = .25, y = .72),
-  data.frame(text = "3/4",   x = .25, y = .38),  
-  data.frame(text = "9/10",  x = .75, y = .95),
-  data.frame(text = "1/10",  x = .75, y = .78),
-  data.frame(text = "8/10",  x = .75, y = .29),
-  data.frame(text = "2/10",  x = .75, y = .12)
+segment_labels <- bind_rows(
+  list(text = "1/4",   x = .25, y = .72),
+  list(text = "3/4",   x = .25, y = .38),  
+  list(text = "9/10",  x = .75, y = .95),
+  list(text = "1/10",  x = .75, y = .78),
+  list(text = "8/10",  x = .75, y = .29),
+  list(text = "2/10",  x = .75, y = .12)
 )
 
-leaf_labels <- rbind(
-  data.frame(text = "9/40",  x = 1.1, y = 1  ),
-  data.frame(text = "24/40", x = 1.1, y = 1/3)
+leaf_labels <- bind_rows(
+  list(text = "9/40",  x = 1.1, y = 1  ),
+  list(text = "24/40", x = 1.1, y = 1/3)
 )
 
 ggplot() +
