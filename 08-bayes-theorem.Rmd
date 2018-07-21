@@ -1,4 +1,4 @@
-# Bayes' Theorem
+# Bayes' Theorem {#chbayes}
 
 ```{marginfigure}
 Gardner attributes the quoted sentiment to [Charles Sanders Peirce](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce). The source in Peirce's writings is unknown.
@@ -118,19 +118,52 @@ This is the same answer we got with our diagram.
 $$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)}. $$
 Then apply the General Multiplication Rule to the numerator:
 $$ \p(A \wedge B) = \p(B \given A)\p(A).$$
-Now plug that back into the first equation:
+And plug that back into the first equation:
 $$ \p(A \given B) = \frac{\p(A) \p(B \given A)}{\p(B)}. $$
+This proves that Bayes' theorem is correct. But it also suggests a way of understanding it visually, with an Euler diagram.
 
-This proves that Bayes' theorem is correct. But it doesn't really give us an intuitive or visual way of thinking about it. We'll come back to an intuitive interpretation soon, in [Chapter 10][Inference to the Best Explanation]. In the meantime, our taxicab diagram is one way to think about Bayes' theorem visually.
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="An Euler diagram for visualizing Bayes' theorem"}
+upper <- function(x) {
+  a <- sqrt(1.5^2 - (x[x < 0] - .75)^2)
+  b <- sqrt(1.5^2 - (x[x >= 0] + .75)^2)
+  c(a,b)
+}
+
+ggplot(data.frame(x = c(-3, 3))) + 
+  coord_fixed() + theme_void() +
+  xlim(-3,3) + ylim(-2,2) +
+  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.58), colour = leftcolour, size = 3) +
+  geom_circle(aes(x0 = .75, y0 = 0, r = 1.58), colour = rightcolour, size = 3) +
+  stat_function(fun = upper, xlim = c(-3/4, 3/4), colour = middlecolour, size = 3) +
+  stat_function(fun = function(x) -upper(x), xlim = c(-3/4, 3/4), colour = middlecolour, size = 3) +
+  geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
+            fontface = "italic", size = 10, family = "serif") +
+  theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
+```
+
+`r newthought("We've talked")` before about $\p(A \given B)$ being the portion of the $B$ region that's inside the $A$ region. The purple portion of the blue $B$ circle, in other words:
+$$
+  \begin{aligned}
+    \p(A \given B) &= \frac{ \color{middlecolour}{\p(A \wedge B)} }{ \color{rightcolour}{\p(B)} }.\\
+  \end{aligned}
+$$
+So when we apply the General Multiplication Rule to the purple region we get:
+$$
+  \begin{aligned}
+    \p(A \given B) &= \frac{ \color{middlecolour}{\p(B \given A)\p(A)} }{ \color{rightcolour}{\p(B)} }.\\
+  \end{aligned}
+$$
+
+We'll come back to another, non-visual way of making intuitive sense of Bayes' theorem soon, in [Chapter 10][Inference to the Best Explanation].
 
 `r newthought("There are")` lots of other visual explanations of Bayes' theorem you can find online. There's even one [using Legos](https://www.countbayesie.com/blog/2015/2/18/bayes-theorem-with-lego)! But they all tend to come down to the same thing. A two step explanation that goes:
 
-1. Start with the definition of conditional probability, visualized in [Chapter 6][Calculating Conditional Probability].
-2. Apply the General Multiplication Rule, visualized in [Chapter 7][The General Multiplication Rule].
+1. Start with the definition of conditional probability, which we learned how to visualize in [Chapter 6][Calculating Conditional Probability].
+2. Then apply the General Multiplication Rule, which we learned how to visualize in [Chapter 7][The General Multiplication Rule].
 
-This is a perfectly good and helpful way to think about Bayes' theorem. But it's not really a visualization of the theorem itself, in my opinion. It's two separate visualizations of the ingredients we used to prove that the theorem is correct.
+This is a perfectly good and helpful way to think about Bayes' theorem. But it's not really a visualization of the theorem itself, in my opinion. It's two separate visualizations of the ingredients we use to derive the theorem.
 
-But in any case, Bayes' theorem comes up so often that it's good to memorize the formula itself. For which the following visualization is probably about as helpful as it gets:
+But in any case, Bayes' theorem comes up so often it's good to memorize the formula itself. For which the following visualization is probably about as helpful as it gets:
 
 ```{r echo=FALSE, fig.cap="Bayes' theorem on display at the offices of HP Autonomy, in Cambridge, UK"}
 knitr::include_graphics("img/neon_bayes.png")
