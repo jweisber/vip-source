@@ -8,4 +8,3 @@ bookdown::tufte_html_book:
   includes:
     in_header: header.html
     before_body: preamble.html
-    
