@@ -1,12 +1,8 @@
 # Bayes' Theorem {#chbayes}
 
 ```{marginfigure}
-Gardner attributes the quoted sentiment to [Charles Sanders Peirce](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce). The source in Peirce's writings is unknown.
+The experiment was first published in 1971. It was performed by [Daniel Kahneman](https://en.wikipedia.org/wiki/Daniel_Kahneman) and [Amos Tversky](https://en.wikipedia.org/wiki/Amos_Tversky). Their work on human reasoning reshaped the field of psychology, and eventually won a Nobel prize in 2002.
 ```
-
-> *...in no other branch of mathematics is it so easy for experts to blunder as in probability theory.*
->
-> `r quote_footer('---Martin Gardner')`
 
 `r newthought("In a famous")` psychology experiment, subjects were asked to solve the following problem.
 
@@ -25,7 +21,7 @@ How could the probability be so low when the witness is $80\%$ reliable? The sho
 
 But this answer still needs some explaining. Let's use a diagram.
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="The green cab/blue cab problem. Most blue cabs are correctly identified \"blue\", and most green cabs are correctly identified \"green\". But most of the cabs identified \"blue\" are actually green."}
+```{r taxigrid, echo=FALSE, fig.margin=TRUE, fig.cap="The taxicab problem. There are $85$ blue cabs, $15$ green. The dashed region indicates those cabs the witness identifies as \"blue\". It includes $80\\%$ of the blue cabs ($12$), and only $20\\%$ of the green ones ($17$). Yet it includes more green cabs than blue."}
 taxi_blue <- readPNG("img/taxi_blue.png") %>% rasterGrob()
 taxi_green <- readPNG("img/taxi_green.png") %>% rasterGrob()
 
@@ -59,11 +55,11 @@ ggplot() +
 ```
 
 Imagine there are just $100$ cabs in town, $85$ green and $15$ blue. The dashed blue line represents the cabs the witness identifies as 
-"blue", whether right or wrong. Because the witness is $80\%$ accurate, that line encompasses $80\%$ of the blue cabs, which is $12$ cabs. But it also encompasses $20\%$ of the green cabs, which is $17$. That's a total of $29$ cabs identified as "blue", only $12$ of which actually are blue.
+"blue", both right or wrong. Because the witness is $80\%$ accurate, that line encompasses $80\%$ of the blue cabs, which is $12$ cabs. But it also encompasses $20\%$ of the green cabs, which is $17$. That's a total of $29$ cabs identified as "blue", only $12$ of which actually are blue.
 
 So out of the $29$ cabs the witness calls "blue", only $12$ really are blue. The probability a cab really is blue given the witness says so is only $12/29$, about $41\%$.
 
-Another way to think about the problem is that there are *two* pieces of information relevant to whether the cab is blue. The witness says the cab is blue, but also, most cabs are not blue. So there's evidence for the cab being blue, but also strong evidence against it. The diagram helps us see how to balance these two, competing pieces of evidence, to come to the correct answer.
+Another way to think about the problem is that there are *two* pieces of information relevant to whether the cab is blue. The witness says the cab is blue, but also, most cabs are not blue. So there's evidence for the cab being blue, but also strong evidence against it. The diagram in Figure \@ref(fig:taxigrid) shows us how to balance these two, competing pieces of evidence and come to the correct answer.
 
 What trips people up so much in the taxicab problem? Remember how order matters with conditional probability. In this problem, we're asked to find $\p(B \given W)$, the probability the cab is blue given that the witness says it is. That's not the same as $\p(W \given B)$, the probability the witness will say the cab is blue if it really is. The problem tells us $\p(W \given B) = 8/10$, but it doesn't tell us a number for $\p(B \given W)$. We have to figure that out.
 
@@ -110,7 +106,22 @@ $$
                    &= 12/29.
   \end{aligned}
 $$
-This is the same answer we got with our diagram.
+This is the same answer we got with our grid diagram (Figure \@ref(fig:taxigrid)). And notice, it's also the answer we'd get from a tree diagram too (Figure \@ref(fig:taxitree)).
+
+```{r taxitree, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Tree diagram for the taxicab problem. Since $\\p(B \\wedge W) = .12$ and $\\p(W) = .12 + .17$, the definition of conditional probability yields $\\p(B \\given W) = 12/29$."}
+
+nodes <- bind_rows(
+  list(text = "B",   parent = 0, p = 15/100),
+  list(text = "~ B", parent = 0, p = 85/100),  
+  list(text = "W",   parent = 1, p = 80/100, leaf_p = 12/100),
+  list(text = "~ W", parent = 1, p = 20/100),
+  list(text = "W",   parent = 2, p = 20/100, leaf_p = 17/100),
+  list(text = "~ W", parent = 2, p = 80/100)
+)
+
+p_tree(nodes)
+```
+
 
 ## Understanding Bayes' Theorem
 
@@ -154,33 +165,50 @@ $$
   \end{aligned}
 $$
 
-We'll come back to another, non-visual way of making intuitive sense of Bayes' theorem soon, in [Chapter 10][Inference to the Best Explanation].
+We'll come back to another, non-visual way of understanding Bayes' theorem in [Chapter 10][Inference to the Best Explanation].
 
-`r newthought("There are")` lots of other visual explanations of Bayes' theorem you can find online. There's even one [using Legos](https://www.countbayesie.com/blog/2015/2/18/bayes-theorem-with-lego)! But they all tend to come down to the same thing. A two step explanation that goes:
+`r newthought("There are")` lots more visual explanations of Bayes' theorem you can find online. There's even one [using Legos](https://www.countbayesie.com/blog/2015/2/18/bayes-theorem-with-lego)! But they all tend to come down to the same thing. A two step explanation that goes:
 
 1. Start with the definition of conditional probability, which we learned how to visualize in [Chapter 6][Calculating Conditional Probability].
 2. Then apply the General Multiplication Rule, which we learned how to visualize in [Chapter 7][The General Multiplication Rule].
 
-This is a perfectly good and helpful way to think about Bayes' theorem. But it's not really a visualization of the theorem itself, in my opinion. It's two separate visualizations of the ingredients we use to derive the theorem.
+This is a perfectly good and helpful way to think about Bayes' theorem. But it's not really a visualization of the theorem itself. It's two separate visualizations of the ingredients we use to derive the theorem.
 
-But in any case, Bayes' theorem comes up so often it's good to memorize the formula itself. For which the following visualization is probably about as helpful as it gets:
-
-```{r echo=FALSE, fig.cap="Bayes' theorem on display at the offices of HP Autonomy, in Cambridge, UK"}
+```{r neonbayes, echo=FALSE, fig.margin=TRUE, fig.cap="Bayes' theorem on display at the offices of HP Autonomy, in Cambridge, UK"}
 knitr::include_graphics("img/neon_bayes.png")
 ```
+
+In any case, Bayes' theorem comes up so often it's good to memorize the formula itself. The visualization in Figure \@ref(fig:neonbayes) is probably about as helpful as it gets for this purpose.
 
 
 ## Bayes' Long Theorem
 
-`r newthought("To solve")` the taxicab problem using Bayes' theorem, we needed to apply the Law of Total Probability first to calculate the denominator. This again is really common. So much so that you'll often see Bayes' theorem written with this calculation built in. That is, the denominator $\p(B)$ is broken down with the Law of Total Probability.
+`r newthought("We had")` to apply the Law of Total Probability first, before we could solve the taxicab problem with Bayes' theorem, to calculate the denominator. This is so common that you'll often see Bayes' theorem written with this calculation built in. That is, the denominator $\p(B)$ is expanded out using the Law of Total Probability.
 
 Bayes' Theorem (long version)
 
 :   If $1 > \p(A) > 0$ and $\p(B)>0$, then
     $$ \p(A \given B) = \frac{\p(A)\p(B \given A)}{\p(A)\p(B \given A) + \p(\neg A)\p(B \given \neg A)}. $$
 
-Notice how there's some duplication in the numerator and the denominator. The term $\p(A)\p(B \given A)$ appears both above and below. So, when you're doing a calculation with this formula, you can just do that bit once and then copy it in both the top and bottom. Then you just have to do the bottom-right term to complete the formula.
+Notice how there's some repetition in the numerator and the denominator. The term $\p(A)\p(B \given A)$ appears both above and below. So, when you're doing a calculation with this formula, you can just do that bit once and then copy it in both the top and bottom. Then you just have to do the bottom-right term to complete the formula.
 
+```{r longbayestree, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="A tree diagram for the long form of Bayes' theorem. The definition of conditional probability tells us $\\p(A \\given B)$ is the first leaf divided by the sum of the first and third leaves."}
+nodes <- bind_rows(
+  list(text = "A",    parent = 0, p = "Pr(A)"),
+  list(text = "~ A",  parent = 0, p = "Pr(~A)"),
+  list(text = "B",    parent = 1, p = "Pr(B|A)", leaf_p = "Pr(A) Pr(B|A)"  ),
+  list(text = "~ B",  parent = 1, p = NA),
+  list(text = "B",    parent = 2, p = "Pr(B|~A)", leaf_p = "Pr(~A) Pr(B|~A)"),
+  list(text = "~ B",  parent = 2, p = NA)
+)
+
+p_tree(nodes, p_fontface = "italic", leaf_p_distance = .2, leaf_p_width = .3, 
+       leaf_p_fontface = "italic")
+```
+
+`r newthought("A tree diagram")` helps illuminate the long version of Bayes' theorem. To calculate $\p(A \given B)$, the definition of conditional probability directs us to calculate $\p(A \wedge B)$ and $\p(B)$:
+$$ \p(A \given B) = \frac{ \p(A \wedge B) }{ \p(B) }. $$
+Looking at the tree diagram in Figure \@ref(fig:longbayestree), we see that this amounts to computing the first leaf for the numerator, and the sum of the first and third leaves for the denominator. Which yields the same formula as in the long form of Bayes' theorem.
 
 ## Example
 
@@ -210,6 +238,21 @@ $$
                    &\approx .06.
   \end{aligned}
 $$
+The calculation is also diagrammed in Figure \@ref(fig:zikatree).
+
+```{r zikatree, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Tree diagram of the Zika problem"}
+nodes <- bind_rows(
+  list(text = "Z",   parent = 0, p = 1/100),
+  list(text = "~ Z", parent = 0, p = 99/100),
+  list(text = "P",   parent = 1, p = 95/100, leaf_p = 1/100 * 95/100),
+  list(text = "~ P", parent = 1, p = NA),
+  list(text = "P",   parent = 2, p = 15/100, leaf_p = 99/100 * 15/100),
+  list(text = "~ P", parent = 2, p = NA)
+)
+
+p_tree(nodes, round = 4)
+```
+
 It turns out there's only about a $6\%$ chance Joe has the virus. Even though he tested positive with a fairly reliable blood test! It's counterintuitive, but the reason is the same as with the taxicab problem. There are two, conflicting pieces of evidence: the blood test is positive but the virus is rare. It turns out the virus is so rare that the positive blood test doesn't do much to increase Joe's chances of being infected.
 
 `r newthought("Bayes' theorem")` doesn't always give such surprising results. In fact the results are often very intuitive. Professors just like to use the counterintuitive examples to demonstrate how important Bayes' theorem is. Without it, it's easy to go astray.
@@ -223,7 +266,7 @@ One lesson of this chapter is that you have to take the base rate into account t
 
 The base rate fallacy is so tempting, even trained professionals are susceptible to it. In [one famous study](https://www.stat.berkeley.edu/~aldous/157/Papers/health_stats.pdf), $160$ medical doctors were given a problem similar to our Zika example (but with  cancer instead of Zika). The question was multiple choice, and it used easier numbers than we did. Yet only $34$ of the doctors got it right.
 
-Hence the quote that opens this chapter: "in no other branch of mathematics is it so easy for experts to blunder as in probability theory."
+Hence the quote that opens [Chapter 1][The Monty Hall Problem] of this book: "in no other branch of mathematics is it so easy for experts to blunder as in probability theory."
 
 
 ## Exercises {-}
