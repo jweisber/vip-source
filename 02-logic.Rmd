@@ -297,7 +297,7 @@ Therefore, Tweety can fly.
 
 Again, the strength of the inference depends on the details. If "most birds" means $99\%$, the argument is quite strong. If "most" only means $80\%$, then it's not so strong. (Usually "most" just means more than $50\%$.)
 
-It also helps to know that Tweety is similar to the birds that can fly, and dissimilar to the ones that can't. If we know that Tweety is small and has feathers, that makes the argument stronger. If instead we know that Tweety is large, and coloured black and white, that makes the argument weaker. It suggests Tweety is a penguin.
+It also helps to know that Tweety is similar to the birds that can fly, and different from the ones that can't. If we know that Tweety is small and has feathers, that makes the argument stronger. If instead we know that Tweety is large, and coloured black and white, that makes the argument weaker. It suggests Tweety is a penguin.
 
 
 `r newthought("Inference to the best explanation")` is another common form of argument, quite different from the previous two. Here's an example:
