@@ -1,20 +1,20 @@
 # Probability & Induction
 
-We met some common forms of inductive argument back in [Chapter 2][Logic]. Now that we know how to work with probability, let's use what we know to better understand how those argument forms work.
+`r newthought("We met")` some common types of inductive argument back in [Chapter 2][Forms of Inductive Argument]. Now that we know how to work with probability, let's use what we've learned to sharpen our understanding of how those arguments work.
 
 
 ## Generalizing from Observed Instances
 
-Generalizing from observed instances was the first major form of inductive argument we encountered. Suppose you want to know what colour a particular species of bird tends to be, for example. Then you might go out and look at a bunch of examples:
+`r newthought("Generalizing")` from observed instances was the first major form of inductive argument we encountered. Suppose you want to know what colour a particular species of bird tends to be. Then you might go out and look at a bunch of examples:
 
 > I've seen 10 ravens and they've all been black.\
 > Therefore, all ravens are black.
 
 How strong is this argument?
 
-Observing ravens is a lot like sampling from an urn. Each raven is a marble, and the population of all ravens is the urn. We don't know what nature's urn contains at first: it might contain only black ravens, or it might contain ravens of other colours too. To assess the argument's strength, we have to calculate $\p(A \given B_1 \wedge B_2 \wedge \ldots \wedge B_{10})$: the probability that all ravens in nature's urn are black, given that the first raven we observed was black, and the second, and so on up to the tenth raven.
+Observing ravens is a lot like sampling from an urn. Each raven is a marble, and the population of all ravens is the urn. We don't know what nature's urn contains at first: it might contain only black ravens, or it might contain ravens of other colours too. To assess the argument's strength, we have to calculate $\p(A \given B_1 \wedge B_2 \wedge \ldots \wedge B_{10})$: the probability that all ravens in nature's urn are black, given that the first raven we observed was black, and the second, and so on, up to the tenth raven.
 
-We learned how to solve simple problems of this form in the last chapter. For example, imagine you face another of our mystery urns, and this time there are two equally likely possibilities:
+We learned how to solve simple problems of this form in the [previous chapter][Multiple Draws]. For example, imagine you face another of our mystery urns, and this time there are two equally likely possibilities:
 $$
   \begin{aligned}
     A      &: \mbox{The urn contains only black marbles.} \\
@@ -32,8 +32,7 @@ $$
 If we do a third draw with replacement, and it too comes up black, we replace the squares with cubes. On the fourth draw we'd raise to the fourth power. And so on. When we get to the tenth black draw, the calculation becomes:
 $$
   \begin{aligned}
-    \p(A \given B_1 \wedge B_2) &= \frac{\p(B_1 \wedge B_2 \given A)\p(A)}{\p(B_1 \wedge B_2 \given A) \p(A) + \p(B_1 \wedge B_2 \given \neg A) \p(\neg A)} \\ 
-    &= \frac{(1)^{10}(1/2)}{(1)^{10}(1/2) + (1/2)^{10}(1/2)}\\
+    \p(A \given B_1 \wedge B_2) &= \frac{(1)^{10}(1/2)}{(1)^{10}(1/2) + (1/2)^{10}(1/2)}\\
     &= 1,024/1,025\\
     &\approx .999.
   \end{aligned}
@@ -49,20 +48,26 @@ There are two major limitations to our urn analogy.
 
 `r newthought("The first limitation")` is that the ravens we observe in real life aren't randomly sampled from nature's "urn". We only observe ravens in certain locations, for example. But our solution to the urn problem relied on random sampling. For example, we assumed $\p(B_1 \given \neg A) = 1/2$ because the black marbles are just as likely to be drawn as the white ones, if there are any white ones.
 
-If there are white ravens in the world, they might be limited to certain locales.^[In fact there are white ravens, [especially in one part of Vancouver Island](https://vancouversun.com/news/local-news/rare-white-raven-spotted-on-vancouver-island).] So the fact we're only observing ravens in our part of the world could make a big difference to what we find. It matters whether your sample really is random.
+If there are white ravens in the world though, they might be limited to certain locales.^[In fact there are white ravens, [especially in one area of Vancouver Island](https://vancouversun.com/news/local-news/rare-white-raven-spotted-on-vancouver-island).] So the fact we're only observing ravens in our part of the world could make a big difference to what we find. It matters whether your sample really is random.
 
 `r newthought("The second limitation")` is that we pretended there were only two possibilities: either all the marbles in the urn are black, or half of them are. And, accordingly, we assumed there was already a 1/2 chance all the marbles are black, before we even looked at any of them.
 
 In real life though, when we encounter a new species, it could be that $90\%$ of them are black, or $31\%$, or $42.718\%$, or any portion from $0\%$ to $100\%$. So there are many, many more possibilities. The possibility that *all* members of the new species ($100\%$) are black is just one of these many possibilities. So it would start with a much lower probability than $1/2$.
 
-We could make our analysis more realistic by taking these complications into account. But the calculations would get ugly, and we'd have to use calculus to solve the problem. This is the kind of technical topic you'd cover in a math or statistics class on probability. But it's not the kind thing this book is about.
+```{marginfigure}
+In a famous calculation, [Laplace](#fig:laplace) showed how to solve the second problem. The result was his famous [rule of succession](https://en.wikipedia.org/wiki/Rule_of_succession): if you do $n$ random draws and they're all black, the probability the next draw will be black is $(n+1)/(n+2)$.
 
-For our purposes, the key ideas that matter are as follows. First, the strength of an inductive argument is a question of conditional probability: how probable is the argument's conclusion given its premises? Second, an argument that generalizes from observed instances is similar to an urn problem, where we guess the contents of the urn by repeated sampling. And third, we know how to solve simple versions of these urn problems using Bayes' theorem. In principle, we could also solve more complicated and realistic versions using the same fundamental ideas, it's just the math would be more difficult.
+Laplace's calculation is too advanced for this book. But statistician Joe Blitzstein gives a nice explanation in [this video](https://www.youtube.com/watch?v=N8O6zd6vTZ8&list=EC2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo), for students who have more background in probability (specifically random variables and probability density functions).
+```
+
+`r newthought("We could")` make our analysis more realistic by taking these complications into account. But the calculations would get ugly, and we'd have to use calculus to solve the problem. This is the kind of technical topic you'd cover in a math or statistics class on probability. But it's not the kind thing this book is about.
+
+For our purposes, the key ideas that matter are as follows. First, the strength of an inductive argument is a question of conditional probability: how probable is the argument's conclusion given its premises? Second, an argument that generalizes from observed instances is similar to an urn problem, where we guess the contents of the urn by repeated sampling. And third, we know how to solve simple versions of these urn problems using Bayes' theorem. In principle, we could also solve more complicated and realistic versions using the same fundamental ideas, the math would just be harder.
 
 
 ## Inference to the Best Explanation
 
-Another common form of inductive argument we met in [Chapter 2][Logic] was Inference to the Best Explanation, known as *IBE* for short. An example:
+`r newthought("Another")` common form of inductive argument we met in [Chapter 2][Logic] was Inference to the Best Explanation. An example:
 
 ```{block, type="argument", echo=TRUE}
 My car won't start and the gas gauge reads 'empty'.\
@@ -71,15 +76,15 @@ Therefore, my car is out of gas.
 
 My car being out of gas is a very good explanation of the facts that it won't start and the gauge reads 'empty'. So this seems like a pretty strong argument.
 
-How do we understand its strength using probability? This is actually a controversial topic, currently being studied by researchers. There are different, competing theories about how IBE fits into probability theory. So we'll just look at one popular way of understanding things.
+How do we understand its strength using probability? This is actually a controversial topic, currently being studied by researchers. There are different, competing theories about how Inference to the Best Explanation fits into probability theory. So we'll just look at one, popular way of understanding things.
 
 Let's start by thinking about what makes an explanation a good one.
 
-A good explanation should account for all the things we're trying to explain. For example, if we're trying to explain why my car won't start and the gauge reads 'empty', I'd be skeptical if my mechanic said it's because the brakes are broken. That doesn't accoutnf or any of the symptoms! I'd also be skeptical if they said the gas gauge was broken. That might fit okay with one of the symptoms (the gauge reads 'empty'), but it doesn't account for the fact the car won't start.
+`r newthought("A good explanation")` should account for all the things we're trying to explain. For example, if we're trying to explain why my car won't start and the gauge reads 'empty', I'd be skeptical if my mechanic said it's because the brakes are broken. That doesn't account for any of the symptoms! I'd also be skeptical if they said the gas gauge was broken. That might fit okay with one of the symptoms (the gauge reads 'empty'), but it doesn't account for the fact the car won't start.
 
 The explanation that my car is out of gas, however, fits both symptoms. It would account for both the 'empty' reading on the gauge and the car's refusal to start.
 
-But a good explanation should also fit with other things I know. For example, suppose my mechanic tries to explain my car troubles by saying that both the gauge and the ignition broke down at the same time. But I know my car is new, it's a highly reliable model, and it was recently serviced. So my mechanic's explanation doesn't fit well with the other things I know. It's not a very good explanation.
+A good explanation should also fit with other things I know. For example, suppose my mechanic tries to explain my car troubles by saying that both the gauge and the ignition broke down at the same time. But I know my car is new, it's a highly reliable model, and it was recently serviced. So my mechanic's explanation doesn't fit well with the other things I know. It's not a very good explanation.
 
 We have two criteria now for a good explanation:
 
@@ -100,15 +105,15 @@ So the better $H$ accounts for the evidence, the larger $\p(E \given H)$ will be
 
 What about the last term in Bayes' theorem though, the denominator $\p(E)$? It corresponds to a virtue of good explanations too!
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="The hammer/feather experiment performed on the moon in 1971"}
-knitr::include_graphics("img/marg_fig.png")
+```{marginfigure}
+![](img/moon.gif)
+The hammer/feather experiment was performed on the moon in 1971. See the [full video here](https://www.youtube.com/watch?v=5C5_dOEyAfk).
+
+![](img/vacuum.gif)
+It's also been performed in vacuum chambers here on earth. A beautifully filmed example is [available on YouTube](https://www.youtube.com/watch?v=E43-CfukEgs), courtesy of the BBC.
 ```
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="The hammer/feather experiment performed in a vaccuum chamber on Earth"}
-knitr::include_graphics("img/marg_fig.png")
-```
-
-Scientists love theories that explain the unexplained. For example, Newton's theory of physics is able to explain why a heavy object and a light object, like a hammer and feather, fall to the ground at the same speed (as long as there's no air resistance). If you'd never performed this experiment before, you'd probably expect the hammer to fall faster. You'd be surprised to find that the hammer and feather actually hit the ground at the same time. That Newton's theory explains this surprising fact strongly supports his theory.
+Scientists love theories that explain the unexplained. For example, Newton's theory of physics is able to explain why a heavy object and a light object, like a hammer and feather, fall to the ground at the same speed as long as there's no air resistance. If you'd never performed this experiment before, you'd probably expect the hammer to fall faster. You'd be surprised to find that the hammer and feather actually hit the ground at the same time. That Newton's theory explains this surprising fact strongly supports his theory.
 
 So the ability to explain surprising facts is a third virtue of a good explanation. And this virtue corresponds to our third term in Bayes' theorem:
 
@@ -117,10 +122,3 @@ So the ability to explain surprising facts is a third virtue of a good explanati
 And since $\p(E)$ is in the denominator of Bayes' theorem, a smaller number there means a *bigger* value for $\p(H \given E)$. So the more surprising the finding $E$ is, the more it supports a hypothesis $H$ that explains it.
 
 According to this analysis then, each term in Bayes' theorem corresponds to a virtue of a good explanation. And that's why Inference to the Best Explanation works as a form of inductive inference.
-
-
-## Exercises {-}
-
-1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
