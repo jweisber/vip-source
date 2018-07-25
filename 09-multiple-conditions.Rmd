@@ -1,6 +1,8 @@
 # Multiple Conditions
 
-It often happens that we need to take account of multiple items of information. 
+We often need to account for multiple pieces of evidence. More than one witness testifies about the colour of a taxicab; more than one person responds to our poll about an upcoming election; etc.
+
+How do we a calculate conditional probability when there are multiple conditions? In other words, how do we handle quantities of the form $\p(A \given B_1 \wedge B_2 \wedge \ldots)$?
 
 
 ## Multiple Draws
@@ -12,9 +14,9 @@ $$
     \neg A &: \mbox{The urn contains $20$ black marbles, $80$ white marbles.}\\
   \end{aligned}
 $$
-Now suppose you draw a marble at random and it's black. You put it back, give the urn a good shake, and then draw another: black again. What's the probability the urn has $70$ black marbles? We need to calculate $\p(A \given B_1 \wedge B_2)$, the probability of $A$ given that the first and second draws were both black.
+Now suppose you draw a marble at random and it's black. You put it back, give the urn a good shake, and then draw another: black again. What's the probability the urn has $70$ black marbles?
 
-We already know how to do this calculation for one draw. We use Bayes' theorem (or a probability tree). In this case Bayes' theorem says:
+We need to calculate $\p(A \given B_1 \wedge B_2)$, the probability of $A$ given that the first and second draws were both black. We already know how to do this calculation for one draw, $\p(A \given B_1)$. We use Bayes' theorem to get:
 $$
   \begin{aligned}
     \p(A \given B_1) &= \frac{\p(B_1 \given A)\p(A)}{\p(B_1 \given A) \p(A) + \p(B_1 \given \neg A) \p(\neg A)} \\
@@ -41,7 +43,7 @@ $$
       &= (70/100)^2.
   \end{aligned}
 $$
-The same reasoning applies given $\neg A$, too, except the chance of black on each draw is $20/100$. So:
+The same reasoning applies given $\neg A$, too. Except here the chance of black on each draw is $20/100$. So:
 $$
   \begin{aligned}
     \p(B_1 \wedge B_2 \given \neg A) &= \p(B_1 \given A) \p(B_2 \given \neg A)\\
@@ -57,12 +59,38 @@ $$
     &= 49/53.
   \end{aligned}
 $$
-You might be able to guess now what would happen after three black draws. Instead of squaring, we'd cube the same probabilities. And using the same logic, we could keep going, using Bayes' theorem to  calculate $\p(A \given B_1 \wedge \ldots \wedge B_n)$ for any number $n$ you like.
+
+`r newthought("The same")` solution can also be captured in a probability tree. The tree will have an extra stage now, because there's a second draw. And it will have many more leaves, but luckily we can ignore most of them. We just need to worry about the two leaves where both draws have come up black. And we only need to fill in the probabilities along the paths that lead to those two leaves. The result is Figure \@ref(fig:twodrawsreplacement).
+
+```{r twodrawsreplacement, echo=FALSE, cache=TRUE, fig.cap="Tree diagram for two draws with replacement"}
+nodes <- bind_rows(
+  list(text = "italic(A)",      parent = 0, p = 1/2),
+  list(text = "'~'~italic(A)",  parent = 0, p = 1/2),
+  list(text = "italic(B[1])",   parent = 1, p = 7/10),
+  list(text = "italic(W[1])",   parent = 1),
+  list(text = "italic(B[1])",   parent = 2, p = 2/10),
+  list(text = "italic(W[1])",   parent = 2),
+  list(text = "italic(B[2])",   parent = 3, p = 7/10, leaf_p = 1/2 * 7/10 * 7/10),
+  list(text = "italic(W[2])",   parent = 3),
+  list(text = "italic(B[2])",   parent = 4),
+  list(text = "italic(W[2])",   parent = 4),
+  list(text = "italic(B[2])",   parent = 5, p = 2/10, leaf_p = 1/2 * 2/10 * 2/10),
+  list(text = "italic(W[2])",   parent = 5),
+  list(text = "italic(B[2])",   parent = 6),
+  list(text = "italic(W[2])",   parent = 6)
+)
+
+p_tree(nodes, parse = TRUE, round = 3)
+```
+
+So $\p(A \given B_1 \wedge B_2) = 0.245 / (0.245 + 0.2)$, which is the same as $49/53$, the answer we got with Bayes' theorem.
+
+`r newthought("You might")` be able to guess now what would happen after three black draws. Instead of getting squared probabilities in Bayes' theorem, we'd get cubed probabilities. And using the same logic, we could keep going. We could use Bayes' theorem to calculate $\p(A \given B_1 \wedge \ldots \wedge B_n)$ for as many draws $n$ as you like.
 
 
 ## Multiple Witnesses
 
-Let's try a different sort of problem with multiple conditions. Recall the taxicab problem from [Chapter 8][Bayes' Theorem].
+Let's try a different sort of problem with multiple conditions. Recall the taxicab problem from [Chapter 8](#chbayes):
 
 ```{block, type='problem'}
 A cab was involved in a hit and run accident at night. Two cab companies, the Green and the Blue, operate in the city. You are given the following data:
@@ -81,7 +109,7 @@ $$
     \p(B \given W_1 \wedge W_2) &= \frac{\p(B)\p(W_1 \wedge W_2 \given B)}{\p(W_1 \wedge W_2)}.
   \end{aligned}
 $$
-We have one of the terms here already: $\p(B) = 15/100$. What about the other two terms?:
+We have one of the terms here already: $\p(B) = 15/100$. What about the other two:
 
 - $\p(W_1 \wedge W_2 \given B)$,
 - $\p(W_1 \wedge W_2)$.
@@ -114,12 +142,37 @@ $$
 $$
 So, with two witnesses independently agreeing that the cab was blue, the probability goes up from less than $1/2$ to almost $3/4$.
 
+```{r twowitnesstree, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Tree diagram for the two-witness taxicab problem"}
+nodes <- bind_rows(
+  list(text = "italic(B)",        parent = 0, p = 15/100),
+  list(text = "'~'~italic(B)",    parent = 0, p = 85/100),
+  list(text = "italic(W[1])",     parent = 1, p = 80/100),
+  list(text = "'~'~italic(W[1])", parent = 1),
+  list(text = "italic(W[1])",     parent = 2, p = 20/100),
+  list(text = "'~'~italic(W[1])", parent = 2),
+  list(text = "italic(W[2])",     parent = 3, p = 80/100,
+       leaf_p = 15/100 * 80/100 * 80/100),
+  list(text = "'~'~italic(W[2])", parent = 3),
+  list(text = "italic(W[2])",     parent = 4),
+  list(text = "'~'~italic(W[2])", parent = 4),
+  list(text = "italic(W[2])",     parent = 5, p = 20/100,
+       leaf_p = 85/100 * 20/100 * 20/100),
+  list(text = "'~'~italic(W[2])", parent = 5),
+  list(text = "italic(W[2])",     parent = 6),
+  list(text = "'~'~italic(W[2])", parent = 6)
+)
+
+p_tree(nodes, parse = TRUE, round = 3)
+```
+
+`r newthought("We can")` use a tree here too, similar to the one we made when sampling two black marbles with replacement. As before, we only need to worry about the $W_1 \wedge W_2$ leaves, the ones where both witnesses say the cab was blue. The result is Figure \@ref(fig:twowitnesstree), which tells us that $\p(B \given W_1 \wedge W_2) = 0.096 / (0.096 + 0.034)$, which is approximately $0.74$.
+
 
 ## Without Replacement
 
-The problems we've done so far were simplified by assuming independence.  We sampled with replacement in the urn problem, and we assumed our two witnesses were independently reporting what they saw in the taxicab problem. What about cases where independence doesn't hold?
+The problems we've done so far were simplified by assuming independence.  We sampled with replacement in the urn problem, and we assumed our two witnesses were independently reporting what they saw in the taxicab problem. What about when independence doesn't hold?
 
-Let's go back to our urn problem, but this time suppose we won't replace the marble after the first draw. How do we calculate $\p(A \given B_1 \wedge B_2)$ then?
+Let's go back to our urn problem, but this time suppose we don't replace the marble after the first draw. How do we calculate $\p(A \given B_1 \wedge B_2)$ then?
 
 We're still going to start with Bayes' theorem:
 $$
@@ -141,7 +194,7 @@ $$
   \end{aligned}
 $$
 
-Using similar reasoning for the possibility that $\neg A instead$, we can calculate
+Using similar reasoning for the possibility that $\neg A$ instead, we can calculate
 $$
   \begin{aligned}
     \p(B_1 \wedge B_2 \given \neg A) &= (20/100)(19/99)\\
@@ -160,6 +213,35 @@ $$
 $$
 Notice how similar this answer is to the $.92$ we got when sampling with replacement. With so many black and white marbles in the urn, taking one out doesn't make much difference. The second draw is almost the same as the first, so the final answer isn't much affected.
 
+```{r twodrawsnoreplacement, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Tree diagram for two draws with replacement, values rounded"}
+nodes <- bind_rows(
+  list(text = "italic(A)",      parent = 0, p = 1/2),
+  list(text = "'~'~italic(A)",  parent = 0, p = 1/2),
+  list(text = "italic(B[1])",   parent = 1, p = 7/10),
+  list(text = "italic(W[1])",   parent = 1),
+  list(text = "italic(B[1])",   parent = 2, p = 2/10),
+  list(text = "italic(W[1])",   parent = 2),
+  list(text = "italic(B[2])",   parent = 3, p = 69/99, leaf_p = 1/2 * 7/10 * 69/99),
+  list(text = "italic(W[2])",   parent = 3),
+  list(text = "italic(B[2])",   parent = 4),
+  list(text = "italic(W[2])",   parent = 4),
+  list(text = "italic(B[2])",   parent = 5, p = 19/99, leaf_p = 1/2 * 2/10 * 19/99),
+  list(text = "italic(W[2])",   parent = 5),
+  list(text = "italic(B[2])",   parent = 6),
+  list(text = "italic(W[2])",   parent = 6)
+)
+
+p_tree(nodes, parse = TRUE, round = 4)
+```
+
+`r newthought("The tree")` diagram for this problem will also be similar to the with-replacement version. The key difference is the probabilities at the last stage of the tree. Without independence, the probability of a $B_2$ branch is affected by the $B_1$ that precedes it. The result is Figure \@ref(fig:twodrawsnoreplacement), though note that some values are rounded. Still we find that:
+$$
+  \begin{aligned}
+     \p(A \given B_1 \wedge B_2) &\approx \frac{ 0.2439 }{ 0.2439 + 0.0192 } \\
+                                 &\approx 0.93.
+  \end{aligned}
+$$
+
 
 ## Multiplying Conditional Probabilities
 
@@ -177,7 +259,7 @@ The General Multiplication Rule (Conditional Version)
 
 In a way, the new rule isn't really new. We just have to realize that the probabilities we get when we take a condition $C$ as given are still probabilities. They obey all the same rules as unconditional probabilities, and this includes the General Multiplication Rule.
 
-Another example which illustrates the point is the Negation Rule. The following conditional version is also valid:
+Another example which illustrates this point is the Negation Rule. The following conditional version is also valid:
 
 The Negation Rule (Conditional Version)
 
@@ -198,7 +280,7 @@ We've learned two strategies for calculating conditional probabilities with mult
 
 The first strategy is easier, but it only works when the conditions are appropriately independent. Like when we sample with replacement, or when two witnesses independently report what they saw.
 
-In this kind of case, we first use Bayes' theorem, then "factor" the terms:
+In this kind of case, we first use Bayes' theorem, and then "factor" the terms:
 $$
   \begin{aligned}
     \p(A \given B_1 \wedge B_2) &= 
@@ -208,13 +290,13 @@ $$
       &= \frac{\p(B_1 \given A)\p(B_2 \given A)\p(A)}{%
                 \p(B_1 \given A)\p(B_2 \given A)\p(A) +%
                   \p(B_1 \given \neg A)\p(B_2 \given \neg A)\p(\neg A)}\\
-      &= \frac{[\p(B_1 \given A)]^2\p(A)}{%
-                [\p(B_1 \given A)]^2\p(A) +%
-                  [\p(B_1 \given \neg A)]^2\p(\neg A)}.
+      &= \frac{(\p(B_1 \given A))^2\p(A)}{%
+                (\p(B_1 \given A))^2\p(A) +%
+                  (\p(B_1 \given \neg A))^2\p(\neg A)}.
   \end{aligned}
 $$
 
-Our second strategy is a little more difficult. But it works even when the conditions aren't independent. We still start with Bayes' theorem, but then we apply the conditional form of the General Multiplication Rule:
+Our second strategy is a little more difficult. But it works even when the conditions are **not** independent. We still start with Bayes' theorem. But then we apply the conditional form of the General Multiplication Rule:
 $$
   \begin{aligned}
     \p(A \given B_1 \wedge B_2) &= 
@@ -227,10 +309,48 @@ $$
   \end{aligned}
 $$ 
 
-These are some pretty hairy formulas, so memorizing them probably isn't a good idea. Better to understand how they flow from Bayes' theorem or a tree diagram.
+These are some pretty hairy formulas, so memorizing them probably isn't a good idea. It's better to understand how they flow from Bayes' theorem or a tree diagram.
+
 
 ## Exercises {-}
 
-1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+#.  Recall the following problem from [Chapter 8][Bayes' Theorem].
 
-2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Willy Wonka Co. makes two kinds of boxes of chocolates. The "wonk box" has four caramel chocolates and six regular chocolates. The "zonk box" has six caramel chocolates, two regular chocolates, and two mint chocolates. A third of their boxes are wonk boxes, the rest are zonk boxes.
+
+    They don't mark the boxes. The only way to tell what kind of box you've bought is by trying the chocolates inside. In fact, all the chocolates look the same; you can only tell the difference by tasting them.
+
+    Previously you calculated the probability a randomly chosen box is a wonk box given that a chocolate randomly selected from it is caramel. This time, suppose you randomly select two chocolates.
+
+    a. What is the probability it's a wonk box given that both chocolates are caramel?
+    #. What is the probability it's a wonk box given that the first is caramel and the second is regular?
+    #. What is the probability it's a wonk box given that the first is regular and the second is caramel?
+
+#.  Recall the following problem from [Chapter 8][Bayes' Theorem].
+
+    A room contains four urns. Three of them are Type X, one is Type Y.
+
+    -   The Type X urns each contain $3$ black marbles, $2$ white marbles.
+    -   The Type Y urn contains $1$ black marble, $4$ white marbles.
+
+    You are going to pick an urn at random and start drawing marbles from it at random *without* replacement.
+
+    Previously you calculated the probability the urn is Type X given that the first draw is black.
+
+    a.  What is the probability the urn is Type X if the first draw is black and the second is white?
+    #.  What is the probability the urn is Type X if the first draw is white and the second is black?
+    #.  What is the probability the third draw will be black, if the first draw is black and the second is white?
+
+#.  The order in which conditions are given doesn't matter. More precisely, the following equation always holds:
+    
+    $$ \p(A \given B \wedge C) = \p(A \given C \wedge B).$$
+
+    Use the rules of probability to prove that it always holds.
+
+#.  The order in which things happen often matters. If the light was red but is now green, the intersection is probably safe to drive through. But if the light was green and is now red, it's probably not safe.
+
+    We just saw, though, that the order in which conditions are given doesn't make any difference to the probability.
+    
+    Explain why these two observations do not conflict.
+
+#.  Above we observed that $\p(\neg A \given C) = 1 - \p(A \given C)$. Prove that this equation holds. Hint: start with the definition of conditional probability, and then recall that $1 = \p(C) / \p(C)$.

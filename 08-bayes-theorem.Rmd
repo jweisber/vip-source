@@ -348,8 +348,7 @@ Hence the quote that opens [Chapter 1][The Monty Hall Problem] of this book: "in
 
     They don't mark the boxes. The only way to tell what kind of box you've bought is by trying the chocolates inside. In fact, all the chocolates look the same; you can only tell the difference by tasting them.
 
-    a.  If you buy a box, try a chocolate at random, and find that it's caramel, what is the probability you've bought a wonk box?
-    b.  If you pick a second chocolate at random and it's caramel too, now what is the probability you've bought a wonk box?
+    If you buy a random box, try a chocolate at random, and find that it's caramel, what is the probability you've bought a wonk box?
 
 #.  A room contains four urns. Three of them are Type X, one is Type Y.
 
@@ -358,6 +357,4 @@ Hence the quote that opens [Chapter 1][The Monty Hall Problem] of this book: "in
 
     You are going to pick an urn at random and start drawing marbles from it at random *without* replacement.
 
-    a.  What is the probability the urn is Type X if the first draw is black?
-    b.  What is the probability the urn is Type X if the first draw is black and the second is white?
-    c.  What is the probability the third draw will be black, if the first draw is black and the second is white?
+    What is the probability the urn is Type X if the first draw is black?
