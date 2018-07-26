@@ -2,43 +2,40 @@
 
 # Expected Value
 
-We've analyzed reasoning about what's true, or at least probable. But a lot of reasoning is *practical*: it's about what the best course of action is. Once you know how likely the various possible outcomes of a decision are, how do you make your choice?
+We've been thinking a lot about what conclusions our evidence supports. But a lot of reasoning is *practical*: it's not just about what to believe, but about what you should *do*. Once you know how likely the various possible outcomes of a decision are, how do you make your choice?
 
 ```{block, type='problem'}
-You have a free ticket to play one game at the local casino. You can choose either The Coin Game or The Die Game.
+Suppose you have a free ticket to play one game at the local casino. You can choose either the Coin Game or the Die Game.
 
-- The Coin Game: a fair coin is flipped. You win $\$1$ if it lands heads, nothing if it lands tails.
-
-- The Die Game: a fair die is rolled. You win $\$3$ if it lands five or six, nothing otherwise.
+- Coin Game: a fair coin is flipped. You win $\$1$ if it lands heads, nothing otherwise.
+- Die Game: a fair die is rolled. You win $\$3$ if it lands five or six, nothing otherwise.
 
 Which game should you play?
 ```
 
-The coin game is guaranteed to win you money, while the die game only has a $1/3$ chance of paying off. On the other hand, the die game promises a bigger payoff, $\$4$ rather than just $\$1$.
-
-So there are conflicting arguments here. The odds favour the first choice, while the potential payoffs favour the second. How do you reconcile these two arguments and come to a decision?
+The Coin Game has better odds: a $1/2$ chance of winning vs. just $1/3$ in the Die Game. But the Die Game promises a bigger payoff: $\$3$ rather than just $\$1$. So there are conflicting arguments here. The odds favour the first choice, while the potential payoffs favour the second. How do you reconcile these considerations and come to a decision?
 
 Well, let's think about what would happen in the long run if you played each game over and over.
 
-Suppose you played the coin game over and over, a hundred times. Half the time you'd win $\$1$, and half the time you'd win nothing. So after a hundred plays, you'd probably win about $\$50$, which is an average of $\$0.50$ per play.
+Suppose you played the Coin Game over and over, a hundred times. Half the time you'd win $\$1$, and half the time you'd win nothing. So after a hundred plays, you'd probably win about $\$50$, which is an average of $\$0.50$ per play.
 
-Now suppose you play the die game a hundred times instead. A third of the time you'd win $\$3$, and the other two thirds of the time you'd win nothing. So after a hundred plays you'd have won about $\$100$, an average of about $\$1$ per play.
+Now suppose you played the Die Game a hundred times instead. A third of the time you'd win $\$3$, and the other two thirds of the time you'd win nothing. So after a hundred plays you'd have won about $\$100$, an average of about $\$1$ per play.
 
-In technical terms, this means The Die Game has a higher "expected value". In the long run, you'd expect to win about $\$1$ per play in The Die Game, as opposed to $\$0.50$ for The Coin Game.
+In technical terms, this means the Die Game has a higher *expected value*. In the long run, you'd expect to win about $\$1$ per play in the Die Game, as opposed to $\$0.50$ for the Coin Game.
 
-So The Die Game is the more advantageous one, on this analysis. On average, people tend to win more playing that game.
+So the Die Game is the more advantageous one, on this analysis. On average, people tend to win more playing that game.
 
 
 ## Expected Monetary Values
 
-To calculate the expected value of an option, we multiply each payoff by its probability, and then sum up the results. For example, our analysis of The Coin Game can be written this way:
+To calculate the expected value of an option, we multiply each payoff by its probability, and then sum up the results. For example, our analysis of the Coin Game can be written this way:
 $$
   \begin{aligned}
     \p(\$1) \times \$1 + \p(\$0) \times \$0 &= (1/2)(\$1) + (1/2)(\$0)\\
       &= \$0.50.
   \end{aligned}
 $$
-And for The Die Game:
+And for the Die Game:
 $$
   \begin{aligned}
     \p(\$3) \times \$3 + \p(\$0) \times \$0 &= (1/3)(\$3) + (2/3)(\$0)\\
@@ -46,7 +43,7 @@ $$
   \end{aligned}
 $$
 
-Sometimes a gamble has the potential to lose money, so we use a negative number for the "payoff". For example, suppose The Die Game is modified so that you have to pay $\$3$ if the die lands $1, 2, 3$, or $4$. Then we calculate:
+Sometimes a gamble has the potential to lose money, so we use a negative number for the "payoff". For example, suppose the Die Game is modified so that you have to pay $\$3$ if the die lands $1, 2, 3$, or $4$. Then we calculate:
 $$
   \begin{aligned}
     \p(\$3) \times \$3 + \p(-\$3) \times -\$1 &= (1/3)(\$3) + (2/3)(-\$3)\\
@@ -57,7 +54,7 @@ $$
 In general, the formula for a game with possible payoffs $\$x$ and $\$y$ is:
 $$ \p(\$x) \times \$x + \p(\$y) \times \$y. $$
 
-Notice that expected values aren't necessarily what you might think from the name. Th expected value of a game isn't necessarily the amount you expect to win playing it. If you play The Die Game, you'll either win $\$3$ or nothing. But the expected value of $\$1$. So you actually know for certain ahead of time that you won't win the expected value, $\$1$.
+Notice that expected values aren't necessarily what you might think from the name. The expected value of a game isn't necessarily the amount you expect to win playing it. If you play the Die Game, you'll either win $\$3$ or nothing. But the expected value is $\$1$. So you actually know for certain ahead of time that you won't win the expected value, $\$1$.
 
 ```{block, type='warning'}
 The expected value isn't the amount you expect to win from a game. It's the amount you expect to win *on average, in the long run*, if you play the game over and over.
@@ -66,72 +63,68 @@ The expected value isn't the amount you expect to win from a game. It's the amou
 
 ## Visualizing Expectations
 
-Long run averages aren't the only way to help make expectations intuitive. You can also visualize them as the area of a diagram like this one:
+`r newthought("We can")` visualize these long run averages as the area in a diagram. Figure \@ref(fig:gambleviz) shows a gamble with a $1/3$ chance of paying $\$2$, and a $2/3$ chance of paying $\$6$.
 
-```{r echo=FALSE, fig.cap="Expected value as area"}
-knitr::include_graphics("img/fig.png")
+```{r gambleviz, echo=FALSE, fig.cap="A gamble with a $1/3$ chance of paying $\\$2$, and a $2/3$ chance of paying $\\$6$"}
+f <- function(x) case_when(x <= 1/3 ~ 2, x <= 1 ~ 6)
+
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
+  scale_y_continuous("payoff ($)", breaks = seq(0, 8, 2), limits = c(0, 8)) +
+  scale_x_continuous("probability", labels = c("0" = "0", "1/3" = "1/3", "2/3" = "2/3", "1" = "1"), breaks = seq(0, 1, 1/3))
+```
+```{r coindiegame, echo=FALSE, cache=TRUE, fig.show="hold", fig.margin=TRUE, fig.cap="The Coin Game (top) and the Die Game (bottom)"}
+
+f <- function(x) case_when(x <= 1/2 ~ 0, x <= 1 ~ 1)
+
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
+  scale_y_continuous("payoff ($)", breaks = seq(0, 4, 1), limits = c(0, 4)) +
+  scale_x_continuous("probability", labels = c("0" = "0", "1/2" = "1/2", "1" = "1"), breaks = seq(0, 1, 1/2)) +
+  ggtitle("Coin Game")
+
+f <- function(x) case_when(x <= 2/3 ~ 0, x <= 1 ~ 3)
+
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
+  scale_y_continuous("payoff ($)", breaks = seq(0, 4, 1), limits = c(0, 4)) +
+  scale_x_continuous("probability", labels = c("0" = "0", "1/3" = "1/3", "2/3" = "2/3", "1" = "1"), breaks = seq(0, 1, 1/3)) +
+  ggtitle("Die Game")
 ```
 
-The $x$-axis here represents probability, the $y$-axis is money. Each possible outcome corresponds to a rectangular region in the diagram. The rectangle's width is the probability of that outcome occurring, and the height is the payoff. So the rectangle's area is a term in the sum for the expected value. The total expected value is thus the area of all the rectangles.
+There are two rectangular regions, one for each possible outcome. The width of each rectangle is the probability of the corresponding outcome, and the height is the payoff. So each rectangle's area is one term in the expected value's sum:
+$$ 1/3 \times \$2 + 2/3 \times \$6. $$
+The expected value is thus the area of the two rectangles together, i.e. the area of the blue region (about $\$4.67$ in this example).
 
-Notice how a rectangle's area can enlarged by increasing either its width or its height (or both). Likewise, a payoff's contribution to expected value can be increased either by increasing its amount or by increasing its probability (or both).
+The Coin Game and the Die Game are visualized in Figure \@ref(fig:coindiegame).
 
-We started this chapter wondering how to reconcile conflicting arguments for and against making a certain choice. One choice had better odds, the other had a greater potential payoff. The expected value formula answers the question by giving equal weight to these competing reasons. Width (odds) and height (payoff) are treated the same: neither one is given greater weight. We just multiply one against the other and take the total area that results.
 
-```{r echo=FALSE, fig.margin = TRUE, fig.cap="A gamble with one negative payoff"}
-knitr::include_graphics("img/marg_fig.png")
+`r newthought("We started")` this chapter wondering how to reconcile conflicting arguments. The Coin Game has better odds, but the Die Game has a greater potential payoff.
+
+Well, a rectangle's area can be enlarged by increasing either its width or its height. Likewise, a payoff's contribution to expected value can be increased either by increasing its amount or by increasing its probability.
+
+So the expected value formula answers our opening question by giving equal weight to the two competing factors. Width (probability) and height (payoff) are treated the same: neither one is given greater weight. We just multiply one against the other and take the total area that results.
+
+```{r echo=FALSE, fig.margin = TRUE, fig.cap="A gamble with one negative payoff, one positive"}
+f <- function(x) case_when(x <= 1/2 ~ -2, x <= 1 ~ 0)
+g <- function(x) case_when(x <= 1/2 ~ 0, x <= 1 ~ 1)
+
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = f, geom = "area", n = 1000, fill = leftcolour) +
+  stat_function(fun = g, geom = "area", n = 1000, fill = rightcolour) +
+  scale_y_continuous("payoff ($)", breaks = seq(-3, 3, 1), limits = c(-3, 3)) +
+  scale_x_continuous("probability", labels = c("0" = "0", "1/2" = "1/2", "1" = "1"), breaks = seq(0, 1, 1/2))
 ```
 
-Negative outcomes are represented by rectangles below the $x$-axis. We colour these red, as a reminder that they are to be subtracted from the area above the $x$-axis. So to get the expected value, we subtract the red area from the blue area.
+`r newthought("Sometimes")` a decision loses money. We use negative dollar amounts to represent losses. For example, imagine the Coin Game is modified so that you lose $\$2$ if the coin lands tails. Then the expected value is:
+$$ 1/2 \times \$1 + 1/2 \times -\$2 = -\$1/2.$$
 
-```{r echo=FALSE, fig.margin = TRUE, fig.cap="A gamble with four possible outcomes"}
-knitr::include_graphics("img/marg_fig.png")
-```
-
-Gambles with three or more outcomes can be represented similarly. We just use three or more reactangles, one for each possible outcome.
+In our diagrams, potential losses extend below the $x$-axis. And we colour them red as a reminder that they are to be subtracted from the area above the $x$-axis. To get the expected value, we subtract the red area from the blue area.
 
 
-## Fair Prices
+## More Than Two Outcomes
 
-Imagine a variation of The Coin Game, where you win $\$1$ if the coin lands heads, and you pay $\$1$ if it lands tails. You might be able to guess, the expected value of this game is $\$0$:
-$$
-  \begin{aligned}
-    \p(\$1) \times \$1 + \p(-\$1) \times -\$1 &= (1/2)(\$1) + (1/2)(-\$1)\\
-      &= 0.
-  \end{aligned}
-$$
-If you played over and over again, you'd break even in the long run. Half the time you'd win a dollar, and the other half of the time you'd pay a dollar back.
-
-So if someone asked you to pay to play this game, that would seem unfair. Why pay to play if you don't expect to win?
-
-But for a game like The Die Game, asking people to pay to play does seem fair. In the long run, the casino is going to lose an average of $\$1$ per play. So it's only fair that they ask people to pay $\$1$ to play that game. In the long run they'll break even. (Of course, a real casino will demand more so that they can turn a profit.)
-
-In general, a game's fair price is thought to be its expected value. If the expected value is $\$3$, it's fair to pay $\$3$ to play. (If the expected value is $-\$3$, it's fair to "pay" $\$3$ to play: meaning *they should pay you* $\$3$ to play.)
-
-Notice that the expected value of paying the fair price is always $\$0$. Suppose you pay $\$1$ to play The Die Game, for example. Because \$1 is automatically deducted from your winnings, the possible consequences are now $\$3 - \$1 = \$2$ and $\$0 - \$1 = -\$1$. So the expected value of paying \$1 to play is:
-$$
-  \begin{aligned}
-    (1/3)(\$2) + (2/3)(-\$1) &= \$2/3 - \$2/3\\
-      &= \$0.
-  \end{aligned}
-$$
-
-That makes sense: if it's a fair price, you shouldn't have any advantage over the casino. You don't stand to gain or lose money in the long run, if you pay to play over and over.
-
-And the casino is in the same position. For them, the losses and gains are reversed: a roll of five or six loses them \$3, and otherwise they lose nothing. So if you pay them $\$1$ to play, they either lose $\$2$ total or gain $\$1$:
-$$
-  \begin{aligned}
-    (1/3)(-\$2) + (2/3)(\$1) &= -\$2/3 + \$2/3\\
-      &= \$0.
-  \end{aligned}
-$$
-
-Since nobody has an advantage, it's a fair deal.
-
-
-## Three Or More Consequences
-
-Most casino games have mor than two possible payoffs. For that matter, most decisions in life have more than two possible outcomes. If you buy insurance for your phone, it could end up saving you $\$0$, or it could save you $\$100$, or it might save you $\$150$, etc.
+`r newthought("Most")` casino games have mor than two possible payoffs. For that matter, most decisions in life have more than two possible outcomes. If you buy insurance for your phone, it could end up saving you $\$0$, or it could save you $\$100$, or it might save you $\$150$, etc.
 
 So the official definition of expected monetary value is:
 
@@ -144,6 +137,17 @@ $$
   \end{aligned}
 $$
 
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="A gamble with three possible outcomes"}
+f <- function(x) { case_when(x <= 1/3 ~ -3, x <= 1 ~ 0) }
+g <- function(x) { case_when(x <= 1/3 ~ 0, x <= 2/3 ~ 1, x <= 1 ~ 2)}
+
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = f, geom = "area", n = 1000, fill = leftcolour) +
+  stat_function(fun = g, geom = "area", n = 1000, fill = rightcolour) +
+  scale_y_continuous("payoff ($)", breaks = seq(-4, 4, 1), limits = c(-4, 4)) +
+  scale_x_continuous("probability", labels = c("0" = "0", "1/3" = "1/3", "2/3" = "2/3", "1" = "1"), breaks = seq(0, 1, 1/3))
+```
+
 For example, suppose a fair die will be rolled and you will win \$1 if it lands on a low number, \$2 if it's a middling number. If it's a high number, you lose \$3. Then:
 $$
   \begin{aligned}
@@ -154,12 +158,70 @@ $$
 $$
 
 
+Gambles with more than two outcomes are visualized the same as before. We just use three or more reactangles, one for each possible outcome.
+
+## Fair Prices
+
+`r newthought("Imagine")` a variation of the Coin Game, where you win $\$1$ if the coin lands heads, and you pay $\$1$ if it lands tails. You might be able to guess, the expected value of this game is $\$0$:
+$$
+  \begin{aligned}
+    \p(\$1) \times \$1 + \p(-\$1) \times -\$1 &= (1/2)(\$1) + (1/2)(-\$1)\\
+      &= 0.
+  \end{aligned}
+$$
+If you played over and over again, you'd break even in the long run. Half the time you'd win a dollar, and the other half of the time you'd pay a dollar back.
+
+So if someone asked you to pay in order to play this game, that would seem unfair. Why pay to play if you don't expect to win?
+
+But for a game like the Die Game, asking people to pay to play does seem fair. In the long run, the casino is going to lose an average of $\$1$ per play. So it's only fair that they ask people to pay $\$1$ to play that game. In the long run they'll break even. (Of course, a real casino will demand more so they can turn a profit.)
+
+In general, a game's fair price is thought to be its expected value. If the expected value is $\$3$, it's fair to pay $\$3$ to play. If the expected value is $-\$3$, it's fair to "pay" $-\$3$ to play. Meaning *they should pay you* $\$3$ to play.
+
+`r newthought("Notice that")` the expected value of paying the fair price is always $\$0$. Suppose you pay $\$1$ to play the original Die Game, for example. Because \$1 is automatically deducted from your winnings, the possible consequences are now $\$3 - \$1 = \$2$ or $\$0 - \$1 = -\$1$. So the expected value of paying \$1 to play is:
+$$
+  \begin{aligned}
+    (1/3)(\$2) + (2/3)(-\$1) &= \$2/3 - \$2/3\\
+      &= \$0.
+  \end{aligned}
+$$
+
+That makes sense: if it's a fair price, you shouldn't have any advantage over the casino. You don't stand to gain or lose money in the long run, if you pay the fair price to play over and over.
+
+The casino is in the same position. For them, the losses and gains are reversed: a roll of five or six loses them \$3, and otherwise they lose nothing. So if you pay them $\$1$ to play, they either lose $\$2$ in the end or gain $\$1$:
+$$
+  \begin{aligned}
+    (1/3)(-\$2) + (2/3)(\$1) &= -\$2/3 + \$2/3\\
+      &= \$0.
+  \end{aligned}
+$$
+
+Since nobody has an advantage, it's a fair deal.
+
+
 ## Other Goods
 
-Money isn't everything, of course. People value lots of other things, like their health, their comfort, and their free time. The concept of expected value can be applied to other goods besides money, as long as they're quantifiable.
+`r newthought("Money")` isn't everything, of course. People value lots of other things, like their health, their family and friends, and their free time. The concept of expected value can be applied to other goods besides money, as long as they're quantifiable.
 
 ```{block, type='problem'}
-Imagine you're taking a trip to Ottawa and you can either drive or go by train. If you take the train, it's pretty predictable: it's always a five or six hour ride, with equal probability each way. If you drive, it's less predictable. Nine times out of ten it's just a four hour drive. But one time in ten, there's an accident and it ends up being a ten hour drive.
+Imagine you're taking a trip to Ottawa and you can either drive or go by train. If you take the train, it's pretty predictable: it's always a five or six hour ride, with equal probability. If you drive, it's less predictable. Nine times out of ten it's just a four hour drive. But one time in ten, an accident causes a traffic jam and it ends up being a ten hour drive.
+```
+
+```{r echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="Take the train to Ottawa or drive?"}
+f <- function(x) { case_when(x <= 1/2 ~ -6, x <= 1 ~ -5) }
+
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = f, geom = "area", n = 1000, fill = leftcolour) +
+  scale_y_continuous("hours", breaks = seq(-12, 2, 2), limits = c(-12, 2)) +
+  scale_x_continuous("probability", breaks = seq(0, 1, 1/10)) +
+  ggtitle("Train")
+
+f <- function(x) { case_when(x <= 1/10 ~ -10, x <= 1 ~ -4) }
+
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = f, geom = "area", n = 1000, fill = leftcolour) +
+  scale_y_continuous("hours", breaks = seq(-12, 2, 2), limits = c(-12, 2)) +
+  scale_x_continuous("probability", breaks = seq(0, 1, 1/10)) +
+  ggtitle("Drive")
 ```
 
 If all you care about is spending as little time on the road as possible, should you take the train or drive?
@@ -168,7 +230,7 @@ $$
     \E(\mbox{Train}) &= \p(-5{\mbox{ hr}}) \times -5{\mbox{ hr}}+ \p(-6{\mbox{ hr}}) \times -6{\mbox{ hr}}\\
                      &= (1/2)(-5{\mbox{ hr}}) + (1/2)(-6{\mbox{ hr}})\\
                      &= -11/2{\mbox{ hr}}\\
-                     &= -5.5{\mbox{ hr}}\\
+                     &= -5.5{\mbox{ hr}},\\
     \E(\mbox{Drive}) &= \p(-4{\mbox{ hr}}) \times -4{\mbox{ hr}}+ \p(-10{\mbox{ hr}}) \times -10{\mbox{ hr}}\\
                      &= (9/10)(-4{\mbox{ hr}}) + (1/10)(-10{\mbox{ hr}})\\
                      &= -46/10{\mbox{ hr}}\\
@@ -177,14 +239,171 @@ $$
 $$
 So driving has a higher expected value---measured in terms of free time, rather than money.
 
+Notice that both options have negative expected value in this example. After all, you're bound to lose time travelling no matter what. Sometimes you don't have any choice but to accept a loss. But you can still choose the option that minimizes your expected loss, i.e. maximizes expected value.
 
-## Decision Tables & Dominance Reasoning
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## Decision Tables
+
+Many decision problems can be represented in a table. Suppose you're choosing between the following two gambles, based on the roll of a fair, six-sided die.
+
+- $A$: you win $3 if it lands $1$ or $2$, you win $\$1$ if it lands $3$ or $4$, and you lose $\$1$ if it lands $5$ or $6$.
+- $B$: you win $\$3$ if it lands $1$ or $2$, you lose $\$3$ if it lands $3$ or $4$, and nothing happens if it lands $5$ or $6$.
+
+A decision table has a row for each option and a column for each possible outcome. Each cell of the table then contains the payoff for that combination of act and outcome:
+
+```{r echo=FALSE}
+decision_table <- rbind(
+    c("$1$ or $2$" = "$\\$3$", "$3$ or $4$" = "$\\$1$", 
+      "$5$ or $6$" = "$-\\$1$"),
+    c("$1$ or $2$" = "$\\$1$", "$3$ or $4$" = "$\\$2$", 
+      "$5$ or $6$" = "$\\$0$")
+)
+row.names(decision_table) <- c("$A$", "$B$")
+knitr::kable(decision_table, align = "c")
+```
+
+We can also add in the probability for each cell:
+
+```{r echo=FALSE}
+decision_table <- rbind(
+    c("$1$ or $2$" = "$1/3$, $\\$3$", "$3$ or $4$" = "$1/3$, $\\$1$", 
+      "$5$ or $6$" = "$1/3$, $-\\$1$"),
+    c("$1$ or $2$" = "$1/3$, $\\$3$", "$3$ or $4$" = "$1/3$, $-\\$3$", 
+      "$5$ or $6$" = "$1/3$, $\\$0$")
+)
+row.names(decision_table) <- c("$A$", "$B$")
+knitr::kable(decision_table, align = "c")
+```
+
+Now calculating expected values is just a matter of multiplying the numbers within each cell, and then adding up across each row:
+
+```{r echo=FALSE}
+decision_table <- rbind(
+    c("$1$ or $2$" = "$1/3$, $\\$3$", "$3$ or $4$" = "$1/3$, $\\$1$", 
+      "$5$ or $6$" = "$1/3$, $-\\$1$", "Expected Value" = "$\\$1$"),
+    c("$1$ or $2$" = "$1/3$, $\\$3$", "$3$ or $4$" = "$1/3$, $-\\$3$", 
+      "$5$ or $6$" = "$1/3$, $\\$0$", "Expected Value" = "$\\$0$")
+)
+row.names(decision_table) <- c("$A$", "$B$")
+knitr::kable(decision_table, align = "c")
+```
+
+`r newthought("Note")` that the probabilities don't have to be the same from row to row. The casino might choose to use a different die depending on how you bet, for example. Suppose if you choose $A$, they'll use a loaded die to eliminate your edge:
+
+```{r echo=FALSE}
+decision_table <- rbind(
+    c("$1$ or $2$" = "$1/6$, $\\$3$", "$3$ or $4$" = "$1/6$, $\\$1$", 
+      "$5$ or $6$" = "$4/6$, $-\\$1$", "Expected Value" = "$\\$0$"),
+    c("$1$ or $2$" = "$1/3$, $\\$3$", "$3$ or $4$" = "$1/3$, $-\\$3$", 
+      "$5$ or $6$" = "$1/3$, $\\$0$", "Expected Value" = "$\\$0$")
+)
+row.names(decision_table) <- c("$A$", "$B$")
+knitr::kable(decision_table, align = "c")
+```
+
+Now that the die is loaded towards $5$ or $6$ if you choose $A$, the expected value of choosing $A$ is nil: $\$0$.
+
+`r newthought("Once in a while")` you can avoid calculating expected values altogether. Consider this decision problem:
+
+```{r echo=FALSE}
+decision_table <- rbind(
+    c("$1$ or $2$" = "$\\$3$", "$3$ or $4$" = "$\\$1$", 
+      "$5$ or $6$" = "$-\\$1$"),
+    c("$1$ or $2$" = "$\\$1$", "$3$ or $4$" = "$\\$0$", 
+      "$5$ or $6$" = "$-\\$3$")
+)
+row.names(decision_table) <- c("$A$", "$B$")
+knitr::kable(decision_table, align = "c")
+```
+
+We don't even have to put in the probabilities to make our decision here. Option $A$ is clearly better, because it has a better payoff no matter how the die lands. In every column, row $A$ has a larger payoff than row $B$. So $A$ is a better decision no matter what.
+
+When one option has a better payoff than another no matter what happens, we say the first option ***dominates*** the second. In terms of a table, the dominant option has a higher payoff in every column.
+
+```{block, type="info"}
+If $A$ dominates $B$, then $A$ must have higher expected value than $B$.
+```
+
+Dominant options don't come up very often in practice. Real decision problems tend to be harder than that. But they do come up sometimes. (They're also important in more advanced, theoretical topics: [Chapter 17][Dutch Books] covers one example.)
 
 
 ## Exercises {-}
 
-1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+#.  Which of the following best describes expected monetary value?
 
-2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    a. The amount you would expect to gain if you chose the same option over and over again for a long, long time.
+    b. The amount you expect to gain/lose.
+    c. The average amount you would expect to gain/lose each time if you chose the same option over and over again many times.
+    d. The amount of profit a business expects to garner in a fiscal year.
+
+#.  What is the expected monetary value of playing a slot machine that costs $\$100$ to play, and has a $1/25$ chance of paying out $\$500$? (The rest of the time it pays nothing.)
+
+#.  You're considering downloading a new game for your phone. The game costs $\$0.99$. But as a promotion, the first $50,000$ downloaders are being entered in a fair lottery with a $\$10,000$ cash prize. 
+    
+    ```{marginfigure}
+    This exercise is based on Exercise 2 from p. 95 of Ian Hacking's *An Introduction to Probability & Inductive Logic*.
+    ````
+    
+    If you know you'll be one of the first $50,000$ downloaders, what is the expected monetary value of downloading the game?
+
+#.  A local casino offers a game which costs $\$2$ to play. A fair coin is flipped up to three times, and the payouts work as follows:
+
+    - If the coin lands heads on the first toss, you win $\$2$ and the game is over.
+    - If the coin lands heads on the second toss, you win $\$4$ and the game is over.
+    - If the coin lands heads on the third toss, you win $\$8$ and the game is over.
+    - If the coin lands tails all three times, you win $\$0$.
+
+    What is the expected monetary value of this game?
+
+#.  When is the following statement true: the expected monetary value of a gamble is also one of its possible payoffs.
+
+    a. Always true
+    b. Sometimes true
+    c. Never true
+
+#.  Suppose you can bet on either of two dogs: Santa's Little Helper or She's the Fastest. If you bet on Santa's Little Helper and he wins, you get $\$5$. If he loses you pay $\$2$. If you bet on She's the Fastest and she loses, you pay $\$10$. The two dogs have the same chance of winning.
+
+    ```{marginfigure}
+    This problem is based on Exercise 1 from p. 85 of Michael D. Resnik's excellent book, *Choices*.
+    ```
+
+     How much would a winning bet on She's the Fastest have to pay for her to be the better bet?
+
+#.  Suppose you play poker with five of your friends every week, but you're not very good. For every week you win, there are eight weeks where you lose. You don't play for real money though, so it's usually no big deal.
+
+    But next week your friends want to have a real game where everyone puts in $\$15$. The winner keeps all the money, everyone else loses their $\$15$.
+
+    a. What is the expected monetary value of playing next week?
+
+    Now suppose you see a book that teaches people to improve their poker game. The book costs $\$30$, but it will increase your odds of winning.
+
+    b. How much would the book have to increase your odds of winning to make the expected value of buying it positive?
+
+
+#.  Suppose you've accumulated enough loyalty points at your local drug store to trade them in for $\$100$ worth of merchandise.
+
+    But the pharmacy offers you a second option. You can trade your points for an opportunity to join a lottery along with all the other customers who've accumulated the same number of points. The lottery will have one randomly selected winner, and the prize is $\$10,000$ worth of merchandise. There would be $300$ people in the lottery (including you).
+
+    Treat losing the lottery as a monetary loss: $-\$100$.
+
+    a. What is the expected monetary value of joining the lottery?
+    b. How small would the lottery need to be for it to be a fair trade for your points? In other words: how few people would there need to be in the lottery (including you) for it to have the same expected value as just trading your points for $\$100$ of merchandise?
+
+#.  You're on a game show where there are three closed doors. One of the doors has a large cash prize behind it, though you don't know how much exactly. The other two doors have nothing. You have two options:
+
+    - Option $A$: Choose a door at random and keep whatever you find, if anything.
+    - Option $B$: First ask the host to open one of the doors with nothing behind it. Then choose one of the remaining doors at random. The catch is that now you only get to keep *half* of what you find, if anything.
+
+    Which option has higher expected value? Justify your answer.
+    
+    Hint: first calculate the expected value of each option if the cash prize is $\$100$. Then do the same calculations for a prize of $\$1,000$. Then explain how to generalize this reasoning to any cash prize.
+
+#.  Some workplaces hold a weekly lottery. Suppose there are 30 people in your workplace lottery, and each person pays in \$5 every Monday. A finalist is chosen at random every Friday, for three weeks. Then, on the fourth Friday, one of the three finalists from the previous three weeks is chosen at random. That person gets all the prize money.
+
+    What is the expected value of being in this lottery? Explain the reasoning behind your answer.
+    
+    Tip: it's possible to answer this question without doing any calculations.
+
+#.  Prove that paying the fair price for an option always results in expected value of $\$0$. In other words, if $E(A) = \$x$, then $E(\mbox{Pay } \$x \mbox{ for } A) = \$0$.
+
+#.  Prove that if $A$ dominates $B$, then $A$ has higher expected value: $E(A) > E(B)$.
