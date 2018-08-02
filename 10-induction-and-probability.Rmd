@@ -65,7 +65,7 @@ Laplace's calculation is too advanced for this book. But statistician Joe Blitzs
 For our purposes, the key ideas that matter are as follows. First, the strength of an inductive argument is a question of conditional probability: how probable is the argument's conclusion given its premises? Second, an argument that generalizes from observed instances is similar to an urn problem, where we guess the contents of the urn by repeated sampling. And third, we know how to solve simple versions of these urn problems using Bayes' theorem. In principle, we could also solve more complicated and realistic versions using the same fundamental ideas, the math would just be harder.
 
 
-## Inference to the Best Explanation
+## Inference to the Best Explanation {#bayesibe}
 
 `r newthought("Another")` common form of inductive argument we met in [Chapter 2][Logic] was Inference to the Best Explanation. An example:
 
