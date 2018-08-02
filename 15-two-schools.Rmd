@@ -54,11 +54,19 @@ Well, we can distinguish *actual* frequency from *hypothetical* frequency.
 
 *Actual frequency* is the number of times the coin actually lands heads divided by the number of flips. If there's only one flip and it's a heads, then the actual frequency is $1/1$, which is just $1$. If there's ten flips and four are heads, then the actual frequency is $4/10$.
 
+```{r}
+# TODO: add a plot illustrating the convergence of freq. heads after e.g. 100 tosses
+```
+
 But *hypothetical frequency* is the number of times the coin *would* land heads if you flipped it over and over for a long time, divided by the total number of hypothetical flips. If we flipped the coin over and over a million times, it would land heads about half the time (probably).
 
 Now, it's presumably the *hypothetical* frequency that is the real probability of heads, according to frequentists. So doesn't that solve our problem with one-off events? Even if a coin is only ever flipped once, what matters is how it would have landed if we'd flipped it many times.
 
 `r newthought("Serious problems")` beset the hypothetical frequency view too, however.
+
+```{r}
+# TODO: add a gganimation to illustrate the different possible frequencies of heads after e.g. 100 tosses
+```
 
 The first problem is that it makes our definition of "probability" circular. Hypothetical frequency has to be defined in terms of probability. If you flipped the coin over and over, it would *probably* land heads half the time. But not necessarily: it might land heads only a few times, or even not at all. So what we're really saying is: "probability" = most probable hypothetical frequency. But you can't define a concept in terms of itself!
 
