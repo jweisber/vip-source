@@ -22,11 +22,11 @@ This is probably the most common way of understanding "probability". You may eve
 
 `r newthought("But many")` statements about probability don't fit the frequency mold, not very well at least.
 
-Consider the statement, "the probability the dinosaurs were wiped out by a meteor is $90\%$." Does this mean $90\%$ of the times dinosaurs existed on earth, they were wiped out. They only existed once! This probability is about an event that doesn't repeat. So there's no frequency with which it happens.
+Consider the statement, "the probability the dinosaurs were wiped out by a meteor is $90\%$." Does this mean $90\%$ of the times dinosaurs existed on earth, they were wiped out? They only existed once! This probability is about an event that doesn't repeat. So there's no frequency with which it happens.
 
-Here's another example: "the main cause of climate change is probably humans." Does that mean most of the time, when climate change happens, humans are the cause? Humans haven't even been around for most of the climate changes in Earth's history. So again: this doesn't seem to be a statement about the frequency with which humans cause global warming.
+Here's another example: "humans are probably the main cause of our changing climate." Does that mean most of the time, when climate change happens, humans are the cause? Humans haven't even been around for most of the climate changes in Earth's history. So again: this doesn't seem to be a statement about the frequency with which humans cause global warming.
 
-These statements appear instead to be about what beliefs are supported by the evidence. When someone says it's $90\%$ likely the dinosaurs were wiped out by a meteor, they mean the evidence warrants being $90\%$ confident that's what happened.^[What evidence? Often, people don't say what evidence they're relying on. But sometimes they do: fossil records and geological traces, for example.] Similarly, when someone says humans are probably the main cause of climate change, they mean that the evidence warrants being more than $50\%$ confident it's true.
+These statements appear instead to be about what beliefs are supported by the evidence. When someone says it's $90\%$ likely the dinosaurs were wiped out by a meteor, they mean the evidence warrants being $90\%$ confident that's what happened.^[What evidence? People don't always say what evidence they're relying on. But sometimes they do: fossil records and geological traces, for example.] Similarly, when someone says humans are probably the main cause of climate change, they mean that the evidence warrants being more than $50\%$ confident it's true.
 
 So, some probability statements appear to be about *belief*, not frequency. If a proposition has high probability, that means the evidence warrants strong belief in it. If a proposition has low probability, the evidence only warrants low confidence.
 
@@ -37,11 +37,11 @@ So, some probability statements appear to be about *belief*, not frequency. If a
 
 There is a deep divide among scientists on this issue, especially statisticians.
 
-The *frequentists* think that science deals in the first kind of probability, frequency. They may prefer this interpretation because it promises to be more conrete and objective. How often something happens can be observed and measured objectively. And science is all about observation and objectivity.
+The *frequentists* think that science deals in the first kind of probability, frequency. This interpretation has the appeal of being conrete and objective, since we can observe and count how often something happens. And science is all about observation and objectivity, right?
 
 The *Bayesians* think instead that science deals in the second kind of probability, belief-type probability. Science is supposed to tell us what to believe given our evidence, after all. So it has to go beyond just the frequencies we've observed, and say what beliefs those observations support.
 
-Let's consider strengths and weaknesses of each approach.
+Let's consider the strengths and weaknesses of each approach.
 
 
 ## Frequentism
@@ -52,23 +52,62 @@ For example, suppose we take an ordinary coin fresh from the mint, and we flip i
 
 Well, we can distinguish *actual* frequency from *hypothetical* frequency.
 
-*Actual frequency* is the number of times the coin actually lands heads divided by the number of flips. If there's only one flip and it's a heads, then the actual frequency is $1/1$, which is just $1$. If there's ten flips and four are heads, then the actual frequency is $4/10$.
+*Actual frequency* is the number of times the coin actually lands heads, divided by the total number of flips. If there's only one flip and it's a heads, then the actual frequency is $1/1$, which is just $1$. If there's ten flips and four are heads, then the actual frequency is $4/10$.
 
-```{r}
-# TODO: add a plot illustrating the convergence of freq. heads after e.g. 100 tosses
+But *hypothetical frequency* is the number of times the coin *would* land heads if you flipped it over and over for a long time, divided by the total number of hypothetical flips. If we flipped the coin a hundred times for example, it would probably land heads about half the time, like in Figure \@ref(fig:hundredflips).
+
+```{r hundredflips, echo=FALSE, fig.width=12, fig.fullwidth=TRUE, fig.cap="The frequency of heads over the course of $100$ coin flips. This particular sequence of heads and tails was generated by a computer simulation."}
+set.seed(1)
+
+df <- data.frame(outcome = rbinom(100, 1, 1/2)) %>%
+  mutate(ht = if_else(outcome == 1, "H", "T"),
+         n = row_number(),
+         k = cumsum(outcome))
+
+ggplot(df) +
+  geom_line(aes(x = n, y = k/n)) +
+  geom_text(aes(x = n, y = -.05, label = ht)) +
+  xlab("flip") +
+  ylim(-.1, 1) + ylab("frequency of heads")
 ```
 
-But *hypothetical frequency* is the number of times the coin *would* land heads if you flipped it over and over for a long time, divided by the total number of hypothetical flips. If we flipped the coin over and over a million times, it would land heads about half the time (probably).
-
-Now, it's presumably the *hypothetical* frequency that is the real probability of heads, according to frequentists. So doesn't that solve our problem with one-off events? Even if a coin is only ever flipped once, what matters is how it would have landed if we'd flipped it many times.
+Presumably, it's the *hypothetical* frequency that is the real probability of heads, according to frequentists. So doesn't that solve our problem with one-off events? Even if a coin is only ever flipped once, what matters is how it would have landed if we'd flipped it many times.
 
 `r newthought("Serious problems")` beset the hypothetical frequency view too, however.
 
-```{r}
-# TODO: add a gganimation to illustrate the different possible frequencies of heads after e.g. 100 tosses
+```{r threecoins, echo=FALSE, fig.margin=TRUE, fig.cap="Three fair coins flipped $100$ times each, yielding three different frequencies"}
+set.seed(1)
+
+df1 <- data.frame(outcome = rbinom(100, 1, 1/2)) %>%
+  mutate(ht = if_else(outcome == 1, "H", "T"),
+         n = row_number(),
+         k = cumsum(outcome))
+df1$title <- paste("Coin #1: ", tail(df1$k, n = 1), "H,", 100 - tail(df1$k, n = 1), "T")
+
+df2 <- data.frame(outcome = rbinom(100, 1, 1/2)) %>%
+  mutate(ht = if_else(outcome == 1, "H", "T"),
+         n = row_number(),
+         k = cumsum(outcome))
+df2$title <- paste("Coin #2: ", tail(df2$k, n = 1), "H,", 100 - tail(df2$k, n = 1), "T")
+
+df3 <- data.frame(outcome = rbinom(100, 1, 1/2)) %>%
+  mutate(ht = if_else(outcome == 1, "H", "T"),
+         n = row_number(),
+         k = cumsum(outcome))
+df3$title <- paste("Coin #3: ", tail(df3$k, n = 1), "H,", 100 - tail(df3$k, n = 1), "T")
+
+df <- bind_rows(df1, df2, df3)
+
+ggplot(df) +
+  geom_line(aes(x = n, y = k/n)) +
+  facet_grid(rows = vars(title)) +
+  xlab("flip") +
+  ylim(-.1, 1) + ylab("frequency of heads")
 ```
 
-The first problem is that it makes our definition of "probability" circular. Hypothetical frequency has to be defined in terms of probability. If you flipped the coin over and over, it would *probably* land heads half the time. But not necessarily: it might land heads only a few times, or even not at all. So what we're really saying is: "probability" = most probable hypothetical frequency. But you can't define a concept in terms of itself!
+The first problem is that it makes our definition of "probability" circular, because hypothetical frequency has to be defined in terms of probability. If you flipped the coin over and over, say a hundred times, the most *probable* outcome is $50$ heads and $50$ tails. But other outcomes are perfectly possible, like $48$ heads, or $54$ heads. Figure \@ref(fig:threecoins) shows an example of three fair coins flipped $100$ times each, yielding three different frequencies.
+
+So the hypothetical frequency of $1/2$ isn't what would necessarily happen. It's only what would *probably* happen. So what we're really saying is: "probability" $=$ most probable hypothetical frequency. But you can't define a concept in terms of itself!
 
 The second problem is about observability. You can observe actual frequencies, but not hypothetical frequencies. We never actually get to flip a coin more than a few hundred times. So hypothetical frequencies aren't observable and objective, which undermines the main appeal of the frequency theory.
 
