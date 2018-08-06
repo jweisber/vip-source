@@ -1,36 +1,58 @@
 # Beliefs & Betting Rates
 
-For Bayesians, probabilities are beliefs. When I say it'll probably rain today, I'm telling you something about my personal level of confidence in rain today. I'm saying I'm more than $50\%$ confident it'll rain. 
+`r newthought("For Bayesians,")` probabilities are beliefs. When I say it'll probably rain today, I'm telling you something about my personal level of confidence in rain today. I'm saying I'm more than $50\%$ confident it'll rain. 
 
-But how can we quantify something as personal and elusive as a level of confidence? Bayesians quantify belief using the same basic idea we used for utility in [Chapter 12][Utility]. They look at people's choices, at what risks they deem acceptable.
+But how can we quantify something as personal and elusive as a level of confidence? Bayesians answer this question using the same basic idea we used for utility in [Chapter 12][Utility]. They look at people's willingness to risk things they care about.
 
 
 ## Measuring Personal Probabilities
 
-The more confident someone is about something, the more they'll be willing to bet on it. So Bayesians use betting rates to quantify personal probabilities.
+`r newthought("The more confident")` someone is, the more they'll be willing to bet. So let's use betting rates to quantify personal probabilities.
 
-For example, consider how much you would bet on Donald Trump being reelected President of the United States in 2020. At this point (July 2018) I'd take even odds on Trump being reelected. In other words, I'd accept a deal that pays $\$1$ if he's reelected, and costs $\$1$ otherwise.
+I said I'm more than $50\%$ confident it'll rain today. But exactly how confident: $60\%$? $70\%$? Well, I'd give two-to-one odds on it raining today, and no higher. In other words, I'd accept a deal that pays $\$1$ if it rains, and costs me $\$2$ otherwise. But I wouldn't risk more than $\$2$ when I only stand to win $\$1$.
 
-In this example I'm putting a dollar on the table, and so is the house. Whoever wins the bet keeps both dollars. The sum of all the money on the table is called the *stake*. In this case the stake is $\$1 + \$1 = \$2$.
+In this example I put $2$ dollars on the table, and you put down $1$ dollar. Whoever wins the bet keeps all $3$ dollars. The sum of all the money on the table is called the ***stake***. In this case the stake is $\$2 + \$1 = \$3$.
 
-If Trump isn't reelected, my loss will be $\$1$. To find my *betting rate*, we divide this *potential loss* by the stake:
+If it doesn't rain, I'll lose $\$2$. To find my ***fair betting rate***, we divide this potential loss by the stake:
 $$
   \begin{aligned}
     \mbox{betting rate} &= \frac{\mbox{potential loss}}{\mbox{stake}}\\
-                        &= \frac{\$1}{\$1 + \$1}\\
-                        &= \frac{1}{2}.
+                        &= \frac{\$2}{\$2 + \$1}\\
+                        &= \frac{2}{3}.
   \end{aligned}
 $$
 
-A person's betting rate reflects their degree of confidence. The more confident they are of winning, the more they'll be willing to risk losing. In this example my betting rate is $1/2$ because I'm $1/2$ confident Trump will be reelected. That's my *personal probability*: $\p(R) = 1/2$.
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="A bet that pays $\\$1$ if you win and costs $\\$2$ if you lose, is fair when the blue and red regions have equal size: when the probability of winning is $2/3$."}
+f <- function(x) case_when(x <= 2/3 ~ 1, x <= 1 ~ 0)
+g <- function(x) case_when(x <= 2/3 ~ 0, x <= 1 ~ -2)
 
-Notice that a bet at one-to-one odds has zero expected value given my personal probability of $1/2$:
-$$ (1/2)(\$1) + (1/2)(-\$1) = 0. $$
-This makes sense: it's a fair bet from my point of view.
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
+  stat_function(fun = g, geom = "area", n = 1000, fill = leftcolour) +
+  scale_y_continuous("payoff ($)", breaks = seq(-2, 1, 1), limits = c(-2.5, 1.5)) +
+  scale_x_continuous("probability", labels = c("0" = "0", "1/3" = "1/3", "2/3" = "2/3", "1" = "1"), breaks = seq(0, 1, 1/3))
+```
 
-What if I were less confident in Trump's reelection, like say just $1/10$ confident? Then the bet would need to have nine-to-one odds in order to have zero expected value:
+A person's betting rate reflects their degree of confidence. The more confident they are of winning, the more they'll be willing to risk losing. In this example my betting rate is $2/3$ because I'm $2/3$ confident it will rain. That's my personal probability: $\p(R) = 2/3$.
+
+Notice that a bet at two-to-one odds has zero expected value given my personal probability of $2/3$:
+$$ (2/3)(\$1) + (1/3)(-\$2) = 0. $$
+This makes sense: it's a fair bet from my point of view, after all.
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="A bet that pays $\\$9$ if you win and costs $\\$1$ if you lose is fair when the probability of winning is $1/10$."}
+f <- function(x) case_when(x <= 1/10 ~ 9, x <= 1 ~ 0)
+g <- function(x) case_when(x <= 1/10 ~ 0, x <= 1 ~ -1)
+
+ggplot(NULL, aes(c(0, 1))) + 
+  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
+  stat_function(fun = g, geom = "area", n = 1000, fill = leftcolour) +
+  scale_y_continuous("payoff ($)", limits = c(-1.5, 10.5)) +
+  scale_x_continuous("probability")
+```
+
+What if I were less confident in rain, say just $1/10$ confident? Then I'd be willing to stake much less. I'd need you to put down at least $\$9$ before I'd put down even $\$1$. Only then would the bet have $0$ expected value:
 $$ (1/10)(\$9) + (9/10)(-\$1) = 0. $$
-In other words, for the bet to be fair in my eyes, I'd have to be promised $\$9$ upon his reelection instead of just $\$1$.
+So, for the bet to be fair in my eyes, the odds have to match my fair betting rate.
 
 Here's the general recipe for quantifying someone's personal probability in proposition $A$:
 
@@ -47,33 +69,35 @@ Here's the general recipe for quantifying someone's personal probability in prop
       \end{aligned}
     $$
 
-Notice how we got the same formula we started with: potential loss divided by total stake. You can memorize this formula, but personally I prefer to apply the recipe. It shows why the formula works, but it also exposes the formula's weak-points. It helps us understand when the formula *won't* work.
+Notice how we got the same formula we started with: potential loss divided by total stake.
+
+You can memorize this formula, but personally, I prefer to apply the recipe. It shows why the formula works, and it also exposes the formula's limitations. It helps us understand when the formula *doesn't* work.
 
 
 ## Things to Watch Out For
 
-Personal probabilities aren't revealed in just any old betting rate a person will accept. They're only exposed by the person's *fair* betting rates.
+`r newthought("Personal probabilities")` aren't revealed by just any old betting rate a person will accept. They're exposed by the person's *fair* betting rates.
 
-Consider: I'd take a bet where you pay me a million dollars of Trump is reelected and I pay you just $\$1$ otherwise. But that's because I think this bet is *advantageous*. I don't think this is a fair bet, which is why I'd only take one side of it. I wouldn't take the reverse deal, where I win $\$1$ if Trump *isn't* reelected and I pay you a million dollars if he is. That's a terrible deal from my point of view!
+Consider: I'd take a bet where you pay me a million dollars of it rains today, and I pay you just $\$1$ otherwise. But that's because I think this bet is *advantageous*. I don't think this is a fair bet, which is why I'd only take one side of it. I wouldn't take the reverse deal, where I win $\$1$ if it rains and I pay you a million dollars if it does. That's a terrible deal from my point of view!
 
 So you can't just look at a bet a person is willing to accept. You have to look at a bet they're willing to accept *because they think it's fair*.
 
-`r newthought("Another caveat")` is that we're cheating by using dollars instead of utilities.  When we learned about utility, we saw that utility and dollars can be quite different. Gaining a dollar and losing a dollar aren't necessarily comparable. Especially if it's your last dollar!
+`r newthought("Another caveat")` is that we're cheating by using dollars instead of utils.  When we learned about utility, we saw that utility and dollars can be quite different. Gaining a dollar and losing a dollar aren't necessarily comparable. Especially if it's your last dollar!
 
-So, to really measure personal probabilities accurately, we'd have to substitute utilities for dollars. But we'll just pretend dollars and utilities are equal for simplicity. Dollars are a decent approximation of utilities for many people, as long as we stick to small sums.
+So, to really measure personal probabilities accurately, we'd have to substitute utilities for dollars. Nevertheless, we'll pretend dollars and utils are equal for simplicity. Dollars are a decent approximation of utils for many people, as long as we stick to small sums.
 
-`r newthought("Last but definitely not least,")` our method only works when the person is following the expected value formula. Setting the expected value equal to zero was the key to deriving the formula:
+`r newthought("Last")` but definitely not least, our method only works when the person is following the expected value formula. Setting the expected value equal to zero was the key to deriving the formula:
 $$ \p(A) = \frac{\mbox{potential loss}}{\mbox{stake}}. $$
 But we know people don't always follow the expected value formula, that's one of the lessons of [the Allais paradox]. So this way of measuring personal probabilities is limited.
 
 
 ## Indirect Measurements
 
-Sometimes we don't have the betting rate we need in order to apply the loss/stake formula directly. But we can still figure things out indirectly, given the betting rates we do have.
+`r newthought("Sometimes we")` don't have the betting rate we need in order to apply the loss/stake formula directly. But we can still figure things out indirectly, given the betting rates we do have.
 
 For example, I'm not very confident there's intelligent life on other planets. But I'd be much more confident if we learned there was life of any kind on another planet. If NASA finds bacteria living on Mars, I'll be much less surprised to learn there are intelligent aliens on Alpha Centauri.
 
-Exactly how confident will I be? What is $\p(I \given L)$, my personal probability that there is intelligent life on other planets given that there is life on other planets at all?
+Exactly how confident will I be? What is $\p(I \given L)$, my personal probability that there is intelligent life on other planets given that there's  life of some kind on other planets at all?
 
 Suppose I tell you my betting rates for $I$ and $L$. I deem the following bets fair:
 
@@ -92,11 +116,71 @@ The second line in this calculation uses the fact that $I$ is equivalent to $I \
 
 The general strategy here is: 1) identify what betting rates you have, 2) apply the loss/stakes formula to get those personal probabilities, and then 3) apply familiar rules of probability to derive other personal probabilities.
 
-We have to be careful though. This technique only works if the subject's betting rates follow the familiar rules of probability. If my betting rate for rain tomorrow is $3/10$, you might expect my betting rate for no rain to be $7/10$. But people don't always follow the laws of probability, just as they don't always follow the expected value rule. The taxicab problem from [Chapter 8][Bayes' Theorem] illustrates one way people commonly violate the rules of probability. We'll encounter another in the next chapter.
+We have to be careful though. This technique only works if the subject's betting rates follow the familiar rules of probability. If my betting rate for rain tomorrow is $3/10$, you might expect my betting rate for no rain to be $7/10$. But people don't always follow the laws of probability, just as they [don't always follow the expected utility rule][The Allais Paradox]. The taxicab problem from [Chapter 8](#chbayes) illustrates one way people commonly violate the rules of probability. We'll encounter [another way](#bankteller) in the next chapter.
 
 
 ## Exercises {-}
 
-1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+#.  Li thinks humans will eventually colonize Mars. More exactly, he regards the following deal as fair: if he's right about that, you pay him $\$3$, otherwise he'll pay you $\$7$.
 
-2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Suppose Li equates money with utility: for him, the utility of gaining $\$3$ is $3$, the utility of losing $\$7$ is $-7$, and so on.
+
+    a.  What is Li's personal probability that humans will colonize Mars?
+
+    Li also thinks there's an even better chance of colonization if Elon Musk is elected president of the United States. If Musk is elected, Li will regard the following deal as fair: if colonization happens you pay him $\$3$, otherwise he pays you $\$12$.
+
+    b.  What is Li's personal conditional probability that humans will colonize Mars, given that Elon Musk is elected U.S. president?
+
+    Li thinks the chances of colonization are lower if Musk is not elected. His personal conditional probability that colonization will happen given that Musk is not elected is $1/2$.
+
+    c.  What is Li's personal probability that Musk will be elected?  (Assume his personal probabilities obey the laws of probability.)
+
+#.  Sam thinks the Saskatchewan Roughriders will win the next Grey Cup game. She's confident enough that she regards the following deal as fair: if they win, you pay her $\$3$, otherwise she'll pay you $\$7$.
+
+    Suppose Sam equates money with utility: for her, the utility of gaining $\$3$ is $3$, the utility of losing $\$7$ is $-7$, and so on.
+
+    a.  What is Sam's personal probability that the Roughriders will win the Grey Cup?
+
+    Sam thinks the Roughriders will have an even better chance in the snow. If it snows during the game, she will regard the following deal as fair: if the Roughriders win, you pay her $\$3$, otherwise she'll pay you $\$12$.
+
+    b.  What is Sam's personal conditional probability that the Roughriders will win the Grey Cup if it snows?
+
+    Sam thinks that the Roughriders will lose their advantage if it doesn't snow. Her personal conditional probability that the Roughriders will win if it doesn't snow is $1/2$.
+
+    c.  What is Sam's personal probability that it will snow during the Grey Cup? (Assume her personal probabilities obey all the familiar laws of probability.)
+
+#.  Sam thinks the Leafs have a real shot at the playoffs next year. In fact, she regards the following deal as fair: if the Leafs make the playoffs, you pay her $\$2$, otherwise she pays you $\$10$.
+
+    Suppose Sam equates money with utility: for her, the utility of gaining $\$2$ is $2$, the utility of losing $\$10$ is $-10$, and so on.
+
+    a.  What is Sam's personal probability that the Leafs will make the playoffs?
+
+    Sam also thinks the Leafs might even have a shot at winning the Stanley Cup. She's willing to pay you $\$1$ if they don't win the Cup, if you agree to pay her $\$2$ if they do. That's a fair deal for her.
+
+    b.  What is Sam's personal probability that the Leafs will win the Stanley Cup?
+    c.  What is Sam's personal conditional probability that the Leafs will win the Stanley Cup if they make the playoffs? (Assume that winning the Stanley Cup logically entails making the playoffs.)
+
+#.  Freya isn't sure whether it will snow tomorrow. For her, a fair gamble is one where she gets $\$10$ if it snows and she pays $\$10$ if it doesn't. Assume Freya equates money with utility.
+
+    a.  What is Freya's personal probability for snow tomorrow?
+
+    Here's another gamble Freya regards as fair: she'll check her phone to see whether tomorrow's forecast calls for snow. If it does predict snow, she'll pay you $\$10$, but you have to pay her $\$5$ if it doesn't.
+
+    b.  What is Freya's personal probability that the forecast calls for snow?
+
+    After checking the forecast and seeing that it does predict snow, Freya changes her betting odds for snow tomorrow. Now she's willing to accept as little as $\$5$ if it snows, while still paying $\$10$ if it doesn't.
+
+    c.  Now what is Freya's personal probability for snow tomorrow?
+    d.  Before she checked the forecast, what was Freya's personal probability that the forecast would predict snow and be right. (Assume that winning the Stanley Cup logically entails making the playoffs.)
+
+#.  Ben's favourite TV show is *Community*. He thinks it's so good they'll make a movie of it. In fact, he's so confident that he thinks the following is a fair deal: he pays you $\$8$ if they don't make it into a movie and you pay him $\$1$ if they do. Assume Ben equates money with utility.
+
+    a.  What is Ben's personal probability that *Community* will be made into a movie?
+
+    Ben thinks the odds of a *Community* movie getting made are even higher if his favourite character, Shirly, returns to the show (she's on leave right now). If Shirly returns, he's willing to pay as much as $\$17$ if the movie does not get made, in return for $\$1$ if it does.
+
+    b.  What is Ben's personal conditional probability that there will be a *Community* movie if Shirly returns?
+
+    Ben also thinks the chances of a movie go down drastically if Shirly doesn't return. His personal conditional probability that the movie will happen without Shirly is only $1/3$.
+
+    d.  What is Ben's personal probability that Shirly will return?
