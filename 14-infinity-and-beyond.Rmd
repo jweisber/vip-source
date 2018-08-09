@@ -66,7 +66,7 @@ First, consider whether you'd be willing to risk your life to play the St. Peter
 
 Second, even if the game had a finite limit---let's suppose it was $100$ flips---would you be willing to pay $\$100$ to play? The chance you'd make any money at all is less than 1%.
 
-```{r echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="Daniel Bernoulli ($1700$--$1782$)"}
+```{r bernoulli, echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="Daniel Bernoulli ($1700$--$1782$)"}
 knitr::include_graphics("img/daniel_bernoulli.png")
 ```
 
