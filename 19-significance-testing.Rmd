@@ -279,10 +279,10 @@ for (i in 1:nrow(np)) {
   n <- np[i, ]$n
   p <- np[i, ]$p
   
-  new_df <- data.frame(heads = 0:n, probability = dbinom(0:n, n, p), n = n, p = p, np = paste("n =", n, ", p =", p), stringsAsFactors = FALSE)
+  new_df <- data.frame(heads = -2:n+2, probability = dbinom(-2:n+2, n, p), n = n, p = p, np = paste("n =", n, ", p =", p), stringsAsFactors = FALSE)
   df <- bind_rows(df, new_df)
   
-  x <- seq(0, n, .01)
+  x <- seq(-2, n+2, .01)
   new_df <- data.frame(x, y = dnorm(x, mean = n * p, sd = sqrt(n * p * (1-p))), n = n, p = p, np = paste("n =", n, ", p =", p), stringsAsFactors = FALSE)
   norm_df <- bind_rows(norm_df, new_df)
 }
