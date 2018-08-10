@@ -1,74 +1,200 @@
 # Significance Testing
 
-How do we use evidence to evaluate hypothesis according to frequentism? The short answer is, we look for things that would be too much of a coincidence if the hypothesis were true.
+`r newthought("How do we")` evaluate a hypothesis, according to frequentism? The short answer is, we look for things that would be too much of a coincidence if the hypothesis were true.
 
 
 ## Coincidence
 
-Suppose we flip a coin ten times and it lands heads every single time. That would be too much of a coincidence if the coin were fair. So the hypothesis that it is fair has been tested, and failed. Conclusion: the coin is biased towards heads.
+`r newthought("Suppose we flip")` a coin ten times and it lands heads every single time. That would be too much of a coincidence if the coin were fair. So the hypothesis that it is fair has been tested, and failed. Conclusion: the coin is biased towards heads.
 
-Or imagine we divide a thousand patients with Disease X into two, equal-sized groups. We give the first group Drug Y, the second group gets a placebo. After a month, $90\%$ of the patients who got the drug are cured, compared to only $10\%$ of the patients who didn't. That would be too much of a coincidence if the drug were ineffective. So the hypothesis that the drug has no effect has been tested, and it has failed the test. Conclusion: the drug helps cure Disease X.
+Or imagine we divide a thousand patients with Disease X into two, equal-sized groups. We give the first group Drug Y, the second group gets a placebo. After a month, $90\%$ of the patients who got the drug are cured, compared to only $10\%$ of the patients who didn't. That would be too much of a coincidence if the drug were ineffective. So the hypothesis that Drug Y has no effect has been tested, and it has failed the test. Conclusion: Drug Y helps cure Disease X.
 
-That's the rough idea behind the most popular frequentist approach to hypothesis-testing. Now let's take a closer look.
+That's the rough idea behind the most popular frequentist approach to hypothesis testing. Now let's take a closer look.
 
 
-## Normal Approximations
+## Making it Precise
 
-Suppose your friend likes to do magic tricks. Their favourite trick involves flipping their favourite "magic" coin and predicting how it will land. You're curious how the trick is done, and you suspect the coin isn't fair. So you flip it $100$ times to see what happens. It lands heads $67$ out of $100$ times. Does that mean the coin isn't fair after all? Or is $67$ heads out of $100$ flips within the realm of plausibility for a fair coin?
+`r newthought("Suppose your friend")` likes to do magic tricks. Their favourite trick involves flipping a special coin and predicting how it will land. You're curious how the trick is done, and you suspect the coin is biased. So you flip it $100$ times to see what happens. It lands heads $67$ out of $100$ times. Does that mean the coin is biased after all? Or is $67$ heads out of $100$ flips within the realm of plausibility for a fair coin?
 
-We need to figure out just how unlikely it is to get $67$ or more heads. This would be tedious to do with precision, but there's a trick for getting a rough answer.
-
-If you flip a fair coin $100$ times, the most likely outcome is $50$ heads. A bit less likely is $51$ heads, or $49$ heads. Still less likely is $52$ heads, or $48$ heads. And so on. The overall pattern looks like this:
-
-```{r echo=FALSE, fig.cap="Lorem ipsum"}
+```{r binom100, echo=FALSE, fig.cap="The probability of getting $x$ heads out of $100$ flips of a fair coin."}
 df <- data.frame(heads = 0:100, probability = dbinom(0:100, 100, 0.5))
 
 ggplot(df, aes(x = heads, y = probability)) + 
-  geom_bar(stat = "identity", fill = "firebrick")
-```
-
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="The famous normal distribution, sometimes called the \"bell curve\""}
-ggplot(data.frame(x = c(0, 100))) + 
-  stat_function(aes(x), fun = dnorm, args = list(mean = 50, sd = 5), n = 201, colour = "steelblue", size = .75) +
-  theme_void()
-```
-
-Notice how much it resembles the famous "bell curve" shape. In fact they line up almost perfectly:
-
-```{r echo=FALSE, fig.cap="Lorem ipsum"}
-ggplot(df, aes(x = heads, y = probability)) + 
   geom_bar(stat = "identity", fill = "firebrick") +
-  stat_function(aes(heads), fun = dnorm, args = list(mean = 50, sd = 5), n = 201, colour = "steelblue", size = .75)
+  scale_x_continuous("# heads", breaks = seq(0, 100, 20))
 ```
 
-The bell curve's formal name is the ***normal distribution***, and it has some very handy mathematical features. We'll get to the deails in a moment, but basically, some simple calculations can tell us where the normal distribution starts to flatten out to zero on each side. Which makes it easy to estimate when the number of heads is too high (or too low) to be within the realm of plausibility.
+Figure \@ref(fig:binom100) shows the probability for each number of heads we might get, if the coin is fair. Notice how unlikely $67$ heads is, compared to say $50$ heads, or even compared to $60$ heads. So it seems like a stretch to just write off our $67$ heads as a coincidence. Plausibly, the coin is biased towards heads.
+
+What if we'd gotten only $65$ heads though? Or just $60$? At what point do we just say, "oh well, that's a normal outcome for a fair coin"?
+
+A common convention is to draw the line at $95\%$ probability. If a coin is fair, then $95\%$ of the time it will land heads between $`r qbinom(.025, 100, .5)`$ and $`r qbinom(.975, 100, .5)`$ times out of $100$ tosses. That's not obvious by the way: I used a computer to find that $40$-to-$60$ range. But we'll come back to these calculations in a bit.
+
+```{r binom100fences, echo=FALSE, fig.cap="In $95\\%$ of cases, a fair coin will land heads between $40$ and $60$ times out of $100$ flips. If the number of heads falls outside that range, we conclude the coin is not fair."}
+k_lower <- qbinom(.025, 100, .5)
+k_upper <- qbinom(.975, 100, .5)
+
+df <- data.frame(heads = 0:100, probability = dbinom(0:100, 100, 0.5))
+df$Decision <- c(rep("Reject", k_lower),
+                 rep("Don't reject", k_upper - k_lower + 1),
+                 rep("Reject", 100 - k_upper))
+
+df$Decision <- factor(df$Decision, levels = c("Reject", "Don't reject"))
+
+l_fence_x <- k_lower - .5
+r_fence_x <- k_upper + .5
+fence_y <- 0
+fence_y_end <- 1.1 * dbinom(50, 100, .5)
+a <- arrow(length = unit(0.02, "npc"))
+
+ggplot(df, aes(x = heads, y = probability)) + 
+  geom_bar(aes(fill = Decision), stat = "identity") +
+  scale_fill_manual("", values = c(leftcolour, rightcolour)) +
+  scale_x_continuous("# heads", breaks = seq(0, 100, 20)) +
+  scale_y_continuous("probability", breaks = seq(0, fence_y_end, .02),
+                     limits = c(0, fence_y_end)) +
+  annotate("segment", x = l_fence_x, y = fence_y, xend = l_fence_x, 
+           yend = fence_y_end, linetype = "dashed", size = .5, 
+           colour = "darkgrey") +
+  annotate("segment", x = r_fence_x, y = fence_y, xend = r_fence_x, 
+           yend = fence_y_end, linetype = "dashed", size = .5,
+           colour = "darkgrey") +
+  annotate("segment", x = 50, y = fence_y_end - .002, xend = l_fence_x, 
+           yend = fence_y_end - .002, size = .3, colour = "dimgrey", arrow = a) +
+  annotate("segment", x = 50, y = fence_y_end - .002, xend = r_fence_x,
+           yend = fence_y_end - .002, size = .3, colour = "dimgrey", arrow = a) +
+  annotate("text", x = 50, y = fence_y_end, label = "95%", size = 3, 
+           colour = "dimgrey") +
+  theme(legend.position = "top")
+```
+
+The key idea for now is this. The hypothesis the coin is fair fails the test if the number of heads falls *outside* the $40$-to-$60$ range. As Figure \@ref(fig:binom100fences) illustrates, we'll reject the hypothesis if the outcome of our experiment is one of the red ones.
+
+We call the result of an experiment ***statistically significant*** when it falls outside the $95\%$ range. So the red outcomes in Figure \@ref(fig:binom100fences) are statistically significant, the blue ones are not.
+
+The idea behind this terminology is that a red outcome tells us something about our hypothesis that the coin is fair. In particular it tells us something negative: the hypothesis is not looking good. Because $67$ heads would be a big coincidence if the hypothesis were true.
+
+
+## Levels of Significance
+
+`r newthought("But why should")` we choose $95\%$ probability as our cutoff? Why not $90\%$, or $99\%$?
+
+```{r binom100fences99, echo=FALSE, fig.margin=TRUE, fig.cap="In $99\\%$ of cases, a fair coin will land heads between $37$ and $63$ times out of $100$ flips."}
+k_lower <- qbinom(.005, 100, .5)
+k_upper <- qbinom(.995, 100, .5)
+
+df <- data.frame(heads = 0:100, probability = dbinom(0:100, 100, 0.5))
+df$Decision <- c(rep("Reject", k_lower),
+                 rep("Don't reject", k_upper - k_lower + 1),
+                 rep("Reject", 100 - k_upper))
+
+df$Decision <- factor(df$Decision, levels = c("Reject", "Don't reject"))
+
+l_fence_x <- k_lower - .5
+r_fence_x <- k_upper + .5
+fence_y <- 0
+fence_y_end <- 1.1 * dbinom(50, 100, .5)
+a <- arrow(length = unit(0.02, "npc"))
+
+ggplot(df, aes(x = heads, y = probability)) + 
+  geom_bar(aes(fill = Decision), stat = "identity") +
+  scale_fill_manual(values = c(leftcolour, rightcolour)) +
+  scale_x_continuous("# heads", breaks = seq(0, 100, 20)) +
+  scale_y_continuous("probability", breaks = seq(0, fence_y_end, .02),
+                     limits = c(0, fence_y_end)) +
+  annotate("segment", x = l_fence_x, y = fence_y, xend = l_fence_x, 
+           yend = fence_y_end, linetype = "dashed", size = .5, 
+           colour = "darkgrey") +
+  annotate("segment", x = r_fence_x, y = fence_y, xend = r_fence_x, 
+           yend = fence_y_end, linetype = "dashed", size = .5,
+           colour = "darkgrey") +
+  annotate("segment", x = 50, y = fence_y_end - .002, xend = l_fence_x, 
+           yend = fence_y_end - .002, size = .3, colour = "dimgrey", arrow = a) +
+  annotate("segment", x = 50, y = fence_y_end - .002, xend = r_fence_x,
+           yend = fence_y_end - .002, size = .3, colour = "dimgrey", arrow = a) +
+  annotate("text", x = 50, y = fence_y_end, label = "99%", size = 3, 
+           colour = "dimgrey") +
+  theme(legend.position = "none")
+```
+
+In fact we don't have to make $95\%$ the cutoff. In some sciences it's customary to make $99\%$ the cutoff instead, or even $99.9\%$. 
+
+To be explicit about what cutoff we're using, we describe the result as statistically significant *at such-and-such a level*. For example, if we're using the $95\%$ cutoff, we say the result is ***significant at the $0.05$ level***. And if we're using the $99\%$ cutoff, we say the result is ***significant at the $0.01$ level***. And so on. 
+
+Different sciences have different conventions about where to put the cutoff. Social sciences like Psychology typically use the $95\%$ cutoff. Only when the outcome of a study is significant at the $.05$ level is the hypothesis rejected. But medical and physical sciences often use a stricter cutoff like $99\%$. A finding has to be significant at the $.01$ level to disprove a hypothesis then.
+
+There's nothing special or magical about the $95\%$ and $99\%$ cutoffs, though. So why have scientists adopted these conventions? This is a deep and important question, with no easy answer.
+
+But part of the answer is that it's actually just kind of a historical and mathematical accident. Before computers, it was hard to calculate significance levels exactly. There's a trick though for estimating the $95\%$ and $99\%$ cutoffs, which we'll learn in the next section. So scientists adopted these conventions before computers came along, partly just because they were easy to work with. And now they've kind of just stuck.
+
+We'll come back in [the next chapter](#chlindley) for a deeper look at the question of where to put the cutoff for statistical significance. But, for now, let's learn a quick and easy way of finding the $95\%$ and $99\%$ cutoffs.
+
+
+## Normal Approximation
+
+`r newthought("You may have")` noticed that the probabilities in our hundred-flips experiment look a lot like the famous "bell curve". In fact they line up almost perfectly, as Figure \@ref(fig:napprox) illustrates.
+
+```{r napprox, echo=FALSE, fig.cap="A bell curve (left) overlayed on the probability of getting $x$ heads out of $100$ flips of a fair coin (right)."}
+df1 <- data.frame(heads = 30:70, probability = 0, f = 1)
+df2 <- data.frame(heads = 30:70, probability = dbinom(30:70, 100, 0.5), f = 2)
+df <- bind_rows(df1, df2)
+
+ggplot(df, aes(x = heads, y = probability)) + 
+  geom_bar(stat = "identity", fill = rightcolour) +
+  scale_x_continuous("# heads", breaks = seq(30, 70, 10)) +
+  stat_function(fun = dnorm, args = list(mean = 50, sd = 5), 
+                n = 201, colour = leftcolour, size = .75) +
+  facet_grid(cols = vars(f)) +
+  theme(strip.background = element_blank(),
+        strip.text.x = element_blank())
+```
 
 ```{marginfigure, echo=TRUE}
-The normal distribution itself actually has a very complicated mathematical formula. You *really* don't need to know it for this book. But for those who are curious, here it is:
-$$ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x - \mu)^2}{2\sigma^2}} .$$
+The normal distribution actually has a very complicated mathematical formula. You *really* don't need to know it for this book, but if you're curious you can find it [on Wikipedia](https://en.wikipedia.org/wiki/Normal_distribution).
 ```
 
-Two features of the normal distribution are required for the calculation.
+The bell curve's official name is the ***normal distribution***. And it has some very handy mathematical properties, which make it easy to estimate when the number of heads falls outside the $95\%$ range. Two features of the normal distribution are required for the calculation.
 
 ```{marginfigure, echo=TRUE}
 The symbol $\mu$ is from Greek and is called *mu* (rhymes with *stew*). It looks like the English letter *u*, but it actually corresponds to the letter *m*, as in *m*ean. It helps to picture it as a cursive *m*, written very sloppily by someone in a hurry.
 ```
 
-First, where is the bell located, what's its center? This is called the *mean*, or $\mu$ for short. In our example $\mu = 50$. That's the most likely outcome for $100$ flips of a fair coin. The general formula is
+First we need to know where the bell is located: where is it centred? This is called the ***mean***, or $\mu$ for short. In our example $\mu = 50$. That's the most likely outcome for $100$ flips of a fair coin. The general formula is
 $$ \mu = np, $$
 where $n$ is the number of tosses, and $p$ is the probability of heads on each toss. So in our example $np = (100)(1/2) = 50$.
-
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="Bell curves with various standard deviations, making them wider or thinner"}
-knitr::include_graphics("img/marg_fig.png")
-```
 
 ```{marginfigure, echo=TRUE}
 The Greek symbol $\sigma$ is called *sigma*. It corresponds to the English letter *s*, as in *s*tandard deviation.
 ```
 
-Second, how wide is the bell? This is called the *standard deviation*, or $\sigma$ for short. The formula for $\sigma$ is a bit mysterious:
+```{r normalsds, echo=FALSE, fig.margin=TRUE, fig.cap="Four bell curves with the same mean of $50$, but different standard deviations. The larger the standard deviation, the wider the bell."}
+x <- seq(0, 100, .01)
+
+df1 <- data.frame(x = x, y = dnorm(x, mean = 50, sd = 2.5), sigma = "2.5",
+                  stringsAsFactors = FALSE)
+df2 <- data.frame(x = x, y = dnorm(x, mean = 50, sd = 5), sigma = "5",
+                  stringsAsFactors = FALSE)
+df3 <- data.frame(x = x, y = dnorm(x, mean = 50, sd = 10), sigma = "10",
+                  stringsAsFactors = FALSE)
+df4 <- data.frame(x = x, y = dnorm(x, mean = 50, sd = 20), sigma = "20",
+                  stringsAsFactors = FALSE)
+
+df <- bind_rows(df1, df2, df3, df4)
+
+df$sigma <- factor(df$sigma, levels = c("2.5", "5", "10", "20"))
+
+ggplot(df) +
+  geom_path(aes(x, y, colour = sigma), size = 1) +
+  facet_wrap(~ sigma, ncol = 2, nrow = 2) +
+  theme(strip.background = element_blank(), strip.text.x = element_blank()) +
+  xlab(NULL) + ylab(NULL)
+```
+
+Second, how wide is the bell? This is called the ***standard deviation***, or $\sigma$ for short. The formula for $\sigma$ is a bit mysterious:
 $$ \sigma = \sqrt{np(1-p)}. $$
-The derivation of this formula is pretty advanced, so we'll just take it on faith here. Applying the formula to our example we get:
+Deriving this formula is pretty advanced, so we'll have to just take it on faith. We only need to understand that the larger the standard deviation, the wider the bell. Figure \@ref(fig:normalsds) gives some examples to illustrate.
+
+Applying the formula for standard deviation to our example, we get:
 $$
   \begin{aligned}
     \sigma &= \sqrt{(100)(1/2)(1/2)}\\
@@ -76,30 +202,52 @@ $$
   \end{aligned}
 $$
 
-Now for the punchline: we can use the numbers $\mu$ and $\sigma$ to get a pretty accurate estimate of how probable different outcomes are. Mathematicians have proved that about $99\%$ of the time, the number of heads will be within the range $\mu \pm 3\sigma$. In our example $3\sigma = (3)(5) = 15$, so $\mu \pm 3\sigma$ is the range from $35$ to $65$.
+Now for the punchline: we can use the numbers $\mu$ and $\sigma$ to get a pretty accurate estimate of the $95\%$ cutoff.
 
-We got 67 heads, which falls outside the $35$-to-$65$ range. Which means it's a pretty far out possibility! It's the kind of thing that should happen less than $1\%$ of the time, if the coin is fair.
+Mathematicians have proved that about $95\%$ of the time, the number of heads will be within the range $\mu \pm 2\sigma$. In our example $2\sigma = (2)(5) = 10$, so $\mu \pm 2\sigma$ is the range from $40$ to $60$. Notice how this is the same as the computer-based answer we used earlier.
 
-So the hypothesis that your friend's coin is fair has failed our test. If it were fair, you'd expect something closer to $50$ heads out of $100$ flips.
+For a $99\%$ cutoff we just multiply $\sigma$ by $3$ instead of $2$. In other words, $99\%$ of the time the number of heads will be within the range $\mu \pm 3\sigma$. In our example $3\sigma = (3)(5) = 15$, so $\mu \pm 3\sigma$ is the range from $35$ to $65$.
 
-That's the idea behind the frequentist method for testing a hypothesis. We compare what the hypothesis says should happen to what actually happens in our experiment. We can use the bell curve formulas to figure out whether what actually happens is within the realm of plausibility, if the hypothesis is correct. If the number of heads we actually get falls outside the $99\%$ range, for example, we reject our starting hypothesis. We conclude the coin is *not* fair.
+We got $67$ heads in our experiment, which falls outside the $35$-to-$65$ range. So our result wasn't just significant at the $.05$ level. It was significant at the $.01$ level too.
 
 
 ## The 68-95-99 Rule
 
-You don't have to set the cutoff for plausibility at $99\%$. In fact there are three cutoffs that are easy to calculate using $\mu$ and $\sigma$:
+`r newthought("There are actually")` three cutoffs we can estimate with this method. The one we haven't talked about is $68\%$, because it's not used much in actual practice. But the general rule is:
 
-- There's about a $68\%$ chance the number of heads will be in the range $\mu \pm \sigma$.
-- There's about a $95\%$ chance the number of heads will be in the range $\mu \pm 2\sigma$.
-- There's about a $99\%$ chance the number of heads will be in the range $\mu \pm 3\sigma$.
+- With about $68\%$ probability, the number of heads will be in the range $\mu \pm \sigma$.
+- With about $95\%$ probability, the number of heads will be in the range $\mu \pm 2\sigma$.
+- With about $99\%$ probability, the number of heads will be in the range $\mu \pm 3\sigma$.
 
-In terms of a diagram:
+This is called ***The 68-95-99 Rule***. We can illustrate it with a diagram like Figure \@ref(fig:snnrule).
 
-```{r echo=FALSE, fig.cap="The 68-95-99 rule"}
-knitr::include_graphics("img/fig.png")
+```{r snnrule, echo=FALSE, fig.cap="The $68$-$95$-$99$ Rule"}
+x <- c(seq(-3, -1, 1), seq(1, 3, 1))
+
+df <- data.frame(x = x, xend = x, y = 0, yend = dnorm(x), 
+                 group = c("99%", "95%", "68%", "68%", "95%", "99%"))
+
+a <- arrow(length = unit(0.015, "npc"))
+
+ggplot(df) +
+  stat_function(fun = dnorm, n = 201, size = .5, colour = "dimgrey") +
+  geom_segment(aes(x = x, y = y, xend = xend, yend = yend, colour = group),                  alpha = .7, linetype = "dashed") +
+  geom_segment(aes(x = 0, y = .7 * yend, xend = x, yend = .7 * yend, 
+                   colour = group), size = .5, arrow = a) +
+  geom_text(aes(x = 0, y = .7 * yend + .01, label = group, colour = group),
+            size = 3) +
+  scale_x_continuous(NULL, breaks = seq(-3, 3, 1),
+                     labels = c("μ - 3σ", "μ - 2σ", "μ - σ", "μ", 
+                                "μ + σ", "μ + 2σ", "μ + 3σ")) +
+  scale_y_continuous(NULL, breaks = NULL, labels = NULL) +
+  theme(legend.position = "none",
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.text.x = element_text(face = "italic")) +
+  scale_colour_manual(values = c(rightcolour, "chocolate2", leftcolour))
 ```
 
-To put the same idea in terms of probability statements, let's call the number of heads we actually get $k$. Then:
+It's customary to use $k$ for the number of heads we actually get in our experiment. So we can also state the rule formally like this:
 $$
   \begin{aligned}
     \p(\mu - \sigma \leq k \leq \mu + \sigma) &\approx .68,\\
@@ -108,38 +256,71 @@ $$
   \end{aligned}
 $$ 
 
-This is called *the 68-95-99 rule*. We use it to get a sense of how surprising a result is. The farther $k$ is from the mean $\mu$, the more of a coincidence the result is, assuming the hypothesis we're testing is true.
-
 
 ## Binomial Probabilities
 
-But when do probabilities match the bell curve? A lot of the time, actually. But we'll just focus on one common case.
+`r newthought("When do")` the true probabilities closely match the normal distribution, though? A lot of the time, actually. But we'll just focus on one common case.
 
-Suppose a certain kind of event will be repeated over and over, and there are two possible outcomes. If the probabilities of these two outcomes stay the same from repetition to repetition, and the repetitions are independent of one another, then the probabilities are called *binomial*.
+Suppose a certain kind of event will be repeated over and over, and there are two possible outcomes. If the probabilities of these two outcomes stay the same from repetition to repetition, and the repetitions are independent of one another, then the probabilities are called ***binomial***.
 
-Binomial probabilities are very common. We saw that they apply to flips of a fair coin. Another example would be patients in a drug study who either get better or don't. Or subjects in a psychology study answering yes/no questions on a survey. Or respondents to a poll about a political race.
+Binomial probabilities are very common. We saw that they apply to flips of a fair coin. Another example could be patients in a drug study who either get better or don't. Or subjects in a psychology study answering yes/no questions on a survey. Or respondents to a poll about a political race.
 
-If the event is repeated enough times, the binomial probabilities will closely match the bell curve. So if you do a big enough study, you can use the 68-95-99 rule as a reliable estimate.
+If the event is repeated enough times, the binomial probabilities will closely match the bell curve. But you have to be careful: the more extreme the probability in your hypothesis, the larger the study will need to be. If the probability $p$ is close to either $0$ or $1$, the normal approximation won't be very good without a pretty large number $n$ of trials.
 
-This is called a ***normal approximation***. We use the smooth bell curve of the normal distribution (in blue) to approximate the exact binomial probabilities (red).
+Suppose for example your hypothesis is that the coin is heavily biased towards tails: $p = 0.1$, to be exact. Then we see from Figure \@ref(fig:npgrid) that we need a sample of around $n = 50$ before the normal approximation starts to become reasonably accurate. Whereas $n = 30$ is already quite accurate for $p = 0.5$. 
+
+```{r npgrid, echo=FALSE, fig.fullwidth=TRUE, fig.width=12, fig.cap="When $p$ is close to $0$ or $1$, we need a larger $n$ to make the normal approximation accurate."}
+df <- data.frame()
+norm_df <- data.frame()
+
+np <- expand.grid(n = seq(10, 50, 10), p = c(.1, .5, .9))
+
+for (i in 1:nrow(np)) {
+  n <- np[i, ]$n
+  p <- np[i, ]$p
+  
+  new_df <- data.frame(heads = 0:n, probability = dbinom(0:n, n, p), n = n, p = p, np = paste("n =", n, ", p =", p), stringsAsFactors = FALSE)
+  df <- bind_rows(df, new_df)
+  
+  x <- seq(0, n, .01)
+  new_df <- data.frame(x, y = dnorm(x, mean = n * p, sd = sqrt(n * p * (1-p))), n = n, p = p, np = paste("n =", n, ", p =", p), stringsAsFactors = FALSE)
+  norm_df <- bind_rows(norm_df, new_df)
+}
+
+l <- function(labels, multi_line = TRUE, sep = " = ") {
+  foo <- label_both(labels, multi_line = TRUE, sep = " = ")
+}
+
+ggplot(df) +
+  geom_bar(aes(x = heads, y = probability), stat = "identity",
+           fill = rightcolour) +
+  geom_path(aes(x, y), data = norm_df, colour = leftcolour) +
+  facet_grid(rows = vars(p), cols = vars(n), scales = "free", 
+             labeller = l, switch = "y") +
+  scale_x_continuous(NULL, labels = NULL) + 
+  scale_y_continuous(NULL, labels = NULL) +
+  theme(strip.placement = "outside")
+```
+
+In general, the more extreme the value of $p$ is, the larger we need $n$ to be for the approximation to be accurate. But if you do a big enough study, the $68$-$95$-$99$ rule will give a reliable estimate.
 
 
 ## Significance Testing
 
-This method of evaluating hypotheses is called *significance testing*. We want to know whether the number of heads we observed is "significant", whether it tells us something about the coin being biased.
+`r newthought("The method of")` evaluating hypotheses we've been explaining is called ***significance testing***. Here is the general recipe for significance testing with binomial probabilities:
 
-Here is the general recipe for significance testing with binomial probabilities:
-
-1. State the hypothesis you want to test: the true probability of outcome X is $p$.
+1. State the hypothesis you want to test: the true probability of outcome X is $p$. This is called the ***null hypothesis***.[^nullnote]
 2. Repeat the event over and over $n$ times, and count the number of times $k$ you get outcome X.
-3. Calculate $\mu$ and $\sigma$ from $n$ and $p$.
-3. Use the 68-95-99 rule to figure out how much of a coincidence your finding $k$ would be if the hypothesis is true.
-4. If it's too much of a coincidence, conclude that the hypothesis is false. The true probability isn't $p$.
+3. Calculate $\mu = np$ and $\sigma = \sqrt{np(1-p)}$.
+3. Use the $68$-$95$-$99$ rule to figure out how much of a coincidence your finding $k$ must be if the null hypothesis is true.
+4. If it's too much of a coincidence, conclude that the null hypothesis is false. The true probability isn't $p$.
 
-Let's do another example:
+[^nullnote]: Why is it called the "null" hypothesis? The idea is that our default assumption should be that things are random, until we discover a pattern. For example, we assume our sequence of heads/tails is random unless our observations prove otherwise. And we assume a drug has no effects unless we discover that it does. So the default assumption is "null": no pattern, no effect. It's not a great piece of terminology, but unfortunately we're stuck with it.
+
+`r newthought("Let's do one")` more example for practice.
 
 ```{marginfigure, echo=TRUE}
-The VisioPerfect example is from page 205 of Ian Hacking's excellent textbook, *An Introduction to Probability & Inductive Logic*.
+This example is from page $205$ of Ian Hacking's excellent textbook, *An Introduction to Probability & Inductive Logic*.
 ```
 
 ```{block, type="example"}
@@ -152,27 +333,12 @@ Is the result of this test bad news for VisioPerfect? Are their ads just hype? L
 
 The hypothesis we're testing is that each bulb has probability $.96$ of being long-life, which means it has probability $p = .04$ of being "short-life". The magazine found $k = 133$ short-life bulbs out of $n = 2,400$. Is this about what you'd expect if the ads are honest? Let's start by finding the center and width of our normal approximation:
 $$
-  \begin{aligned}
-    \mu &= np\\
-        &= (2,400)(.04)\\
-        &= 96,\\
-    \sigma &= \sqrt{np(1-p)}\\
-           &= \sqrt{(2,400)(.04)(.96)}\\
-           &= 9.6.  
-  \end{aligned}
+  \mu = np = (2,400)(.04) = 96,\\
+  \sigma = \sqrt{np(1-p)} = \sqrt{(2,400)(.04)(.96)} = 9.6.
 $$
-Then we use the 68-95-99 rule to figure out where $k = 133$ falls. In this case the $99\%$ range is $96 \pm (3)(9.6)$, which is $67.2$ to $124.8$. Since $k = 133$ falls outside this range, it's a pretty far out result. It's the kind of thing you'd expect to happen less than $1\%$ of the time if each bulb really had a $96\%$ chance of being long-life.
+Then we use the $68$-$95$-$99$ rule to figure out where $k = 133$ falls. In this case the $99\%$ range is $96 \pm (3)(9.6)$, which is $67.2$ to $124.8$. Since $k = 133$ falls outside this range, it's a pretty far out result. It's the kind of thing you'd expect to happen less than $1\%$ of the time if each bulb really had a $96\%$ chance of being long-life.
 
-
-## Significance Levels
-
-What if the results had been different, like if they'd only found $k = 120$ short-life bulbs? That's still a pretty far out result. It's inside the $99\%$ range, but still outside the $95\%$ range. So it's the kind of thing you'd expect to happen less than $95\%$ of the time.
-
-Sometimes when scientists report their results, they describe them as "significant at the .05 level", or "significant at the .01 level". That's because there's no precise meaning to "within the realm of plausibility". We could interpret that to mean "within the $99\%$ range", or we could understand it as "within the 95\% range" instead. There's nothing special or magical about the $95\%$ and $99\%$ cutoffs.
-
-Why do scientists use the $95\%$ and $99\%$ cutoffs then? It's actually just a kind of historical and mathematical accident. Before computers, it was hard to calculate significance levels exactly. But calculating $\mu$ and $\sigma$ by hand was easy, so it was easy to calculate the ranges $\mu \pm 2\sigma$ and $\mu \pm 3\sigma$. Since these ranges correspond approximately to $95\%$ and $99\%$, scientists adopted those cutoffs.
-
-Different sciences have different conventions about where to put the cutoff. Social sciences like Psychology typically use the $95\%$ cutoff. Only when the outcome of a study is significant at the $.05$ level is the hypothesis rejected. But medical and physical sciences often use a stricter cutoff like $99\%$. A finding has to be significant at the $.01$ level to disprove a hypothesis then.
+So VisioPerfect's claim has failed our test: the results are significant at the $.01$ level.
 
 
 ## Warnings
@@ -181,9 +347,9 @@ Different sciences have different conventions about where to put the cutoff. Soc
 The American Statistical Association [recently released a statement](https://www.amstat.org/newsroom/pressreleases/P-ValueStatement.pdf) to clarify the ideas behind significance testing, and prevent their misuse. It's also the punchline of [one of my favourite cartoons](https://imgs.xkcd.com/comics/significant.png).
 ```
 
-Significance testing is very, *very* confusing. Scientists, and even statisticians, often misunderstand and misapply it. Dangerous medical treatments have been approved and used as a result. Scientific careers have even been built on research that misuses significance testing.
+`r newthought("Significance testing is")` very confusing. So confusing that scientists, and even statisticians, often misunderstand and misuse it. Dangerous medical treatments have been approved and administered as a result. Scientific careers have even been built on the misuse of significance testing.
 
-So what exactly does it mean for a result to be "significant at level $\alpha$"?
+So what exactly does it mean for a result to be "significant at level $\alpha$"? It means exactly this:
 
 ```{marginfigure, echo=TRUE}
 The Greek letter $\alpha$ is called *alpha* and corresponds to the English letter *a*. It's customarily used for significance levels, I don't know why.
@@ -192,20 +358,139 @@ The Greek letter $\alpha$ is called *alpha* and corresponds to the English lette
 ```{block, type="warning"}
 *If* the hypothesis we are testing is true, *then* a result this unusual was less than $\alpha$ likely to occur.
 ```
-Notice how this is an *if/then* statement, where the *if* part supposes the hypothesis we're testing is true. We're considering what things look like from the hypothetical point of view where the hypothesis is true. Then we evaluate how probable various outcomes are, given that assumption.
+Notice how this is an *if/then* statement, where the *if* part supposes that the hypothesis we're testing is true. We're considering what things look like from the hypothetical point of view where the hypothesis is true. Then we assess how probable various outcomes are, given that assumption.
 
-But we really want to know the reverse thing. We want to know: *if* we get $k$ heads, *then* how likely is it the hypothesis is true? You might think if the result is significant at the $.05$ level, then the hypothesis is less than $.05$ probable. Not so!
+But notice, what we really want to know is the reverse thing. We want to know: *if* we get $k$ heads, *then* how likely is it the hypothesis is true? You might think if the result is significant at the $.05$ level, then the hypothesis is less than $.05$ probable. Not so!
 
 ```{block, type="warning"}
 Just because the outcome of an experiment is significant at the $\alpha$ level doesn't mean the probability of the hypothesis is $\alpha$ (or less than $\alpha$).
 ```
 
-We learned back in [Chapter 8][Bayes' Theorem] about how $\p(H \given E)$ and $\p(E \given H)$ are different things. In fact they can be very different; one can be high and the other low. That happens in the taxicab problem for example, where people tend to get them mixed up. It's a very common mistake to have a similar confusion with significance testing.
+We learned back in [Chapter 8][Bayes' Theorem] about how $\p(H \given E)$ and $\p(E \given H)$ are different things. In fact they can be very different; one can be high and the other low. The [taxicab problem](#fig:taxigrid) is one famous illustration. And it's a very common mistake to make a similar confusion with significance testing.
 
+We'll deepen our understanding of this point in [the next chapter](#chlindley).
 
 
 ## Exercises {-}
 
-#. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+#.  Suppose $20\%$ of the marbles in an urn are green. We are going to randomly draw $100$ marbles, with replacement, and then count the number of draws that are green.
 
-#. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Let's use a normal distribution to approximate the probability of getting $k$ green balls.
+
+    a.  What are $\mu$ and $\sigma$ in the normal approximation?
+    b.  Draw a rough graph of the corresponding normal curve.
+    c.  The probability is about $.68$ that the number of green draws will fall between $a$ and $b$. What are $a$ and $b$?
+    d.  What are $a$ and $b$ for an approximate probability of $.95$?
+    e.  What are $a$ and $b$ for an approximate probability of $.99$?
+    f.  If you get fewer than the expected $20$ greens, how few do you have to get for the results to be significant at the $.01$ level? (Assume the estimates above are accurate.)
+    g.  If you get more than the expected $20$ greens, how many do you have to get for the results to be significant at the $.01$ level? (Assume the estimates above are accurate.)
+    h.  If you got one of these "significant" results in this experiment, would you reject the hypothesis that the urn contains $20\%$ green marbles? (This is a question about your personal judgment.)
+
+#.  Suppose $60\%$ of the marbles in an urn are green, and we are going to randomly draw $150$ marbles, with replacement.
+
+    a.  What are $\mu$ and $\sigma$ in the normal approximation?
+    b.  Draw a rough graph of the corresponding normal curve.
+    c.  The probability is about $.95$ that the number of green draws will fall between $a$ and $b$. What are $a$ and $b$?
+    d.  What are $a$ and $b$ for an approximate probability of $.99$?
+    e.  If you do the $150$ draws and you only get $80$ greens, is that significant at the $.05$ level? (Assume the estimates above are accurate.)
+    f.  If instead you do the $150$ draws and you only get $70$ greens, is that significant at the $.05$ level? (Assume the estimates above are accurate.)
+    g.  Would you reject the hypothesis that the urn contains $60\%$ green marbles if you only got 70 green draws?
+
+#.  Dr. Colbert claims to have a miraculous new weight-loss product. According to him, $75\%$ percent of people who use it lose weight. But the Ministry of Health is suspicious so they run a study. They recruit $192$ subjects to try Dr. Colbert's new treatment. $135$ of them lose weight.
+
+    Use a normal approximation to assess Dr. Colbert's claim:
+
+    a.  What are $\mu$ and $\sigma$ in the normal approximation?
+    b.  Fill in the blanks: the results of the study are significant at the $.05$ level if the number of subjects who lose weight is either smaller than _____ or greater than _____.
+    c.  Fill in the blanks: the results of the study are significant at the $.01$ level if the number of subjects who lose weight is either smaller than _____ or greater than _____.
+    d.  Are the results of the Health Canada study significant at the $.05$ level? Are they significant at the $.01$ level?
+    e.  True or false: given the results of the study, the probability that Dr. Colbert's product works as advertised is less than $.05$.
+
+#.  Your professor says $80\%$ of the class passed the midterm, but that seems high since the test was so hard. So you ask all the people sitting in your row if they passed: $4$ of them did, $3$ didn't. Since you didn't pass either, that's a pass-rate of only $50\%$ in your sample.
+
+    Use a normal approximation to answer the following questions:
+
+    a.  Is your finding significant at the $.05$ level?
+    b.  Is it significant at the $.01$ level?
+    c.  True or false: given your findings, the probability that your professor's claim is true is at least $.05$.
+
+#.  Suppose you arrange seven dates next week, one for each night of the week. You ask each date the same question: which was your favourite grade, out of grades $1$ through $8$? Your first and last dates both give the same answer as you: [insert your favourite grade here]. Is this result significant? Check both the $.05$ and $.01$ levels using a normal approximation.
+
+    As a null hypothesis, assume that each person's answer is independent (including yours), and that each person is equally likely to name any one grade as any other (including you).
+
+#.  Suppose $10\%$ of all wine bottles have corks (instead of screw-tops). A restaurant opens $400$ random bottles in a month and counts the number that are corked.
+
+    Use a normal distribution to approximate the probability that the restaurant will open $k$ corked bottles.
+
+    a.  What are $\mu$ and $\sigma$ in the normal approximation?
+    b.  The probability is about $.68$ that the number of corked bottles will fall between $a$ and $b$. What are $a$ and $b$?
+    c.  What are $a$ and $b$ for an approximate probability of $.95$?
+    d.  What are $a$ and $b$ for an approximate probability of $.99$?
+
+    The restaurant wants the head waiter to avoid serving corked bottles since they're more expensive. So they offer her a bonus if fewer than the expected number of corked bottles gets opened, provided the results are significant at the $.01$ level. On the other hand they'll fire her if more than the expected number of corked bottles gets opened, assuming the results are significant at the $.01$ level.
+
+    e.  How few corked bottles have to be opened for the head waiter to get the bonus? How many corked bottles have to opened for the head waiter to lose her job? (Assume the estimates above are accurate.)
+
+#.  A few years ago Arkansas passed a law sparking a debate about a new treatment. The treatment is supposed to help a person's pregnancy continue under conditions that usually end it.
+
+    Normally under those conditions, only about $40\%$ of people's pregnancies continue. But in a small case study, six pregnant people were given the new treatment, and four of them continued their pregnancies.
+
+    Critics say this result is not significant: it doesn't show the treatment has an effect. (If you're curious, you can read more about the controversy
+    [here](http://www.theatlantic.com/health/archive/2015/03/abortion-reversal-arizona/388880/).)
+
+    Use a normal approximation to assess this criticism. The null hypothesis is that the treatment has no effect, so each of the six pregnancies has a $0.4$ chance of continuing.
+
+    a.  What are $\mu$ and $\sigma$ in the case study?
+    b.  Are the results of the case study significant at the $.05$ level? (Assume the normal approximation is accurate.)
+    c.  Suppose a much larger study were done, with $150$ subjects getting the treatment, and two-thirds of them continuing their pregnancies. What would $\mu$ and $\sigma$ be then? Would the results be significant at the $.01$ level?
+
+#.  Medical researchers are testing a new cancer treatment. Ordinarily, a patient's chance of going into remission is only $1/10$. The null hypothesis is that the drug will have no effect on patients' chances of going into remission.
+
+    They select $100$ patients at random and give each one the new treatment. The result: $18$ of them go into remission.
+
+    a.  What are $\mu$ and $\sigma$ in a normal approximation here?
+    b.  According to the normal approximation, is the result significant at the $.01$ level?
+    c.  True or false: the fact that the result is significant at the $.05$ level tells us that the null hypothesis is less than $.05$ probable.
+    d.  True or false: the fact that the result is significant at the $.05$ level tells us that, if the null hypothesis is true, then the result was $.05$ probable.
+
+#.  Suppose there are two types of urns, Type A and Type B. Type A urns contain $1/5$ black balls, the rest white. Type B urns contain $1/10$ black balls, the rest white.
+
+    You have an urn that could be either Type A or Type B, you aren't sure. You think it's equally likely to be Type A as Type B. So you decide to use a significance test to find out.
+
+    Your null hypothesis is that it's a Type A urn. You draw $25$ marbles at random, and $13$ of them are black.
+
+    a.  What are $\mu$ and $\sigma$ in the normal approximation?
+    b.  Is the result significant at the $.01$ level for this null hypothesis?
+    c.  Suppose our null hypothesis had been instead that the urn is Type B. What would $\mu$ and $\sigma$ be then?
+    d.  Is the result significant at the $.01$ level for the Type B hypothesis?
+
+#.  Suppose the government is testing a new education policy. There are only two possibilities: either the policy will work and it will help high school students learn to write better $3/4$ of the time, or it will have no effect and students' writing will only improve $1/2$ of the time, as usual.
+
+    - $H = 3/4$ probability of improvement for each student
+    - $\neg H = 1/2$ probability of improvement for each student.
+
+    The government does a study of $432$ students and finds that, under the new policy, $285$ of them improved in their writing.
+
+    a.  If the null hypothesis is $\neg H$, are the results of the study significant at the $.01$ level?
+    b.  If the null hypothesis is $H$, are the results of the study significant at the $.01$ level?
+
+#.  You've seen Gonzo the Great doing magic tricks with a coin. You suspect he's using a biased coin, so you sneak into his dressing room and steal the coin.
+
+    Your hypothesis is that the coin has a $8/10$ bias towards heads. You flip it $100$ times and it comes up heads $65$ times.
+
+    a.  What are $\mu$ and $\sigma$ in the normal approximation here?
+    b.  According to the normal approximation, is the result significant at the $.01$ level?
+    c.  Explain, in terms of frequencies, what it means for a result to be "significant at the $.01$ level".
+
+#.  Suppose the registrar has a list of all the student numbers from a class, but they've lost the data that says which class it is. They know it's either Philosophy $101$ or Economics $101$. But they have no idea which of those two it is: the two hypotheses are equally probable, $50\%$.
+
+    If it's Philosophy $101$, then $40\%$ of the students are philosophy majors. If it's Economics $101$, then only $25\%$ of the class are philosophy majors.
+
+    The registrar picks ten student numbers from the list at random and looks up the students' majors. The result: all ten of them are philosophy majors.
+
+    a.  Suppose our null hypothesis is that the list is for Philosophy $101$. What are $\mu$ and $\sigma$ in the normal approximation? (You may use a decimal approximation here.)
+    b.  Is the result significant at the $.01$ level for this null hypothesis?
+    c.  Suppose our null hypothesis is that the list is for Economics $101$. What are $\mu$ and $\sigma$ in the normal approximation then? (You may use a decimal approximation here.)
+    d.  Is the result significant at the $.01$ level for this null hypothesis?
+
+#.  Explain in your own words what it means for a result to be significant at the $.05$ level. See if you can do it without looking back over the text of this chapter.
