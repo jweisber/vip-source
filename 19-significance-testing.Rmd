@@ -265,15 +265,15 @@ Suppose a certain kind of event will be repeated over and over, and there are tw
 
 Binomial probabilities are very common. We saw that they apply to flips of a fair coin. Another example could be patients in a drug study who either get better or don't. Or subjects in a psychology study answering yes/no questions on a survey. Or respondents to a poll about a political race.
 
-If the event is repeated enough times, the binomial probabilities will closely match the bell curve. But you have to be careful: the more extreme the probability in your hypothesis, the larger the study will need to be. If the probability $p$ is close to either $0$ or $1$, the normal approximation won't be very good without a pretty large number $n$ of trials.
+If the event is repeated enough times, the binomial probabilities will closely match the bell curve. But you have to be careful: the more extreme the probability in your hypothesis, the larger the study will need to be. If the probability $p$ is close to either $0$ or $1$, the normal approximation won't be very good without a pretty large number of trials $n$.
 
-Suppose for example your hypothesis is that the coin is heavily biased towards tails: $p = 0.1$, to be exact. Then we see from Figure \@ref(fig:npgrid) that we need a sample of around $n = 50$ before the normal approximation starts to become reasonably accurate. Whereas $n = 30$ is already quite accurate for $p = 0.5$. 
+Suppose for example your hypothesis is that the coin is heavily biased towards tails: $p = 0.05$, to be exact. Then we see from Figure \@ref(fig:npgrid) that we need a sample of around $n = 50$ before the normal approximation starts to become reasonably accurate. Whereas $n = 30$ is already quite accurate for $p = 0.5$. 
 
 ```{r npgrid, echo=FALSE, fig.fullwidth=TRUE, fig.width=12, fig.cap="When $p$ is close to $0$ or $1$, we need a larger $n$ to make the normal approximation accurate."}
 df <- data.frame()
 norm_df <- data.frame()
 
-np <- expand.grid(n = seq(10, 50, 10), p = c(.1, .5, .9))
+np <- expand.grid(n = seq(10, 50, 10), p = c(.05, .5))
 
 for (i in 1:nrow(np)) {
   n <- np[i, ]$n
