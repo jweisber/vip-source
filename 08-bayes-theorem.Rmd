@@ -258,7 +258,7 @@ It turns out there's only about a $6\%$ chance Joe has the virus. Even though he
 `r newthought("Bayes' theorem")` doesn't always give such surprising results. In fact the results are often very intuitive. Professors just like to use the counterintuitive examples to demonstrate how important Bayes' theorem is. Without it, it's easy to go astray.
 
 
-## The Base Rate Fallacy
+## The Base Rate Fallacy {#baserate}
 
 `r newthought("In the")` Zika example, the rate of infection in the general population is very low, just $1\%$. The rate at which something happens in general is called the *base rate*. In the taxicab example, the base rate for blue cabs was $15\%$.
 
