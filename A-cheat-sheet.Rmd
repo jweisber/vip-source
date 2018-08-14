@@ -1,0 +1,180 @@
+# (APPENDIX) Appendix {-}
+
+# Cheat Sheet
+
+## Deductive Logic {-}
+
+Validity
+
+:    An argument is valid if it is impossible for the premises to be true and the conclusion false.
+
+Soundness
+
+:    An argument is sound if it is valid and all the premises are true.
+
+Connectives
+
+:    There are three connectives: $\neg$ (negation), $\wedge$ (conjunction), and $\vee$ (disjunction).
+
+    Their truth tables are as follows
+    
+    ```{r echo=FALSE}
+    df <- data.frame(
+        A = c("T", "T", "F", "F"),
+        B = c("T", "F", "T", "F"),
+        notA = c("F", "F", "T", "T"),
+        AandB = c("T", "F", "F", "F"),
+        AveeB = c("T", "T", "T", "F")
+    )
+    colnames(df) <- c("$A$", "$B$", "$\\neg A$", "$A \\wedge B$", "$A \\vee B$")
+    knitr::kable(df, align = "c")
+    ```
+
+Logical Truth
+
+:    A proposition that is always true.
+
+Contradiction
+
+:    A proposition that is never true.
+
+Mutually Exclusive
+
+:    Two propositions are mutually exclusive if they cannot both be true.
+
+Logical Entailment
+
+:    One proposition logically entails another if it is impossible for the first to be true and the second false.
+
+Logical Equivalence
+
+:    Two propositions are logically equivalent if they entail one another.
+
+
+## Probability {-}
+
+Independence
+
+:    Proposition $A$ is independent of proposition $B$ if the truth (or falsity) of $B$ makes no difference to the probability of $A$.
+
+Fairness
+
+:    A repeating process is fair if each repetition has the same probability and the repetitions are independent of one another.
+
+Multiplication Rule
+
+:    If $A$ and $B$ are independent then $\p(A \wedge B) = \p(A) \times \p(B)$.
+
+Addition Rule
+
+:    If $A$ and $B$ are mutually exclusive then $\p(A \vee B) = \p(A) + \p(B)$.
+
+Tautology Rule
+
+:    If $A$ is a tautology then $\p(A) = 1$.
+
+Contradiction Rule
+
+:    If $A$ is a contradiction then $\p(A) = 0$.
+
+Equivalence Rule
+
+:    If $A$ and $B$ are logically equivalent then $\p(A) = \p(B)$.
+
+Conditional Probability
+
+:    $$\p(A \given B) = \frac{\p(A \wedge B)}{\p(B)}.$$
+
+
+Independence (Formal Definition)
+
+:    $A$ is independent of $B$ if $\p(A \given B) = \p(A)$.
+
+Negation Rule
+
+:    $\p(\neg A) = 1 - \p(A)$.
+
+General Multiplication Rule
+
+:    $\p(A \wedge B) = \p(A \given B) \p(B)$ if $\p(B) > 0$.
+
+General Addition Rule
+
+:    $\p(A \vee B) = \p(A) + \p(B) - \p(A \wedge B)$.
+
+Law of Total Probability
+
+:    If $1 > \p(B) > 0$ then $$\p(A) = \p(A \given B)\p(B) + \p(A \given \neg B)\p(\neg B).$$
+
+Bayes' Theorem
+
+:    If $\p(A), \p(B) > 0$ then $$\p(A \given B) = \p(A) \frac{\p(B \given A)}{\p(B)}.$$
+
+Bayes' Theorem (Long Version)
+
+:    If $1 > \p(A) > 0$ and $\p(B) > 0$ then $$\p(A \given B) = \frac{\p(B \given A)\p(A)}{\p(B \given A)\p(A) + \p(B \given \neg A)\p(\neg A)}.$$
+
+
+## Decision Theory {-}
+
+Expected Monetary Value
+
+:   Suppose act $A$ has possible payoffs $\$x_1, \$x_2, \ldots, \$x_n$. Then the *expected monetary value* of $A$ is defined:
+$$
+  \begin{aligned}
+    \E(A) &= \p(\$x_1) \times \$x_1 + \p(\$x_2) \times \$x_2 + \ldots + \p(x_n) \times \$x_n.
+  \end{aligned}
+$$
+
+Expected Utility
+
+:   Suppose act $A$ has possible consequences $C_1, C_2, \ldots,C_n$. Denote the utility of each outcome $U(C_1)$, $U(C_2)$, etc. Then the *expected utility* of $A$ is defined:
+$$ \EU(A) = \p(C_1)\u(C_1) + \p(C_2)\u(C_2) + \ldots + \p(C_n)\u(C_n). $$
+
+Measuring Utility
+
+:    Suppose an agent's best and worst possible outcomes are $B$ and $W$. Let $\u(B) = 1$ and $\u(W) = 0$. And suppose $\p(B)$ be the lowest probability such that they are indifferent between outcome $O$ and a gamble with probability $\p(B)$ of outcome $B$, and probability $1 - \p(B)$ of outcome $W$. Then, if the agent is following the expected utility rule, $\u(O) = \p(B)$.
+
+Sure-thing Principle
+
+:   If you would choose $X$ over $Y$ if you knew that $E$ was true, and you'd also choose $X$ over $Y$ if you knew $E$ wasn't true, then you should choose $X$ over $Y$ when you don't know whether $E$ is true or not.
+
+
+## Bayesianism {-}
+
+Measuring Personal Probability
+
+:    Personal probabilities are measured by fair betting rates, if the agent is following the expected value rule. More concreteley, suppose an agent regards as fair a bet where they win $w$ if $A$ is true, and they lose $l$ if $A$ is false. Then, if they are following the expected value rule, their personal probability for $A$ is:
+
+    $$ \p(A) = \frac{l}{w + l}. $$
+
+Dutch book
+
+:    A Dutch book is a set of bets where each bet is fair according to the agent's betting rates, and yet the set of bets is guaranteed to lose them money. Agents who violate the laws of probability can be Dutch booked. Agents who obey the laws of probability cannot be Dutch booked.
+
+Principle of Indifference
+
+:   If there are $n$ possible outcomes, each outcome should have the same prior probability: $1/n$.
+
+    If there is an interval of possible outcomes from $a$ to $b$, the probability of any subinterval from $c$ to $d$ is: $$\frac{d-c}{b-a}.$$
+
+
+## Frequentism {-}
+
+Significance Testing
+
+:    A significance test at the $.05$ level can be described in three steps:
+
+    1. State the hypothesis you want to test: the true probability of outcome X is $p$. This is called the *null hypothesis*.
+    2. Repeat the event over and over and count the number of times $k$ that outcome X occurs.
+    3. If the number $k$ falls outside the range of outcomes expected $95\%$ of the time, reject the null hypothesis. (Otherwise, draw no conclusion.)
+    
+    For a test at the $.01$ level, follow the same steps but check instead whether $k$ falls outside the range of outcomes expected $99\%$ of the time.
+
+Normal Approximation
+
+:    Suppose an event has two possible outcomes, with probabilities $p$ and $1-p$. And suppose the event will be repeated $n$ independent times. We define the mean $\mu = np$ and the standard deviation $\sigma = \sqrt{np(1-p)}$. Let $k$ be the number of times the first outcome occurs. Then, if $n$ is large enough:
+
+    - The probability is about $.68$ that $k$ will be between $\mu - \sigma$ and $\mu + \sigma$ times.
+    - The probability is about $.95$ that $k$ will be between $\mu - 2\sigma$ and $\mu + 2\sigma$ times.
+    - The probability is about $.99$ that $k$ will be between $\mu - 3\sigma$ and $\mu + 3\sigma$ times.
