@@ -6,9 +6,10 @@
 Gardner attributes the quoted sentiment to [Charles Sanders Peirce](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce). The source in Peirce's writings is unknown.
 ```
 
-> *...in no other branch of mathematics is it so easy for experts to blunder as in probability theory.*
->
-> `r quote_footer('---Martin Gardner')`
+```{block, type="epigraph"}
+...in no other branch of mathematics is it so easy for experts to blunder as in probability theory.\
+---Martin Gardner
+```
 
 `r tufte::newthought("Imagine")` you're on a game show. There are three doors, one with a prize behind it. You're allowed to pick any door, so you choose the first one at random, door A.
 

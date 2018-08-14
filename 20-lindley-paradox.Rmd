@@ -1,6 +1,6 @@
 # Lindley's Paradox {#chlindley}
 
-```{block, type="epitaph"}
+```{block, type="epigraph"}
 Another reason for the popularity of statistical significance testing is probably that complicated mathematical procedures lend an air of scientific objectivity to conclusions.\
 ---Ronald P. Carver
 ```

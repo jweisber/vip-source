@@ -1,7 +1,9 @@
 # The Gambler's Fallacy
 
-> *Applied statistics is hard.*
-> `r quote_footer('---Andrew Gelman')`
+```{block, type="epigraph"}
+Applied statistics is hard.\
+---Andrew Gelman
+```
 
 My wife's family keeps having girls. My wife has two sisters and she and her sisters each have two daughters, with no other siblings or children. That's nine girls in a row!
 

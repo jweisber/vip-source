@@ -1,8 +1,9 @@
 # Logic
 
-> *I can win an argument on any topic, against any opponent. People know this, and steer clear of me at parties. Often, as a sign of their great respect, they don't even invite me.*
->
-> `r quote_footer('---Dave Barry')`
+```{block, type="epigraph"}
+I can win an argument on any topic, against any opponent. People know this, and steer clear of me at parties. Often, as a sign of their great respect, they don't even invite me.\
+---Dave Barry
+```
 
 Logic is the study of what follows from what. From the information that Tweety is a bird and all birds are animals, it follows that Tweety is an animal. But things aren't always so certain. Can Tweety fly? Most birds can fly, so probably. But Tweety might be a penguin.
 

@@ -1,6 +1,6 @@
 # Dutch Books
 
-```{block, type="epitaph"}
+```{block, type="epigraph"}
 As to the speculators from the south, they had the advantage in the toss up; they said heads, I win, tails, you lose; they could not lose any thing for they had nothing at stake.\
 ---[Newspaper report](https://chroniclingamerica.loc.gov/lccn/sn83045242/1805-09-02/ed-1/seq-2.pdf), Sep. 2, 1805
 ```

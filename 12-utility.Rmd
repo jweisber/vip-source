@@ -1,6 +1,6 @@
 # Utility
 
-```{block, type="epitaph"}
+```{block, type="epigraph"}
 Here, have a dollar.\
 In fact, no brotherman here, have two.\
 Two dollars means a snack for me\
