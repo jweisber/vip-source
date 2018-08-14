@@ -307,6 +307,10 @@ In general, the more extreme the value of $p$ is, the larger we need $n$ to be f
 
 ## Significance Testing
 
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Ronald A. Fisher ($1890$--$1962$) established significance testing as a standard scientific method with his influential $1925$ book *Statistical Methods for Research Workers*."}
+knitr::include_graphics("img/fisher.png")
+```
+
 `r newthought("The method of")` evaluating hypotheses we've been explaining is called ***significance testing***. Here is the general recipe for significance testing with binomial probabilities:
 
 1. State the hypothesis you want to test: the true probability of outcome X is $p$. This is called the ***null hypothesis***.[^nullnote]
@@ -359,6 +363,10 @@ The Greek letter $\alpha$ is called *alpha* and corresponds to the English lette
 *If* the hypothesis we are testing is true, *then* a result this unusual was less than $\alpha$ likely to occur.
 ```
 Notice how this is an *if/then* statement, where the *if* part supposes that the hypothesis we're testing is true. We're considering what things look like from the hypothetical point of view where the hypothesis is true. Then we assess how probable various outcomes are, given that assumption.
+
+```{marginfigure}
+"What's wrong with NHST [null hypothesis significance testing]? Well, among many other things, it does not tell us what we want to know..." ---Jacob Cohen
+```
 
 But notice, what we really want to know is the reverse thing. We want to know: *if* we get $k$ heads, *then* how likely is it the hypothesis is true? You might think if the result is significant at the $.05$ level, then the hypothesis is less than $.05$ probable. Not so!
 
@@ -452,27 +460,6 @@ We'll deepen our understanding of this point in [the next chapter](#chlindley).
     b.  According to the normal approximation, is the result significant at the $.01$ level?
     c.  True or false: the fact that the result is significant at the $.05$ level tells us that the null hypothesis is less than $.05$ probable.
     d.  True or false: the fact that the result is significant at the $.05$ level tells us that, if the null hypothesis is true, then the result was $.05$ probable.
-
-#.  Suppose there are two types of urns, Type A and Type B. Type A urns contain $1/5$ black balls, the rest white. Type B urns contain $1/10$ black balls, the rest white.
-
-    You have an urn that could be either Type A or Type B, you aren't sure. You think it's equally likely to be Type A as Type B. So you decide to use a significance test to find out.
-
-    Your null hypothesis is that it's a Type A urn. You draw $25$ marbles at random, and $13$ of them are black.
-
-    a.  What are $\mu$ and $\sigma$ in the normal approximation?
-    b.  Is the result significant at the $.01$ level for this null hypothesis?
-    c.  Suppose our null hypothesis had been instead that the urn is Type B. What would $\mu$ and $\sigma$ be then?
-    d.  Is the result significant at the $.01$ level for the Type B hypothesis?
-
-#.  Suppose the government is testing a new education policy. There are only two possibilities: either the policy will work and it will help high school students learn to write better $3/4$ of the time, or it will have no effect and students' writing will only improve $1/2$ of the time, as usual.
-
-    - $H = 3/4$ probability of improvement for each student
-    - $\neg H = 1/2$ probability of improvement for each student.
-
-    The government does a study of $432$ students and finds that, under the new policy, $285$ of them improved in their writing.
-
-    a.  If the null hypothesis is $\neg H$, are the results of the study significant at the $.01$ level?
-    b.  If the null hypothesis is $H$, are the results of the study significant at the $.01$ level?
 
 #.  You've seen Gonzo the Great doing magic tricks with a coin. You suspect he's using a biased coin, so you sneak into his dressing room and steal the coin.
 
