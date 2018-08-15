@@ -90,3 +90,10 @@ ol ol, ol ul, ul ol, ul ul, ol table, ul table, ol hr, ul hr {
   ul { width: 85%; }
 }
 
+div.proof:after {
+  text-align: right;
+  display: inline-block;
+  width: 55%;
+  font-size: 1.4rem;
+  content: "∎";
+}

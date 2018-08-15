@@ -1,3 +1,311 @@
 # The Axioms of Probability
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## Theories and Axioms {-}
+
+In mathematics, a theory like the theory of probability is developed axiomatically. That means we begin with fundamental laws or principles called *axioms*, which are the assumptions the theory rests on. Then we derive the consequences of these axioms via *proofs*: deductive arguments which establish additional principles that follow from the axioms. These further principles are called *theorems*.
+
+In the case of probability theory, we can build the whole theory from just three axioms. And that makes certain tasks much easier. For example, it makes it easy to establish that anyone who violates a law of probability can be Dutch booked. Because, if you violate a law of probability, you must also be violating one of the three axioms that entail the law you've violated. And with only three axioms to check, we can verify pretty quickly that violating an axiom always makes you vulnerable to a Dutch book.
+
+The axiomatic approach is useful for lots of other reasons too. For example, we can program the axioms into a computer and use it to solve real-world problems. Or, we could use the axioms to verify that the theory is consistent: if we can establish that the axioms don't contradict one another, then we know the theory makes sense. Axioms are also a useful way to summarize a theory, which makes it easier to compare it to alternative theories.
+
+In addition to axioms, a theory typically includes some *definitions*. Definitions construct new concepts out of existing ones, ones that already appear in the axioms. Definitions don't add new assumptions to the theory. Instead they're useful because they give us new language in which to describe what the axioms already entail.
+
+So a theory is a set of statements that tells us everything true about the subject at hand. There are three kinds of statements:
+
+1. Axioms: the principles we take for granted.
+2. Definitions: statements that introduce new concepts or terms.
+3. Theorems: statements that follow from the axioms and the definitions.
+
+In this appendix we'll construct probability theory axiomatically. We'll learn how to derive all the laws of probability discussed in Part I from three simple statements.
+
+
+## The Three Axioms of Probability {-}
+
+Probability theory has three axioms, and they're all familiar laws of probability. But they're fundamental laws in a way. All the other laws can be derived from them.
+
+The three axioms are:
+
+Normality
+
+:   For any proposition $A$, $0 \leq \p(A) \leq 1$
+
+Tautology Rule
+
+:   If $A$ is a logical truth then $\p(A) = 1$.
+
+Additivity Rule
+
+:   If $A$ and $B$ are mutually exclusive then $\p(A \vee B) = \p(A) + \p(B)$.
+
+Our task now is to derive from these three axioms the other laws of probability. We do this by stating each law, and then giving a proof of it: a valid deductive argument showing that it follows from the axioms and definitions.
+
+
+## First Steps {-}
+
+Let's start with one of the easier laws to derive.
+
+The Negation Rule
+
+:   $\p(\neg A) = 1 - \p(A)$
+
+```{proof}
+
+To prove this rule, start by noticing that $A \vee \neg A$ is a logical truth. So we can reason as follows:
+$$
+  \begin{aligned}
+  \p(A \vee \neg A)  &= 1                 & \mbox{ by Tautology}\\
+  \p(A) + \p(\neg A) &= 1                 & \mbox{ by Additivity}\\
+  \p(\neg A)         &= 1 - \p(A)         & \mbox{ by algebra.}
+  \end{aligned}
+$$
+
+```
+
+The black square indicates the end of the proof. Notice how each line of our proof is justified by either applying an axiom or using basic algebra. This ensures it's a valid deductive argument.
+
+Now we can use the Negation rule to establish the flipside of the Tautology rule: the Contradiction rule.
+
+The Contradiction Rule
+
+:   If $A$ is a contradiction then $\p(A) = 0$.
+
+```{proof}
+
+Notice that if $A$ is a contradiction, then $\neg A$ must be a tautology. So $\p(\neg A) = 1$. Therefore:
+$$
+  \begin{aligned}
+  \p(A) &= 1 - \p(\neg A) & \mbox{by Negation}\\
+        &= 1 - 1          & \mbox{by Tautology}\\
+        &= 0              & \mbox{by arithmetic.}
+  \end{aligned}
+$$
+
+```
+
+## Conditional Probability & the Multiplication Rule {-}
+
+
+Our next theorem is about conditional probability. But the concept of conditional probability isn't mentioned in the axioms, so we need to define it first.
+
+Definition: Conditional Probability
+
+:   The conditional probability of $A$ given $B$ is written $\p(A \given B)$ and is defined: $$\p(A \given B) = \frac{\p(A \wedge B)}{\p(B)},$$ provided that $\p(B) > 0$.
+
+From this definition we can derive the following theorem.
+
+Multiplication Rule
+
+:   If $\p(B) > 0$, then $\p(A \wedge B) = \p(A \given B)\p(B)$.
+
+```{proof}
+
+$$
+  \begin{aligned}
+  \p(A \given B)      &= \frac{\p(A \wedge B)}{\p(B)} & \mbox{ by definition}\\
+  \p(A \given B)\p(B) &= \p(A \wedge B)               & \mbox{ by algebra}\\
+  \p(A \wedge B)      &= \p(A \given B)\p(B)          & \mbox{ by algebra.}
+  \end{aligned}
+$$
+
+```
+
+Notice that the first step in this proof wouldn't make sense if we didn't assume from the beginning that $\p(B) > 0$. That's why the theorem begins with the qualifier, "If $\p(B) > 0$...".
+
+
+## Equivalence & General Addition {-}
+
+Next we'll prove the Equivalence rule and the General Addition rule. These proofs are longer and more difficult than the ones we've done so far.
+
+Equivalence Rule
+
+:   When $A$ and $B$ are logically equivalent, $\p(A) = \p(B)$.
+
+```{proof}
+
+Suppose that $A$ and $B$ are logically equivalent. Then $\neg A$ and $B$ are mutually exclusive: if $B$ is true then $A$ must be true, hence $\neg A$ false. So $B$ and $\neg A$ can't both be true.
+
+So we can apply the Additivity axiom to $\neg A \vee B$:
+$$
+  \begin{aligned}
+    \p(\neg A \vee B) &= \p(\neg A) + \p(B) & \mbox{ by Additivity}\\
+                      &= 1 - \p(A) + \p(B)  & \mbox{ by Negation.}
+  \end{aligned}
+$$
+
+Next notice that, because $A$ and $B$ are logically equivalent, we also know that $\neg A \vee B$ is a necessary truth. If $B$ is false, then $A$ must be false, so $\neg A$ must be true. So either $B$ is true, or $\neg A$ is true. So $\neg A \vee B$ is always true, no matter what.
+
+So we can apply the Tautology axiom:
+$$
+  \begin{aligned}
+    \p(\neg A \vee B) &= 1 & \mbox{ by Tautology.}
+  \end{aligned}
+$$
+Combining the previous two equations we get:
+$$
+  \begin{aligned}
+    1 &= 1 - \p(A) + \p(B) & \mbox{ by algebra}\\
+    \p(A) &= \p(B) & \mbox{ by algebra}.
+  \end{aligned}
+$$
+
+```
+
+Now we can use this theorem to derive the General Addition rule.
+
+General Addition Rule
+
+:   $\p(A \vee B) = \p(A) + \p(B) - \p(A \wedge B)$.
+
+```{proof}
+
+Start with the observation that $A \vee B$ is logically equivalent to:
+$$ (A \wedge \neg B) \vee (A \wedge B) \vee (\neg A \wedge B). $$
+This is easiest to see with an Euler diagram, but you can also verify it with a truth table. (We won't go through either of these exercises here.)
+
+So we can apply the Equivalence rule to get:
+$$
+  \begin{aligned}
+    \p(A \vee B) &= \p((A \wedge \neg B) \vee (A \wedge B) \vee (\neg A \wedge B)).
+  \end{aligned}
+$$
+And thus, by Additivity:
+$$
+  \begin{aligned}
+    \p(A \vee B) &= \p(A \wedge \neg B) + \p(A \wedge B) + \p(\neg A \wedge B).
+  \end{aligned}
+$$
+
+We can also verify with an Euler diagram (or truth table) that $A$ is logically equivalent to $(A \wedge B) \vee (A \wedge \neg B)$, and that $B$ is logically equivalent to $(A \wedge B) \vee (\neg A \wedge B)$. So, by Additivity, we also have the equations:
+$$
+  \begin{aligned}
+    \p(A) &= \p(A \wedge \neg B) + \p(A \wedge B).\\
+    \p(B) &= \p(A \wedge B) + \p(\neg A \wedge B).
+  \end{aligned}
+$$
+Notice, the last equation here can be transformed to:
+$$
+  \begin{aligned}
+    \p(\neg A \wedge B) &= \p(B) - \p(A \wedge B).
+  \end{aligned}
+$$
+Putting the previous four equations together, we can then derive:
+$$
+  \begin{aligned}
+    \p(A \vee B) &= \p(A \wedge \neg B) + \p(A \wedge B) + \p(\neg A \wedge B) & \mbox{by algebra}\\
+                 &= \p(A) + \p(\neg A \wedge B) & \mbox{by algebra}\\
+                 &= \p(A) + \p(B) - \p(A \wedge B) & \mbox{by algebra.}
+  \end{aligned}
+$$
+
+```
+
+## Total Probability & Bayes' Theorem {-}
+
+Next we derive the Law of Total Probability and Bayes' theorem.
+
+Total Probability
+
+:   If $0 < \p(B) < 1$, then
+
+    $$ \p(A) = \p(A \given B)\p(B) + \p(A \given  \neg B)\p(\neg B). $$
+
+```{proof}
+
+$$
+  \begin{aligned}
+    \p(A) &= \p((A \wedge B) \vee (A \wedge \neg B)) & \mbox{ by Equivalence}\\
+          &= \p(A \wedge B) + (A \wedge \neg B) & \mbox{ by Additivity}\\
+          &= \p(A \given B)\p(B) + \p(A \given \neg B)\p(\neg B) & \mbox{ by Multiplication.}
+  \end{aligned}
+$$
+
+```
+
+Notice, the last line of this proof only makes sense if $\p(B) > 0$ and $\p(\neg B) > 0$. That's the same as $0 < \p(B) < 1$, which is why the theorem begins with the condition: "If $0 < \p(B) < 1$...".
+
+Now for the first version of Bayes' theorem:
+
+Bayes' Theorem
+
+:   If $\p(A),\p(B)>0$, then
+    $$ \p(A \given B) = \p(A)\frac{\p(B \given A)}{\p(B)}. $$
+
+```{proof}
+
+$$
+  \begin{aligned}
+    \p(A \given B) &= \frac{\p(A \wedge B)}{\p(B)} & \mbox{by definition}\\
+              &= \frac{\p(B \given A)\p(A)}{\p(B)} & \mbox{by Multiplication}\\
+              &= \p(A)\frac{\p(B \given A)}{\p(B)} & \mbox{by algebra.}\\
+  \end{aligned}
+$$
+
+```
+
+And next the long version:
+
+Bayes' Theorem (long version)
+
+:   If $1 > \p(A) > 0$ and $\p(B)>0$, then
+    $$ \p(A \given B) = \frac{\p(A)\p(B \given A)}{\p(A)\p(B \given A) + \p(\neg A)\p(B \given \neg A)}. $$
+
+```{proof}
+
+$$
+  \begin{aligned}
+    \p(A \given B) 
+      &= \frac{\p(A)\p(B \given A)}{\p(B)} & \mbox{by Bayes' theorem}\\
+      &= \frac{\p(A)\p(B \given A)}{\p(A)\p(B \given A) + \p(\neg A)\p(B \given \neg A)} & \mbox{by Total Probability.}
+  \end{aligned}
+$$
+
+```
+
+## Independence {-}
+
+Finally, let's introduce the concept of independence, and two key theorems that deal with it.
+
+Definition: Independence
+
+:   $A$ is independent of $B$ if $\p(A \given B) = \p(A)$ and $\p(A) > 0$.
+
+Now we can state and prove the Multiplication rule.
+
+Multiplication Rule
+
+:   If $A$ is independent of $B$, then $\p(A \wedge B) = \p(A)\p(B)$.
+
+```{proof}
+
+Suppose $A$ is independent of $B$. Then:
+$$
+  \begin{aligned}
+    \p(A \given B) &= \p(A)                &  \mbox{ by definition}\\
+    \frac{\p(A \wedge B)}{\p(B)} &= \p(A)  &  \mbox{ by definition}\\
+    \p(A \wedge B) &= \p(A) \p(B)          &  \mbox{ by algebra.}
+\end{aligned}
+$$
+
+```
+
+Finally, we prove another useful fact about independence, namely that it goes both ways.
+
+Independence is Symmetric
+
+:   If $A$ is independent of $B$, then $B$ is independent of $A$.
+
+```{proof}
+
+To derive this fact, suppose $A$ is independent of $B$. Then:
+$$
+  \begin{aligned}
+    \p(A \wedge B)               &= \p(A) \p(B) & \mbox{ by Multiplication}\\
+    \p(B \wedge A)               &= \p(A) \p(B) & \mbox{ by Equivalence}\\
+    \frac{\p(B \wedge A)}{\p(A)} &= \p(B)       & \mbox{ by algebra}\\
+    \p(B \given A)               &= \p(B)       & \mbox{ by definition.}
+  \end{aligned}
+$$
+
+```
+
+We've now established that the laws of probability used in this book can be derived from the three axioms we began with. 
