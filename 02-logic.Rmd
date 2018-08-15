@@ -273,7 +273,7 @@ Strength differs from validity here, since validity is all-or-nothing. If there 
 Notice though, valid arguments are strong by definition. Since it's impossible for a valid argument's conclusion to be false if the premises are true, the premises make the conclusion 100% probable. A valid argument is the strongest possible argument.
 
 
-## Forms of Inductive Argument
+## Forms of Inductive Argument {#indargs}
 
 What kinds of strong arguments are there, and how strong are they? That's what the rest of this book is about, in a way. But we can start by identifying some common forms of inductive argument right now.
 

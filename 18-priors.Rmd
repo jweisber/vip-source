@@ -1,4 +1,4 @@
-# The Problem of Priors
+# The Problem of Priors {#priors}
 
 ```{block, type="epitaph"}
 When my information changes, I alter my conclusions.\
