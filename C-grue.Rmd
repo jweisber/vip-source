@@ -1,4 +1,4 @@
-# The Grue Paradox
+# The Grue Paradox {#grue}
 
 In [Section](#indargs) \@ref(indargs) we noticed that many inductive arguments follow this pattern:
 
