@@ -5,3 +5,4 @@ _bookdown_files/*
 .vscode/*
 .Rproj.user/*
 *.Rproj
+.Rproj.user
