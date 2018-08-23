@@ -27,7 +27,7 @@ The three axioms are:
 
 Normality
 
-:   For any proposition $A$, $0 \leq \p(A) \leq 1$
+:   For any proposition $A$, $0 \leq \p(A) \leq 1$.
 
 Tautology Rule
 
