@@ -221,7 +221,8 @@ We got $67$ heads in our experiment, which falls outside the $35$-to-$65$ range.
 
 This is called ***The 68-95-99 Rule***. We can illustrate it with a diagram like Figure \@ref(fig:snnrule).
 
-```{r snnrule, echo=FALSE, fig.cap="The $68$-$95$-$99$ Rule"}
+```{r snnrule, echo=FALSE, warning=FALSE, fig.cap="The $68$-$95$-$99$ Rule"}
+
 x <- c(seq(-3, -1, 1), seq(1, 3, 1))
 
 df <- data.frame(x = x, xend = x, y = 0, yend = dnorm(x), 
@@ -337,8 +338,10 @@ Is the result of this test bad news for VisioPerfect? Are their ads just hype? L
 
 The hypothesis we're testing is that each bulb has probability $.96$ of being long-life, which means it has probability $p = .04$ of being "short-life". The magazine found $k = 133$ short-life bulbs out of $n = 2,400$. Is this about what you'd expect if the ads are honest? Let's start by finding the center and width of our normal approximation:
 $$
-  \mu = np = (2,400)(.04) = 96,\\
-  \sigma = \sqrt{np(1-p)} = \sqrt{(2,400)(.04)(.96)} = 9.6.
+  \begin{aligned}
+    \mu &= np = (2,400)(.04) = 96,\\
+    \sigma &= \sqrt{np(1-p)} = \sqrt{(2,400)(.04)(.96)} = 9.6.
+  \end{aligned}
 $$
 Then we use the $68$-$95$-$99$ rule to figure out where $k = 133$ falls. In this case the $99\%$ range is $96 \pm (3)(9.6)$, which is $67.2$ to $124.8$. Since $k = 133$ falls outside this range, it's a pretty far out result. It's the kind of thing you'd expect to happen less than $1\%$ of the time if each bulb really had a $96\%$ chance of being long-life.
 

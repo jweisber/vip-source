@@ -2,6 +2,8 @@
 title: "Odds & Ends"
 subtitle: "Introducing Probability & Decision with a Visual Emphasis"
 author: "Jonathan Weisberg"
+classoption: justified
+site: bookdown::bookdown_site
 ---
 
 # Preface {-}
@@ -11,6 +13,11 @@ knitr::opts_chunk$set(
   cache = TRUE,
   dev.args = list(bg = "transparent")
 )
+if (knitr:::is_latex_output()) {
+  options(knitr.table.format = 'pandoc')
+  knitr::opts_chunk$set(dpi = 300)
+}
+
 library(tufte)
 library(dplyr)
 library(ggplot2)
@@ -53,6 +60,6 @@ I usually get a mix of students in my course, with different ideological inclina
 
 By the end of the course, students with little formal background have a bevy of tools for thinking about uncertainty. They can understand much more of the statistical and scientific discourse they encounter. And hopefully they have a greater appreciation for the value of formal methods. Students who already have strong formal tools and skills will, I hope, better understand their limitations. I want them to understand why these tools leave big questions open---not just philosophically, but also in very pressing, practical ways.
 
-`r newthought("The book")` was made using the `bookdown` package created by Yihui Xie. It's a wonderful tool, built on a bunch of other technologies I love, especially the R programming language and the pandoc conversion tool created by philosopher John MacFarlane. The book's visual style emulates the famous designs of Edward Tufte, thanks to more software created by Yihui Xie, J. J. Allaire, and many others who adapted Tufte's designs to HTML and PDF (via $\rm\LaTeX$).
+`r newthought("The book")` was made using the `bookdown` package created by Yihui Xie. It's a wonderful tool, built on a bunch of other technologies I love, especially the R programming language and the pandoc conversion tool created by philosopher John MacFarlane. The book's visual style emulates the famous designs of Edward Tufte, thanks to more software created by Yihui Xie, J. J. Allaire, and many others who adapted Tufte's designs to HTML and PDF (via LaTeX).
 
 If it weren't for these tools, I never would have written this book. It wouldn't have been possible to create one that does all the things this books is meant to do. I also owe inspiration to Kieran Healy's wonderful book [*Data Visualization: A Practical Introduction*](http://socviz.co/), which uses the same suite of tools. It gave me the idea to use them for an updated, open, and visually enhanced rendition of the classic material from Skyrms and Hacking.

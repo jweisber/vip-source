@@ -105,12 +105,20 @@ So the better $H$ accounts for the evidence, the larger $\p(E \given H)$ will be
 
 What about the last term in Bayes' theorem though, the denominator $\p(E)$? It corresponds to a virtue of good explanations too!
 
-```{marginfigure}
-![](img/moon.gif)
-The hammer/feather experiment was performed on the moon in 1971. See the [full video here](https://www.youtube.com/watch?v=5C5_dOEyAfk).
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="The hammer/feather experiment was performed on the moon in 1971. See the [full video here](https://bit.ly/1KLQzOB)"}
+if (knitr:::is_latex_output()) {
+  knitr::include_graphics("img/moon.png")
+} else {
+  knitr::include_graphics("img/moon.gif")
+}
+```
 
-![](img/vacuum.gif)
-It's also been performed in vacuum chambers here on earth. A beautifully filmed example is [available on YouTube](https://www.youtube.com/watch?v=E43-CfukEgs), courtesy of the BBC.
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="It's also been performed in vacuum chambers here on earth. A beautifully filmed example is [available on YouTube](https://bit.ly/10hw8mP), courtesy of the BBC."}
+if (knitr:::is_latex_output()) {
+  knitr::include_graphics("img/vacuum.png")
+} else {
+  knitr::include_graphics("img/vacuum.gif")
+}
 ```
 
 Scientists love theories that explain the unexplained. For example, Newton's theory of physics is able to explain why a heavy object and a light object, like a hammer and feather, fall to the ground at the same speed as long as there's no air resistance. If you'd never performed this experiment before, you'd probably expect the hammer to fall faster. You'd be surprised to find that the hammer and feather actually hit the ground at the same time. That Newton's theory explains this surprising fact strongly supports his theory.

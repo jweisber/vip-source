@@ -1,6 +1,6 @@
 # The Problem of Priors {#priors}
 
-```{block, type="epitaph"}
+```{block, type="epigraph"}
 When my information changes, I alter my conclusions.\
 What do you do, sir?\
 ---attributed to John Maynard Keynes
@@ -149,7 +149,7 @@ That seems reasonable, but now suppose we rephrase the question. What is the pro
 $$ \frac{d-c}{b-a} = \frac{4-1}{9-1} = \frac{3}{8}. $$
 But the answer should have been the same as before: it's the same questions, just rephrased! If the sides are between $1$ and $2$ feet long, that's the same as the area being between $1$ ft$^2$ and $4$ ft$^2$.
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Joseph Bertrand ($1822$--$1900$) presented this paradox in his $1889$ book *Calcul des Probabilités*. He used a different example though. Our example is a bit easier to understand, and comes from the book *Laws & Symmetry* by Bas van Fraassen."}
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Joseph Bertrand ($1822$--$1900$) presented this paradox in his $1889$ book *Calcul des Probabilités*. He used a different example though. Our example is a bit easier to understand, and comes from the book *Laws and Symmetry* by Bas van Fraassen."}
 knitr::include_graphics("img/bertrand.png")
 ```
 

@@ -148,7 +148,7 @@ ggplot() +
                           ymin = 1/3 - 1/40, ymax = 1/3 + 1/40)
 ```
 
-There are three leaves where $A \vee B$ is true, marked with emoji. If we add $\p(A) + \p(B)$, we're adding the two leaves where $A$ is true (😎,😍) to the two leaves where $B$ is true (😎,🤓). So we've double-counted the $A \wedge B$ leaf (😎). To get $\p(A \vee B)$ then, we have to subtract one of those $A \wedge B$ leaves (😎).
+There are three leaves where $A \vee B$ is true, marked with emoji. If we add $\p(A) + \p(B)$, we're adding the two leaves where $A$ is true (,) to the two leaves where $B$ is true (,). So we've double-counted the $A \wedge B$ leaf (). To get $\p(A \vee B)$ then, we have to subtract one of those $A \wedge B$ leaves ().
 
 `r newthought("There is a catch")` to the General Addition Rule. You need to know $\p(A \wedge B)$ in order to apply it. Sometimes that information is given to us. But when it's not, we have to figure it out somehow. If $A$ and $B$ are mutually exclusive, then it's easy: $\p(A \wedge B) = 0$. Or, if they're independent, then we can calculate $\p(A \wedge B) = \p(A) \times \p(B)$. But in other cases we have to turn elsewhere.
 
@@ -405,10 +405,10 @@ ggplot() +
                             ymin = 2/3 - 1/40, ymax = 2/3 + 1/40)
 ```
 
-We can also use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked 😎 and 😍. To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$, we add up the two leaves:
+We can also use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked  and . To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$, we add up the two leaves:
 $$
   \begin{aligned}
-    \p(A) &= 😎 + 😍\\
+    \p(A) &=  + \\
           &= \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B).
   \end{aligned}
 $$

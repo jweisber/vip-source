@@ -92,11 +92,11 @@ So $\p(A \given B_1 \wedge B_2) = 0.245 / (0.245 + 0.2)$, which is the same as $
 
 Let's try a different sort of problem with multiple conditions. Recall the taxicab problem from [Chapter 8](#chbayes):
 
-```{block, type='problem'}
+```{block2, type='problem'}
 A cab was involved in a hit and run accident at night. Two cab companies, the Green and the Blue, operate in the city. You are given the following data:
 
-1.  85% of the cabs in the city are Green and 15% are Blue.
-2.  A witness identified the cab as Blue. The court tested the reliability of the witness under the same circumstances that existed on the night of the accident and concluded that the witness correctly identified each one of the two colors 80% of the time and failed 20% of the time.
+1.  $85\%$ of the cabs in the city are Green and $15\%$ are Blue.
+2.  A witness identified the cab as Blue. The court tested the reliability of the witness under the same circumstances that existed on the night of the accident and concluded that the witness correctly identified each one of the two colors $80\%$ of the time and failed $20\%$ of the time.
 
 What is the probability that the cab involved in the accident was blue rather green?
 ```

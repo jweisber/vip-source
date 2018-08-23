@@ -1,0 +1,48 @@
+%\usepackage{MinionPro}
+%\usepackage{fontspec}
+%\newfontfamily\DejaSans{DejaVu Sans}
+
+\newcommand{\given}{\mid}
+\renewcommand{\neg}{\mathbin{\sim}}
+\renewcommand{\wedge}{\mathbin{\&}}
+\renewcommand{\u}{U}
+\newcommand{\gt}{>}
+\newcommand{\p}{Pr}
+\newcommand{\E}{E}
+\newcommand{\EU}{EU}
+\newcommand{\pr}{Pr}
+\newcommand{\po}{Pr^*}
+\definecolor{leftcolour}{RGB}{228,6,19}
+\definecolor{rightcolour}{RGB}{0,92,169}
+\definecolor{middlecolour}{RGB}{114,49,94} 
+
+\newenvironment{epigraph}{\begin{quote}}{\end{quote}}
+\newenvironment{problem}{}{}
+\newenvironment{puzzle}{\begin{quote}}{\end{quote}}    
+\newenvironment{info}{\begin{quote}}{\end{quote}}
+\newenvironment{warning}{\begin{quote}}{\end{quote}}
+\newenvironment{argument}{\begin{quote}}{\end{quote}}
+
+%%%% Kevin Godny's code for title page and contents from https://groups.google.com/forum/#!topic/tufte-latex/ujdzrktC1BQ
+\makeatletter
+\renewcommand{\maketitlepage}{%
+\begingroup%
+\setlength{\parindent}{0pt}
+{\fontsize{18}{18}\selectfont\textit{\@author}\par}
+\vspace{1.75in}{\fontsize{36}{14}\selectfont\@title\par}
+\vspace{0.5in}{\fontsize{20}{14}\selectfont Introducing Probability \& Decision with a Visual Emphasis\par}
+\vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\smallcaps{v0.1 beta}}\par}
+\vfill{\fontsize{14}{14}\selectfont\textit{An Open Access Publication}\par}
+\thispagestyle{empty}
+\endgroup
+}
+\makeatother
+
+% Change shape from [display] to [block] to keep chapter numbers and titles on the same line
+\titleformat{\chapter}%
+  [block]% shape
+  {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
+  {\itshape\huge\thechapter}% label
+  {3em}% horizontal separation between label and title body
+  {\huge\rmfamily\itshape}% before the title body
+  [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body

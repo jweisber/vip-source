@@ -40,11 +40,12 @@ Almost nobody in real life would be foolish enough accept the deal we just offer
 This problem was devised by the same psychologists who studied [the taxicab problem](#chbayes): Daniel Kahneman and Amos Tversky. This one is from a 1983 study of theirs.
 ```
 
-```{block, type="puzzle"}
+```{block2, type="puzzle"}
 Linda is 31 years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice, and also participated in anti-nuclear demonstrations. Which is more probable?
 
 1. Linda is a bank teller.
 2. Linda is a bank teller and is active in the feminist movement.
+
 ```
 
 In psychology experiments, almost everyone chooses (2). But that can't be right, and you don't need to know anything about Linda to prove it.

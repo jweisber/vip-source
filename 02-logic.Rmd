@@ -152,7 +152,7 @@ euler_diagram(propositions)
 
 The region where the circles overlap represents the possible scenarios where both propositions are true (the "$A \wedge B$ region").
 
-```{r echo=FALSE, fig.cap="Leonhard Euler (1707–1783)", fig.margin = TRUE, out.width = '60%'}
+```{r echo=FALSE, fig.cap="Leonhard Euler ($1707$-–$1783$)", fig.margin = TRUE}
 knitr::include_graphics("img/euler.png")
 ```
 
@@ -260,7 +260,9 @@ propositions <- data.frame(
 euler_diagram(propositions)
 ```
 
-```{r laplace, echo=FALSE, fig.margin=TRUE, fig.cap="Pierre Simone Laplace (1749--1827) [developed a formula](https://en.wikipedia.org/wiki/Sunrise_problem) for calculating this number exactly. We'll learn how to do similar calculations in the coming chapters."}
+(ref:laplacecap) Pierre Simone Laplace ($1749$--$1827$) developed [a formula](https://bit.ly/2mU9WgW) for calculating this number exactly. We'll learn how to do similar calculations in the coming chapters.
+
+```{r laplace, echo=FALSE, fig.margin=TRUE, fig.cap="(ref:laplacecap)"}
 knitr::include_graphics("img/laplace.png")
 ```
 

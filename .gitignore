@@ -3,3 +3,5 @@ docs/*
 _book/*
 _bookdown_files/*
 .vscode/*
+.Rproj.user/*
+*.Rproj

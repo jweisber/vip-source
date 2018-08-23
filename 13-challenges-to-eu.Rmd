@@ -178,7 +178,9 @@ At the same time, most people choose $2B$ over $2A$, and for a similar reason. W
 
 Like in the Allais paradox, this popular combination of choices violates the expected utility rule. The calculation that shows this is pretty similar to the one we did with Allais, so we won't rehearse it here.
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="Daniel Ellsberg (b. 1931) is most famous as the leaker of [the Pentagon Papers](https://en.wikipedia.org/wiki/Pentagon_Papers). The 2017 movie [*The Post*](https://en.wikipedia.org/wiki/The_Post_(film)) tells that story, with Ellsberg portrayed by actor Matthew Rhys. (Photograph by Bernd Gross)."}
+(ref:ellsbergcap) Daniel Ellsberg (b. $1931$) is most famous as the leaker of [the Pentagon Papers](https://bit.ly/1Lgsq2D). The 2017 movie [*The Post*](https://bit.ly/2CcHs8v) tells that story, with Ellsberg portrayed by actor Matthew Rhys. (Photograph by Bernd Gross).
+
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="(ref:ellsbergcap)"}
 knitr::include_graphics("img/ellsberg.png")
 ```
 

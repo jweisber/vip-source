@@ -4,6 +4,15 @@ bookdown::tufte_html_book:
     - toc.css
     - custom.css
   split_by: chapter
-  includes:
+    includes:
     in_header: header.html
     before_body: preamble.html
+bookdown::pdf_book:
+  base_format: tufte::tufte_book
+  fig_width: 7
+  fig_height: 5
+  number_sections: yes
+  keep_tex: yes
+  includes:
+    in_header: preamble.tex
+# latex_engine: xelatex
