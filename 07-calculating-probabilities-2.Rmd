@@ -102,9 +102,9 @@ And this makes sense. If there is no $A \wedge B$ region, that means $A$ and $B$
 
 That's why we call the new rule the *General* Addition Rule. It applies in general, even when $A$ and $B$ are not mutually exclusive. And in the special case where they are mutually exclusive, it gives the same result as the Addition Rule we already learned.
 
-`r newthought("A tree diagram")` also works to explain the General Addition Rule. Consider this diagram, where we start with branches for $A$ and $\neg A$, then subdivide into branches for $B$ and $\neg B$:
+`r newthought("A tree diagram")` also works to explain the General Addition Rule. Consider Figure \@ref(fig:gatree), where we start with branches for $A$ and $\neg A$, then subdivide into branches for $B$ and $\neg B$.
 
-```{r echo=FALSE, fig.cap="Tree diagram with the three $A \\vee B$ leaves marked"}
+```{r gatree, echo=FALSE, fig.cap="Tree diagram with the three $A \\vee B$ leaves marked"}
 nodes <- bind_rows(
   list(text = "A",   x = .39, y = 5/6),
   list(text = "~ A", x = .39, y = 1/6),  
@@ -131,7 +131,7 @@ leaf_labels <- bind_rows(
 )
 
 shades <- readPNG("img/emoji_shades.png") %>% rasterGrob()
-hearts <- readPNG("img/emoji_hearteyes.png") %>% rasterGrob()
+hearts <- readPNG("img/emoji_hearts.png") %>% rasterGrob()
 nerd <- readPNG("img/emoji_nerd.png") %>% rasterGrob()
 
 ggplot() +
@@ -148,7 +148,14 @@ ggplot() +
                           ymin = 1/3 - 1/40, ymax = 1/3 + 1/40)
 ```
 
-There are three leaves where $A \vee B$ is true, marked with emoji. If we add $\p(A) + \p(B)$, we're adding the two leaves where $A$ is true (,) to the two leaves where $B$ is true (,). So we've double-counted the $A \wedge B$ leaf (). To get $\p(A \vee B)$ then, we have to subtract one of those $A \wedge B$ leaves ().
+```{r echo=FALSE}
+dpi <- 110
+png_shades <- knitr::include_graphics("img/emoji_shades_small.png", dpi = dpi)
+png_hearts <- knitr::include_graphics("img/emoji_hearts_small.png", dpi = dpi)
+png_nerd <- knitr::include_graphics("img/emoji_nerd_small.png", dpi = dpi)
+```
+
+There are three leaves where $A \vee B$ is true, marked with emoji. If we add $\p(A) + \p(B)$, we're adding the two leaves where $A$ is true (`r png_shades` and `r png_hearts`) to the two leaves where $B$ is true (`r png_shades` and `r png_nerd`). So we've double-counted the $A \wedge B$ leaf (`r png_shades`). To get $\p(A \vee B)$ then, we have to subtract one of those $A \wedge B$ leaves (`r png_shades`).
 
 `r newthought("There is a catch")` to the General Addition Rule. You need to know $\p(A \wedge B)$ in order to apply it. Sometimes that information is given to us. But when it's not, we have to figure it out somehow. If $A$ and $B$ are mutually exclusive, then it's easy: $\p(A \wedge B) = 0$. Or, if they're independent, then we can calculate $\p(A \wedge B) = \p(A) \times \p(B)$. But in other cases we have to turn elsewhere.
 
@@ -390,7 +397,7 @@ leaf_labels <- bind_rows(
 )
 
 shades <- readPNG("img/emoji_shades.png") %>% rasterGrob()
-hearts <- readPNG("img/emoji_hearteyes.png") %>% rasterGrob()
+hearts <- readPNG("img/emoji_hearts.png") %>% rasterGrob()
 nerd <- readPNG("img/emoji_nerd.png") %>% rasterGrob()
 
 ggplot() +
