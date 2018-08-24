@@ -116,7 +116,7 @@ Principle of Indifference (Continuous Version)
 
 :   If there is an interval of possible outcomes from $a$ to $b$, the probability of any subinterval from $c$ to $d$ is: $$\frac{d-c}{b-a}.$$
 
-```{r echo=FALSE, fig.margin=TRUE, fig.asp = .3, fig.cap="The continuous version of the Principle of Indifference: $Pr(H)$ is the length of the $c$-to-$d$ interval divided by the length of the whole $a$-to-$b$ interval."}
+```{r echo=FALSE, fig.margin=TRUE, dev="png", fig.asp = .3, fig.cap="The continuous version of the Principle of Indifference: $Pr(H)$ is the length of the $c$-to-$d$ interval divided by the length of the whole $a$-to-$b$ interval."}
 library(grid)
 library(pBrackets)
 ggplot(NULL) +
