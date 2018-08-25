@@ -7,7 +7,7 @@
 
 `r newthought("Generalizing")` from observed instances was the first major form of inductive argument we encountered. Suppose you want to know what colour a particular species of bird tends to be. Then you might go out and look at a bunch of examples:
 
-> I've seen 10 ravens and they've all been black.\
+> I've seen $10$ ravens and they've all been black.\
 > Therefore, all ravens are black.
 
 How strong is this argument?
@@ -105,15 +105,18 @@ So the better $H$ accounts for the evidence, the larger $\p(E \given H)$ will be
 
 What about the last term in Bayes' theorem though, the denominator $\p(E)$? It corresponds to a virtue of good explanations too!
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="The hammer/feather experiment was performed on the moon in 1971. See the [full video here](https://bit.ly/1KLQzOB)"}
+(ref:mooncap1) The hammer/feather experiment was performed on the moon in 1971. See the [full video here](https://bit.ly/1KLQzOB).
+
+(ref:mooncap2) It's also been performed in vacuum chambers here on earth. A beautifully filmed example is [available on YouTube](https://bit.ly/10hw8mP), courtesy of the BBC.
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap=c("(ref:mooncap1)", "(ref:mooncap2)")}
+
 if (knitr:::is_latex_output()) {
   knitr::include_graphics("img/moon.png")
 } else {
   knitr::include_graphics("img/moon.gif")
 }
-```
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="It's also been performed in vacuum chambers here on earth. A beautifully filmed example is [available on YouTube](https://bit.ly/10hw8mP), courtesy of the BBC."}
 if (knitr:::is_latex_output()) {
   knitr::include_graphics("img/vacuum.png")
 } else {
