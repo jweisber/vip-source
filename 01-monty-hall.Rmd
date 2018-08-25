@@ -124,7 +124,7 @@ So when you see the host open door C, you should think it's more likely you're o
 
 ## Lessons Learned
 
-Tree diagrams are a handy tool for solving probability problems. They also illustrate some central concepts of probability.
+`r newthought("Tree diagrams")` are a handy tool for solving probability problems. They also illustrate some central concepts of probability.
 
 Probabilities are numbers assigned to possibilities. In the Monty Hall problem, there are three possibilities for where the prize is: door A, door B, and door C. Each of these possibilities has the same probability: 1/3.
 

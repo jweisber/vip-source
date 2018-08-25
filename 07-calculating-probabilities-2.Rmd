@@ -1,6 +1,6 @@
 # Calculating Probabilities, Part II
 
-We learned rules for $\vee$ and for $\wedge$ back in [Chapter 5][Calculating Probabilities]:
+`r newthought("We learned rules")` for $\vee$ and for $\wedge$ back in [Chapter 5][Calculating Probabilities]:
 
 The Addition Rule
 
@@ -44,7 +44,7 @@ Sometimes we really want to know the probability of $A$, $\p(A)$, but it turns o
 
 ## The General Addition Rule
 
-The Addition Rule for calculating $\p(A \vee B)$ depends on $A$ and $B$ being mutually exclusive. What if they're not? Then we can use:
+`r newthought("The Addition Rule")` for calculating $\p(A \vee B)$ depends on $A$ and $B$ being mutually exclusive. What if they're not? Then we can use:
 
 The General Addition Rule
 
@@ -162,7 +162,7 @@ There are three leaves where $A \vee B$ is true, marked with emoji. If we add $\
 
 ## The General Multiplication Rule
 
-How can we calculate $\p(A \wedge B)$ in general?
+`r newthought("How can we")` calculate $\p(A \wedge B)$ in general?
 
 The General Multiplication Rule
 
@@ -249,7 +249,7 @@ Black hole warning: notice that the General Multiplication Rule depends on $\p(A
 
 ## Laplace's Urn Puzzle
 
-The same urn scenario was used by [18th Century mathematician Laplace][Strength] in one of his favourite puzzles. He asked what happens if we do *two* draws, with replacement. What's the probability both draws will come up black?
+`r newthought("The same urn scenario")` was used by [18th Century mathematician Laplace][Strength] in one of his favourite puzzles. He asked what happens if we do *two* draws, with replacement. What's the probability both draws will come up black?
 
 It's tempting to say $1/4$. The probability of drawing a black marble on each draw is $1/2$. So it *seems* the probability of two blacks is just $1/2 \times 1/2 = 1/4$.
 
@@ -338,7 +338,7 @@ $$
 
 ## The Law of Total Probability
 
-This kind of calculation comes up a lot. Since it would be tedious to figure it out from scratch every time, we make a general rule instead:
+`r newthought("This kind of calculation")` comes up a lot. Since it would be tedious to figure it out from scratch every time, we make a general rule instead:
 
 The Law of Total Probability
 
@@ -427,7 +427,7 @@ Black hole warning: notice that the Law of Total Probability depends on $\p(A \g
 
 ## Example
 
-Every day Professor X either drives her car to campus or takes the bus. Mostly she drives, but one time in four she takes the bus. When she drives, she's on time $80\%$ of the time. When she takes the bus, she's on-time $90\%$ of the time.
+`r newthought("Every day")` Professor X either drives her car to campus or takes the bus. Mostly she drives, but one time in four she takes the bus. When she drives, she's on time $80\%$ of the time. When she takes the bus, she's on-time $90\%$ of the time.
 
 What is the probability she'll be on time for class tomorrow?
 

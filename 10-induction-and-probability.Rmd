@@ -44,7 +44,7 @@ But that doesn't mean our argument that all ravens are black is $99.9\%$ strong!
 
 ## Real Life Is More Complicated 
 
-There are two major limitations to our urn analogy.
+`r newthought("There are two")` major limitations to our urn analogy.
 
 `r newthought("The first limitation")` is that the ravens we observe in real life aren't randomly sampled from nature's "urn". We only observe ravens in certain locations, for example. But our solution to the urn problem relied on random sampling. For example, we assumed $\p(B_1 \given \neg A) = 1/2$ because the black marbles are just as likely to be drawn as the white ones, if there are any white ones.
 

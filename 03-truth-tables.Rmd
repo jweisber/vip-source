@@ -1,6 +1,6 @@
 # Truth Tables
 
-In this chapter we'll introduce the last few concepts we need from deductive logic, and we'll learn a useful technique in the process: truth tables.
+`r newthought("In this chapter")` we'll introduce the last few concepts we need from deductive logic, and we'll learn a useful technique in the process: truth tables.
 
 
 ## Connectives
@@ -79,7 +79,7 @@ So in the proposition $\neg A \vee B$, the $\neg$ only applies to $A$. And in $\
 
 ## Truth Tables
 
-The truth of a complex proposition built using our three connectives depends on the truth of its components. For example, $\neg A$ is false if $A$ is true, and it's true if $A$ is false:
+`r newthought("The truth of")` a complex proposition built using our three connectives depends on the truth of its components. For example, $\neg A$ is false if $A$ is true, and it's true if $A$ is false:
 
 ```{r echo=FALSE}
 df <- data.frame(
@@ -215,7 +215,7 @@ Complex constructions like this are difficult at first, but don't worry. With pr
 
 ## Logical Truths & Contradictions
 
-Some propositions come out true in every row of the truth table. Consider $A \vee \neg A$ for example:
+`r newthought("Some propositions")` come out true in every row of the truth table. Consider $A \vee \neg A$ for example:
 
 ```{r echo=FALSE}
 df <- data.frame(
@@ -372,7 +372,7 @@ Here again the columns under these two propositions are identical.
 
 ## Summary
 
-Connectives can be used to build more complex propositions, like $A \wedge B$ or $A \vee \neg B$. We introduced three connectives:
+`r newthought("Connectives can be")` used to build more complex propositions, like $A \wedge B$ or $A \vee \neg B$. We introduced three connectives:
 
 - $\neg A$ means it's not true that $A$.
 - $A \wedge B$ means both $A$ and $B$ are true.

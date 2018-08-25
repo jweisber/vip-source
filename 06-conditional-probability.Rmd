@@ -1,6 +1,6 @@
 # Conditional Probability
 
-The chances of crashing your car are pretty low, but they're considerably higher if you're drunk. Probabilities change depending on the conditions.
+`r newthought("The chances of")` crashing your car are pretty low, but they're considerably higher if you're drunk. Probabilities change depending on the conditions.
 
 We symbolize this idea by writing $\p(A \given B)$, the probability that $A$ is true *given* that $B$ is true. And we call this kind of probability ***conditional probability***.
 
@@ -102,7 +102,7 @@ In such cases we say that $\p(A \given B)$ is *undefined*. It's not zero, or som
 
 ## Conditional Probability & Trees
 
-We already encountered conditional probabilities informally, when we used a tree diagram to solve [the Monty Hall problem][The Monty Hall Problem].
+`r newthought("We already encountered")` conditional probabilities informally, when we used a tree diagram to solve [the Monty Hall problem][The Monty Hall Problem].
 
 In a tree diagram, each branch represents a possible outcome. The number placed on that branch represents the chance of that outcome occurring. But that number is based on the assumption that all branches leading up to it occur. So the probability on that branch is conditional on all previous branches.
 
@@ -218,7 +218,7 @@ Notice how we get a different number now.
 
 ## Order Matters
 
-In general, the probability of $A$ given $B$ will be different from the probability of $B$ given $A$. These are different concepts.
+`r newthought("In general,")` the probability of $A$ given $B$ will be different from the probability of $B$ given $A$. These are different concepts.
 
 For example, university students are usually young, but young people aren't usually university students. Most aren't even old enough to be in university. So the probability someone is young given they are in university is high. But the probability someone is in university given that they are young is low. So $\p(Y \given U) \neq \p(U \given Y)$.
 
@@ -233,7 +233,7 @@ When we write $\p(A \given B)$, we are discussing the probability of $A$. But we
 
 ## Declaring Independence
 
-We explained independence informally back in [Chapter 4][Independence]: $A$ and $B$ are independent if the truth of one doesn't change the probability of the other. Now that we've formally defined conditional probability, we can formally define independence too.
+`r newthought("We explained independence")` informally back in [Chapter 4][Independence]: $A$ and $B$ are independent if the truth of one doesn't change the probability of the other. Now that we've formally defined conditional probability, we can formally define independence too.
 
 Independence
 

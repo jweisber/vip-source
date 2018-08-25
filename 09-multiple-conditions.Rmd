@@ -1,13 +1,13 @@
 # Multiple Conditions
 
-We often need to account for multiple pieces of evidence. More than one witness testifies about the colour of a taxicab; more than one person responds to our poll about an upcoming election; etc.
+`r newthought("We often need")` to account for multiple pieces of evidence. More than one witness testifies about the colour of a taxicab; more than one person responds to our poll about an upcoming election; etc.
 
 How do we a calculate conditional probability when there are multiple conditions? In other words, how do we handle quantities of the form $\p(A \given B_1 \wedge B_2 \wedge \ldots)$?
 
 
 ## Multiple Draws
 
-Imagine you're faced with another one of our mystery urns. There are two equally likely possibilities:
+`r newthought("Imagine you're faced")` with another one of our mystery urns. There are two equally likely possibilities:
 $$
   \begin{aligned}
     A      &: \mbox{The urn contains $70$ black marbles, $30$ white marbles.}\\
@@ -90,7 +90,7 @@ So $\p(A \given B_1 \wedge B_2) = 0.245 / (0.245 + 0.2)$, which is the same as $
 
 ## Multiple Witnesses
 
-Let's try a different sort of problem with multiple conditions. Recall the taxicab problem from [Chapter 8](#chbayes):
+`r newthought("Let's try")` a different sort of problem with multiple conditions. Recall the taxicab problem from [Chapter 8](#chbayes):
 
 ```{block2, type='problem'}
 A cab was involved in a hit and run accident at night. Two cab companies, the Green and the Blue, operate in the city. You are given the following data:
@@ -170,7 +170,7 @@ p_tree(nodes, parse = TRUE, round = 3)
 
 ## Without Replacement
 
-The problems we've done so far were simplified by assuming independence.  We sampled with replacement in the urn problem, and we assumed our two witnesses were independently reporting what they saw in the taxicab problem. What about when independence doesn't hold?
+`r newthought("The problems we've")` done so far were simplified by assuming independence.  We sampled with replacement in the urn problem, and we assumed our two witnesses were independently reporting what they saw in the taxicab problem. What about when independence doesn't hold?
 
 Let's go back to our urn problem, but this time suppose we don't replace the marble after the first draw. How do we calculate $\p(A \given B_1 \wedge B_2)$ then?
 
@@ -245,7 +245,7 @@ $$
 
 ## Multiplying Conditional Probabilities
 
-The calculation we just did relied on a new rule, which we should make explicit. Start by recalling a familiar rule:
+`r newthought("The calculation we just did")` relied on a new rule, which we should make explicit. Start by recalling a familiar rule:
 
 The General Multiplication Rule
 
@@ -276,7 +276,7 @@ So if we have a rule of probability, the same rule will hold if we add a conditi
 
 ## Summary
 
-We've learned two strategies for calculating conditional probabilities with multiple conditions.
+`r newthought("We've learned two strategies")` for calculating conditional probabilities with multiple conditions.
 
 The first strategy is easier, but it only works when the conditions are appropriately independent. Like when we sample with replacement, or when two witnesses independently report what they saw.
 

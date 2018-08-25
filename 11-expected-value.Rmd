@@ -2,7 +2,7 @@
 
 # Expected Value
 
-We've been thinking a lot about what conclusions our evidence supports. But a lot of reasoning is *practical*: it's not just about what to believe, but about what you should *do*. Once you know how likely the various possible outcomes of a decision are, how do you make your choice?
+`r newthought("We've been thinking a lot")` about what conclusions our evidence supports. But a lot of reasoning is *practical*: it's not just about what to believe, but about what you should *do*. Once you know how likely the various possible outcomes of a decision are, how do you make your choice?
 
 ```{block, type='problem'}
 Suppose you have a free ticket to play one game at the local casino. You can choose either the Coin Game or the Die Game.
@@ -28,7 +28,7 @@ So the Die Game is the more advantageous one, on this analysis. On average, peop
 
 ## Expected Monetary Values
 
-To calculate the expected value of an option, we multiply each payoff by its probability, and then sum up the results. For example, our analysis of the Coin Game can be written this way:
+`r newthought("To calculate")` the expected value of an option, we multiply each payoff by its probability, and then sum up the results. For example, our analysis of the Coin Game can be written this way:
 $$
   \begin{aligned}
     \p(\$1) \times \$1 + \p(\$0) \times \$0 &= (1/2)(\$1) + (1/2)(\$0)\\
@@ -244,7 +244,7 @@ Notice that both options have negative expected value in this example. After all
 
 ## Decision Tables
 
-Many decision problems can be represented in a table. Suppose you're choosing between the following two gambles, based on the roll of a fair, six-sided die.
+`r newthought("Many decision problems")` can be represented in a table. Suppose you're choosing between the following two gambles, based on the roll of a fair, six-sided die.
 
 - $A$: you win $3 if it lands $1$ or $2$, you win $\$1$ if it lands $3$ or $4$, and you lose $\$1$ if it lands $5$ or $6$.
 - $B$: you win $\$3$ if it lands $1$ or $2$, you lose $\$3$ if it lands $3$ or $4$, and nothing happens if it lands $5$ or $6$.

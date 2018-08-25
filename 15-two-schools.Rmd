@@ -120,7 +120,7 @@ It's problems like these that drive many philosophers and scientists away from f
 
 ## Bayesianism
 
-According to Bayesians, probability is ultimately about belief. It's about how certain you should be that something is true.
+`r newthought("According to Bayesians,")` probability is ultimately about belief. It's about how certain you should be that something is true.
 
 For example, $\p(A)=.9$ means that $A$ is certain to degree $0.9$. We can be $90\%$ confident that $A$ is true. Whereas $\p(A)=.3$ means that $A$ is certain to degree $0.3$. We can only be $30\%$ confident $A$ is true.
 

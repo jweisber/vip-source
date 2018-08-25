@@ -5,7 +5,7 @@ I can win an argument on any topic, against any opponent. People know this, and 
 ---Dave Barry
 ```
 
-Logic is the study of what follows from what. From the information that Tweety is a bird and all birds are animals, it follows that Tweety is an animal. But things aren't always so certain. Can Tweety fly? Most birds can fly, so probably. But Tweety might be a penguin.
+`r newthought("Logic is the study")` of what follows from what. From the information that Tweety is a bird and all birds are animals, it follows that Tweety is an animal. But things aren't always so certain. Can Tweety fly? Most birds can fly, so probably. But Tweety might be a penguin.
 
 *Deductive* logic is the branch of logic that studies what follows with certainty. *Inductive* logic deals with uncertainty, things that only follow with high probability.
 
@@ -223,7 +223,7 @@ euler_diagram(propositions)
 
 ## Strength
 
-Inductive logic studies arguments that aren't necessarily valid, but still "strong". A ***strong*** argument is one where the conclusion is highly probable, if the premises are true. For example:
+`r newthought("Inductive logic")` studies arguments that aren't necessarily valid, but still "strong". A ***strong*** argument is one where the conclusion is highly probable, if the premises are true. For example:
 
 ```{block, type="argument", echo=TRUE}
 The sun has risen every day so far.\
@@ -271,7 +271,7 @@ Notice though, valid arguments are strong by definition. Since it's impossible f
 
 ## Forms of Inductive Argument {#indargs}
 
-What kinds of strong arguments are there, and how strong are they? That's what the rest of this book is about, in a way. But we can start by identifying some common forms of inductive argument right now.
+`r newthought("What kinds")` of strong arguments are there, and how strong are they? That's what the rest of this book is about, in a way. But we can start by identifying some common forms of inductive argument right now.
 
 `r newthought("Generalizing from observed instances")` is one extremely common form of argument:
 

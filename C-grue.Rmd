@@ -1,6 +1,6 @@
 # The Grue Paradox {#grue}
 
-In [Section](#indargs) \@ref(indargs) we noticed that many inductive arguments follow this pattern:
+`r newthought("In")` [Section](#indargs) \@ref(indargs) we noticed that many inductive arguments follow this pattern:
 
 ```{block, type="argument", echo=TRUE}
 All observed instances of $X$ have been $Y$.\
@@ -18,7 +18,7 @@ So it seems like a fundamental principle of scientific inquiry that we expect th
 knitr::include_graphics("img/goodman.png")
 ```
 
-But in the $1940$s, Nelson Goodman discovered a problem with the Principle of Induction. To illustrate the problem he invented a very curious concept, *grue*.
+`r newthought("But in the $1940$s,")` Nelson Goodman discovered a problem with the Principle of Induction. To illustrate the problem he invented a very curious concept, *grue*.
 
 There are two ways for an object to be grue. Some green things are grue, but it depends on when we first encounter them. If our first observation of a green object happens before the year $2050$, then it's grue. So the Statue of Liberty is grue: it's a green object that was first observed before the year $2050$ (*long* before).
 
@@ -66,7 +66,7 @@ The only way time comes into it is in determining which green things are grue, a
 
 ## The Paradox {-}
 
-Now ask yourself, have you ever seen a grue emerald? You probably have. In fact, every emerald everyone's ever seen has been grue.
+`r newthought("Now ask yourself,")` have you ever seen a grue emerald? You probably have. In fact, every emerald everyone's ever seen has been grue.
 
 Why? Because they're all green, and they've all been observed before the year $2050$. So they're all grue the first way---they all satisfy part (a) of the definition. (Notice it's an either/or definition, so you only have to satisfy one of the two parts to be grue.)
 
@@ -120,7 +120,7 @@ But how do we pass all that wisdom on to the machines? How do we teach them the 
 
 ## Disjunctivitis {-}
 
-Here's one very natural answer. The problem with grue is that it's *disjunctive*: it's defined using either/or. It suffers from what we might call "disjunctivitis".
+`r newthought("Here's one")` very natural answer. The problem with grue is that it's *disjunctive*: it's defined using either/or. It suffers from what we might call "disjunctivitis".
 
 But the beauty of Goodman's puzzle is the neat way it exposes the flaw in this answer. It allows us to make 'green' the disjunctive concept instead! How? We start by building grue a friend, a concept to fill in the missing spaces in our original diagram. We'll call it *bleen*:
 
@@ -159,7 +159,7 @@ What could we say to them to establish the superiority of our way of thinking? I
 
 ## Time Dependence {-}
 
-Another natural answer to Goodman's challenge is to say that grue is defective because it's time-dependent. It means different things depending on the time an object is first observed.
+`r newthought("Another natural answer")` to Goodman's challenge is to say that grue is defective because it's time-dependent. It means different things depending on the time an object is first observed.
 
 But the same reversal of fortunes that toppled the "disjunctivitis" diagnosis happens here. We can define green in terms of grue and bleen. And when we do, it's green that's the time-dependent concept, not grue.
 
@@ -173,7 +173,7 @@ So we're left in the same spot. We need some way of showing that the "true" orde
 For another explanation of the grue puzzle, check out [this excellent Wi-Phi video](http://www.wi-phi.com/video/puzzle-grue).
 ```
 
-Goodman's puzzle may seem just cute at first, a mere curiosity. But it is actually quite profound.
+`r newthought("Goodman's puzzle")` may seem just cute at first, a mere curiosity. But it is actually quite profound.
 
 In a way, the central question of this book is: what is the logic of science? What are the correct rules of scientific reasoning?
 
