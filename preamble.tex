@@ -46,3 +46,24 @@
   {3em}% horizontal separation between label and title body
   {\huge\rmfamily\itshape}% before the title body
   [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
+
+
+\usepackage{etoolbox}
+% Jesse Rosenthal's code from https://groups.google.com/forum/#!topic/pandoc-discuss/wCF78X6SvwY
+% Avoid new pagraph/indent after lists, quotes, etc.
+\makeatletter
+\newcommand{\gobblepars}{% 
+    \@ifnextchar\par% 
+        {\expandafter\gobblepars\@gobble}% 
+        {}}
+\newcommand{\eatpar}{\@ifnextchar\par{\@gobble}{}}
+\newcommand{\forcepar}{\par}
+\makeatother
+\AfterEndEnvironment{quote}{\expandafter\gobblepars}
+\AfterEndEnvironment{enumerate}{\expandafter\gobblepars}
+\AfterEndEnvironment{itemize}{\expandafter\gobblepars}
+\AfterEndEnvironment{example}{\expandafter\gobblepars}
+\AfterEndEnvironment{argument}{\expandafter\gobblepars}
+\AfterEndEnvironment{problem}{\expandafter\gobblepars}
+\AfterEndEnvironment{info}{\expandafter\gobblepars}
+\AfterEndEnvironment{warning}{\expandafter\gobblepars}
