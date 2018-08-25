@@ -61,9 +61,7 @@ In the die-roll example, we considered how many of the $B$ possibilities were al
 
 In fact, this formula is our official definition for the concept of conditional probability. When we write the sequence of symbols $\p(A \given B)$, it's really just shorthand for the fraction $\p(A \wedge B) / \p(B)$.
 
-In terms of an Euler diagram, the definition of conditional probability compares the size of the $A \wedge B$ region to the size of the whole $B$ region:
-
-```{r echo=FALSE, fig.cap="Conditional probability is the size of the $A \\wedge B$ region compared to the entire $B$ region."}
+```{r condprob, echo=FALSE, fig.margin=TRUE, fig.cap="Conditional probability is the size of the $A \\wedge B$ region compared to the entire $B$ region."}
 
 x <- seq(-.75, .75, 0.01)
 
@@ -81,29 +79,23 @@ ggplot() +
   geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
               fill = middlecolour, colour = "black") +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
-            fontface = "italic", size = 10, family = "serif") +
+            fontface = "italic", size = 6) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 
-If you don't mind getting a little colourful with your algebra:
-
+In terms of an Euler diagram (Figure \@ref(fig:condprob)), the definition of conditional probability compares the size of the purple $A \wedge B$ region to the size of the whole $B$ region, purple and blue together. If you don't mind getting a little colourful with your algebra:
 $$
   \p(A \given B) = \frac{\color{middlecolour}{\blacksquare}}{\color{middlecolour}{\blacksquare} + \color{rightcolour}{\blacksquare}}.
 $$
+So the definition works because, informally speaking, $\p(A \wedge B)/\p(B)$ is the proportion of the $B$ outcomes that are also $A$ outcomes.[^wrightquip]
 
-So the definition works because, informally speaking, $\p(A \wedge B)/\p(B)$ is the proportion of the $B$ outcomes that are also $A$ outcomes.
-
-```{marginfigure, echo=TRUE}
-"Black holes are where God divided by zero," comedian Steven Wright once quipped.
-```
+[^wrightquip]: The comedian Steven Wright once quipped that "black holes are where God divided by zero."
 
 `r newthought("Dividing by zero")` is a common pitfall with conditional probability. Notice how the definition of $\p(A \given B)$ depends on $\p(B)$ being larger than zero. If $\p(B) = 0$, then the formula
 $$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)} $$
-doesn't even make any sense. There is no number that results from the division on the right hand side.
+doesn't even make any sense. There is no number that results from the division on the right hand side.[^alternatesystems]
 
-```{marginfigure, echo=TRUE}
-There are alternative mathematical systems of probability, where conditional probability is defined differently to avoid this problem. But in this book we'll stick to the standard system. Where there's just no such thing as "the probability of $A$ given $B$" when $B$ has zero probability.
-```
+[^alternatesystems]: There are alternative mathematical systems of probability, where conditional probability is defined differently to avoid this problem. But in this book we'll stick to the standard system. Where there's just no such thing as "the probability of $A$ given $B$" when $B$ has zero probability.
 
 In such cases we say that $\p(A \given B)$ is *undefined*. It's not zero, or some special number. It just isn't a number.
 

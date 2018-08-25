@@ -148,7 +148,7 @@ ggplot(data.frame(x = c(-3, 3))) +
   stat_function(fun = upper, xlim = c(-3/4, 3/4), colour = middlecolour, size = 3) +
   stat_function(fun = function(x) -upper(x), xlim = c(-3/4, 3/4), colour = middlecolour, size = 3) +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
-            fontface = "italic", size = 10, family = "serif") +
+            fontface = "italic", size = 6) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 

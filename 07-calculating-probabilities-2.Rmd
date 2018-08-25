@@ -22,9 +22,9 @@ ggplot() + theme_void() + coord_fixed() +
         panel.background = element_rect(fill = leftcolour)) +
   geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), fill = "white") +
   geom_text(aes(x = 0, y = 0, label = "A"), 
-            fontface = "italic", size = 10, family=c("serif")) +
+            fontface = "italic", size = 6) +
   geom_text(aes(x = -2, y = 1.5, label = "~A"), 
-            fontface = "italic", size = 10, family = "serif")
+            fontface = "italic", size = 6)
 ```
 
 If there's a 70% chance of rain, then there's a 30% chance it won't rain. In symbols, if $\p(R) = .7$ then $\p(\neg R) = .3$. So the rule for $\p(\neg A)$ is:
@@ -61,7 +61,7 @@ ggplot() +
   geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
               fill = middlecolour, colour = "black") +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
-            fontface = "italic", size = 10, family = "serif") +
+            fontface = "italic", size = 6) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 
@@ -355,7 +355,7 @@ ggplot() +
   geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
               fill = middlecolour, colour = "black") +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
-            fontface = "italic", size = 10, family = "serif") +
+            fontface = "italic", size = 6) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 

@@ -116,7 +116,7 @@ euler_diagram <- function(propositions) {
         theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
         geom_circle(aes(x0 = cirx, y0 = ciry, r = r)) +
         geom_text(aes(x = labx, y = laby, label = labl), 
-                  fontface = "italic", size = 10, family=c("serif"))
+                  fontface = "italic", size = 6)
 }
 
 propositions <- data.frame(
@@ -142,7 +142,6 @@ propositions <- data.frame(
     laby = c(1     , 1),
     labl = c("A", "B")
 )
-
 euler_diagram(propositions)
 ```
 
@@ -162,9 +161,9 @@ ggplot() + theme_void() + coord_fixed() +
         panel.background = element_rect(fill = rightcolour)) +
   geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), fill = leftcolour) +
   geom_text(aes(x = 0, y = 0, label = "A"), 
-            fontface = "italic", size = 10, family=c("serif")) +
+            fontface = "italic", size = 6) +
   geom_text(aes(x = -2, y = 1.5, label = "~A"), 
-            fontface = "italic", size = 10, family = "serif")
+            fontface = "italic", size = 6)
 ```
 
 `r newthought("A tautology")` is a proposition that must be true, so its probability is always 1.
@@ -202,7 +201,7 @@ ggplot(data = propositions) +
   geom_circle(aes(x0 = cirx, y0 = ciry, r = r), fill = leftcolour) +
   geom_circle(aes(x0 = cirx, y0 = ciry, r = r), fill = "transparent") +
   geom_text(aes(x = labx, y = laby, label = labl), 
-            fontface = "italic", size = 10, family = "serif")
+            fontface = "italic", size = 6)
 ```
 
 The Equivalence Rule

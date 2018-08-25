@@ -57,7 +57,7 @@ euler_diagram <- function(propositions) {
         theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
         geom_circle(aes(x0 = cirx, y0 = ciry, r = r)) +
         geom_text(aes(x = labx, y = laby, label = labl), 
-                  parse = TRUE, size = 6, family=c("serif"))
+                  parse = TRUE, size = 6)
 }
 
 propositions <- data.frame(
