@@ -98,7 +98,7 @@ One way to distinguish propositions from other kinds of sentences is: propositio
 
 ## Visualizing Propositions
 
-[Earlier][Lessons Learned] we talked about how some pairs of propositions are mutually exclusive: if one of them is true, the other must be false. For example:
+`r newthought("[Earlier][Lessons Learned] we talked")` about how some pairs of propositions are mutually exclusive: if one of them is true, the other must be false. For example:
 
 - $A$: Confucius was born in the 6th Century A.D.
 - $B$: Confucius was born in the 6th Century B.C.

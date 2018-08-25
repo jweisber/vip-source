@@ -66,12 +66,12 @@ Two more examples:
 
 Technically, the last example should have parentheses to prevent ambiguity, like so: $(\neg A) \vee B$. But things get cluttered and hard to read if we add parentheses around every negation. So we have a special understanding for $\neg$ in order to keep things tidy.
 
-```{block, type="warning"}
-The negation symbol $\mathbin{\sim}$ only applies to the proposition immediately following it.
-```
-
 ```{marginfigure, echo=TRUE}
 This special understanding for $\mathbin{\sim}$ mirrors the one for minus signs in arithmetic.
+```
+
+```{block, type="warning"}
+The negation symbol $\mathbin{\sim}$ only applies to the proposition immediately following it.
 ```
 
 So in the proposition $\neg A \vee B$, the $\neg$ only applies to $A$. And in $\neg (A \wedge B) \vee C$, it only applies to $A \wedge B$.
