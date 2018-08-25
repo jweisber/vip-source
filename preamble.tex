@@ -67,3 +67,8 @@
 \AfterEndEnvironment{problem}{\expandafter\gobblepars}
 \AfterEndEnvironment{info}{\expandafter\gobblepars}
 \AfterEndEnvironment{warning}{\expandafter\gobblepars}
+\AfterEndEnvironment{longtable}{\expandafter\gobblepars} % not working, why?
+
+
+% less space after section headers
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{.5ex plus .2ex}
