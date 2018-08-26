@@ -122,7 +122,7 @@ Now we can understand what happens when the host opens door C. Usually it's beca
 So when you see the host open door C, you should think it's more likely you're on the middle branch, with the prize behind door B. Switch!
 
 
-## Lessons Learned
+## Lessons Learned {#lessons}
 
 `r newthought("Tree diagrams")` are a handy tool for solving probability problems. They also illustrate some central concepts of probability.
 
