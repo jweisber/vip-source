@@ -70,7 +70,7 @@ Technically, the last example should have parentheses to prevent ambiguity, like
 This special understanding for $\mathbin{\sim}$ mirrors the one for minus signs in arithmetic.
 ```
 
-```{block, type="warning"}
+```{block, type="info"}
 The negation symbol $\mathbin{\sim}$ only applies to the proposition immediately following it.
 ```
 
