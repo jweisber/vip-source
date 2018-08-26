@@ -36,9 +36,9 @@ The Negation Rule
 In terms of an Euler diagram, the probability of $\neg A$ is the size of the red region. So $\p(\neg A)$ is $1 - \p(A)$.
 
 `r newthought("It's important")` to notice that this rule can be flipped around, to calculate the probability of a positive statement:
-
-$$ \p(A) = 1 - \p(\neg A). $$
-
+$$ 
+  \p(A) = 1 - \p(\neg A).
+$$
 Sometimes we really want to know the probability of $A$, $\p(A)$, but it turns out to be much easier to calculate $\p(\neg A)$ first. Then we use this flipped version of the negation rule to get what we're after.
 
 
