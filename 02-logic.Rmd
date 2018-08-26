@@ -184,9 +184,11 @@ euler_diagram(propositions)
 
 What if an argument has multiple premises? For example:
 
-> Zhuangzi was born in the Chinese province of  Anhui.\
-> Zhuoru was born in the Chinese city of Beijing.\
-> Therefore, both Zhuangzi and Zhuoru were born in China.
+```{block, type="argument", echo=TRUE}
+Zhuangzi was born in the Chinese province of  Anhui.\
+Zhuoru was born in the Chinese city of Beijing.\
+Therefore, both Zhuangzi and Zhuoru were born in China.
+```
 
 This argument is valid, and the diagram might look like Figure \@ref(fig:validtwopremises). Notice how the $A \wedge B$ region lies entirely within the $C$ circle. This reflects the argument's validity: there is no way for the first two propositions to be true and the last one false.
 
