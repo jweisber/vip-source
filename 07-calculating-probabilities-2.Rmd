@@ -412,14 +412,10 @@ ggplot() +
                             ymin = 2/3 - 1/40, ymax = 2/3 + 1/40)
 ```
 
-We can also use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked  and . To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$, we add up the two leaves:
+We can also use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked `r png_shades` and `r png_hearts`. To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$, we add up the two leaves: $\p(A) =$  `r png_shades` $+$ `r png_hearts`. Once again the result is the Law of Total Probability:
 $$
-  \begin{aligned}
-    \p(A) &=  + \\
-          &= \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B).
-  \end{aligned}
+  \p(A) = \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B).
 $$
-Once again the result is the Law of Total Probability.
 
 ```{block, type='warning'}
 Black hole warning: notice that the Law of Total Probability depends on $\p(A \given B)$ and $\p(A \given \neg B)$ both being well-defined. So it only applies when $\p(B) \gt 0$ and $\p(\neg B) \gt 0$.
