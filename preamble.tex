@@ -16,12 +16,23 @@
 \definecolor{rightcolour}{RGB}{0,92,169}
 \definecolor{middlecolour}{RGB}{114,49,94} 
 
-\newenvironment{epigraph}{\begin{quote}}{\end{quote}}
-\newenvironment{problem}{}{}
-\newenvironment{puzzle}{\begin{quote}}{\end{quote}}    
-\newenvironment{info}{\begin{quote}}{\end{quote}}
-\newenvironment{warning}{\begin{quote}}{\end{quote}}
-\newenvironment{argument}{\begin{quote}}{\end{quote}}
+\newenvironment{epigraph}%
+{
+\begin{flushright}    
+\begin{minipage}{20em}
+\begin{flushright}
+\itshape
+}%
+{
+\end{flushright}
+\end{minipage}
+\end{flushright}
+}
+\newenvironment{problem}{\begin{quote}\normalsize}{\end{quote}}
+\newenvironment{puzzle}{\begin{quote}\normalsize}{\end{quote}}
+\newenvironment{info}{\begin{quote}\normalsize}{\end{quote}}
+\newenvironment{warning}{\begin{quote}\normalsize}{\end{quote}}
+\newenvironment{argument}{\begin{quote}\normalsize}{\end{quote}}
 
 %%%% Kevin Godny's code for title page and contents from https://groups.google.com/forum/#!topic/tufte-latex/ujdzrktC1BQ
 \makeatletter
@@ -62,6 +73,7 @@
 \AfterEndEnvironment{quote}{\expandafter\gobblepars}
 \AfterEndEnvironment{enumerate}{\expandafter\gobblepars}
 \AfterEndEnvironment{itemize}{\expandafter\gobblepars}
+\AfterEndEnvironment{description}{\expandafter\gobblepars}
 \AfterEndEnvironment{example}{\expandafter\gobblepars}
 \AfterEndEnvironment{argument}{\expandafter\gobblepars}
 \AfterEndEnvironment{problem}{\expandafter\gobblepars}
@@ -70,5 +82,16 @@
 \AfterEndEnvironment{longtable}{\expandafter\gobblepars} % not working, why?
 
 
-% less space after section headers
-\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{.5ex plus .2ex}
+% prevent extra space when \newthought follows \section
+% see: https://tex.stackexchange.com/questions/291746/tufte-latex-newthought-after-section
+\makeatletter
+\def\tuftebreak{%
+  \if@nobreak\else
+    \par
+    \ifdim\lastskip<\tufteskipamount
+      \removelastskip \penalty -100
+      \tufteskip
+    \fi
+  \fi
+}
+\makeatother
