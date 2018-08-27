@@ -7,8 +7,10 @@
 
 `r newthought("Generalizing")` from observed instances was the first major form of inductive argument we encountered. Suppose you want to know what colour a particular species of bird tends to be. Then you might go out and look at a bunch of examples:
 
-> I've seen $10$ ravens and they've all been black.\
-> Therefore, all ravens are black.
+```{block, type="argument"}
+I've seen $10$ ravens and they've all been black.\
+Therefore, all ravens are black.
+```
 
 How strong is this argument?
 
