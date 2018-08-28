@@ -6,14 +6,14 @@ What do you do, sir?\
 ---attributed to John Maynard Keynes
 ```
 
-`r newthought("The last two")` chapters showed how Bayesians make personal probabilities objective. They can be quantified using betting rates. And they are bound to the laws of probability by Dutch books.
+`r newthought("The")`  last two chapters showed how Bayesians make personal probabilities objective. They can be quantified using betting rates. And they are bound to the laws of probability by Dutch books.
 
 But what about learning from evidence? Observation and evidence-based reasoning are the keystones of science. They're supposed to separate the scientific method from other ways of viewing the world, like superstition or faith. So where do they fit into the Bayesian picture?
 
 
 ## Priors & Posteriors
 
-`r newthought("When we observe")` something new, we change our beliefs. A doctor sees the results of her patient's lab test and concludes he doesn't have strep throat after all, just a bad cold.
+`r newthought("When")`  we observe something new, we change our beliefs. A doctor sees the results of her patient's lab test and concludes he doesn't have strep throat after all, just a bad cold.
 
 In Bayesian terms, the beliefs you have before a change are called your ***priors***. We denote your prior beliefs with the familiar operator $\pr$. Your prior belief about hypothesis $H$ is written $\p(H)$. The new beliefs you form based on the evidence are called your ***posteriors***. We write $\po$ to distinguish them from what you believed before. So $\po(H)$ is your posterior belief in $H$.
 
@@ -54,7 +54,7 @@ ggplot(df) +
 
 Now I roll the die and I tell you it did in fact land even. What is your new personal probability that it landed on a high number? Following the Conditionalization rule, $\po(H) = \pr(H \given E) = 2/3$.
 
-`r newthought("We learned how")` to use [Bayes' theorem][Bayes' Theorem] to calculate $\pr(H \given E)$. If we combine Bayes' theorem with Conditionalization we get:
+`r newthought("We")`  learned how to use [Bayes' theorem][Bayes' Theorem] to calculate $\pr(H \given E)$. If we combine Bayes' theorem with Conditionalization we get:
 $$ \po(H) = \pr(H) \frac{\pr(E \given H)}{\pr(E)}. $$
 Because this formula is so useful for figuring out what conclusion to draw from new evidence, the Bayesian school of thought is named after it. Bayesian statisticians use it to evaluate evidence in actual scientific research. And Bayesian philosophers use it to explain the logic behind the scientific method.^[We caught a glimpse of this explanation back in [Chapter 15][Bayesianism].]
 
@@ -108,7 +108,7 @@ $$
 
 ## The Continuous Principle of Indifference
 
-`r newthought("So far so good,")` but there's a problem. Sometimes the number of possible outcomes isn't a finite number $n$, it's a continuum. Suppose you had to bet on the *angle* the roulette wheel will stop at, rather than just the colour it will land on. There's a continuum of possible angles, from $0\deg$ to $360\deg$. It could land at an angle of $3\deg$, or $314.1\deg$, or $100\pi\deg$, etc.
+`r newthought("So")`  far so good, but there's a problem. Sometimes the number of possible outcomes isn't a finite number $n$, it's a continuum. Suppose you had to bet on the *angle* the roulette wheel will stop at, rather than just the colour it will land on. There's a continuum of possible angles, from $0\deg$ to $360\deg$. It could land at an angle of $3\deg$, or $314.1\deg$, or $100\pi\deg$, etc.
 
 So what's the probability the wheel will stop at, say, an angle between $180\deg$ and $270\deg$? Well, this range is $1/4$ of the whole range of possibilities from $0\deg$ to $360\deg$. So the natural answer is $1/4$. Generalizing this idea gives us another version of the Principle of Indifference. 
 
@@ -169,7 +169,7 @@ But we got an answer of $1/4$ when we solved the same problem before. Once again
 
 ## The Problem of Priors
 
-`r newthought("There is no")` accepted solution to Bertrand's paradox.
+`r newthought("There")`  is no accepted solution to Bertrand's paradox.
 
 Some Bayesians think it shows that prior probabilities should be somewhat subjective. Your beliefs have to follow the laws of probability to avoid Dutch books. But beyond that you can start with whatever prior probabilities seem right to you. (The Principle of Indifference should be abandoned.)
 

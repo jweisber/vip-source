@@ -2,7 +2,7 @@
 
 ## Theories and Axioms {-}
 
-`r newthought("In mathematics,")` a theory like the theory of probability is developed axiomatically. That means we begin with fundamental laws or principles called *axioms*, which are the assumptions the theory rests on. Then we derive the consequences of these axioms via *proofs*: deductive arguments which establish additional principles that follow from the axioms. These further principles are called *theorems*.
+`r newthought("In")`  mathematics, a theory like the theory of probability is developed axiomatically. That means we begin with fundamental laws or principles called *axioms*, which are the assumptions the theory rests on. Then we derive the consequences of these axioms via *proofs*: deductive arguments which establish additional principles that follow from the axioms. These further principles are called *theorems*.
 
 In the case of probability theory, we can build the whole theory from just three axioms. And that makes certain tasks much easier. For example, it makes it easy to establish that anyone who violates a law of probability can be Dutch booked. Because, if you violate a law of probability, you must also be violating one of the three axioms that entail the law you've violated. And with only three axioms to check, we can verify pretty quickly that violating an axiom always makes you vulnerable to a Dutch book.
 
@@ -21,7 +21,7 @@ In this appendix we'll construct probability theory axiomatically. We'll learn h
 
 ## The Three Axioms of Probability {-}
 
-`r newthought("Probability theory")` has three axioms, and they're all familiar laws of probability. But they're fundamental laws in a way. All the other laws can be derived from them.
+`r newthought("Probability")`  theory has three axioms, and they're all familiar laws of probability. But they're fundamental laws in a way. All the other laws can be derived from them.
 
 The three axioms are:
 
@@ -85,7 +85,7 @@ $$
 ## Conditional Probability & the Multiplication Rule {-}
 
 
-`r newthought("Our next theorem")` is about conditional probability. But the concept of conditional probability isn't mentioned in the axioms, so we need to define it first.
+`r newthought("Our")`  next theorem is about conditional probability. But the concept of conditional probability isn't mentioned in the axioms, so we need to define it first.
 
 Definition: Conditional Probability
 
@@ -114,7 +114,7 @@ Notice that the first step in this proof wouldn't make sense if we didn't assume
 
 ## Equivalence & General Addition {-}
 
-`r newthought("Next we'll prove")` the Equivalence rule and the General Addition rule. These proofs are longer and more difficult than the ones we've done so far.
+`r newthought("Next")`  we'll prove the Equivalence rule and the General Addition rule. These proofs are longer and more difficult than the ones we've done so far.
 
 Equivalence Rule
 
@@ -201,7 +201,7 @@ $$
 
 ## Total Probability & Bayes' Theorem {-}
 
-`r newthought("Next we derive")` the Law of Total Probability and Bayes' theorem.
+`r newthought("Next")`  we derive the Law of Total Probability and Bayes' theorem.
 
 Total Probability
 

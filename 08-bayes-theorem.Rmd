@@ -4,7 +4,7 @@
 The experiment was first published in 1971. It was performed by [Daniel Kahneman](https://en.wikipedia.org/wiki/Daniel_Kahneman) and [Amos Tversky](https://en.wikipedia.org/wiki/Amos_Tversky). Their work on human reasoning reshaped the field of psychology, and eventually won a Nobel prize in 2002.
 ```
 
-`r newthought("In a famous")` psychology experiment, subjects were asked to solve the following problem.
+`r newthought("In")`  a famous psychology experiment, subjects were asked to solve the following problem.
 
 ```{block, type='problem'}
 A cab was involved in a hit and run accident at night. Two cab companies, the Green and the Blue, operate in the city. You are given the following data:
@@ -68,7 +68,7 @@ We saw back in [Chapter 6][Conditional Probability] that $\p(A \given B)$ is usu
 
 ## Bayes' Theorem
 
-`r newthought("Problems where")` we're given $\p(B \given A)$ and we have to figure out $\p(A \given B)$ are extremely common. Luckily, there's a famous formula for solving them.
+`r newthought("Problems")`  where we're given $\p(B \given A)$ and we have to figure out $\p(A \given B)$ are extremely common. Luckily, there's a famous formula for solving them.
 
 ```{marginfigure}
 [Thomas Bayes](https://en.wikipedia.org/wiki/Thomas_Bayes) (1701--1761) was an English minister and mathematician, the first to formulate the theorem that now bears his name.
@@ -125,7 +125,7 @@ p_tree(nodes)
 
 ## Understanding Bayes' Theorem
 
-`r newthought("Why does")` Bayes' theorem work? One way to think about it is to start by recalling the definition of conditional probability:
+`r newthought("Why")`  does Bayes' theorem work? One way to think about it is to start by recalling the definition of conditional probability:
 $$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)}. $$
 Then apply the General Multiplication Rule to the numerator:
 $$ \p(A \wedge B) = \p(B \given A)\p(A).$$
@@ -167,7 +167,7 @@ $$
 
 We'll come back to another, non-visual way of understanding Bayes' theorem in [Chapter 10][Inference to the Best Explanation].
 
-`r newthought("There are")` lots more visual explanations of Bayes' theorem you can find online. There's even one [using Legos](https://www.countbayesie.com/blog/2015/2/18/bayes-theorem-with-lego)! But they all tend to come down to the same thing. A two step explanation that goes:
+`r newthought("There")`  are lots more visual explanations of Bayes' theorem you can find online. There's even one [using Legos](https://www.countbayesie.com/blog/2015/2/18/bayes-theorem-with-lego)! But they all tend to come down to the same thing. A two step explanation that goes:
 
 1. Start with the definition of conditional probability, which we learned how to visualize in [Chapter 6][Calculating Conditional Probability].
 2. Then apply the General Multiplication Rule, which we learned how to visualize in [Chapter 7][The General Multiplication Rule].
@@ -183,7 +183,7 @@ In any case, Bayes' theorem comes up so often it's good to memorize the formula 
 
 ## Bayes' Long Theorem
 
-`r newthought("We had")` to apply the Law of Total Probability first, before we could solve the taxicab problem with Bayes' theorem, to calculate the denominator. This is so common that you'll often see Bayes' theorem written with this calculation built in. That is, the denominator $\p(B)$ is expanded out using the Law of Total Probability.
+`r newthought("We")`  had to apply the Law of Total Probability first, before we could solve the taxicab problem with Bayes' theorem, to calculate the denominator. This is so common that you'll often see Bayes' theorem written with this calculation built in. That is, the denominator $\p(B)$ is expanded out using the Law of Total Probability.
 
 Bayes' Theorem (long version)
 
@@ -206,7 +206,7 @@ p_tree(nodes, p_fontface = "italic", leaf_p_distance = .2, leaf_p_width = .3,
        leaf_p_fontface = "italic")
 ```
 
-`r newthought("A tree diagram")` helps illuminate the long version of Bayes' theorem. To calculate $\p(A \given B)$, the definition of conditional probability directs us to calculate $\p(A \wedge B)$ and $\p(B)$:
+`r newthought("A")`  tree diagram helps illuminate the long version of Bayes' theorem. To calculate $\p(A \given B)$, the definition of conditional probability directs us to calculate $\p(A \wedge B)$ and $\p(B)$:
 $$ \p(A \given B) = \frac{ \p(A \wedge B) }{ \p(B) }. $$
 Looking at the tree diagram in Figure \@ref(fig:longbayestree), we see that this amounts to computing the first leaf for the numerator, and the sum of the first and third leaves for the denominator. Which yields the same formula as in the long form of Bayes' theorem.
 
@@ -260,7 +260,7 @@ It turns out there's only about a $6\%$ chance Joe has the virus. Even though he
 
 ## The Base Rate Fallacy {#baserate}
 
-`r newthought("In the")` Zika example, the rate of infection in the general population is very low, just $1\%$. The rate at which something happens in general is called the *base rate*. In the taxicab example, the base rate for blue cabs was $15\%$.
+`r newthought("In")`  the Zika example, the rate of infection in the general population is very low, just $1\%$. The rate at which something happens in general is called the *base rate*. In the taxicab example, the base rate for blue cabs was $15\%$.
 
 One lesson of this chapter is that you have to take the base rate into account to get the right answer, via Bayes' theorem. Humans have a tendency to ignore the base rate, and focus only on the "test" performed: the blood test in the Zika example, the testimony of the witness in the taxicab example. This mistake is called *base rate neglect*, or *the base rate fallacy*.
 

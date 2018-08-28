@@ -1,6 +1,6 @@
 # Probability & Induction
 
-`r newthought("We met")` some common types of inductive argument back in [Chapter 2][Forms of Inductive Argument]. Now that we know how to work with probability, let's use what we've learned to sharpen our understanding of how those arguments work.
+`r newthought("We")`  met some common types of inductive argument back in [Chapter 2][Forms of Inductive Argument]. Now that we know how to work with probability, let's use what we've learned to sharpen our understanding of how those arguments work.
 
 
 ## Generalizing from Observed Instances
@@ -46,13 +46,13 @@ But that doesn't mean our argument that all ravens are black is $99.9\%$ strong!
 
 ## Real Life Is More Complicated 
 
-`r newthought("There are two")` major limitations to our urn analogy.
+`r newthought("There")`  are two major limitations to our urn analogy.
 
-`r newthought("The first limitation")` is that the ravens we observe in real life aren't randomly sampled from nature's "urn". We only observe ravens in certain locations, for example. But our solution to the urn problem relied on random sampling. For example, we assumed $\p(B_1 \given \neg A) = 1/2$ because the black marbles are just as likely to be drawn as the white ones, if there are any white ones.
+`r newthought("The")`  first limitation is that the ravens we observe in real life aren't randomly sampled from nature's "urn". We only observe ravens in certain locations, for example. But our solution to the urn problem relied on random sampling. For example, we assumed $\p(B_1 \given \neg A) = 1/2$ because the black marbles are just as likely to be drawn as the white ones, if there are any white ones.
 
 If there are white ravens in the world though, they might be limited to certain locales.^[In fact there are white ravens, [especially in one area of Vancouver Island](https://vancouversun.com/news/local-news/rare-white-raven-spotted-on-vancouver-island).] So the fact we're only observing ravens in our part of the world could make a big difference to what we find. It matters whether your sample really is random.
 
-`r newthought("The second limitation")` is that we pretended there were only two possibilities: either all the marbles in the urn are black, or half of them are. And, accordingly, we assumed there was already a 1/2 chance all the marbles are black, before we even looked at any of them.
+`r newthought("The")`  second limitation is that we pretended there were only two possibilities: either all the marbles in the urn are black, or half of them are. And, accordingly, we assumed there was already a 1/2 chance all the marbles are black, before we even looked at any of them.
 
 In real life though, when we encounter a new species, it could be that $90\%$ of them are black, or $31\%$, or $42.718\%$, or any portion from $0\%$ to $100\%$. So there are many, many more possibilities. The possibility that *all* members of the new species ($100\%$) are black is just one of these many possibilities. So it would start with a much lower probability than $1/2$.
 
@@ -62,7 +62,7 @@ In a famous calculation, [Laplace](#fig:laplace) showed how to solve the second 
 Laplace's calculation is too advanced for this book. But statistician Joe Blitzstein gives a nice explanation in [this video](https://www.youtube.com/watch?v=N8O6zd6vTZ8&list=EC2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo), for students who have more background in probability (specifically random variables and probability density functions).
 ```
 
-`r newthought("We could")` make our analysis more realistic by taking these complications into account. But the calculations would get ugly, and we'd have to use calculus to solve the problem. This is the kind of technical topic you'd cover in a math or statistics class on probability. But it's not the kind thing this book is about.
+`r newthought("We")`  could make our analysis more realistic by taking these complications into account. But the calculations would get ugly, and we'd have to use calculus to solve the problem. This is the kind of technical topic you'd cover in a math or statistics class on probability. But it's not the kind thing this book is about.
 
 For our purposes, the key ideas that matter are as follows. First, the strength of an inductive argument is a question of conditional probability: how probable is the argument's conclusion given its premises? Second, an argument that generalizes from observed instances is similar to an urn problem, where we guess the contents of the urn by repeated sampling. And third, we know how to solve simple versions of these urn problems using Bayes' theorem. In principle, we could also solve more complicated and realistic versions using the same fundamental ideas, the math would just be harder.
 
@@ -82,7 +82,7 @@ How do we understand its strength using probability? This is actually a controve
 
 Let's start by thinking about what makes an explanation a good one.
 
-`r newthought("A good explanation")` should account for all the things we're trying to explain. For example, if we're trying to explain why my car won't start and the gauge reads 'empty', I'd be skeptical if my mechanic said it's because the brakes are broken. That doesn't account for any of the symptoms! I'd also be skeptical if they said the gas gauge was broken. That might fit okay with one of the symptoms (the gauge reads 'empty'), but it doesn't account for the fact the car won't start.
+`r newthought("A")`  good explanation should account for all the things we're trying to explain. For example, if we're trying to explain why my car won't start and the gauge reads 'empty', I'd be skeptical if my mechanic said it's because the brakes are broken. That doesn't account for any of the symptoms! I'd also be skeptical if they said the gas gauge was broken. That might fit okay with one of the symptoms (the gauge reads 'empty'), but it doesn't account for the fact the car won't start.
 
 The explanation that my car is out of gas, however, fits both symptoms. It would account for both the 'empty' reading on the gauge and the car's refusal to start.
 

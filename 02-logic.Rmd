@@ -5,7 +5,7 @@ I can win an argument on any topic, against any opponent. People know this, and 
 ---Dave Barry
 ```
 
-`r newthought("Logic is the study")` of what follows from what. From the information that Tweety is a bird and all birds are animals, it follows that Tweety is an animal. But things aren't always so certain. Can Tweety fly? Most birds can fly, so probably. But Tweety might be a penguin.
+`r newthought("Logic")`  is the study of what follows from what. From the information that Tweety is a bird and all birds are animals, it follows that Tweety is an animal. But things aren't always so certain. Can Tweety fly? Most birds can fly, so probably. But Tweety might be a penguin.
 
 *Deductive* logic is the branch of logic that studies what follows with certainty. *Inductive* logic deals with uncertainty, things that only follow with high probability.
 
@@ -14,7 +14,7 @@ This book is about inductive logic and probability. But we need a few concepts f
 
 ## Validity & Soundness
 
-`r newthought("In deductive logic")` we study "valid" arguments. An argument is ***valid*** when the conclusion must be true if the premises are true. Take this example again:
+`r newthought("In")`  deductive logic we study "valid" arguments. An argument is ***valid*** when the conclusion must be true if the premises are true. Take this example again:
 
 ```{block, type="argument", echo=TRUE}
 Tweety is a bird.\
@@ -46,7 +46,7 @@ It's not valid because validity requires the conclusion to follow *necessarily*.
 
 Valid arguments are interesting because their logic is airtight. If the assumptions of the argument are correct, there's no way to go wrong accepting the conclusion. But what if the assumptions *aren't* correct? Validity isn't everything, we also want our arguments to build on true foundations.
 
-`r newthought("We call")` an argument ***sound*** when it is valid *and* all the premises are true:
+`r newthought("We")`  call an argument ***sound*** when it is valid *and* all the premises are true:
 $$ \mbox{sound = valid + true premises}.$$
 For example, here's a sound argument:
 
@@ -64,14 +64,14 @@ Because logicians aren't in the business of determining when the premises of an 
 
 A logician's job is to assess the *logic* of an argument, the connections between its assumptions and its conclusion. So a logician just takes the premises of an argument for granted and asks, how well do those assumptions support the conclusion? That's something you don't need to know any ornithology to study. Or biology, or medicine, or physics, or whatever topic a particular argument concerns. 
 
-`r newthought("Validity is")` a tricky, counterintuitive concept. It's very much a hypothetical notion: it's about whether the conclusion must be true *if* the premises are true. So when we assess an argument's validity, we ignore what we know about the truth of its premises. We pretend they're true even if they aren't. We even have to ignore what we know about the conclusion.
+`r newthought("Validity")`  is a tricky, counterintuitive concept. It's very much a hypothetical notion: it's about whether the conclusion must be true *if* the premises are true. So when we assess an argument's validity, we ignore what we know about the truth of its premises. We pretend they're true even if they aren't. We even have to ignore what we know about the conclusion.
 
 Instead we suspend what we know about the topic, and just imagine the premises to be true. Then we ask: in this hypothetical scenario, is there any way the conclusion could be false? If there is, the argument is invalid. Otherwise, it's valid.
 
 
 ## Propositions
 
-`r newthought("Arguments are made out of statements")`, assertions that something is true. In logic we call these statements ***propositions***. And we use capital letters of the English alphabet to stand for them. For example, this argument:
+`r newthought("Arguments")`  are made out of statements, assertions that something is true. In logic we call these statements ***propositions***. And we use capital letters of the English alphabet to stand for them. For example, this argument:
 
 ```{block, type="argument", echo=TRUE}
 If Aegon is a tyrant, then Brandon is a wizard.\
@@ -87,7 +87,7 @@ $A$.\
 Therefore, $B$.
 ```
 
-`r newthought("Not all sentences")` are propositions. Some are questions, some are commands, some are expressions of worry. For example:
+`r newthought("Not")`  all sentences are propositions. Some are questions, some are commands, some are expressions of worry. For example:
 
 - What time is it?
 - Pass the rooster sauce!
@@ -155,7 +155,7 @@ knitr::include_graphics("img/euler.png")
 
 These are called ***Euler diagrams***, after the mathematician Leonhard Euler (prounounced *oiler*). You may have seen Venn diagrams before, which are very similar. But in Euler diagrams the circles don't have to overlap.
 
-`r newthought("Sometimes one circle")` will even contain another circle entirely. Take this example:
+`r newthought("Sometimes")`  one circle will even contain another circle entirely. Take this example:
 
 - Confucius was born in Asia.
 - Confucius was born somewhere.
@@ -223,7 +223,7 @@ euler_diagram(propositions)
 
 ## Strength
 
-`r newthought("Inductive logic")` studies arguments that aren't necessarily valid, but still "strong". A ***strong*** argument is one where the conclusion is highly probable, if the premises are true. For example:
+`r newthought("Inductive")`  logic studies arguments that aren't necessarily valid, but still "strong". A ***strong*** argument is one where the conclusion is highly probable, if the premises are true. For example:
 
 ```{block, type="argument", echo=TRUE}
 The sun has risen every day so far.\
@@ -262,7 +262,7 @@ knitr::include_graphics("img/laplace.png")
 
 We could also label the *$A$-but-not-$B$* region with a small number, if we knew exactly how unlikely this possibility was.
 
-`r newthought("Strength comes in degrees.")` An argument's premises can make the conclusion somewhat likely, very likely, almost certain, or perfectly certain. So arguments range from weak, to somewhat strong, to very strong, etc.
+`r newthought("Strength")`  comes in degrees. An argument's premises can make the conclusion somewhat likely, very likely, almost certain, or perfectly certain. So arguments range from weak, to somewhat strong, to very strong, etc.
 
 Strength differs from validity here, since validity is all-or-nothing. If there is any possible way for the premises to be true and the conclusion false, the argument is invalid---no matter how remote or bizarre that possibility is.
 
@@ -271,9 +271,9 @@ Notice though, valid arguments are strong by definition. Since it's impossible f
 
 ## Forms of Inductive Argument {#indargs}
 
-`r newthought("What kinds")` of strong arguments are there, and how strong are they? That's what the rest of this book is about, in a way. But we can start by identifying some common forms of inductive argument right now.
+`r newthought("What")`  kinds of strong arguments are there, and how strong are they? That's what the rest of this book is about, in a way. But we can start by identifying some common forms of inductive argument right now.
 
-`r newthought("Generalizing from observed instances")` is one extremely common form of argument:
+`r newthought("Generalizing")`  from observed instances is one extremely common form of argument:
 
 ```{block, type="argument", echo=TRUE}
 Every raven I have every seen has been black.\
@@ -284,7 +284,7 @@ Arguments of this kind are usually stronger the more instances you observe. If y
 
 It also helps to observe different kinds of instances. If you've only observed ravens in your city or town, then even the thousands you've seen won't count for much. Maybe the raven population in your area is unusual, and ravens on the other side of the world are all different colours.
 
-`r newthought("Going in the opposite direction")`, we can use what we know about a general population to draw conclusions about particular instances. We saw an example of this earlier:
+`r newthought("Going")`  in the opposite direction, we can use what we know about a general population to draw conclusions about particular instances. We saw an example of this earlier:
 
 ```{block, type="argument", echo=TRUE}
 Most birds can fly.\
@@ -297,7 +297,7 @@ Again, the strength of the inference depends on the details. If "most birds" mea
 It also helps to know that Tweety is similar to the birds that can fly, and different from the ones that can't. If we know that Tweety is small and has feathers, that makes the argument stronger. If instead we know that Tweety is large, and coloured black and white, that makes the argument weaker. It suggests Tweety is a penguin.
 
 
-`r newthought("Inference to the best explanation")` is another common form of argument, quite different from the previous two. Here's an example:
+`r newthought("Inference")`  to the best explanation is another common form of argument, quite different from the previous two. Here's an example:
 
 ```{block, type="argument", echo=TRUE}
 My car won't start and the gas gauge reads 'empty'.\

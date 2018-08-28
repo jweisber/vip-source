@@ -1,13 +1,13 @@
 # Multiple Conditions
 
-`r newthought("We often need")` to account for multiple pieces of evidence. More than one witness testifies about the colour of a taxicab; more than one person responds to our poll about an upcoming election; etc.
+`r newthought("We")`  often need to account for multiple pieces of evidence. More than one witness testifies about the colour of a taxicab; more than one person responds to our poll about an upcoming election; etc.
 
 How do we a calculate conditional probability when there are multiple conditions? In other words, how do we handle quantities of the form $\p(A \given B_1 \wedge B_2 \wedge \ldots)$?
 
 
 ## Multiple Draws
 
-`r newthought("Imagine you're faced")` with another one of our mystery urns. There are two equally likely possibilities:
+`r newthought("Imagine")`  you're faced with another one of our mystery urns. There are two equally likely possibilities:
 $$
   \begin{aligned}
     A      &: \mbox{The urn contains $70$ black marbles, $30$ white marbles.}\\
@@ -60,7 +60,7 @@ $$
   \end{aligned}
 $$
 
-`r newthought("The same")` solution can also be captured in a probability tree. The tree will have an extra stage now, because there's a second draw. And it will have many more leaves, but luckily we can ignore most of them. We just need to worry about the two leaves where both draws have come up black. And we only need to fill in the probabilities along the paths that lead to those two leaves. The result is Figure \@ref(fig:twodrawsreplacement).
+`r newthought("The")`  same solution can also be captured in a probability tree. The tree will have an extra stage now, because there's a second draw. And it will have many more leaves, but luckily we can ignore most of them. We just need to worry about the two leaves where both draws have come up black. And we only need to fill in the probabilities along the paths that lead to those two leaves. The result is Figure \@ref(fig:twodrawsreplacement).
 
 ```{r twodrawsreplacement, echo=FALSE, cache=TRUE, fig.cap="Tree diagram for two draws with replacement"}
 nodes <- bind_rows(
@@ -85,7 +85,7 @@ p_tree(nodes, parse = TRUE, round = 3)
 
 So $\p(A \given B_1 \wedge B_2) = 0.245 / (0.245 + 0.2)$, which is the same as $49/53$, the answer we got with Bayes' theorem.
 
-`r newthought("You might")` be able to guess now what would happen after three black draws. Instead of getting squared probabilities in Bayes' theorem, we'd get cubed probabilities. And using the same logic, we could keep going. We could use Bayes' theorem to calculate $\p(A \given B_1 \wedge \ldots \wedge B_n)$ for as many draws $n$ as you like.
+`r newthought("You")`  might be able to guess now what would happen after three black draws. Instead of getting squared probabilities in Bayes' theorem, we'd get cubed probabilities. And using the same logic, we could keep going. We could use Bayes' theorem to calculate $\p(A \given B_1 \wedge \ldots \wedge B_n)$ for as many draws $n$ as you like.
 
 
 ## Multiple Witnesses
@@ -165,12 +165,12 @@ nodes <- bind_rows(
 p_tree(nodes, parse = TRUE, round = 3)
 ```
 
-`r newthought("We can")` use a tree here too, similar to the one we made when sampling two black marbles with replacement. As before, we only need to worry about the $W_1 \wedge W_2$ leaves, the ones where both witnesses say the cab was blue. The result is Figure \@ref(fig:twowitnesstree), which tells us that $\p(B \given W_1 \wedge W_2) = 0.096 / (0.096 + 0.034)$, which is approximately $0.74$.
+`r newthought("We")`  can use a tree here too, similar to the one we made when sampling two black marbles with replacement. As before, we only need to worry about the $W_1 \wedge W_2$ leaves, the ones where both witnesses say the cab was blue. The result is Figure \@ref(fig:twowitnesstree), which tells us that $\p(B \given W_1 \wedge W_2) = 0.096 / (0.096 + 0.034)$, which is approximately $0.74$.
 
 
 ## Without Replacement
 
-`r newthought("The problems we've")` done so far were simplified by assuming independence.  We sampled with replacement in the urn problem, and we assumed our two witnesses were independently reporting what they saw in the taxicab problem. What about when independence doesn't hold?
+`r newthought("The")`  problems we've done so far were simplified by assuming independence.  We sampled with replacement in the urn problem, and we assumed our two witnesses were independently reporting what they saw in the taxicab problem. What about when independence doesn't hold?
 
 Let's go back to our urn problem, but this time suppose we don't replace the marble after the first draw. How do we calculate $\p(A \given B_1 \wedge B_2)$ then?
 
@@ -234,7 +234,7 @@ nodes <- bind_rows(
 p_tree(nodes, parse = TRUE, round = 4)
 ```
 
-`r newthought("The tree")` diagram for this problem will also be similar to the with-replacement version. The key difference is the probabilities at the last stage of the tree. Without independence, the probability of a $B_2$ branch is affected by the $B_1$ that precedes it. The result is Figure \@ref(fig:twodrawsnoreplacement), though note that some values are rounded. Still we find that:
+`r newthought("The")`  tree diagram for this problem will also be similar to the with-replacement version. The key difference is the probabilities at the last stage of the tree. Without independence, the probability of a $B_2$ branch is affected by the $B_1$ that precedes it. The result is Figure \@ref(fig:twodrawsnoreplacement), though note that some values are rounded. Still we find that:
 $$
   \begin{aligned}
      \p(A \given B_1 \wedge B_2) &\approx \frac{ 0.2439 }{ 0.2439 + 0.0192 } \\
@@ -245,7 +245,7 @@ $$
 
 ## Multiplying Conditional Probabilities
 
-`r newthought("The calculation we just did")` relied on a new rule, which we should make explicit. Start by recalling a familiar rule:
+`r newthought("The")`  calculation we just did relied on a new rule, which we should make explicit. Start by recalling a familiar rule:
 
 The General Multiplication Rule
 

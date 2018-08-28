@@ -28,7 +28,7 @@ So the Die Game is the more advantageous one, on this analysis. On average, peop
 
 ## Expected Monetary Values
 
-`r newthought("To calculate")` the expected value of an option, we multiply each payoff by its probability, and then sum up the results. For example, our analysis of the Coin Game can be written this way:
+`r newthought("To")`  calculate the expected value of an option, we multiply each payoff by its probability, and then sum up the results. For example, our analysis of the Coin Game can be written this way:
 $$
   \begin{aligned}
     \p(\$1) \times \$1 + \p(\$0) \times \$0 &= (1/2)(\$1) + (1/2)(\$0)\\
@@ -63,7 +63,7 @@ The expected value isn't the amount you expect to win from a game. It's the amou
 
 ## Visualizing Expectations
 
-`r newthought("We can")` visualize these long run averages as the area in a diagram. Figure \@ref(fig:gambleviz) shows a gamble with a $1/3$ chance of paying $\$2$, and a $2/3$ chance of paying $\$6$.
+`r newthought("We")`  can visualize these long run averages as the area in a diagram. Figure \@ref(fig:gambleviz) shows a gamble with a $1/3$ chance of paying $\$2$, and a $2/3$ chance of paying $\$6$.
 
 ```{r gambleviz, echo=FALSE, fig.cap="A gamble with a $1/3$ chance of paying $\\$2$, and a $2/3$ chance of paying $\\$6$"}
 f <- function(x) case_when(x <= 1/3 ~ 2, x <= 1 ~ 6)
@@ -99,7 +99,7 @@ The expected value is thus the area of the two rectangles together, i.e. the are
 The Coin Game and the Die Game are visualized in Figure \@ref(fig:coindiegame).
 
 
-`r newthought("We started")` this chapter wondering how to reconcile conflicting arguments. The Coin Game has better odds, but the Die Game has a greater potential payoff.
+`r newthought("We")`  started this chapter wondering how to reconcile conflicting arguments. The Coin Game has better odds, but the Die Game has a greater potential payoff.
 
 Well, a rectangle's area can be enlarged by increasing either its width or its height. Likewise, a payoff's contribution to expected value can be increased either by increasing its amount or by increasing its probability.
 
@@ -177,7 +177,7 @@ But for a game like the Die Game, asking people to pay to play does seem fair. I
 
 In general, a game's fair price is thought to be its expected value. If the expected value is $\$3$, it's fair to pay $\$3$ to play. If the expected value is $-\$3$, it's fair to "pay" $-\$3$ to play. Meaning *they should pay you* $\$3$ to play.
 
-`r newthought("Notice that")` the expected value of paying the fair price is always $\$0$. Suppose you pay $\$1$ to play the original Die Game, for example. Because \$1 is automatically deducted from your winnings, the possible consequences are now $\$3 - \$1 = \$2$ or $\$0 - \$1 = -\$1$. So the expected value of paying \$1 to play is:
+`r newthought("Notice")`  that the expected value of paying the fair price is always $\$0$. Suppose you pay $\$1$ to play the original Die Game, for example. Because \$1 is automatically deducted from your winnings, the possible consequences are now $\$3 - \$1 = \$2$ or $\$0 - \$1 = -\$1$. So the expected value of paying \$1 to play is:
 $$
   \begin{aligned}
     (1/3)(\$2) + (2/3)(-\$1) &= \$2/3 - \$2/3\\
@@ -244,7 +244,7 @@ Notice that both options have negative expected value in this example. After all
 
 ## Decision Tables
 
-`r newthought("Many decision problems")` can be represented in a table. Suppose you're choosing between the following two gambles, based on the roll of a fair, six-sided die.
+`r newthought("Many")`  decision problems can be represented in a table. Suppose you're choosing between the following two gambles, based on the roll of a fair, six-sided die.
 
 - $A$: you win $3 if it lands $1$ or $2$, you win $\$1$ if it lands $3$ or $4$, and you lose $\$1$ if it lands $5$ or $6$.
 - $B$: you win $\$3$ if it lands $1$ or $2$, you lose $\$3$ if it lands $3$ or $4$, and nothing happens if it lands $5$ or $6$.
@@ -303,7 +303,7 @@ knitr::kable(decision_table, align = "c")
 
 Now that the die is loaded towards $5$ or $6$ if you choose $A$, the expected value of choosing $A$ is nil: $\$0$.
 
-`r newthought("Once in a while")` you can avoid calculating expected values altogether. Consider this decision problem:
+`r newthought("Once")`  in a while you can avoid calculating expected values altogether. Consider this decision problem:
 
 ```{r echo=FALSE}
 decision_table <- rbind(

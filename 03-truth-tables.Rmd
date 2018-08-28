@@ -1,11 +1,11 @@
 # Truth Tables
 
-`r newthought("In this chapter")` we'll introduce the last few concepts we need from deductive logic, and we'll learn a useful technique in the process: truth tables.
+`r newthought("In")`  this chapter we'll introduce the last few concepts we need from deductive logic, and we'll learn a useful technique in the process: truth tables.
 
 
 ## Connectives
 
-`r newthought("Complex propositions")` can be built up out of other, simpler propositions:
+`r newthought("Complex")`  propositions can be built up out of other, simpler propositions:
 
 - Aegon is a tyrant **and** Brandon is a wizard.
 - **Either** Aegon is a tyrant **or** Brandon is a wizard.
@@ -79,7 +79,7 @@ So in the proposition $\neg A \vee B$, the $\neg$ only applies to $A$. And in $\
 
 ## Truth Tables
 
-`r newthought("The truth of")` a complex proposition built using our three connectives depends on the truth of its components. For example, $\neg A$ is false if $A$ is true, and it's true if $A$ is false:
+`r newthought("The")`  truth of a complex proposition built using our three connectives depends on the truth of its components. For example, $\neg A$ is false if $A$ is true, and it's true if $A$ is false:
 
 ```{r echo=FALSE}
 df <- data.frame(
@@ -215,7 +215,7 @@ Complex constructions like this are difficult at first, but don't worry. With pr
 
 ## Logical Truths & Contradictions
 
-`r newthought("Some propositions")` come out true in every row of the truth table. Consider $A \vee \neg A$ for example:
+`r newthought("Some")`  propositions come out true in every row of the truth table. Consider $A \vee \neg A$ for example:
 
 ```{r echo=FALSE}
 df <- data.frame(
@@ -259,7 +259,7 @@ knitr::kable(df, align = "c")
 
 ## Mutually Exclusivity & Truth Tables
 
-`r newthought("Truth tables can be used")` to establish that two propositions are mutually exclusive. A very simple example is the propositions $A$ and $\neg A$:
+`r newthought("Truth")`  tables can be used to establish that two propositions are mutually exclusive. A very simple example is the propositions $A$ and $\neg A$:
 
 ```{r echo=FALSE}
 df <- data.frame(
@@ -293,7 +293,7 @@ Again there's no row where $A \vee B$ and $\neg A \wedge \neg B$ are both true. 
 
 ## Entailment & Equivalence
 
-`r newthought("Truth tables can also be used")` to establish that an argument is valid. Here's a very simple example:
+`r newthought("Truth")`  tables can also be used to establish that an argument is valid. Here's a very simple example:
 
 > $A \wedge B$.\
 > Therefore, $A$.
@@ -372,7 +372,7 @@ Here again the columns under these two propositions are identical.
 
 ## Summary
 
-`r newthought("Connectives can be")` used to build more complex propositions, like $A \wedge B$ or $A \vee \neg B$. We introduced three connectives:
+`r newthought("Connectives")`  can be used to build more complex propositions, like $A \wedge B$ or $A \vee \neg B$. We introduced three connectives:
 
 - $\neg A$ means it's not true that $A$.
 - $A \wedge B$ means both $A$ and $B$ are true.

@@ -1,13 +1,13 @@
 # Beliefs & Betting Rates
 
-`r newthought("For Bayesians,")` probabilities are beliefs. When I say it'll probably rain today, I'm telling you something about my personal level of confidence in rain today. I'm saying I'm more than $50\%$ confident it'll rain. 
+`r newthought("For")`  Bayesians, probabilities are beliefs. When I say it'll probably rain today, I'm telling you something about my personal level of confidence in rain today. I'm saying I'm more than $50\%$ confident it'll rain. 
 
 But how can we quantify something as personal and elusive as a level of confidence? Bayesians answer this question using the same basic idea we used for utility in [Chapter 12][Utility]. They look at people's willingness to risk things they care about.
 
 
 ## Measuring Personal Probabilities
 
-`r newthought("The more confident")` someone is, the more they'll be willing to bet. So let's use betting rates to quantify personal probabilities.
+`r newthought("The")`  more confident someone is, the more they'll be willing to bet. So let's use betting rates to quantify personal probabilities.
 
 I said I'm more than $50\%$ confident it'll rain today. But exactly how confident: $60\%$? $70\%$? Well, I'd give two-to-one odds on it raining today, and no higher. In other words, I'd accept a deal that pays $\$1$ if it rains, and costs me $\$2$ otherwise. But I wouldn't risk more than $\$2$ when I only stand to win $\$1$.
 
@@ -76,13 +76,13 @@ You can memorize this formula, but personally, I prefer to apply the recipe. It 
 
 ## Things to Watch Out For
 
-`r newthought("Personal probabilities")` aren't revealed by just any old betting rate a person will accept. They're exposed by the person's *fair* betting rates.
+`r newthought("Personal")`  probabilities aren't revealed by just any old betting rate a person will accept. They're exposed by the person's *fair* betting rates.
 
 Consider: I'd take a bet where you pay me a million dollars of it rains today, and I pay you just $\$1$ otherwise. But that's because I think this bet is *advantageous*. I don't think this is a fair bet, which is why I'd only take one side of it. I wouldn't take the reverse deal, where I win $\$1$ if it rains and I pay you a million dollars if it does. That's a terrible deal from my point of view!
 
 So you can't just look at a bet a person is willing to accept. You have to look at a bet they're willing to accept *because they think it's fair*.
 
-`r newthought("Another caveat")` is that we're cheating by using dollars instead of utils.  When we learned about utility, we saw that utility and dollars can be quite different. Gaining a dollar and losing a dollar aren't necessarily comparable. Especially if it's your last dollar!
+`r newthought("Another")`  caveat is that we're cheating by using dollars instead of utils.  When we learned about utility, we saw that utility and dollars can be quite different. Gaining a dollar and losing a dollar aren't necessarily comparable. Especially if it's your last dollar!
 
 So, to really measure personal probabilities accurately, we'd have to substitute utilities for dollars. Nevertheless, we'll pretend dollars and utils are equal for simplicity. Dollars are a decent approximation of utils for many people, as long as we stick to small sums.
 
@@ -93,7 +93,7 @@ But we know people don't always follow the expected value formula, that's one of
 
 ## Indirect Measurements
 
-`r newthought("Sometimes we")` don't have the betting rate we need in order to apply the loss/stake formula directly. But we can still figure things out indirectly, given the betting rates we do have.
+`r newthought("Sometimes")`  we don't have the betting rate we need in order to apply the loss/stake formula directly. But we can still figure things out indirectly, given the betting rates we do have.
 
 For example, I'm not very confident there's intelligent life on other planets. But I'd be much more confident if we learned there was life of any kind on another planet. If NASA finds bacteria living on Mars, I'll be much less surprised to learn there are intelligent aliens on Alpha Centauri.
 

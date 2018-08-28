@@ -5,12 +5,12 @@ Another reason for the popularity of statistical significance testing is probabl
 ---Ronald P. Carver
 ```
 
-`r newthought("Significance testing")` is all about whether the outcome would be too much of a coincidence for the hypothesis to be true. But how much of a coincidence is too much? Should we reject a hypothesis when we find results that are significant at the $.05$-level? At the $.01$-level?
+`r newthought("Significance")`  testing is all about whether the outcome would be too much of a coincidence for the hypothesis to be true. But how much of a coincidence is too much? Should we reject a hypothesis when we find results that are significant at the $.05$-level? At the $.01$-level?
 
 
 ## Significance & Subjectivity
 
-`r newthought("Critics say")` this decision is subjective. In the social sciences, researchers have mainly adopted $.05$ as the cutoff, while in other sciences the convention is to use $.01$. But we saw there's nothing special about these numbers. Except that they're easy to estimate without the help of a computer.
+`r newthought("Critics")`  say this decision is subjective. In the social sciences, researchers have mainly adopted $.05$ as the cutoff, while in other sciences the convention is to use $.01$. But we saw there's nothing special about these numbers. Except that they're easy to estimate without the help of a computer.
 
 It makes a big difference what cutoff we choose, though. The lower the cutoff, the less often a result will be deemed significant. So a lower cutoff means fewer hypotheses ruled out, which means fewer scientific discoveries.
 
@@ -31,7 +31,7 @@ After all, occasionally a study of a useless treatment will have lots of patient
 
 ## Making It Concrete
 
-`r newthought("Suppose for example")` there are only two types of potential treatment being studied. The useless kind just leave the patient's recovery up to chance: it's a $50\%$ shot. But the effective kind increase their chances of recovery by $15\%$: they have a $65\%$ chance of getting better with these treatments.
+`r newthought("Suppose")`  for example there are only two types of potential treatment being studied. The useless kind just leave the patient's recovery up to chance: it's a $50\%$ shot. But the effective kind increase their chances of recovery by $15\%$: they have a $65\%$ chance of getting better with these treatments.
 
 Let's also imagine we're studying $200$ different treatments, $160$ of which are actually useless and $40$ of which are effective. Since we don't know which are which, we'll run $200$ studies, one for each treatment. And just to make things concrete, let's suppose each study has $n = 100$ subjects enrolled.
 
@@ -226,7 +226,7 @@ There are two lessons here. First, lowering the threshold for significance has b
 
 ## The Role of Priors in Significance Testing
 
-`r newthought("Bayesian critics")` of significance testing conclude that, when we choose where to set the cutoff, we're choosing based on our "priors". We're relying on assumptions about the base rate, the prior probability of the null hypothesis.
+`r newthought("Bayesian")`  critics of significance testing conclude that, when we choose where to set the cutoff, we're choosing based on our "priors". We're relying on assumptions about the base rate, the prior probability of the null hypothesis.
 
 So, these critics say, frequentism faces exactly the same subjectivity problem as Bayesianism. Bayesians use Bayes' theorem to evaluate hypothesis $H$ in light of evidence $E$:
 $$ \p(H \given E) = \p(H) \frac{\p(E \given H)}{\p(E)} .$$
@@ -249,7 +249,7 @@ This critique of frequentism is sharpened by a famous problem known as Lindley's
 The tulip example is based on an example from Henry Kyburg's book *Logical Foundations of Statistical Inference*. It also appears in Howson & Urbach's *Scientific Reasoning: A Bayesian Approach*.
 ```
 
-`r newthought("Suppose a florist")` receives a large shipment of tulip bulbs with the label scratched off. The company that sent the shipment only sends two kinds of shipments. The first kind contains $25\%$ red bulbs, the second kind has $50\%$ red bulbs.
+`r newthought("Suppose")`  a florist receives a large shipment of tulip bulbs with the label scratched off. The company that sent the shipment only sends two kinds of shipments. The first kind contains $25\%$ red bulbs, the second kind has $50\%$ red bulbs.
 
 The two kinds of shipment are equally common. So the store owner figures this shipment could be of either kind, with equal probability.
 
@@ -319,7 +319,7 @@ But one of these hypotheses still fits the finding much better than the other. T
 
 ## A Bayesian Analysis
 
-`r newthought("Bayesians will happily")` point out the source of the trouble: our florist has ignored the prior probabilities. If we use Bayes' theorem instead of significance testing, we'll find that the store owner should believe the second hypothesis, which seems right. $36$ red bulbs out of $48$ fits much better with the $50\%$ hypothesis than with the $25\%$ hypothesis.
+`r newthought("Bayesians")`  will happily point out the source of the trouble: our florist has ignored the prior probabilities. If we use Bayes' theorem instead of significance testing, we'll find that the store owner should believe the second hypothesis, which seems right. $36$ red bulbs out of $48$ fits much better with the $50\%$ hypothesis than with the $25\%$ hypothesis.
 
 How do we apply Bayes' theorem in the tulip example? First we label our two hypotheses and the evidence:
 $$

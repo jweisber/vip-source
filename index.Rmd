@@ -35,7 +35,7 @@ middlecolour <- rgb(114, 49, 94, maxColorValue = 255)
 green <- rgb(26, 179, 22, maxColorValue = 255)
 ```
 
-`r newthought("This book")` is designed for introductory philosophy courses on probability and inductive logic. It is based on a typical such course I teach at the University of Toronto, where we offer "Probability & Inductive Logic" in the second year, alongside the usual deductive logic intro.$\,$
+`r newthought("This")`  book is designed for introductory philosophy courses on probability and inductive logic. It is based on a typical such course I teach at the University of Toronto, where we offer "Probability & Inductive Logic" in the second year, alongside the usual deductive logic intro.$\,$
 
 The book assumes no deductive logic. The little that's used is introduced in the early chapters. In fact almost no formal background is presumed, only very simple high school algebra.
 
@@ -50,7 +50,7 @@ But I also hope it offers more universal benefits:
 5. It livens up the text with hyperlinks, images, animations, interactive tools, and margin notes that highlight points of history and curiosity.
 
 
-`r newthought("The book is divided")` into three main parts. The first explains the basics of logic and probability, the second covers basic decision theory, and the last engages the Bayesian and frequentist schools of thought. A "cheat sheet" at the front summarizes key definitions and formulas. And optional chapters in the Appendix cover the axiomatic construction of probability theory, Hume's problem of induction, and Goodman's new ridle of induction.
+`r newthought("The")`  book is divided into three main parts. The first explains the basics of logic and probability, the second covers basic decision theory, and the last engages the Bayesian and frequentist schools of thought. A "cheat sheet" at the front summarizes key definitions and formulas. And optional chapters in the Appendix cover the axiomatic construction of probability theory, Hume's problem of induction, and Goodman's new ridle of induction.
 
 When I teach this material, I aim to leave students with a clearer view of their society's statistical realities. Media bombard them with nutritional fads, overhyped "significant" findings, fantastical (or fantastical sounding) advances in machine learning and artificial intelligence, and more. I want them to understand what these items do and don't mean. I don't want them to become too skeptical or jaded about scientific research just because the news overhypes nutritional studies, only to cash in on the backlash. But neither do I want them to be naive about scientific practice, oblivious to the assumptions that underpin the contemporary scientific worldview.
 
@@ -60,6 +60,6 @@ I usually get a mix of students in my course, with different ideological inclina
 
 By the end of the course, students with little formal background have a bevy of tools for thinking about uncertainty. They can understand much more of the statistical and scientific discourse they encounter. And hopefully they have a greater appreciation for the value of formal methods. Students who already have strong formal tools and skills will, I hope, better understand their limitations. I want them to understand why these tools leave big questions open---not just philosophically, but also in very pressing, practical ways.
 
-`r newthought("The book")` was made using the `bookdown` package created by Yihui Xie. It's a wonderful tool, built on a bunch of other technologies I love, especially the R programming language and the pandoc conversion tool created by philosopher John MacFarlane. The book's visual style emulates the famous designs of Edward Tufte, thanks to more software created by Yihui Xie, J. J. Allaire, and many others who adapted Tufte's designs to HTML and PDF (via LaTeX).
+`r newthought("The")`  book was made using the `bookdown` package created by Yihui Xie. It's a wonderful tool, built on a bunch of other technologies I love, especially the R programming language and the pandoc conversion tool created by philosopher John MacFarlane. The book's visual style emulates the famous designs of Edward Tufte, thanks to more software created by Yihui Xie, J. J. Allaire, and many others who adapted Tufte's designs to HTML and PDF (via LaTeX).
 
 If it weren't for these tools, I never would have written this book. It wouldn't have been possible to create one that does all the things this books is meant to do. I also owe inspiration to Kieran Healy's wonderful book [*Data Visualization: A Practical Introduction*](http://socviz.co/), which uses the same suite of tools. It gave me the idea to use them for an updated, open, and visually enhanced rendition of the classic material from Skyrms and Hacking.

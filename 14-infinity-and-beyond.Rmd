@@ -58,7 +58,7 @@ ggplot(NULL, aes(c(0, 1))) +
 
 As the number of potential flips grows, the rectangles get narrower because the outcomes become less probable. But they also get taller. The payoff doubles every time the probability is cut in half. The result is an infinite sequence of rectangles, each with the same area, namely $1$. So the total area of all the rectangles is infinite.
 
-`r newthought("Most people")`, when they first encounter this puzzle, try to take the easy way out. "The game is impossible," they say. "Nobody could actually fund this game in real life. No casino has unlimited money, not even the government does. Besides, the coin would wear out after a while. So the house couldn't even guarantee they'd be able to finish the game."
+`r newthought("Most")`  people, when they first encounter this puzzle, try to take the easy way out. "The game is impossible," they say. "Nobody could actually fund this game in real life. No casino has unlimited money, not even the government does. Besides, the coin would wear out after a while. So the house couldn't even guarantee they'd be able to finish the game."
 
 There are two serious problems with this answer. 
 
@@ -72,7 +72,7 @@ knitr::include_graphics("img/daniel_bernoulli.png")
 
 ## Bernoulli's Solution
 
-`r newthought("The St. Petersburg")` game was invented by the mathematician Nicolaus Bernoulli in the $18$th Century. He discussed it with his cousin Daniel Bernoulli, who published a famous solution in the *St. Petersburg Academy Proceedings*. (Hence the name of the game.)
+`r newthought("The")`  St. Petersburg game was invented by the mathematician Nicolaus Bernoulli in the $18$th Century. He discussed it with his cousin Daniel Bernoulli, who published a famous solution in the *St. Petersburg Academy Proceedings*. (Hence the name of the game.)
 
 His solution: replace monetary value with real value, *utility* in other words. [Recall][Utility] that the more money you have, the less value additional money brings. So even though the payoffs in the St. Petersburg game double from $\$2$ to $\$4$ to $\$8$ etc., the *real* value doesn't double. It grows more slowly.
 
@@ -199,7 +199,7 @@ But others don't find this response plausible. There may be a limit on how much 
 knitr::include_graphics("img/pascal.png")
 ```
 
-`r newthought("The modern")` theory of probability has a curious origin. It started with Blaise Pascal, a French mathematician and philosopher living in the $1600$s. Pascal had a friend who has an avid gambler, and who came to him for advice on gambling problems. Pascal discussed these problems in letters with another famous mathematician, Pierre de Fermat. Out of their correspondence, the concept of expected value was born.
+`r newthought("The")`  modern theory of probability has a curious origin. It started with Blaise Pascal, a French mathematician and philosopher living in the $1600$s. Pascal had a friend who has an avid gambler, and who came to him for advice on gambling problems. Pascal discussed these problems in letters with another famous mathematician, Pierre de Fermat. Out of their correspondence, the concept of expected value was born.
 
 Pascal was a devout Catholic. So, once he developed the tools of decision theory, he applied them to religious questions. Like: is it rational to believe in God?
 
@@ -258,11 +258,11 @@ So believing in God is an infinitely better decision than not believing! Or so P
 
 ## Responses to Pascal's Wager
 
-`r newthought("Some people")` criticized Pascal's argument on the grounds that belief is not a decision. Whether you believe in something isn't voluntary, like deciding what shirt to wear in the morning. You can't just decide to believe in God, you can only believe what seems plausible to you based on what you know.
+`r newthought("Some")`  people criticized Pascal's argument on the grounds that belief is not a decision. Whether you believe in something isn't voluntary, like deciding what shirt to wear in the morning. You can't just decide to believe in God, you can only believe what seems plausible to you based on what you know.
 
 But, Pascal famously replied, you can decide how you spend your days. And you can decide to spend them  with religious people, reading religious books, and going to a house of worship. So you can decide to take steps that will, eventually, make you a believer. And since believing is so much better than not, that's how you should spend your days.
 
-`r newthought("A more serious")` problem with Pascal's argument is known as *the many gods* problem.
+`r newthought("A")`  more serious problem with Pascal's argument is known as *the many gods* problem.
 
 In Pascal's day, in France, Catholicism dominatd the religious landscape. So for him, believing in God just meant believing in *Catholicism's* conception of God. But there are many possible gods besides the Catholic god, like the god of Islam, the god of Judaism, the gods of Hinduism, and so on.
 
@@ -310,7 +310,7 @@ The moral: there are many ways to take an infinite quantity away from an infinit
 
 So $\infty - \infty$ is not a well-defined quantity. 
 
-`r newthought("The expected")` value framework doesn't seem to work well when infinities show up. The St. Petersburg problem gave us similar trouble. Researchers are still trying to figure out how to make decisions that involve infinite quantities.
+`r newthought("The")`  expected value framework doesn't seem to work well when infinities show up. The St. Petersburg problem gave us similar trouble. Researchers are still trying to figure out how to make decisions that involve infinite quantities.
 
 
 ## Exercises {-}

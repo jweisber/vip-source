@@ -26,7 +26,7 @@ Now, what if you had to choose instead between these two options:
     - $89\%$ chance of $\$0$,
     - $11\%$ chance of $\$1$ million.
 
-`r newthought("Most people")` choose $1A$ over $1B$ in the first decision. With the safe option of walking away $\$1$ million richer, they don't want to take the chance at $\$5$ million. Even though there's only a $1\%$ risk of walking away empty handed if they take the gamble, it's not worth it to them. The $10\%$ shot at $\$5$ million isn't enough to risk losing out on the guaranteed $\$1$ million.
+`r newthought("Most")`  people choose $1A$ over $1B$ in the first decision. With the safe option of walking away $\$1$ million richer, they don't want to take the chance at $\$5$ million. Even though there's only a $1\%$ risk of walking away empty handed if they take the gamble, it's not worth it to them. The $10\%$ shot at $\$5$ million isn't enough to risk losing out on the guaranteed $\$1$ million.
 
 But in the second decision, most people choose $2B$ over $2A$. There's no safe option now, in fact you'll probably walk away empty handed whatever you choose. Under these circumstances, most people prefer to take on an extra $1\%$ risk of empty-handedness in exchange for a $10\%$ shot at $\$5$ million.
 
@@ -72,7 +72,7 @@ knitr::include_graphics("img/allais.png")
 Leonard Savage ($1917$--$1971$) was an American staistician and mathematician, and a leading advocate of the expected utility rule. There doesn't seem to be any public-domain photograph of him available unfortunately, but you can find one [here](http://policonomics.com/leonard-savage/).
 ```
 
-`r newthought("This challenge")` is called the *Allais paradox*. Maurice Allais was a French economist, writing at a time when some French thinkers disliked the idea of reducing decisions to a simple equation. The American statistician Leonard Savage, on the other hand, very much liked the idea of expected utility. So Allais cooked up this example to prove Savage wrong.
+`r newthought("This")`  challenge is called the *Allais paradox*. Maurice Allais was a French economist, writing at a time when some French thinkers disliked the idea of reducing decisions to a simple equation. The American statistician Leonard Savage, on the other hand, very much liked the idea of expected utility. So Allais cooked up this example to prove Savage wrong.
 
 When Savage first encountered Allais' example, he did exactly what most people do. He chose $1A$ over $1B$, but $2B$ over $2A$. He violated the principles of his own theory!
 
@@ -149,7 +149,7 @@ So the Sure-thing Principle says they should choose $2A$ over $2B$ if they chose
 
 ## Prescriptive vs. Descriptive
 
-`r newthought("Some decision")` theorists use the expected utility formula to *describe* the way people make choices. If you want to predict when people will buy/sell a stock, for example, you might use the expected utility formula to describe what people will do.
+`r newthought("Some")`  decision theorists use the expected utility formula to *describe* the way people make choices. If you want to predict when people will buy/sell a stock, for example, you might use the expected utility formula to describe what people will do.
 
 But others use the formula to *prescribe* decisions: to determine what we *ought* to do. Sometimes people do what they should, but sometimes they make mistakes or do foolish things.
 

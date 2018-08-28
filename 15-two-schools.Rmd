@@ -6,12 +6,12 @@
 knitr::include_graphics("img/flanders.png")
 ```
 
-`r newthought("What does")` the word "probability" mean? There are two competing philosophies of probability, and two very different schools of statistics to go with them.
+`r newthought("What")`  does the word "probability" mean? There are two competing philosophies of probability, and two very different schools of statistics to go with them.
 
 
 ## Probability as Frequency
 
-`r newthought("In statistics")`, the dominant tradition has been to think of probability in terms of "frequency". What's the probability a coin will land heads? That just depends on how often it lands heads---the *frequency* of heads.
+`r newthought("In")`  statistics, the dominant tradition has been to think of probability in terms of "frequency". What's the probability a coin will land heads? That just depends on how often it lands heads---the *frequency* of heads.
 
 If a coin lands heads half the time, then the probability of heads on any given toss is $1/2$. If it lands heads $9/10$ of the time, then the probability of heads is $9/10$.
 
@@ -20,7 +20,7 @@ This is probably the most common way of understanding "probability". You may eve
 
 ## Probability as Belief
 
-`r newthought("But many")` statements about probability don't fit the frequency mold, not very well at least.
+`r newthought("But")`  many statements about probability don't fit the frequency mold, not very well at least.
 
 Consider the statement, "the probability the dinosaurs were wiped out by a meteor is $90\%$." Does this mean $90\%$ of the times dinosaurs existed on earth, they were wiped out? They only existed once! This probability is about an event that doesn't repeat. So there's no frequency with which it happens.
 
@@ -33,7 +33,7 @@ So, some probability statements appear to be about *belief*, not frequency. If a
 
 ## Which Kind of Probability?
 
-`r newthought("Which kind")` of probability are scientists using when they use probability theory? Is science about the frequency with which certain events happen?  Or is it about what beliefs are warranted by the evidence?
+`r newthought("Which")`  kind of probability are scientists using when they use probability theory? Is science about the frequency with which certain events happen?  Or is it about what beliefs are warranted by the evidence?
 
 There is a deep divide among scientists on this issue, especially statisticians.
 
@@ -73,7 +73,7 @@ ggplot(df) +
 
 Presumably, it's the *hypothetical* frequency that is the real probability of heads, according to frequentists. So doesn't that solve our problem with one-off events? Even if a coin is only ever flipped once, what matters is how it would have landed if we'd flipped it many times.
 
-`r newthought("Serious problems")` beset the hypothetical frequency view too, however.
+`r newthought("Serious")`  problems beset the hypothetical frequency view too, however.
 
 ```{r threecoins, echo=FALSE, fig.margin=TRUE, fig.cap="Three fair coins flipped $100$ times each, yielding three different frequencies"}
 set.seed(1)
@@ -120,7 +120,7 @@ It's problems like these that drive many philosophers and scientists away from f
 
 ## Bayesianism
 
-`r newthought("According to Bayesians,")` probability is ultimately about belief. It's about how certain you should be that something is true.
+`r newthought("According")`  to Bayesians, probability is ultimately about belief. It's about how certain you should be that something is true.
 
 For example, $\p(A)=.9$ means that $A$ is certain to degree $0.9$. We can be $90\%$ confident that $A$ is true. Whereas $\p(A)=.3$ means that $A$ is certain to degree $0.3$. We can only be $30\%$ confident $A$ is true.
 
@@ -142,7 +142,7 @@ Finally, new evidence has to be weighed against previous evidence and existing c
 
 So, Bayesians say, we should understand probability as the degree of belief it's rational to have. The laws of probability, like Bayes' theorem, show us how to be good, objective scientists, shaping our beliefs according to the evidence.
 
-`r newthought("The main")` challenge for Bayesians is objectivity.  Critics complain that science is objective, but belief is subjective. How so?
+`r newthought("The")`  main challenge for Bayesians is objectivity.  Critics complain that science is objective, but belief is subjective. How so?
 
 First, belief is something personal and mental, so it can't be quantified objectively. What does it even mean to be $90\%$ confident that something is true, you might ask? How can you pin a number on a belief?
 

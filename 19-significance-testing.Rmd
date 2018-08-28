@@ -1,11 +1,11 @@
 # Significance Testing
 
-`r newthought("How do we")` evaluate a hypothesis, according to frequentism? The short answer is, we look for things that would be too much of a coincidence if the hypothesis were true.
+`r newthought("How")`  do we evaluate a hypothesis, according to frequentism? The short answer is, we look for things that would be too much of a coincidence if the hypothesis were true.
 
 
 ## Coincidence
 
-`r newthought("Suppose we flip")` a coin ten times and it lands heads every single time. That would be too much of a coincidence if the coin were fair. So the hypothesis that it is fair has been tested, and failed. Conclusion: the coin is biased towards heads.
+`r newthought("Suppose")`  we flip a coin ten times and it lands heads every single time. That would be too much of a coincidence if the coin were fair. So the hypothesis that it is fair has been tested, and failed. Conclusion: the coin is biased towards heads.
 
 Or imagine we divide a thousand patients with Disease X into two, equal-sized groups. We give the first group Drug Y, the second group gets a placebo. After a month, $90\%$ of the patients who got the drug are cured, compared to only $10\%$ of the patients who didn't. That would be too much of a coincidence if the drug were ineffective. So the hypothesis that Drug Y has no effect has been tested, and it has failed the test. Conclusion: Drug Y helps cure Disease X.
 
@@ -14,7 +14,7 @@ That's the rough idea behind the most popular frequentist approach to hypothesis
 
 ## Making it Precise
 
-`r newthought("Suppose your friend")` likes to do magic tricks. Their favourite trick involves flipping a special coin and predicting how it will land. You're curious how the trick is done, and you suspect the coin is biased. So you flip it $100$ times to see what happens. It lands heads $67$ out of $100$ times. Does that mean the coin is biased after all? Or is $67$ heads out of $100$ flips within the realm of plausibility for a fair coin?
+`r newthought("Suppose")`  your friend likes to do magic tricks. Their favourite trick involves flipping a special coin and predicting how it will land. You're curious how the trick is done, and you suspect the coin is biased. So you flip it $100$ times to see what happens. It lands heads $67$ out of $100$ times. Does that mean the coin is biased after all? Or is $67$ heads out of $100$ flips within the realm of plausibility for a fair coin?
 
 ```{r binom100, echo=FALSE, fig.cap="The probability of getting $x$ heads out of $100$ flips of a fair coin."}
 df <- data.frame(heads = 0:100, probability = dbinom(0:100, 100, 0.5))
@@ -77,7 +77,7 @@ The idea behind this terminology is that a red outcome tells us something about 
 
 ## Levels of Significance
 
-`r newthought("But why should")` we choose $95\%$ probability as our cutoff? Why not $90\%$, or $99\%$?
+`r newthought("But")`  why should we choose $95\%$ probability as our cutoff? Why not $90\%$, or $99\%$?
 
 ```{r binom100fences99, echo=FALSE, fig.margin=TRUE, fig.cap="In $99\\%$ of cases, a fair coin will land heads between $37$ and $63$ times out of $100$ flips."}
 k_lower <- qbinom(.005, 100, .5)
@@ -132,7 +132,7 @@ We'll come back in [the next chapter](#chlindley) for a deeper look at the quest
 
 ## Normal Approximation
 
-`r newthought("You may have")` noticed that the probabilities in our hundred-flips experiment look a lot like the famous "bell curve". In fact they line up almost perfectly, as Figure \@ref(fig:napprox) illustrates.
+`r newthought("You")`  may have noticed that the probabilities in our hundred-flips experiment look a lot like the famous "bell curve". In fact they line up almost perfectly, as Figure \@ref(fig:napprox) illustrates.
 
 ```{r napprox, echo=FALSE, fig.cap="A bell curve (left) overlayed on the probability of getting $x$ heads out of $100$ flips of a fair coin (right)."}
 df1 <- data.frame(heads = 30:70, probability = 0, f = 1)
@@ -213,7 +213,7 @@ We got $67$ heads in our experiment, which falls outside the $35$-to-$65$ range.
 
 ## The 68-95-99 Rule
 
-`r newthought("There are actually")` three cutoffs we can estimate with this method. The one we haven't talked about is $68\%$, because it's not used much in actual practice. But the general rule is:
+`r newthought("There")`  are actually three cutoffs we can estimate with this method. The one we haven't talked about is $68\%$, because it's not used much in actual practice. But the general rule is:
 
 - With about $68\%$ probability, the number of heads will be in the range $\mu \pm \sigma$.
 - With about $95\%$ probability, the number of heads will be in the range $\mu \pm 2\sigma$.
@@ -260,7 +260,7 @@ $$
 
 ## Binomial Probabilities
 
-`r newthought("When do")` the true probabilities closely match the normal distribution, though? A lot of the time, actually. But we'll just focus on one common case.
+`r newthought("When")`  do the true probabilities closely match the normal distribution, though? A lot of the time, actually. But we'll just focus on one common case.
 
 Suppose a certain kind of event will be repeated over and over, and there are two possible outcomes. If the probabilities of these two outcomes stay the same from repetition to repetition, and the repetitions are independent of one another, then the probabilities are called ***binomial***.
 
@@ -312,7 +312,7 @@ In general, the more extreme the value of $p$ is, the larger we need $n$ to be f
 knitr::include_graphics("img/fisher.png")
 ```
 
-`r newthought("The method of")` evaluating hypotheses we've been explaining is called ***significance testing***. Here is the general recipe for significance testing with binomial probabilities:
+`r newthought("The")`  method of evaluating hypotheses we've been explaining is called ***significance testing***. Here is the general recipe for significance testing with binomial probabilities:
 
 1. State the hypothesis you want to test: the true probability of outcome X is $p$. This is called the ***null hypothesis***.[^nullnote]
 2. Repeat the event over and over $n$ times, and count the number of times $k$ you get outcome X.
@@ -354,7 +354,7 @@ So VisioPerfect's claim has failed our test: the results are significant at the 
 The American Statistical Association [recently released a statement](https://www.amstat.org/newsroom/pressreleases/P-ValueStatement.pdf) to clarify the ideas behind significance testing, and prevent their misuse. It's also the punchline of [one of my favourite cartoons](https://imgs.xkcd.com/comics/significant.png).
 ```
 
-`r newthought("Significance testing is")` very confusing. So confusing that scientists, and even statisticians, often misunderstand and misuse it. Dangerous medical treatments have been approved and administered as a result. Scientific careers have even been built on the misuse of significance testing.
+`r newthought("Significance")`  testing is very confusing. So confusing that scientists, and even statisticians, often misunderstand and misuse it. Dangerous medical treatments have been approved and administered as a result. Scientific careers have even been built on the misuse of significance testing.
 
 So what exactly does it mean for a result to be "significant at level $\alpha$"? It means exactly this:
 

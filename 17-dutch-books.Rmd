@@ -5,12 +5,12 @@ As to the speculators from the south, they had the advantage in the toss up; the
 ---[Newspaper report](https://chroniclingamerica.loc.gov/lccn/sn83045242/1805-09-02/ed-1/seq-2.pdf), Sep. 2, 1805
 ```
 
-`r newthought("Critics of Bayesianism")` won't be satisfied just because beliefs can be quantified with betting rates. After all, a person's betting rates might not obey the laws of probability. What's to stop someone being $9/10$ confident it will rain tomorrow and also $9/10$ confident it won't? How do we enforce laws of probability like the Negation Rule, if probability is just subjective opinion?
+`r newthought("Critics")`  of Bayesianism won't be satisfied just because beliefs can be quantified with betting rates. After all, a person's betting rates might not obey the laws of probability. What's to stop someone being $9/10$ confident it will rain tomorrow and also $9/10$ confident it won't? How do we enforce laws of probability like the Negation Rule, if probability is just subjective opinion?
 
 
 ## Dutch Books
 
-`r newthought("The Bayesian answer")` uses a special betting strategy. If someone violates the laws of probability, we can use this strategy to take advantage of them. We can sucker them into a deal that will lose them money no matter what.
+`r newthought("The")`  Bayesian answer uses a special betting strategy. If someone violates the laws of probability, we can use this strategy to take advantage of them. We can sucker them into a deal that will lose them money no matter what.
 
 For example, suppose Sam violates a very simple rule of probability. His personal probability in the proposition $2+2=4$ is only $9/10$, when it should be $1$. (Because it's impossible for $2+2$ to be anything other than $4$.) Sam has violated the laws of probability, so he'll be willing to accept a very bad deal, as follows.
 
@@ -22,7 +22,7 @@ $$ (9/10)(-\$.10) + (1/10)(\$.90) = 0. $$
 
 And yet, Sam will lose money no matter what! There's no way for him to win: he's bound to end up paying out $\$1$, when we only paid him $90$¢ to get in on the deal.
 
-`r newthought("This kind of")` deal is called a *Dutch book*.^[Why is it called that? The 'book' part comes from gambling, where 'making a book' means setting up a betting arrangement. But the 'Dutch' part [is a mystery](https://personal.eur.nl/wakker/miscella/dutchbk.htm).] A Dutch book has two defining features.
+`r newthought("This")`  kind of deal is called a *Dutch book*.^[Why is it called that? The 'book' part comes from gambling, where 'making a book' means setting up a betting arrangement. But the 'Dutch' part [is a mystery](https://personal.eur.nl/wakker/miscella/dutchbk.htm).] A Dutch book has two defining features.
 
 1. The arrangement is fair according to the subject's personal probabilities.
 2. The subject will lose money *no matter what*.
@@ -34,7 +34,7 @@ Almost nobody in real life would be foolish enough accept the deal we just offer
 
 ## The Bankteller Fallacy {#bankteller}
 
-`r newthought("Consider a")` famous problem:
+`r newthought("Consider")`  a famous problem:
 
 ```{marginfigure, echo=TRUE}
 This problem was devised by the same psychologists who studied [the taxicab problem](#chbayes): Daniel Kahneman and Amos Tversky. This one is from a 1983 study of theirs.
@@ -78,7 +78,7 @@ So it's a law of probability that $\p(B \wedge F) \leq \p(B)$. Which means it ca
 
 Here's another way to think about it. Imagine everyone who fits the description of Linda gathered in a room. The people in the room who happen to be bank tellers are then gathered together inside a circle. Some of the people inside that circle will also be feminists. But there can't be more feminists inside that circle than people! Feminist bank tellers are just less common than bank tellers in general.
 
-`r newthought("How do we Dutch book")` someone who mistakenly thinks $B$ is more probable than $B \wedge F$? We offer them two deals, one involving a bet on $B$ and the other a bet on $B \wedge F$.
+`r newthought("How")`  do we Dutch book someone who mistakenly thinks $B$ is more probable than $B \wedge F$? We offer them two deals, one involving a bet on $B$ and the other a bet on $B \wedge F$.
 
 Suppose for example their betting rate for $B$ is $1/5$, and their betting rate for $B \wedge F$ is $1/4$. Then we offer them these deals:
 
@@ -109,7 +109,7 @@ Notice how the net amount is negative in every column. In a Dutch book, no matte
 
 ## Dutch Books in General
 
-`r newthought("Anyone who")` violates any law of probability can be suckered via a Dutch book. But if you obey the laws of probability, it's impossible to be Dutch booked. That's why the laws of probability are objectively correct, according to Bayesians.
+`r newthought("Anyone")`  who violates any law of probability can be suckered via a Dutch book. But if you obey the laws of probability, it's impossible to be Dutch booked. That's why the laws of probability are objectively correct, according to Bayesians.
 
 ```{r echo=FALSE}
 # TODO: insert sketch of de Finetti
@@ -150,7 +150,7 @@ colnames(table) <- c("", "", "$E$", "$\\neg E$")
 knitr::kable(table, align = "r", caption = "A Dutch book for Suzy the Scientist")
 ```
 
-`r newthought("We now have")` a second way for Bayesians to argue that the concept of personal probability is scientifically respectable. Not only can beliefs be quantified. There are also objective rules that everyone's beliefs should follow: the laws of probability. Anyone who doesn't follow those laws can be suckered into a sure loss.
+`r newthought("We")`  now have a second way for Bayesians to argue that the concept of personal probability is scientifically respectable. Not only can beliefs be quantified. There are also objective rules that everyone's beliefs should follow: the laws of probability. Anyone who doesn't follow those laws can be suckered into a sure loss.
 
 
 ## Exercises {-}

@@ -1,6 +1,6 @@
 # Calculating Probabilities, Part II
 
-`r newthought("We learned rules")` for $\vee$ and for $\wedge$ back in [Chapter 5][Calculating Probabilities]:
+`r newthought("We")`  learned rules for $\vee$ and for $\wedge$ back in [Chapter 5][Calculating Probabilities]:
 
 The Addition Rule
 
@@ -44,7 +44,7 @@ Sometimes we really want to know the probability of $A$, $\p(A)$, but it turns o
 
 ## The General Addition Rule
 
-`r newthought("The Addition Rule")` for calculating $\p(A \vee B)$ depends on $A$ and $B$ being mutually exclusive. What if they're not? Then we can use:
+`r newthought("The")`  Addition Rule for calculating $\p(A \vee B)$ depends on $A$ and $B$ being mutually exclusive. What if they're not? Then we can use:
 
 The General Addition Rule
 
@@ -90,7 +90,7 @@ $$ \p(A) + \p(B) - \p(A \wedge B).$$
 
 To think of it another way, when we add $\p(A) + \p(B)$ to get the size of the $A \vee B$ region, we double-count the $A \wedge B$ region. So we have to subtract out $\p(A \wedge B)$ at the end.
 
-`r newthought("What if")` there is no $A \wedge B$ region? Then $\p(A \wedge B) = 0$, so subtracting it at the end has no effect. Then we just have the old Addition Rule:
+`r newthought("What")`  if there is no $A \wedge B$ region? Then $\p(A \wedge B) = 0$, so subtracting it at the end has no effect. Then we just have the old Addition Rule:
 $$
   \begin{aligned}
     \p(A \vee B) &= \p(A) + \p(B) - \p(A \wedge B)\\
@@ -102,7 +102,7 @@ And this makes sense. If there is no $A \wedge B$ region, that means $A$ and $B$
 
 That's why we call the new rule the *General* Addition Rule. It applies in general, even when $A$ and $B$ are not mutually exclusive. And in the special case where they are mutually exclusive, it gives the same result as the Addition Rule we already learned.
 
-`r newthought("A tree diagram")` also works to explain the General Addition Rule. Consider Figure \@ref(fig:gatree), where we start with branches for $A$ and $\neg A$, then subdivide into branches for $B$ and $\neg B$.
+`r newthought("A")`  tree diagram also works to explain the General Addition Rule. Consider Figure \@ref(fig:gatree), where we start with branches for $A$ and $\neg A$, then subdivide into branches for $B$ and $\neg B$.
 
 ```{r gatree, echo=FALSE, fig.cap="Tree diagram with the three $A \\vee B$ leaves marked"}
 nodes <- bind_rows(
@@ -157,12 +157,12 @@ png_nerd <- knitr::include_graphics("img/emoji_nerd_small.png", dpi = dpi)
 
 There are three leaves where $A \vee B$ is true, marked with emoji. If we add $\p(A) + \p(B)$, we're adding the two leaves where $A$ is true (`r png_shades` and `r png_hearts`) to the two leaves where $B$ is true (`r png_shades` and `r png_nerd`). So we've double-counted the $A \wedge B$ leaf (`r png_shades`). To get $\p(A \vee B)$ then, we have to subtract one of those $A \wedge B$ leaves (`r png_shades`).
 
-`r newthought("There is a catch")` to the General Addition Rule. You need to know $\p(A \wedge B)$ in order to apply it. Sometimes that information is given to us. But when it's not, we have to figure it out somehow. If $A$ and $B$ are mutually exclusive, then it's easy: $\p(A \wedge B) = 0$. Or, if they're independent, then we can calculate $\p(A \wedge B) = \p(A) \times \p(B)$. But in other cases we have to turn elsewhere.
+`r newthought("There")`  is a catch to the General Addition Rule. You need to know $\p(A \wedge B)$ in order to apply it. Sometimes that information is given to us. But when it's not, we have to figure it out somehow. If $A$ and $B$ are mutually exclusive, then it's easy: $\p(A \wedge B) = 0$. Or, if they're independent, then we can calculate $\p(A \wedge B) = \p(A) \times \p(B)$. But in other cases we have to turn elsewhere.
 
 
 ## The General Multiplication Rule
 
-`r newthought("How can we")` calculate $\p(A \wedge B)$ in general?
+`r newthought("How")`  can we calculate $\p(A \wedge B)$ in general?
 
 The General Multiplication Rule
 
@@ -181,7 +181,7 @@ Which is precisely the Multiplication Rule.
 
 So we now have two rules for $\wedge$. The first one only applies when the two sides of the $\wedge$ are independent. The second applies whether they're independent or not. The second rule ends up being the same as the first one when they are independent.
 
-`r newthought("A tree diagram")` helps us understand this rule too. Recall this problem from [Chapter 6][Conditional Probability], with two urns of coloured marbles:
+`r newthought("A")`  tree diagram helps us understand this rule too. Recall this problem from [Chapter 6][Conditional Probability], with two urns of coloured marbles:
 
 - Urn X contains 3 black marbles, 1 white.
 - Urn Y contains 1 black marble, 3 white.
@@ -249,7 +249,7 @@ Black hole warning: notice that the General Multiplication Rule depends on $\p(A
 
 ## Laplace's Urn Puzzle
 
-`r newthought("The same urn scenario")` was used by [18th Century mathematician Laplace][Strength] in one of his favourite puzzles. He asked what happens if we do *two* draws, with replacement. What's the probability both draws will come up black?
+`r newthought("The")`  same urn scenario was used by [18th Century mathematician Laplace][Strength] in one of his favourite puzzles. He asked what happens if we do *two* draws, with replacement. What's the probability both draws will come up black?
 
 It's tempting to say $1/4$. The probability of drawing a black marble on each draw is $1/2$. So it *seems* the probability of two blacks is just $1/2 \times 1/2 = 1/4$.
 
@@ -338,7 +338,7 @@ $$
 
 ## The Law of Total Probability
 
-`r newthought("This kind of calculation")` comes up a lot. Since it would be tedious to figure it out from scratch every time, we make a general rule instead:
+`r newthought("This")`  kind of calculation comes up a lot. Since it would be tedious to figure it out from scratch every time, we make a general rule instead:
 
 The Law of Total Probability
 
@@ -423,7 +423,7 @@ Black hole warning: notice that the Law of Total Probability depends on $\p(A \g
 
 ## Example
 
-`r newthought("Every day")` Professor X either drives her car to campus or takes the bus. Mostly she drives, but one time in four she takes the bus. When she drives, she's on time $80\%$ of the time. When she takes the bus, she's on-time $90\%$ of the time.
+`r newthought("Every")`  day Professor X either drives her car to campus or takes the bus. Mostly she drives, but one time in four she takes the bus. When she drives, she's on time $80\%$ of the time. When she takes the bus, she's on-time $90\%$ of the time.
 
 What is the probability she'll be on time for class tomorrow?
 

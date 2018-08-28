@@ -5,7 +5,7 @@ Applied statistics is hard.\
 ---Andrew Gelman
 ```
 
-`r newthought("My wife's family")` keeps having girls. My wife has two sisters and she and her sisters each have two daughters, with no other siblings or children. That's nine girls in a row!
+`r newthought("My")`  wife's family keeps having girls. My wife has two sisters and she and her sisters each have two daughters, with no other siblings or children. That's nine girls in a row!
 
 ```{marginfigure, echo=TRUE}
 Note that girl and boy aren't the only two possibilities. The next child could also be intersex.
@@ -30,7 +30,7 @@ Which answer is correct?
 
 ## Independence
 
-`r newthought("It all hangs")` on whether the sex of each baby is "independent" of the others. Two events are ***independent*** when the outcome of one doesn't change the probability of the other.
+`r newthought("It")`  all hangs on whether the sex of each baby is "independent" of the others. Two events are ***independent*** when the outcome of one doesn't change the probability of the other.
 
 A clear example of independence is ***sampling with replacement***. Suppose we have an urn with $50$ black marbles and $50$ white ones. You draw a ball at random, then put it back. Then you give the urn a good hard shake and draw at random again. The two draws are independent in this case. Each time you draw, the number of black vs. white marbles is the same, and they're all randomly mixed up.
 
@@ -41,7 +41,7 @@ But now imagine sampling ***without replacement***. The situation is the same, e
 
 ## Fairness
 
-`r newthought("Flips of an ordinary coin")` are also independent. Even if you get ten heads in a row, the eleventh toss is still $50$-$50$. If it's *really* an ordinary coin, the ten heads in a row was just a coincidence.
+`r newthought("Flips")`  of an ordinary coin are also independent. Even if you get ten heads in a row, the eleventh toss is still $50$-$50$. If it's *really* an ordinary coin, the ten heads in a row was just a coincidence.
 
 Coin flips aren't just independent, they're also *unbiased*: heads and tails are equally likely. A process is ***biased*** if some outcomes are more likely than others. For example, a loaded coin that comes up heads $3/4$ of the time is biased.
 
@@ -54,7 +54,7 @@ But drawing without replacement is not a fair process, because the draws are not
 
 ## The Gambler's Fallacy
 
-`r newthought("Gambling often involves")` fair processes: fair dice, fair roulette wheels, fair decks of cards, etc. But people sometimes forget that fair processes are independent. If a roulette wheel comes up black nine times in a row, they figure it's "due" for red. Or if they get a bunch of bad hands in a row at poker, they figure they're due for a good one soon.
+`r newthought("Gambling")`  often involves fair processes: fair dice, fair roulette wheels, fair decks of cards, etc. But people sometimes forget that fair processes are independent. If a roulette wheel comes up black nine times in a row, they figure it's "due" for red. Or if they get a bunch of bad hands in a row at poker, they figure they're due for a good one soon.
 
 This way of thinking is called *the gambler's fallacy*. A fallacy is a mistake in reasoning. The mistake here is failing to fully account for independence. These gamblers know the process in question is fair, in fact that's a key part of their reasoning. They know it's unlikely that the roulette wheel will land on black ten times in a row because a fair wheel should land on black and red equally often. But then they overlook the fact that fair also means independent, and independent means the last nine spins tell us nothing about the tenth spin.
 
@@ -71,7 +71,7 @@ Now how likely is it these ten spins will all land black? Well, just one more sp
 
 ## Ignorance Is Not a Fallacy
 
-`r newthought("At this point")` you may have a nagging thought at the back of your mind. If we flipped a coin 100 times and it landed heads every time, wouldn't we conclude the next toss will probably land heads? How could that be a mistake?!
+`r newthought("At")`  this point you may have a nagging thought at the back of your mind. If we flipped a coin 100 times and it landed heads every time, wouldn't we conclude the next toss will probably land heads? How could that be a mistake?!
 
 The answer: it's not a fallacy. It *would* be a fallacy if you knew the coin was fair. But if you didn't know that for sure, then landing 100 heads in a row would be enough to convince you it's not fair.
 
@@ -86,7 +86,7 @@ So it's not necessarily a fallacy if my in-laws expect a boy next. It could just
 
 ## The Hot Hand Fallacy
 
-`r newthought("Sometimes a basketball player")` hits a lot of baskets in a row and people figure they're on fire: they've got a "hot hand". But [a famous study published in 1985](http://www.sciencedirect.com/science/article/pii/0010028585900106?via%3Dihub) found that these streaks are just a coincidence. Each shot is still independent of the others. Is the hot hand an example of the gambler's fallacy?
+`r newthought("Sometimes")`  a basketball player hits a lot of baskets in a row and people figure they're on fire: they've got a "hot hand". But [a famous study published in 1985](http://www.sciencedirect.com/science/article/pii/0010028585900106?via%3Dihub) found that these streaks are just a coincidence. Each shot is still independent of the others. Is the hot hand an example of the gambler's fallacy?
 
 Most people don't know about the famous 1985 study. Certainly nobody knew what the result of the study would be before it was conducted. So a lot of believers in the hot hand were in the unfortunate position of just not knowing a player's shots are independent. So the hot hand isn't the same as the gambler's fallacy.
 
