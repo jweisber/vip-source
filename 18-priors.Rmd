@@ -92,8 +92,30 @@ $$
 
 Here's one more example. In North American roulette, the wheel has $38$ pockets, $2$ of which are green: zero ($\mathtt{0}$) and double-zero ($\mathtt{00}$). If you don't know whether the wheel is fair, what should your prior probability be that the ball will land in a green pocket?
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="A North American roulette wheel"}
-knitr::include_graphics("img/roulette_wheel.png")
+```{r echo=FALSE, fig.width=5, fig.margin=TRUE, fig.cap="A North American roulette wheel"}
+df <- data.frame(
+  slot = 1:38,  
+  colour = rep(c("R", "B"), 19),
+  label = c(0, 28, 9, 26, 30, 11, 7, 20, 32, 17, 5, 22, 34,
+            15, 3, 24, 36, 13, 1, "00", 27, 10, 25, 29, 12, 
+            8, 19, 31, 18, 6, 21, 33, 16, 4, 23, 35, 14, 2),
+  stringsAsFactors = FALSE
+)
+df$colour[c(1, 20)] <- "G"
+
+ggplot(df) +
+  coord_polar(start = -pi/38) +
+  geom_tile(aes(x = slot, y = .5), 
+            fill = "transparent", colour = "transparent", height = 3) +
+  geom_tile(aes(x = slot, y = 2.5, fill = colour), 
+            colour = "white", size = .5, height = 1.9) +  
+  geom_tile(aes(x = slot, y = 3, fill = colour), 
+            colour = "white", size = .5, height = 1) +
+  geom_text(aes(x = slot, y = 3, label = label, angle = - 360/38 * slot + 9), 
+            colour = "white", fontface = "bold", size = 4) +
+  scale_fill_manual(values = c("#383838", "forestgreen", "#dd2825")) +
+  theme_void() +  
+  theme(legend.position = "none")
 ```
 
 According to the Principle of Indifference, each space has equal probability, $1/38$. So $\pr(G) = 1/19$:
