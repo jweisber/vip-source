@@ -54,7 +54,6 @@ ggplot() +
   theme_void() + xlim(0, 10) + ylim(0, 10) +
   apply(open_grid, 1, place_image, open_door) +
   apply(closed_grid, 1, place_image, closed_door)
-
 ```
 
 Here's another way to think about it. Imagine the game had a hundred doors instead of just three. And suppose again you start by picking the first door at random. Then the host opens *all the other doors but one*, door $59$ let's say. You have to ask yourself: why did they pick door $59$ to leave closed?? Almost certainly because that's where the prize is hidden! Maybe you got really lucky and picked right with the first door at the beginning. But it's way more likely you didn't, and the host had to keep door $59$ closed to avoid giving away the game.
@@ -188,24 +187,36 @@ There can be more than one way to partition the space of possibilities. For exam
 In a way, the fundamental principle of probability is that probabilities over a partition must add up to 1.
 
 
-`r tufte::newthought("Tree")`  diagrams follow a few simple rules based on these concepts. The parts of a tree are called *nodes*, *branches*, and *leaves*:
+`r tufte::newthought("Tree")`  diagrams follow a few simple rules based on these concepts. The parts of a tree are called *nodes*, *branches*, and *leaves*: see Figure \@ref(fig:treeparts).
 
-```{r echo=FALSE, fig.cap="Nodes, branches, and leaves"}
-#ggplot() +
-#  geom_text(aes(x, y, label = text), data = df_nodes, fontface = "italic") + 
-#  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = df_segments) + 
-#  xlim(-.1, 1.1) + ylim(0, 1) +
-#  theme_void() +
-#  annotate(geom = "text", label = "Nodes", x = .1, y = .1, color = "firebrick") +
-#  annotate(geom = "segment", x = .1, y = .13, xend = 0.01, yend = .485, color = "firebrick", arrow = arrow(length = unit(0.01, "npc"), type = "closed")) +
-#  annotate(geom = "segment", x = .16, y = .1, xend = 0.48, yend = .09, color = "firebrick", arrow = arrow(length = unit(0.01, "npc"), type = "closed")) +
-#  annotate(geom = "text", label = "Branches", x = .6, y = .7, color = "steelblue") +
-#  annotate(geom = "segment", x = .52, y = .7, xend = 0.25, yend = .7, color = "steelblue", arrow = arrow(length = unit(0.01, "npc"), type = "closed")) +
-#  annotate(geom = "segment", x = .6, y = .73, xend = 0.65, yend = .89, color = "steelblue", arrow = arrow(length = unit(0.01, "npc"), type = "closed")) +
-#  annotate(geom = "segment", x = .6, y = .67, xend = 0.65, yend = .51, color = "steelblue", arrow = arrow(length = unit(0.01, "npc"), type = "closed")) +
-#  annotate(geom = "text", label = "Leaves", x = 1.1, y = .35, color = "forestgreen") +
-#  annotate(geom = "segment", x = 1.1, y = .32, xend = 1, yend = .23, color = "forestgreen", arrow = arrow(length = unit(0.01, "npc"), type = "closed")) +
-#  annotate(geom = "segment", x = 1.1, y = .37, xend = 1, yend = .47, color = "forestgreen", arrow = arrow(length = unit(0.01, "npc"), type = "closed"))
+```{r treeparts, echo=FALSE, fig.cap="The parts of a tree diagram: nodes, branches, and leaves"}
+a <- arrow(length = unit(0.01, "npc"), type = "closed")
+ggplot(nodes) +
+  geom_segment(aes(x = x, y = y, xend = xend, yend = yend)) +  
+  geom_label(aes(x = x, y = y, label = text), label.size = NA,
+             label.padding = padding) +
+  xlim(0, 1.2) + ylim(0, 1) +
+  theme_void() +
+  annotate(geom = "segment", x = .2, y = .25, xend = 0.01, yend = .485,
+           color = "firebrick", arrow = a) +
+  annotate(geom = "segment", x = .2, y = .25, xend = 0.48, yend = .16,
+           color = "firebrick", arrow = a) +
+  annotate(geom = "label", label = "Nodes", x = .2, y = .25,
+           color = "firebrick", label.size = NA) +
+  annotate(geom = "segment", x = .7, y = .68, xend = 0.32, yend = .68,
+           color = "steelblue", arrow = a) +
+  annotate(geom = "segment", x = .7, y = .68, xend = 0.7, yend = .82,
+           color = "steelblue", arrow = a) +
+  annotate(geom = "segment", x = .7, y = .68, xend = 0.7, yend = .51,
+           color = "steelblue", arrow = a) +  
+  annotate(geom = "label", label = "Branches", x = .7, y = .68,
+           color = "steelblue", label.size = NA) +
+  annotate(geom = "segment", x = 1.1, y = .37, xend = 1, yend = .27,
+           color = "forestgreen", arrow = a) +
+  annotate(geom = "segment", x = 1.1, y = .37, xend = 1, yend = .47,
+           color = "forestgreen", arrow = a) +
+  annotate(geom = "label", label = "Leaves", x = 1.1, y = .37,
+           color = "forestgreen", label.size = NA)
 ```
 
 The rules for a tree are as follows:
