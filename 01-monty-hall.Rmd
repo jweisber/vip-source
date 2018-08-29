@@ -37,13 +37,13 @@ But the right answer is you should switch. Door B is now twice as likely to be t
 
 The reason is subtle. One way to think about it is that the host's choice of which door to open is a bit of a tell. Maybe they *had* to open door C, because the prize is behind door B and they didn't want to give that away. Of course, it could be behind door A instead, so maybe they just picked door C at random. But there was only a one-in-three chance the prize would be behind door A. Which means there's a two-in-three chance they didn't really have a choice, they had to open door C to avoid showing you the prize behind door B.
 
-```{r montygrid, echo=FALSE, fig.margin=TRUE, fig.cap="The hundred-door version of the Monty Hall problem, suggested by Marilyn vos Savant"}
+```{r montygrid, echo=FALSE, fig.margin=TRUE, fig.width=5, fig.cap="The hundred-door version of the Monty Hall problem, suggested by Marilyn vos Savant"}
 open_door <- readPNG("img/door_open.png") %>% rasterGrob()
 closed_door <- readPNG("img/door_closed.png") %>% rasterGrob()
 
 place_image <- function(row, img) {
   annotation_custom(img, xmin = row[1], xmax = row[1] + 1,
-                    ymin = row[2] + .1, ymax = row[2] + .9)
+                    ymin = row[2] + .01, ymax = row[2] + .99)
 }
 
 open_grid <- expand.grid(x = 0:9, y = 9:0)
