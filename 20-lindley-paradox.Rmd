@@ -301,7 +301,7 @@ But now she has rejected the only two possibilities. There are only two kinds of
 
 How did things go so wrong? Figure \@ref(fig:lindley) shows what's happening here. Neither hypothesis fits the finding $k = 36$ very well: it's an extremely improbable result on either hypothesis. This is why both hypotheses end up being rejected by a significance test.
 
-```{r lindley, echo=FALSE, cache=TRUE, fig.cap="An illustration of Lindley's paradox. The finding $k = 36$ doesn't fit well with either hypothesis, so both are rejected. But it fits one of them (red) much better than the other (blue). So the blue hypothesis is more plausible from an intuitive perspective."}
+```{r lindley, echo=FALSE, cache=TRUE, fig.cap="An illustration of Lindley's paradox. The finding $k = 36$ doesn't fit well with either hypothesis, so both are rejected. But it fits one of them (red) much better than the other (blue). So the red hypothesis is more plausible from an intuitive perspective."}
 ggplot(data = NULL, aes(x = c(0, 40))) +
   stat_function(fun = dnorm, args = list(mean = 12, sd = 3), n = 201,
                 colour = rightcolour) +
