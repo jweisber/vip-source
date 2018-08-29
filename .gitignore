@@ -1,5 +1,5 @@
 .DS_Store
-docs/*
+vip/*
 _book/*
 _bookdown_files/*
 .vscode/*
