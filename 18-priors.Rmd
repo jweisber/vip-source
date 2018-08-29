@@ -1,7 +1,7 @@
 # The Problem of Priors {#priors}
 
 ```{block, type="epigraph"}
-When my information changes, I alter my conclusions.\
+When my information changes, I alter my conclusions.
 What do you do, sir?\
 ---attributed to John Maynard Keynes
 ```
