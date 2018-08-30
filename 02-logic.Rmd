@@ -149,11 +149,9 @@ propositions <- data.frame(
 euler_diagram(propositions)
 ```
 
-```{r echo=FALSE, fig.cap="Leonhard Euler ($1707$--$1783$)", fig.margin = TRUE}
-knitr::include_graphics("img/euler.png")
-```
+[^eulernote]: Leonhard Euler lived from $1707$ to $1783$. You may have encountered some of his work before if you've worked with logarithms or taken calculus.
 
-These are called ***Euler diagrams***, after the mathematician Leonhard Euler (prounounced *oiler*). You may have seen Venn diagrams before, which are very similar. But in Euler diagrams the circles don't have to overlap.
+These are called ***Euler diagrams***, after the mathematician Leonhard Euler (prounounced *oiler*).[^eulernote] You may have seen Venn diagrams before, which are very similar. But in Euler diagrams the circles don't have to overlap.
 
 `r newthought("Sometimes")`  one circle will even contain another circle entirely. Take this example:
 
@@ -167,8 +165,6 @@ Confucius was born in Asia.\
 Therefore, Confucius was born.
 ```
 
-In this case we say that the first proposition ***logically entails*** the second. In terms of an Euler diagram, he first circle is contained entirely in the second (Figure \@ref(fig:entailment)). Because there is no possible situation where the first proposition is true yet the second false.
-
 ```{r entailment, echo=FALSE, fig.margin=TRUE,  fig.cap="Logical entailment"}
 propositions <- data.frame(
     cirx = c(0     , 0),
@@ -178,9 +174,10 @@ propositions <- data.frame(
     laby = c(.5    , 1.15),
     labl = c("italic(A)", "italic(B)")
 )
-
 euler_diagram(propositions)
 ```
+
+In this case we say that the first proposition ***logically entails*** the second. In terms of an Euler diagram, he first circle is contained entirely in the second (Figure \@ref(fig:entailment)). Because there is no possible situation where the first proposition is true yet the second false.
 
 What if an argument has multiple premises? For example:
 
@@ -189,8 +186,6 @@ Zhuangzi was born in the Chinese province of  Anhui.\
 Zhuoru was born in the Chinese city of Beijing.\
 Therefore, both Zhuangzi and Zhuoru were born in China.
 ```
-
-This argument is valid, and the diagram might look like Figure \@ref(fig:validtwopremises). Notice how the $A \wedge B$ region lies entirely within the $C$ circle. This reflects the argument's validity: there is no way for the first two propositions to be true and the last one false.
 
 ```{r validtwopremises, fig.margin=TRUE, echo=FALSE, fig.cap="A valid argument with two premises"}
 propositions <- data.frame(
@@ -201,9 +196,10 @@ propositions <- data.frame(
     laby = c(1.15     , 1.15, 1.15),
     labl = c("italic(A)", "italic(B)", "italic(C)")
 )
-
 euler_diagram(propositions)
 ```
+
+This argument is valid, and the diagram might look like Figure \@ref(fig:validtwopremises). Notice how the $A \wedge B$ region lies entirely within the $C$ circle. This reflects the argument's validity: there is no way for the first two propositions to be true and the last one false.
 
 In contrast, an invalid argument would have a diagram like Figure \@ref(fig:invalidtwopremises). This diagram allows for the possibility that $A$ and $B$ are both true yet $C$ is false; part of the $A \wedge B$ region falls outside the $C$ circle.
 
@@ -216,7 +212,6 @@ propositions <- data.frame(
     laby = c(.65     , .65     , 1.7),
     labl = c("italic(A)", "italic(B)", "italic(C)")
 )
-
 euler_diagram(propositions)
 ```
 
@@ -228,11 +223,6 @@ euler_diagram(propositions)
 ```{block, type="argument", echo=TRUE}
 The sun has risen every day so far.\
 Therefore, the sun will rise again tomorrow.
-```
-
-```{marginfigure, echo=TRUE}
-![](img/stolen_earth.png)
-In the *Doctor Who* episode "The Stolen Earth", aliens teleport our planet out of its solar system. The sun doesn't rise that day, strange planets fill the sky instead.
 ```
 
 This argument isn't valid, because it's possible the conclusion is false even though the premise is true. Maybe the sun will explode in the night for some surprising reason. Or maybe the earth's rotation will be stopped by alien forces.
