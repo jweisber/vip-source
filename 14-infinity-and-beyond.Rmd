@@ -48,8 +48,8 @@ st_petersburg_overage <- function(x) {
 }
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = st_petersburg, geom = "area", n = 1000, fill = rightcolour) +
-  stat_function(fun = st_petersburg_overage, geom = "area", n = 1000, fill = rightcolour, alpha = 0.2) +
+  stat_function(fun = st_petersburg, geom = "area", n = 1000, fill = bookblue) +
+  stat_function(fun = st_petersburg_overage, geom = "area", n = 1000, fill = bookblue, alpha = 0.2) +
   scale_y_continuous(breaks = seq(0, 128, 16)) +
   coord_cartesian(ylim = c(0, 128)) +
   xlab("probability") +
@@ -115,7 +115,7 @@ data <- bind_rows(
 )
 
 ggplot(data) + 
-  geom_area(aes(x = x, y = y), fill = rightcolour) +
+  geom_area(aes(x = x, y = y), fill = bookblue) +
   scale_y_continuous(limits = c(0, 128), breaks = seq(0, 128, 16)) +
   facet_wrap(~unit, scales = "free_y", strip.position = "left",
              labeller = as_labeller(c(dollars = "dollars", utils = "utils"))) +
@@ -164,8 +164,8 @@ st_petersburg_overage <- function(x) {
 }
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = st_petersburg, geom = "area", n = 1000, fill = rightcolour) +
-  stat_function(fun = st_petersburg_overage, geom = "area", n = 1000, fill = rightcolour, alpha = 0.2) +
+  stat_function(fun = st_petersburg, geom = "area", n = 1000, fill = bookblue) +
+  stat_function(fun = st_petersburg_overage, geom = "area", n = 1000, fill = bookblue, alpha = 0.2) +
   scale_y_continuous(breaks = seq(0, 128, 16)) +
   coord_cartesian(ylim = c(0, 128)) +
   xlab("probability") +

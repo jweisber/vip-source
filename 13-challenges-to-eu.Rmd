@@ -105,7 +105,7 @@ Thus, Savage argued, we can see that the expected utility rule is correct once w
 f <- function(x) { case_when(x <= 1 ~ 1) }
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
   scale_y_continuous("", labels = c("0" = "$0", "1" = "$1M", "2" = "$2M", "3" = "$3M", "4" = "$4M", "5" = "$5M"), breaks = seq(0, 5, 1), limits = c(0, 5)) +
   scale_x_continuous("probability", breaks = seq(0, 1, 1/10)) +
   ggtitle("Option 1A")
@@ -113,7 +113,7 @@ ggplot(NULL, aes(c(0, 1))) +
 f <- function(x) { case_when(x <= .01 ~ 0, x <= .9 ~ 1, x <= 1 ~ 5) }
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
   scale_y_continuous("", labels = c("0" = "$0", "1" = "$1M", "2" = "$2M", "3" = "$3M", "4" = "$4M", "5" = "$5M"), breaks = seq(0, 5, 1), limits = c(0, 5)) +
   scale_x_continuous("probability", breaks = seq(0, 1, 1/10)) +
   ggtitle("Option 1B")

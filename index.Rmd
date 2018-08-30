@@ -29,10 +29,10 @@ library(ptree)
 
 theme_set(theme_minimal())
 
-leftcolour <- rgb(228, 6, 19, maxColorValue = 255)
-rightcolour <- rgb(0, 92, 169, maxColorValue = 255)
-middlecolour <- rgb(114, 49, 94, maxColorValue = 255)
-green <- rgb(26, 179, 22, maxColorValue = 255)
+bookred <- rgb(228, 6, 19, maxColorValue = 255)
+bookblue <- rgb(0, 92, 169, maxColorValue = 255)
+bookpurple <- rgb(114, 49, 94, maxColorValue = 255)
+bookgreen <- rgb(26, 179, 22, maxColorValue = 255)
 ```
 
 `r newthought("This")`  textbook is for introductory philosophy courses on probability and inductive logic. It is based on a typical such course I teach at the University of Toronto, where we offer "Probability & Inductive Logic" in the second year, alongside the usual deductive logic intro.$\,$

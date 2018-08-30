@@ -69,7 +69,7 @@ The expected value isn't the amount you expect to win from a game. It's the amou
 f <- function(x) case_when(x <= 1/3 ~ 2, x <= 1 ~ 6)
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
   scale_y_continuous("payoff ($)", breaks = seq(0, 8, 2), limits = c(0, 8)) +
   scale_x_continuous("probability", labels = c("0" = "0", "1/3" = "1/3", "2/3" = "2/3", "1" = "1"), breaks = seq(0, 1, 1/3))
 ```
@@ -78,7 +78,7 @@ ggplot(NULL, aes(c(0, 1))) +
 f <- function(x) case_when(x <= 1/2 ~ 0, x <= 1 ~ 1)
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
   scale_y_continuous("payoff ($)", breaks = seq(0, 4, 1), limits = c(0, 4)) +
   scale_x_continuous("probability", labels = c("0" = "0", "1/2" = "1/2", "1" = "1"), breaks = seq(0, 1, 1/2)) +
   ggtitle("Coin Game")
@@ -86,7 +86,7 @@ ggplot(NULL, aes(c(0, 1))) +
 f <- function(x) case_when(x <= 2/3 ~ 0, x <= 1 ~ 3)
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
   scale_y_continuous("payoff ($)", breaks = seq(0, 4, 1), limits = c(0, 4)) +
   scale_x_continuous("probability", labels = c("0" = "0", "1/3" = "1/3", "2/3" = "2/3", "1" = "1"), breaks = seq(0, 1, 1/3)) +
   ggtitle("Die Game")
@@ -110,8 +110,8 @@ f <- function(x) case_when(x <= 1/2 ~ -2, x <= 1 ~ 0)
 g <- function(x) case_when(x <= 1/2 ~ 0, x <= 1 ~ 1)
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = leftcolour) +
-  stat_function(fun = g, geom = "area", n = 1000, fill = rightcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookred) +
+  stat_function(fun = g, geom = "area", n = 1000, fill = bookblue) +
   scale_y_continuous("payoff ($)", breaks = seq(-3, 3, 1), limits = c(-3, 3)) +
   scale_x_continuous("probability", labels = c("0" = "0", "1/2" = "1/2", "1" = "1"), breaks = seq(0, 1, 1/2))
 ```
@@ -142,8 +142,8 @@ f <- function(x) { case_when(x <= 1/3 ~ -3, x <= 1 ~ 0) }
 g <- function(x) { case_when(x <= 1/3 ~ 0, x <= 2/3 ~ 1, x <= 1 ~ 2)}
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = leftcolour) +
-  stat_function(fun = g, geom = "area", n = 1000, fill = rightcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookred) +
+  stat_function(fun = g, geom = "area", n = 1000, fill = bookblue) +
   scale_y_continuous("payoff ($)", breaks = seq(-4, 4, 1), limits = c(-4, 4)) +
   scale_x_continuous("probability", labels = c("0" = "0", "1/3" = "1/3", "2/3" = "2/3", "1" = "1"), breaks = seq(0, 1, 1/3))
 ```
@@ -210,7 +210,7 @@ Imagine you're taking a trip to Ottawa and you can either drive or go by train. 
 f <- function(x) { case_when(x <= 1/2 ~ -6, x <= 1 ~ -5) }
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = leftcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookred) +
   scale_y_continuous("hours", breaks = seq(-12, 2, 2), limits = c(-12, 2)) +
   scale_x_continuous("probability", breaks = seq(0, 1, 1/10)) +
   ggtitle("Train")
@@ -218,7 +218,7 @@ ggplot(NULL, aes(c(0, 1))) +
 f <- function(x) { case_when(x <= 1/10 ~ -10, x <= 1 ~ -4) }
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = leftcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookred) +
   scale_y_continuous("hours", breaks = seq(-12, 2, 2), limits = c(-12, 2)) +
   scale_x_continuous("probability", breaks = seq(0, 1, 1/10)) +
   ggtitle("Drive")

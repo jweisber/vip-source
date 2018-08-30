@@ -26,9 +26,9 @@ die5 <- readPNG("img/die/die5.png") %>% rasterGrob()
 die6 <- readPNG("img/die/die6.png") %>% rasterGrob()
 
 rect1 <- geom_rect(aes(xmin = 0, ymin = 0, xmax = 3, ymax = 1), 
-                   size = 1, fill = leftcolour)
+                   size = 1, fill = bookred)
 rect2 <- geom_rect(aes(xmin = 1.05, ymin = 0.05, xmax = 2.95, ymax = .95), 
-                   size = 1, fill = middlecolour)
+                   size = 1, fill = bookpurple)
 
 p <- ggplot() + 
   theme_void() + coord_fixed() +
@@ -74,10 +74,10 @@ upper <- function(x) {
 ggplot() + 
   coord_fixed() + theme_void() +
   xlim(-3,3) + ylim(-2,2) +
-  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.5), fill = leftcolour) +  
-  geom_circle(aes(x0 = .75, y0 = 0, r = 1.5), fill = rightcolour) +  
+  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.5), fill = bookred) +  
+  geom_circle(aes(x0 = .75, y0 = 0, r = 1.5), fill = bookblue) +  
   geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
-              fill = middlecolour, colour = "black") +
+              fill = bookpurple, colour = "black") +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
             fontface = "italic", size = 6) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
@@ -85,7 +85,7 @@ ggplot() +
 
 In terms of an Euler diagram (Figure \@ref(fig:condprob)), the definition of conditional probability compares the size of the purple $A \wedge B$ region to the size of the whole $B$ region, purple and blue together. If you don't mind getting a little colourful with your algebra:
 $$
-  \p(A \given B) = \frac{\color{middlecolour}{\blacksquare}}{\color{middlecolour}{\blacksquare} + \color{rightcolour}{\blacksquare}}.
+  \p(A \given B) = \frac{\color{bookpurple}{\blacksquare}}{\color{bookpurple}{\blacksquare} + \color{bookblue}{\blacksquare}}.
 $$
 So the definition works because, informally speaking, $\p(A \wedge B)/\p(B)$ is the proportion of the $B$ outcomes that are also $A$ outcomes.[^wrightquip]
 

@@ -61,8 +61,8 @@ df_effective <- data.frame(
 )
 
 ggplot(NULL) +
-  geom_path(aes(x = x, y = y), data = df_useless, colour = leftcolour) +
-  geom_path(aes(x = x, y = y), data = df_effective, colour = green) +
+  geom_path(aes(x = x, y = y), data = df_useless, colour = bookred) +
+  geom_path(aes(x = x, y = y), data = df_effective, colour = bookgreen) +
   annotate("segment", x = 40, xend = 40, y = 0, yend = fence_y_end,
            linetype = "dashed", size = .5, colour = "darkgrey") +
   annotate("segment", x = 60, xend = 60, y = 0, yend = fence_y_end,
@@ -74,9 +74,9 @@ ggplot(NULL) +
   annotate("text", x = 50, y = yend, label = "95%", size = 3, 
            colour = "dimgrey") +
   geom_area(aes(x = x, y = y), data = df_useless %>% filter(x >= 60), 
-            fill = leftcolour, alpha = .25) +
+            fill = bookred, alpha = .25) +
   geom_area(aes(x = x, y = y), data = df_effective %>% filter(x <= 60), 
-            fill = green, alpha = .25) +
+            fill = bookgreen, alpha = .25) +
   annotate("segment", x = 53, xend = 57, y = .015, yend = .01, size = .3, 
            colour = "dimgrey", arrow = a) +
   annotate("text", x = 51, y = .0175, label = "missed discoveries", size = 3, 
@@ -116,7 +116,7 @@ ggplot() +
   theme_void() + xlim(0, 20) + ylim(0, 10) +
   apply(red_grid, 1, place_image, pill_red) +
   apply(green_grid, 1, place_image, pill_green) +
-  geom_path(aes(x = x, y = y), data = path, colour = green, size = 1, linetype = "longdash")
+  geom_path(aes(x = x, y = y), data = path, colour = bookgreen, size = 1, linetype = "longdash")
 ```
 
 
@@ -142,8 +142,8 @@ df_effective <- data.frame(
 )
 
 ggplot(NULL) +
-  geom_path(aes(x = x, y = y), data = df_useless, colour = leftcolour) +
-  geom_path(aes(x = x, y = y), data = df_effective, colour = green) +
+  geom_path(aes(x = x, y = y), data = df_useless, colour = bookred) +
+  geom_path(aes(x = x, y = y), data = df_effective, colour = bookgreen) +
   annotate("segment", x = 35, xend = 35, y = 0, yend = yend,
            linetype = "dashed", size = .5, colour = "darkgrey") +
   annotate("segment", x = 65, xend = 65, y = 0, yend = yend,
@@ -155,9 +155,9 @@ ggplot(NULL) +
   annotate("text", x = 50, y = yend, label = "99%", size = 3, 
            colour = "dimgrey") +
   geom_area(aes(x = x, y = y), data = df_useless %>% filter(x >= 65), 
-            fill = leftcolour, alpha = .25) +
+            fill = bookred, alpha = .25) +
   geom_area(aes(x = x, y = y), data = df_effective %>% filter(x <= 65), 
-            fill = green, alpha = .25) +
+            fill = bookgreen, alpha = .25) +
   annotate("segment", x = 53, xend = 57, y = .015, yend = .01, size = .3, 
            colour = "dimgrey", arrow = a) +
   annotate("text", x = 51, y = .0175, label = "missed discoveries", size = 3, 
@@ -189,7 +189,7 @@ ggplot() +
   theme_void() + xlim(0, 20) + ylim(0, 10) +
   apply(red_grid, 1, place_image, pill_red) +
   apply(green_grid, 1, place_image, pill_green) +
-  geom_path(aes(x = x, y = y), data = path, colour = green, size = 1, linetype = "longdash")
+  geom_path(aes(x = x, y = y), data = path, colour = bookgreen, size = 1, linetype = "longdash")
 ```
 
 Figure \@ref(fig:hundredstudiesgrid2) shows what happens now: about $95\%$ of our approved treatments will be genuine. We discover half of the $40$ genuine treatments, which is $20$. And $.005$ of the $160$ useless treatments is $.8$, which we'll round up to $1$ for purposes of the diagram. So $20/21 \approx .95$ of our approved treatments are genuinely effective.
@@ -220,7 +220,7 @@ ggplot() +
   theme_void() + xlim(0, 20) + ylim(0, 10) +
   apply(red_grid, 1, place_image, pill_red) +
   apply(green_grid, 1, place_image, pill_green) +
-  geom_path(aes(x = x, y = y), data = path, colour = green, size = 1, linetype = "longdash")
+  geom_path(aes(x = x, y = y), data = path, colour = bookgreen, size = 1, linetype = "longdash")
 ```
 
 
@@ -304,9 +304,9 @@ How did things go so wrong? Figure \@ref(fig:lindley) shows what's happening her
 ```{r lindley, echo=FALSE, cache=TRUE, fig.cap="An illustration of Lindley's paradox. The finding $k = 36$ doesn't fit well with either hypothesis, so both are rejected. But it fits one of them (red) much better than the other (blue). So the red hypothesis is more plausible from an intuitive perspective."}
 ggplot(data = NULL, aes(x = c(0, 40))) +
   stat_function(fun = dnorm, args = list(mean = 12, sd = 3), n = 201,
-                colour = rightcolour) +
+                colour = bookblue) +
   stat_function(fun = dnorm, args = list(mean = 24, sd = 3.464), n = 201,
-                colour = leftcolour) +
+                colour = bookred) +
   geom_point(aes(x = 36, y = 0), size = 2) +
   annotate("text", x = 36, y = .01, label = "italic(k) == 36", size = 4,
            parse = TRUE) +

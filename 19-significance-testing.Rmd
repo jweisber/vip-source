@@ -49,7 +49,7 @@ a <- arrow(length = unit(0.02, "npc"))
 
 ggplot(df, aes(x = heads, y = probability)) + 
   geom_bar(aes(fill = Decision), stat = "identity") +
-  scale_fill_manual("", values = c(leftcolour, rightcolour)) +
+  scale_fill_manual("", values = c(bookred, bookblue)) +
   scale_x_continuous("# heads", breaks = seq(0, 100, 20)) +
   scale_y_continuous("probability", breaks = seq(0, fence_y_end, .02),
                      limits = c(0, fence_y_end)) +
@@ -98,7 +98,7 @@ a <- arrow(length = unit(0.02, "npc"))
 
 ggplot(df, aes(x = heads, y = probability)) + 
   geom_bar(aes(fill = Decision), stat = "identity") +
-  scale_fill_manual(values = c(leftcolour, rightcolour)) +
+  scale_fill_manual(values = c(bookred, bookblue)) +
   scale_x_continuous("# heads", breaks = seq(0, 100, 20)) +
   scale_y_continuous("probability", breaks = seq(0, fence_y_end, .02),
                      limits = c(0, fence_y_end)) +
@@ -140,10 +140,10 @@ df2 <- data.frame(heads = 30:70, probability = dbinom(30:70, 100, 0.5), f = 2)
 df <- bind_rows(df1, df2)
 
 ggplot(df, aes(x = heads, y = probability)) + 
-  geom_bar(stat = "identity", fill = rightcolour) +
+  geom_bar(stat = "identity", fill = bookblue) +
   scale_x_continuous("# heads", breaks = seq(30, 70, 10)) +
   stat_function(fun = dnorm, args = list(mean = 50, sd = 5), 
-                n = 201, colour = leftcolour, size = .75) +
+                n = 201, colour = bookred, size = .75) +
   facet_grid(cols = vars(f)) +
   theme(strip.background = element_blank(),
         strip.text.x = element_blank())
@@ -245,7 +245,7 @@ ggplot(df) +
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         axis.text.x = element_text(face = "italic")) +
-  scale_colour_manual(values = c(rightcolour, "chocolate2", leftcolour))
+  scale_colour_manual(values = c(bookblue, "chocolate2", bookred))
 ```
 
 It's customary to use $k$ for the number of heads we actually get in our experiment. So we can also state the rule formally like this:
@@ -294,8 +294,8 @@ l <- function(labels, multi_line = TRUE, sep = " = ") {
 
 ggplot(df) +
   geom_bar(aes(x = heads, y = probability), stat = "identity",
-           fill = rightcolour) +
-  geom_path(aes(x, y), data = norm_df, colour = leftcolour) +
+           fill = bookblue) +
+  geom_path(aes(x, y), data = norm_df, colour = bookred) +
   facet_grid(rows = vars(p), cols = vars(n), scales = "free", 
              labeller = l, switch = "y") +
   scale_x_continuous(NULL, labels = NULL) + 

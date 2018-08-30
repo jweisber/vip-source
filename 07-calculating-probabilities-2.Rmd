@@ -19,7 +19,7 @@ In this chapter we'll learn new, more powerful rules for $\vee$ and $\wedge$. Bu
 ggplot() + theme_void() + coord_fixed() +
   xlim(-3,3) + ylim(-2,2) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=1),
-        panel.background = element_rect(fill = leftcolour)) +
+        panel.background = element_rect(fill = bookred)) +
   geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), fill = "white") +
   geom_text(aes(x = 0, y = 0, label = "A"), 
             fontface = "italic", size = 6) +
@@ -56,10 +56,10 @@ This rule always applies, whether $A$ and $B$ are mutually exclusive or not.
 ggplot() + 
   coord_fixed() + theme_void() +
   xlim(-3,3) + ylim(-2,2) +
-  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.5), fill = leftcolour) +  
-  geom_circle(aes(x0 = .75, y0 = 0, r = 1.5), fill = rightcolour) +  
+  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.5), fill = bookred) +  
+  geom_circle(aes(x0 = .75, y0 = 0, r = 1.5), fill = bookblue) +  
   geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
-              fill = middlecolour, colour = "black") +
+              fill = bookpurple, colour = "black") +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
             fontface = "italic", size = 6) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
@@ -67,23 +67,23 @@ ggplot() +
 
 To understand the rule, consider an Euler diagram where $A$ and $B$ are not mutually exclusive. In terms of colour, the size of the $A \vee B$-region is:
 $$ 
-  \color{leftcolour}{\blacksquare}\color{black}{}
+  \color{bookred}{\blacksquare}\color{black}{}
     \,+\,
-  \color{middlecolour}{\blacksquare}\color{black}{}
+  \color{bookpurple}{\blacksquare}\color{black}{}
     \,+\,
-  \color{rightcolour}{\blacksquare}\color{black}{}.
+  \color{bookblue}{\blacksquare}\color{black}{}.
 $$
 Which is the same as:
 $$
-  (\color{leftcolour}{\blacksquare}\color{black}{}
+  (\color{bookred}{\blacksquare}\color{black}{}
     \,+\,
-  \color{middlecolour}{\blacksquare}\color{black}{})
+  \color{bookpurple}{\blacksquare}\color{black}{})
     \,+\, 
-  (\color{rightcolour}{\blacksquare}\color{black}{}
+  (\color{bookblue}{\blacksquare}\color{black}{}
     \,+\,
-  \color{middlecolour}{\blacksquare}\color{black}{}) 
+  \color{bookpurple}{\blacksquare}\color{black}{}) 
     \,-\,
-  \color{middlecolour}{\blacksquare}\color{black}{}.
+  \color{bookpurple}{\blacksquare}\color{black}{}.
 $$
 In algebraic terms this is:
 $$ \p(A) + \p(B) - \p(A \wedge B).$$
@@ -350,20 +350,20 @@ There's an intuitive idea at work here. To figure out how likely $A$ is, conside
 ggplot() + 
   coord_fixed() + theme_void() +
   xlim(-3,3) + ylim(-2,2) +
-  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.5), fill = leftcolour) +  
-  geom_circle(aes(x0 = .75, y0 = 0, r = 1.5), fill = rightcolour) +  
+  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.5), fill = bookred) +  
+  geom_circle(aes(x0 = .75, y0 = 0, r = 1.5), fill = bookblue) +  
   geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
-              fill = middlecolour, colour = "black") +
+              fill = bookpurple, colour = "black") +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
             fontface = "italic", size = 6) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 
-We can also use an Euler diagram. The size of the $A$ region is the sum of the $A \wedge B$ region and the $A \wedge \neg B$ region: $\color{middlecolour}{\blacksquare}\color{black}{} + \color{leftcolour}{\blacksquare}\color{black}{}$. And each of those regions can be calculated using the General Multiplication Rule. For example, $\p(A \wedge B) = \p(A \given B) \p(B)$. So in algebraic terms we have:
+We can also use an Euler diagram. The size of the $A$ region is the sum of the $A \wedge B$ region and the $A \wedge \neg B$ region: $\color{bookpurple}{\blacksquare}\color{black}{} + \color{bookred}{\blacksquare}\color{black}{}$. And each of those regions can be calculated using the General Multiplication Rule. For example, $\p(A \wedge B) = \p(A \given B) \p(B)$. So in algebraic terms we have:
 $$
   \begin{aligned}
-    \p(A) &= \color{middlecolour}{\blacksquare}\color{black}{} 
-             + \color{leftcolour}{\blacksquare}\color{black}{}\\
+    \p(A) &= \color{bookpurple}{\blacksquare}\color{black}{} 
+             + \color{bookred}{\blacksquare}\color{black}{}\\
           &= \p(A \wedge B) + \p(A \wedge \neg B)\\
           &= \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B).
   \end{aligned}

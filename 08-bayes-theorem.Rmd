@@ -143,10 +143,10 @@ upper <- function(x) {
 ggplot(data.frame(x = c(-3, 3))) + 
   coord_fixed() + theme_void() +
   xlim(-3,3) + ylim(-2,2) +
-  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.58), colour = leftcolour, size = 3) +
-  geom_circle(aes(x0 = .75, y0 = 0, r = 1.58), colour = rightcolour, size = 3) +
-  stat_function(fun = upper, xlim = c(-3/4, 3/4), colour = middlecolour, size = 3) +
-  stat_function(fun = function(x) -upper(x), xlim = c(-3/4, 3/4), colour = middlecolour, size = 3) +
+  geom_circle(aes(x0 = -.75, y0 = 0, r = 1.58), colour = bookred, size = 3) +
+  geom_circle(aes(x0 = .75, y0 = 0, r = 1.58), colour = bookblue, size = 3) +
+  stat_function(fun = upper, xlim = c(-3/4, 3/4), colour = bookpurple, size = 3) +
+  stat_function(fun = function(x) -upper(x), xlim = c(-3/4, 3/4), colour = bookpurple, size = 3) +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
             fontface = "italic", size = 6) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
@@ -155,13 +155,13 @@ ggplot(data.frame(x = c(-3, 3))) +
 `r newthought("We've talked")` before about $\p(A \given B)$ being the portion of the $B$ region that's inside the $A$ region. The purple portion of the blue $B$ circle, in other words:
 $$
   \begin{aligned}
-    \p(A \given B) &= \frac{ \color{middlecolour}{\p(A \wedge B)} }{ \color{rightcolour}{\p(B)} }.\\
+    \p(A \given B) &= \frac{ \color{bookpurple}{\p(A \wedge B)} }{ \color{bookblue}{\p(B)} }.\\
   \end{aligned}
 $$
 So when we apply the General Multiplication Rule to the purple region we get:
 $$
   \begin{aligned}
-    \p(A \given B) &= \frac{ \color{middlecolour}{\p(B \given A)\p(A)} }{ \color{rightcolour}{\p(B)} }.\\
+    \p(A \given B) &= \frac{ \color{bookpurple}{\p(B \given A)\p(A)} }{ \color{bookblue}{\p(B)} }.\\
   \end{aligned}
 $$
 

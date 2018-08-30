@@ -27,8 +27,8 @@ f <- function(x) case_when(x <= 2/3 ~ 1, x <= 1 ~ 0)
 g <- function(x) case_when(x <= 2/3 ~ 0, x <= 1 ~ -2)
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
-  stat_function(fun = g, geom = "area", n = 1000, fill = leftcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
+  stat_function(fun = g, geom = "area", n = 1000, fill = bookred) +
   scale_y_continuous("payoff ($)", breaks = seq(-2, 1, 1), limits = c(-2.5, 1.5)) +
   scale_x_continuous("probability", labels = c("0" = "0", "1/3" = "1/3", "2/3" = "2/3", "1" = "1"), breaks = seq(0, 1, 1/3))
 ```
@@ -44,8 +44,8 @@ f <- function(x) case_when(x <= 1/10 ~ 9, x <= 1 ~ 0)
 g <- function(x) case_when(x <= 1/10 ~ 0, x <= 1 ~ -1)
 
 ggplot(NULL, aes(c(0, 1))) + 
-  stat_function(fun = f, geom = "area", n = 1000, fill = rightcolour) +
-  stat_function(fun = g, geom = "area", n = 1000, fill = leftcolour) +
+  stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
+  stat_function(fun = g, geom = "area", n = 1000, fill = bookred) +
   scale_y_continuous("payoff ($)", limits = c(-1.5, 10.5)) +
   scale_x_continuous("probability")
 ```
