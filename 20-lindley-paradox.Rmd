@@ -198,6 +198,8 @@ But we've paid a dear price for this increase in precision: we've failed to iden
 
 Notice, however, that if bogus treatments were rarer the problem wouldn't be so pressing. For example, Figure \@ref(fig:hundredstudiesgrid3) shows what would happen if half the treatments being studied were bogus, instead of $80\%$. Then we could have stuck with the $.05$ threshold and still had very good results: we would discover about $85$ genuine treatments and only approved about $3$ bogus ones, a precision of about $97\%$.
 
+There are two lessons here. First, lowering the threshold for significance has both benefits and costs. A lower threshold means fewer false discoveries, but it means fewer genuine discoveries too. Second, the base rate informs our decision about how to make this tradeoff. The more false hypotheses there are to watch out for, the stronger the incentive to use a lower threshold.
+
 ```{r hundredstudiesgrid3, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="A significance cutoff of $.05$ does much better if the base rate is more favourable."}
 green_grid <- expand.grid(x = 0:19, y = 5:9)
 red_grid <- expand.grid(x = 0:19, y = 0:5)
@@ -220,8 +222,6 @@ ggplot() +
   apply(green_grid, 1, place_image, pill_green) +
   geom_path(aes(x = x, y = y), data = path, colour = green, size = 1, linetype = "longdash")
 ```
-
-There are two lessons here. First, lowering the threshold for significance has both benefits and costs. A lower threshold means fewer false discoveries, but it means fewer genuine discoveries too. Second, the base rate informs our decision about how to make this tradeoff. The more false hypotheses there are to watch out for, the stronger the incentive to use a lower threshold.
 
 
 ## The Role of Priors in Significance Testing
