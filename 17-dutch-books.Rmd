@@ -115,7 +115,7 @@ Notice how the net amount is negative in every column. In a Dutch book, no matte
 # TODO: insert sketch of de Finetti
 ```
 ```{marginfigure}
-Bruno de Finetti ($1906$--$1985$) proved in the $1930$'s that the laws of probability are the only safegaurd against Dutch books. The same point was also noted by [Frank Ramsey](#fig:ramsey) in an essay from the $1920$'s, though he didn't include a proof.
+Bruno de Finetti (1906--1985) proved in the $1930$'s that the laws of probability are the only safegaurd against Dutch books. The same point was also noted by [Frank Ramsey](#fig:ramsey) in an essay from the $1920$'s, though he didn't include a proof.
 ```
 
 What's the general recipe for constructing a Dutch book when someone violates the laws of probability?

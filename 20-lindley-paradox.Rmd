@@ -236,7 +236,7 @@ From a Bayesian point of view, significance testing focuses on just one term in 
 
 So significance testing is based on a mistake, according to Bayesian critics. It ignores essential [base rate](#baserate) information, namely how many of the hypotheses we study are true. And this can lead to very wrong results, as we learned from the taxicab problem in [Chapter](#chbayes) \@ref(chbayes).
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Harold Jeffreys ($1891$--$1989$) first raised the problem known as Lindley's paradox in $1939$. Dennis Lindley labeled it a paradox in $1957$, hence the name. It is sometimes called the Jeffreys-Lindley paradox."}
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Harold Jeffreys (1891--1989) first raised the problem known as Lindley's paradox in $1939$. Dennis Lindley labeled it a paradox in $1957$, hence the name. It is sometimes called the Jeffreys-Lindley paradox."}
 knitr::include_graphics("img/jeffreys.png")
 ```
 

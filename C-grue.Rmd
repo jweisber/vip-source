@@ -14,7 +14,7 @@ So it seems like a fundamental principle of scientific inquiry that we expect th
 
 ## A Gruesome Concept {-}
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Nelson Goodman ($1906$--$1988$) discovered the grue paradox in the $1940$s and '$50$s."}
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Nelson Goodman (1906--1988) discovered the grue paradox in the $1940$s and '$50$s."}
 knitr::include_graphics("img/goodman.png")
 ```
 

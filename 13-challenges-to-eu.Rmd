@@ -65,11 +65,11 @@ In [Chapter 12][Utility] we noted that the difference in utility between $\$0$ a
 
 No. In the Allais paradox, the way you personally value money is actually irrelevant. It doesn't matter how much you value $\$1$ million vs. $\$0$. Our calculations made no assumptions about the numerical values of $\u(\$0)$, $\u(\$1M)$, and $\u(\$5M)$. We left those terms untouched, treating them as unknown placeholders. Whatever your personal utilities are, there's just no way to prefer $1A$ over $1B$ and $2B$ over $2A$, if you're following the expected utility rule.
 
-```{r echo=FALSE, fig.margin=TRUE, fig.cap="Maurice Allais ($1911$--$2010$), photograph by Harcourt Studios"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="Maurice Allais (1911--2010), photograph by Harcourt Studios"}
 knitr::include_graphics("img/allais.png")
 ```
 ```{marginfigure}
-Leonard Savage ($1917$--$1971$) was an American staistician and mathematician, and a leading advocate of the expected utility rule. There doesn't seem to be any public-domain photograph of him available unfortunately, but you can find one [here](http://policonomics.com/leonard-savage/).
+Leonard Savage (1917--1971) was an American staistician and mathematician, and a leading advocate of the expected utility rule. There doesn't seem to be any public-domain photograph of him available unfortunately, but you can find one [here](http://policonomics.com/leonard-savage/).
 ```
 
 `r newthought("This")`  challenge is called the *Allais paradox*. Maurice Allais was a French economist, writing at a time when some French thinkers disliked the idea of reducing decisions to a simple equation. The American statistician Leonard Savage, on the other hand, very much liked the idea of expected utility. So Allais cooked up this example to prove Savage wrong.

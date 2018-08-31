@@ -56,7 +56,7 @@ According to standard decision theory, the right choice is the act that has the 
 
 So the value of a decision's outcome depends on the person. It is *subjective*. And that raises a big question: if utility is subjective, how can we measure it objectively? Does it even make sense to treat personal tastes and preferences using mathematical equations?
 
-```{r ramsey, echo=FALSE, fig.margin=TRUE, fig.cap="Frank Ramsey ($1903$--$1930$) died at the age of $26$, before his discovery could become widely known. Luckily the idea was rediscovered by economists and statisticians in the $1940$s."}
+```{r ramsey, echo=FALSE, fig.margin=TRUE, fig.cap="Frank Ramsey (1903--1930) died at the age of $26$, before his discovery could become widely known. Luckily the idea was rediscovered by economists and statisticians in the $1940$s."}
 knitr::include_graphics("img/ramsey.png")
 ```
 

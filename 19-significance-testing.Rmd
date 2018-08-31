@@ -308,7 +308,7 @@ In general, the more extreme the value of $p$ is, the larger we need $n$ to be f
 
 ## Significance Testing
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Ronald A. Fisher ($1890$--$1962$) established significance testing as a standard scientific method with his influential $1925$ book *Statistical Methods for Research Workers*."}
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Ronald A. Fisher (1890--1962) established significance testing as a standard scientific method with his influential $1925$ book *Statistical Methods for Research Workers*."}
 knitr::include_graphics("img/fisher.png")
 ```
 

@@ -15,7 +15,7 @@ Actually there are strong reasons to doubt whether this assumption can be justif
 
 Could we give an inductive argument for the Principle of Induction? At first it seems we could. Scientists have been using inductive reasoning for millenia, often with great success. Indeed, it seems humans, and other creatures too, have relied on it for much longer, and could not have survived without it. So the Principle of Induction has a very strong track record. Isn't that a good argument for believing it's correct?
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="David Hume ($1711$--$1776$) raised the problem of induction in $1739$. Our presentation of it here is somewhat modernized from his original argument."}
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="David Hume (1711--1776) raised the problem of induction in $1739$. Our presentation of it here is somewhat modernized from his original argument."}
 knitr::include_graphics("img/hume.png")
 ```
 
