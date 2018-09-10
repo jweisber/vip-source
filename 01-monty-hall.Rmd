@@ -2,10 +2,6 @@
 
 # The Monty Hall Problem
 
-```{marginfigure}
-Gardner attributes the quoted sentiment to [Charles Sanders Peirce](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce). The source in Peirce's writings is unknown.
-```
-
 ```{block, type="epigraph"}
 ...in no other branch of mathematics is it so easy for experts to blunder as in probability theory.\
 ---Martin Gardner

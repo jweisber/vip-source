@@ -56,7 +56,7 @@ All humans are animals.\
 Therefore, the author of this book is an animal.
 ```
 
-Sound arguments are important because their conclusions are always true. The premises of a valid argument are true by definition. And since it's valid by definition too, that gauratnees the conclusion to be true as well.
+Sound arguments are important because their conclusions are always true. The premises of a sound argument are true by definition. And since it's valid by definition too, that guarantees the conclusion to be true as well.
 
 Yet deductive logic studies validity, not soundness. Why?
 
@@ -151,7 +151,7 @@ euler_diagram(propositions)
 
 [^eulernote]: Leonhard Euler lived from $1707$ to $1783$. You may have encountered some of his work before if you've worked with logarithms or taken calculus.
 
-These are called ***Euler diagrams***, after the mathematician Leonhard Euler (prounounced *oiler*).[^eulernote] You may have seen Venn diagrams before, which are very similar. But in Euler diagrams the circles don't have to overlap.
+These are called ***Euler diagrams***, after the mathematician Leonhard Euler (pronounced *oiler*).[^eulernote] You may have seen Venn diagrams before, which are very similar. But in an Euler diagram, the circles don't have to overlap.
 
 `r newthought("Sometimes")`  one circle will even contain another circle entirely. Take this example:
 
@@ -315,8 +315,6 @@ What makes one explanation better than another? That turns out to be a very hard
         Ada Lovelace was Lord Byron's daughter.\
         Therefore, the first computer program was written by Lord Byron's daughter.
         ```
-
-        Hint: the premises of this argument are true.
 
     #.  
         ```{block, type="argument", echo=TRUE}
