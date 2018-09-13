@@ -234,7 +234,7 @@ Notice, Rule 4 is how we got the final probabilities (the numbers in bold) we us
 
 #. True or false: in the Monty Hall problem, it's essential to the puzzle that the host doesn't want to expose the prize. If they didn't care about giving away the location of the prize, there would be no reason to switch when they open door C.
 
-#. In the version of the Monty Hall problem with a hundred doors, after the host opens every door except door 1 (your door) and door 59, the chance the car is behind door 59 is:
+#. In the version of the Monty Hall problem with a hundred doors, after the host opens every door except door 1 (your door) and door 59, the chance the prize is behind door 59 is:
 
     a. 1/100
     b. 1/99
