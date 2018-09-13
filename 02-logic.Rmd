@@ -229,18 +229,17 @@ This argument isn't valid, because it's possible the conclusion is false even th
 
 These possibilities aren't very likely, of course. So the argument is strong, even though it's not strictly valid. The premise gives us very good reason to believe the conclusion, just not a 100% guarantee.
 
-In terms of an Euler diagram then, the premise circle isn't contained entirely within the conclusion circle (\@ref(fig:strongarg)). We have to leave some room for the possibility that the premise is true and the conclusion false. But we can still convey that this possibility has only a very slight chance of being true, by making it slim.
+In terms of an Euler diagram then, the premise circle isn't contained entirely within the conclusion circle (Figure \@ref(fig:strongarg)). We have to leave some room for the possibility that the premise is true and the conclusion false. But we can still convey that this possibility has only a very slight chance of being true, by making it slim.
 
-```{r strongarg, echo=FALSE, fig.margin=TRUE, fig.cap="A strong argument"}
+```{r strongarg, echo=FALSE, fig.margin=TRUE, fig.cap="A strong argument with premise $A$ and conclusion $B$"}
 propositions <- data.frame(
-    cirx = c(-.5   , .5),
-    ciry = c(0     , 0),
-    r    = c(1.9     , 1),
-    labx = c(-2.35 ,  1.55),
-    laby = c(1     , .55),
-    labl = c("italic(A)", "italic(B)")
+    cirx = c(0    , .85),
+    ciry = c(0    , 0),
+    r    = c(1.25 , .5),
+    labx = c(-1.05, .3),
+    laby = c(1.05 , .45),
+    labl = c("italic(B)", "italic(A)")
 )
-
 euler_diagram(propositions)
 ```
 
