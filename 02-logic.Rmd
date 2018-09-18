@@ -243,7 +243,7 @@ propositions <- data.frame(
 euler_diagram(propositions)
 ```
 
-(ref:laplacecap) Pierre Simone Laplace (1749--1827) developed [a formula](https://bit.ly/2mU9WgW) for calculating this number exactly. We'll learn how to do similar calculations in the coming chapters.
+(ref:laplacecap) Pierre Simone Laplace (1749--1827) developed [a formula](https://bit.ly/2mU9WgW) for calculating the probability the sun will rise tomorrow. We'll learn how to do similar calculations in the coming chapters.
 
 ```{r laplace, echo=FALSE, fig.margin=TRUE, fig.cap="(ref:laplacecap)"}
 knitr::include_graphics("img/laplace.png")
