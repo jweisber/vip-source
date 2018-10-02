@@ -288,8 +288,7 @@ In other words, a trio of propositions is independent if each pair of them is in
 #. Suppose $\p(B) = 4/10$, $\p(A) = 7/10$, and $\p(B \wedge A) = 2/10$.
     What are each of the following probabilities?
 
-    a.  $\p(A \vee B)$
-    #.  $\p(A \given B)$
+    a.  $\p(A \given B)$
     #.  $\p(B \given A)$
 
 #. Five percent of tablets made by the company Ixian have factory defects. Ten percent of the tablets made by their competitor company Guild do. A computer store buys $40\%$ of its tablets from Ixian, and $60\%$ from Guild.
