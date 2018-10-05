@@ -328,6 +328,28 @@ These are some pretty hairy formulas, so memorizing them probably isn't a good i
 
 #.  Recall the following problem from [Chapter 8][Bayes' Theorem].
 
+    A magic shop sells two kinds of trick coins. The first kind are biased towards heads: they come up heads $9$ times out of $10$ (the tosses are independent). The second kind are biased towards tails: they comes up tails $8$ times out of $10$ (tosses still independent). Half the coins are the first kind, half are the second kind. But they don't label the coins, so you have to experiment to find out which are which.
+
+    Previously, you picked a coin at random and flipped it once. But now suppose you flip it a second time. What's the probability it's the first kind of coin if it lands heads both times?
+
+#.  Recall the following problem from [Chapter 8][Bayes' Theorem].
+
+    There is a room filled with two types of urns.
+
+    -   Type A urns have $30$ yellow marbles, $70$ red.
+    -   Type B urns have $20$ green marbles, $80$ yellow.
+
+    The two types of urn look identical, but $80\%$ of them are Type A.
+
+    Previously you calculated the probability a randomly selected urn is Type B given that one marble randomly drawn from it is yellow. Suppose now you put the yellow marble back, shake hard, and draw another marble at random from the same urn.
+
+    a.  If this marble is also yellow, what is the probability the
+        urn is a Type B urn?
+    b.  If this marble is instead green, what is the probability the urn
+        is a Type B urn?
+
+#.  Recall the following problem from [Chapter 8][Bayes' Theorem].
+
     A room contains four urns. Three of them are Type X, one is Type Y.
 
     -   The Type X urns each contain $3$ black marbles, $2$ white marbles.

@@ -294,7 +294,7 @@ Hence the quote that opens [Chapter 1][The Monty Hall Problem] of this book: "in
 
 #.  A magic shop sells two kinds of trick coins. The first kind are biased towards heads: they come up heads $9$ times out of $10$ (the tosses are independent). The second kind are biased towards tails: they comes up tails $8$ times out of $10$ (tosses still independent). Half the coins are the first kind, half are the second kind. But they don't label the coins, so you have to experiment to find out which are which.
 
-    You pick a coin at random and flip it twice. Given that it comes up heads both times, what is the probability it's the first kind of coin?
+    You pick a coin at random and flip it once. Given that it comes up heads, what is the probability it's the first kind of coin?
 
 #.  There is a room filled with two types of urns.
 
@@ -308,13 +308,6 @@ Hence the quote that opens [Chapter 1][The Monty Hall Problem] of this book: "in
     Now you look at the marble: it is yellow. 
 
     b.  What is the probability the urn is a Type B urn, given that you drew a yellow marble?
-
-    Suppose now you put the yellow marble back, shake hard, and draw another marble at random from the same urn.
-
-    c.  If this marble is also yellow, what is the probability the
-        urn is a Type B urn?
-    d.  If this marble is instead green, what is the probability the urn
-        is a Type B urn?
 
 #.  In the long form of Bayes' theorem, the denominator is broken down by applying the Law of Total Probability to a partition of two propositions, $A$ and $\neg A$. We can extend the same idea to a partition of three propositions, $X$, $Y$, and $Z$. Here is a start on the formula:
 
