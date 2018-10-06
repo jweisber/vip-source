@@ -46,7 +46,7 @@ $$
 Sometimes a gamble has the potential to lose money, so we use a negative number for the "payoff". For example, suppose the Die Game is modified so that you have to pay $\$3$ if the die lands $1, 2, 3$, or $4$. Then we calculate:
 $$
   \begin{aligned}
-    \p(\$3) \times \$3 + \p(-\$3) \times -\$1 &= (1/3)(\$3) + (2/3)(-\$3)\\
+    \p(\$3) \times \$3 + \p(-\$3) \times -\$3 &= (1/3)(\$3) + (2/3)(-\$3)\\
       &= -\$1.
   \end{aligned}
 $$
