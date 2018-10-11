@@ -46,7 +46,7 @@ $$
 The same reasoning applies given $\neg A$, too. Except here the chance of black on each draw is $20/100$. So:
 $$
   \begin{aligned}
-    \p(B_1 \wedge B_2 \given \neg A) &= \p(B_1 \given A) \p(B_2 \given \neg A)\\
+    \p(B_1 \wedge B_2 \given \neg A) &= \p(B_1 \given \neg A) \p(B_2 \given \neg A)\\
       &= (20/100)^2.
   \end{aligned}
 $$
