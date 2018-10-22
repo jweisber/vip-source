@@ -133,7 +133,7 @@ Expected Monetary Value
 :   Given an act $A$ with possible consequences $\$x_1, \$x_2, \ldots, \$x_n$, the *expected monetary value* of $A$ is:
 $$
   \begin{aligned}
-    \E(A) &= \p(\$x_1) \times \$x_1 + \p(\$x_2) \times \$x_2 + \ldots + \p(x_n) \times \$x_n.
+    \E(A) &= \p(\$x_1) \times \$x_1 + \p(\$x_2) \times \$x_2 + \ldots + \p(\$x_n) \times \$x_n.
   \end{aligned}
 $$
 
