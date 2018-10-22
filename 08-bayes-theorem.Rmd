@@ -21,7 +21,7 @@ How could the probability be so low when the witness is $80\%$ reliable? The sho
 
 But this answer still needs some explaining. Let's use a diagram.
 
-```{r taxigrid, echo=FALSE, fig.margin=TRUE, fig.cap="The taxicab problem. There are $85$ blue cabs, $15$ green. The dashed region indicates those cabs the witness identifies as \"blue\". It includes $80\\%$ of the blue cabs ($12$), and only $20\\%$ of the green ones ($17$). Yet it includes more green cabs than blue."}
+```{r taxigrid, echo=FALSE, fig.margin=TRUE, fig.cap="The taxicab problem. There are $15$ blue cabs, $85$ green. The dashed region indicates those cabs the witness identifies as \"blue\". It includes $80\\%$ of the blue cabs ($12$), and only $20\\%$ of the green ones ($17$). Yet it includes more green cabs than blue."}
 taxi_blue <- readPNG("img/taxi_blue.png") %>% rasterGrob()
 taxi_green <- readPNG("img/taxi_green.png") %>% rasterGrob()
 
@@ -94,7 +94,7 @@ What's missing for Bayes' Theorem is $\p(W)$. Fortunately, we can calculate it w
 $$
   \begin{aligned}
     \p(W) &= \p(W \given B)\p(B) + \p(W \given \neg B)\p(\neg B)\\
-          &= (80/100)(15/100) + (20/100)(85/100\\
+          &= (80/100)(15/100) + (20/100)(85/100)\\
           &= 29/100.
   \end{aligned}
 $$
