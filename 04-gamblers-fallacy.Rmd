@@ -119,7 +119,7 @@ The full story of the hot hand fallacy has yet to be told it seems.
     #. $A$: the card is a Queen.\
        $B$: the card is a face card.
 
-#.  Drawing from an urn filled with $50$ black and $50$ white marbles with replacement is a ______ process.
+#.  After one draw with replacement, drawing a second marble from an urn filled with $50$ black and $50$ white marbles is a ______ process.
 
     a.	Independent
     #.	Fair
@@ -127,7 +127,7 @@ The full story of the hot hand fallacy has yet to be told it seems.
     #.	All of the above
     #.  None of the above
 
-#.  Drawing from an urn filled with $50$ black and $50$ white marbles *without* replacement is a ______ process.
+#.  After one draw *without* replacement, drawing a second marble from an urn filled with $50$ black and $50$ white marbles is a ______ process.
 
     a.	Independent
     #.	Fair
