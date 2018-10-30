@@ -23,7 +23,7 @@ But some people do buy tickets in lotteries like this one, and not necessarily b
 
 `r newthought("Suppose")` your friend is one of these people. How might they respond to the calculation above? One thing they could do is replace the dollar amounts with different numbers, numbers that more accurately capture their personal values.
 
-Instead of just a $\$499$ gain for winning, for example, they might use $599$, to capture the added value that comes from the thrill of winning. And instead of $-\$1$ for losing, they might put $10$ to capture the contribution to campus community that comes from participating in the event.
+Instead of just a $\$499$ gain for winning, for example, they might use $599$, to capture the added value that comes from the thrill of winning. And instead of $-\$1$ for losing, they might put $9$ to capture the contribution to campus community that comes from participating in the event.
 
 Then the calculation looks like this:
 $$
