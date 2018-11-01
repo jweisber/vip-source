@@ -1,6 +1,6 @@
 # Challenges to Expected Utility
 
-`r newthought("We've learned")` two key elements of modern decision theory. First, we can quantify people's desires, values, and priorities, a quantity we call *utility*. Second, we should make our decisions according to the expected value formula. We should choose the option with highest *expected utility*.
+`r newthought("We've")` learned two key elements of modern decision theory. First, we can quantify people's desires, values, and priorities, a quantity we call *utility*. Second, we should make our decisions according to the expected value formula. We should choose the option with highest *expected utility*.
 
 These ideas have been extremely popular and influential in the last hundred years. But there have also been challenges.
 
@@ -20,11 +20,11 @@ Which would you choose, $1A$ or $1B$? Write your answer down and set it aside, w
 Now, what if you had to choose instead between these two options:
 
 - $2A$: a gamble...
-    - $90\%$ chance of $\$0$,
-    - $10\%$ chance of $\$5$ million.
-- $2B$: a gamble...
     - $89\%$ chance of $\$0$,
     - $11\%$ chance of $\$1$ million.
+- $2B$: a gamble...
+    - $90\%$ chance of $\$0$,
+    - $10\%$ chance of $\$5$ million.
 
 `r newthought("Most")`  people choose $1A$ over $1B$ in the first decision. With the safe option of walking away $\$1$ million richer, they don't want to take the chance at $\$5$ million. Even though there's only a $1\%$ risk of walking away empty handed if they take the gamble, it's not worth it to them. The $10\%$ shot at $\$5$ million isn't enough to risk losing out on the guaranteed $\$1$ million.
 
@@ -46,8 +46,8 @@ $$
   \begin{aligned}
      \EU(1A) &= \u(\$1M),\\
      \EU(1B) &= .89 \times \u(\$1M) + .1 \times \u(\$5M) + .01 \times \u(\$0M),\\
-     \EU(2A) &= .9 \times \u(\$0M) + .1 \times\u(\$5M),\\
-     \EU(2B) &= .89 \times \u(\$0M) + .11 \times \u(\$1M).
+     \EU(2A) &= .89 \times \u(\$0M) + .11 \times \u(\$1M),\\
+     \EU(2B) &= .9 \times \u(\$0M) + .1 \times\u(\$5M).
   \end{aligned}
 $$
 Now a little arithmetic will show that we get the same result when we subtract the first two formulas and the second two:
@@ -59,7 +59,7 @@ $$
 $$
 Notice how both formulas are exactly the same. The difference in expected value between the first two options is exactly the same as the difference in value between the second two options. Which means if you're making decisions using the expected utility rule, you can't prefer the A option in the first decision and the B option in the second.
 
-`r newthought("It's important to understand")` that these calculations don't depend on the utility of money.
+`r newthought("It's")` important to understand that these calculations don't depend on the utility of money.
 
 In [Chapter 12][Utility] we noted that the difference in utility between $\$0$ and $\$1$ million might be larger for some people than for others. Could these individual priorities explain why some people prefer $1A$ over $1B$ yet $2B$ over $2A$?
 
@@ -99,7 +99,7 @@ But in the first two columns, choosing 1A over $1B$ is the same as choosing $2A$
 
 Thus, Savage argued, we can see that the expected utility rule is correct once we frame the problem correctly.
 
-`r newthought("Here's another way")` of thinking about Savage's argument. If you choose $2B$ over $2A$, then you must be willing to accept a $1\%$ chance of getting nothing in exchange for a $10\%$ chance at $\$5$ million. But if you're willing to make that trade, then you should be willing to give up option 1A and take option $1B$ instead.
+`r newthought("Here's")` another way of thinking about Savage's argument. If you choose $2B$ over $2A$, then you must be willing to accept a $1\%$ chance of getting nothing in exchange for a $10\%$ chance at $\$5$ million. But if you're willing to make that trade, then you should be willing to give up option 1A and take option $1B$ instead.
 
 ```{r allais1, echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="A graphical depiction of options $1A$ and $1B$ in the Allais paradox"}
 f <- function(x) { case_when(x <= 1 ~ 1) }
