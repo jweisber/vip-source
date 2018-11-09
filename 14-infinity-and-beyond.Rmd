@@ -199,7 +199,7 @@ But others don't find this response plausible. There may be a limit on how much 
 knitr::include_graphics("img/pascal.png")
 ```
 
-`r newthought("The")`  modern theory of probability has a curious origin. It started with Blaise Pascal, a French mathematician and philosopher living in the $1600$s. Pascal had a friend who has an avid gambler, and who came to him for advice on gambling problems. Pascal discussed these problems in letters with another famous mathematician, Pierre de Fermat. Out of their correspondence, the concept of expected value was born.
+`r newthought("The")`  modern theory of probability has a curious origin. It started with Blaise Pascal, a French mathematician and philosopher living in the $1600$s. Pascal had a friend who was an avid gambler, and who came to him for advice on gambling problems. Pascal discussed these problems in letters with another famous mathematician, Pierre de Fermat. Out of their correspondence, the concept of expected value was born.
 
 Pascal was a devout Catholic. So, once he developed the tools of decision theory, he applied them to religious questions. Like: is it rational to believe in God?
 
@@ -343,7 +343,7 @@ So $\infty - \infty$ is not a well-defined quantity.
     a. It's not very plausible that utility is logarithmic.
     b. Even on a logarithmic scale, the expected utility is still infinite.
     c. Even if Bernoulli is right, the expected monetary value is still infinite.
-    d. The paradox appears all over again when we double the utilities instead of the dollar amounts.
+    d. The paradox reappears if we alter the dollar amounts of the payoffs so that the utility doubles with each flip.
 
 #. Some people respond to the St. Petersburg paradox by arguing that there's a limit on how good an outcome can be. Utilities have an upper bound, they say.
 

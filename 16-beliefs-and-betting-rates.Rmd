@@ -171,7 +171,7 @@ We have to be careful though. This technique only works if the subject's betting
     After checking the forecast and seeing that it does predict snow, Freya changes her betting odds for snow tomorrow. Now she's willing to accept as little as $\$5$ if it snows, while still paying $\$10$ if it doesn't.
 
     c.  Now what is Freya's personal probability for snow tomorrow?
-    d.  Before she checked the forecast, what was Freya's personal probability that the forecast would predict snow and be right. (Assume that winning the Stanley Cup logically entails making the playoffs.)
+    d.  Before she checked the forecast, what was Freya's personal probability that the forecast would predict snow and be right.
 
 #.  Ben's favourite TV show is *Community*. He thinks it's so good they'll make a movie of it. In fact, he's so confident that he thinks the following is a fair deal: he pays you $\$8$ if they don't make it into a movie and you pay him $\$1$ if they do. Assume Ben equates money with utility.
 
