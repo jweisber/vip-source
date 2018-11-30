@@ -317,8 +317,8 @@ knitr::include_graphics("img/fisher.png")
 1. State the hypothesis you want to test: the true probability of outcome X is $p$. This is called the ***null hypothesis***.[^nullnote]
 2. Repeat the event over and over $n$ times, and count the number of times $k$ you get outcome X.
 3. Calculate $\mu = np$ and $\sigma = \sqrt{np(1-p)}$.
-3. Use the $68$-$95$-$99$ rule to figure out how much of a coincidence your finding $k$ must be if the null hypothesis is true.
-4. If it's too much of a coincidence, conclude that the null hypothesis is false. The true probability isn't $p$.
+4. Use the $68$-$95$-$99$ rule to figure out how much of a coincidence your finding $k$ must be if the null hypothesis is true.
+5. If it's too much of a coincidence, conclude that the null hypothesis is false. The true probability isn't $p$.
 
 [^nullnote]: Why is it called the "null" hypothesis? The idea is that our default assumption should be that things are random, until we discover a pattern. For example, we assume our sequence of heads/tails is random unless our observations prove otherwise. And we assume a drug has no effects unless we discover that it does. So the default assumption is "null": no pattern, no effect. It's not a great piece of terminology, but unfortunately we're stuck with it.
 

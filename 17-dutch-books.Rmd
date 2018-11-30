@@ -78,7 +78,7 @@ So it's a law of probability that $\p(B \wedge F) \leq \p(B)$. Which means it ca
 
 Here's another way to think about it. Imagine everyone who fits the description of Linda gathered in a room. The people in the room who happen to be bank tellers are then gathered together inside a circle. Some of the people inside that circle will also be feminists. But there can't be more feminists inside that circle than people! Feminist bank tellers are just less common than bank tellers in general.
 
-`r newthought("How")`  do we Dutch book someone who mistakenly thinks $B$ is more probable than $B \wedge F$? We offer them two deals, one involving a bet on $B$ and the other a bet on $B \wedge F$.
+`r newthought("How")` do we Dutch book someone who mistakenly thinks $B \wedge F$ is more probable than $B$? We offer them two deals, one involving a bet on $B$ and the other a bet on $B \wedge F$.
 
 Suppose for example their betting rate for $B$ is $1/5$, and their betting rate for $B \wedge F$ is $1/4$. Then we offer them these deals:
 

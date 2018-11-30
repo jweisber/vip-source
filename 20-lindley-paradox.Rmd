@@ -41,7 +41,7 @@ p_missed <- pnorm(60, mean = n * .65, sd = sqrt(n * .65 * .35), lower.tail = FAL
 p_missed <- round(p_missed, 2)
 ```
 
-What will happen if our researchers set the cutoff for statistical significance at $.05$? Only a few of the bogus treatments will be approved. Just $5\%$ of those studies will get flukey, statistically significant results. And half of those will look like they're harming patients' chances of recovery, rather than helpful. So only $2.5\%$ of the $160$ bogus treatments will be approved, which is $4$ treatments.
+What will happen if our researchers set the cutoff for statistical significance at $.05$? Only a few of the bogus treatments will be approved. Just $5\%$ of those studies will get flukey, statistically significant results. And half of those will look like they're harming patients' chances of recovery, rather than helping. So only $2.5\%$ of the $160$ bogus treatments will be approved, which is $4$ treatments.
 
 But also, a good number of the genuine treatments will be missed. Only about $`r 100 * p_missed`\%$ will be discovered as it turns out: see Figure \@ref(fig:hundredstudies).
 
@@ -373,10 +373,10 @@ According to Bayesian critics, this shows that significance testing is misguided
     Suppose half the coins are fair and half are not. Suppose also that when a coin is unfair, the probability of getting a result that is not statistically significant is $0.2$.
 
     a. How many fair coins should we expect will incorrectly end up labeled "unfair".
-    b. How many unfair coins should we expect will correctly end up abeled "unfair".
+    b. How many unfair coins should we expect will correctly end up labeled "unfair".
     d. What percentage of the coins labeled "unfair" should we expect to actually be unfair? 
 
-#. Suppose we are going to investigate $1,000$ null hypotheses by running an experiment on each. In each experiment, we will reject the null hypothesis when the results are significance at the $.01$ level.
+#. Suppose we are going to investigate $1,000$ null hypotheses by running an experiment on each. In each experiment, we will reject the null hypothesis when the results are significant at the $.01$ level.
 
     Suppose $90\%$ of our hypotheses are false. Suppose also that when a null hypothesis is false, the results will not be statistically significant $25\%$ of the time. 
 

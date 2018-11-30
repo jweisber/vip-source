@@ -154,7 +154,7 @@ The problem is, that's just a fact about *us humans*, not about the concepts gru
 
 Some bizarre species of alien could grow up thinking in grue/bleen terms instead. And when they landed on Earth, we'd have to explain our green/blue language to them using an either/or definition. Then *they* would be looking at *us* thinking: you guys have a very weird, disjunctive way of thinking!
 
-What could we say to them to establish the superiority of our way of thinking? It's been more than $7$0 years since Goodman first posed this question. Yet no answer has emerged as the clear and decisively correct one.
+What could we say to them to establish the superiority of our way of thinking? It's been more than $70$ years since Goodman first posed this question. Yet no answer has emerged as the clear and decisively correct one.
 
 
 ## Time Dependence {-}
