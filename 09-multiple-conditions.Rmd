@@ -213,7 +213,7 @@ $$
 $$
 Notice how similar this answer is to the $.92$ we got when sampling with replacement. With so many black and white marbles in the urn, taking one out doesn't make much difference. The second draw is almost the same as the first, so the final answer isn't much affected.
 
-```{r twodrawsnoreplacement, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Tree diagram for two draws with replacement, values rounded"}
+```{r twodrawsnoreplacement, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Tree diagram for two draws without replacement, values rounded"}
 nodes <- bind_rows(
   list(text = "italic(A)",      parent = 0, p = 1/2),
   list(text = "'~'~italic(A)",  parent = 0, p = 1/2),
