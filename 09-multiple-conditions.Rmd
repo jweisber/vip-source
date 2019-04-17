@@ -83,7 +83,7 @@ nodes <- bind_rows(
 p_tree(nodes, parse = TRUE, round = 3)
 ```
 
-So $\p(A \given B_1 \wedge B_2) = 0.245 / (0.245 + 0.2)$, which is the same as $49/53$, the answer we got with Bayes' theorem.
+So $\p(A \given B_1 \wedge B_2) = 0.245 / (0.245 + 0.02)$, which is the same as $49/53$, the answer we got with Bayes' theorem.
 
 `r newthought("You")`  might be able to guess now what would happen after three black draws. Instead of getting squared probabilities in Bayes' theorem, we'd get cubed probabilities. And using the same logic, we could keep going. We could use Bayes' theorem to calculate $\p(A \given B_1 \wedge \ldots \wedge B_n)$ for as many draws $n$ as you like.
 
