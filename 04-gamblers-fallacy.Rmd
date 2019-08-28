@@ -8,13 +8,7 @@ Applied statistics is hard.\
 `r newthought("My")`  wife's family keeps having girls. My wife has two sisters and she and her sisters each have two daughters, with no other siblings or children. That's nine girls in a row!
 
 ```{marginfigure, echo=TRUE}
-Note that girl and boy aren't the only two possibilities. The next child could also be intersex.
-
-Boy and girl are the likely alternatives, since fewer than $2\%$ of children born are intersex. (The exact percentage is unclear because the exact definition of "interesex" is controversial.)
-
-But many intersex children have undergone risky or painful surgeries and treatments, sometimes without ever being told. So it's important to recognize intersex as a third category.
-
-Fashion model [Hanne Gaby Odiele](https://en.wikipedia.org/wiki/Hanne_Gaby_Odiele) is one example of a famous intersex person. She learned she was intersex just weeks before starting her modeling career.
+Note that girl and boy aren't the only two possibilities. The next child could also be intersex, like fashion model [Hanne Gaby Odiele](https://en.wikipedia.org/wiki/Hanne_Gaby_Odiele).
 ```
 
 So are they due for a boy next? Here are three possible answers.

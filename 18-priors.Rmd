@@ -56,7 +56,7 @@ Now I roll the die and I tell you it did in fact land even. What is your new per
 
 `r newthought("We")`  learned how to use [Bayes' theorem][Bayes' Theorem] to calculate $\pr(H \given E)$. If we combine Bayes' theorem with Conditionalization we get:
 $$ \po(H) = \pr(H) \frac{\pr(E \given H)}{\pr(E)}. $$
-Because this formula is so useful for figuring out what conclusion to draw from new evidence, the Bayesian school of thought is named after it. Bayesian statisticians use it to evaluate evidence in actual scientific research. And Bayesian philosophers use it to explain the logic behind the scientific method.^[We caught a glimpse of this explanation back in [Chapter 15][Bayesianism].]
+Because this formula is so useful for figuring out what conclusion to draw from new evidence, the Bayesian school of thought is named after it. Bayesian statisticians use it to evaluate evidence in actual scientific research. And Bayesian philosophers use it to explain the logic behind the scientific method.^[We learned part of this story back in [Chapter 10][Probability & Induction].]
 
 
 ## The Principle of Indifference

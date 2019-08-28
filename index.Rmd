@@ -2,7 +2,8 @@
 title: "Odds & Ends"
 subtitle: "Introducing Probability & Decision with a Visual Emphasis"
 author: "Jonathan Weisberg"
-description: "A textbook introducing philosophy students to probability, decision theory, and the philosophical foundations of statistics"
+description: "An open access textbook for introductory philosophy courses on probability and inductive logic."
+cover-image: "img/social_image.png"
 github-repo: jweisber/vip
 classoption: justified
 site: bookdown::bookdown_site
@@ -18,6 +19,9 @@ knitr::opts_chunk$set(
 if (knitr:::is_latex_output()) {
   options(knitr.table.format = 'pandoc')
   knitr::opts_chunk$set(dpi = 300)
+}
+if (knitr:::is_html_output()) {
+  knitr::include_graphics('img/social_image.png', dpi = NA)
 }
 
 library(tufte)
@@ -43,14 +47,16 @@ The book assumes no deductive logic. The early chapters introduce the little tha
 
 Several well known predecessors inspired and shaped this book. Brian Skyrms' *Choice & Chance* and Ian Hacking's *An Introduction to Probability and Inductive Logic* were especially influential. Both texts are widely used with good reason---they are excellent. I've taught both myself many times, with great success. But this book blends my favourite aspects of each, organizing them in the sequence and style I prefer.
 
-I hope this book also offers more universal benefits:
+I hope this book also offers more universal benefits.
 
 1. It is open access, hence free.
 2. It's also [open source](https://github.com/jweisber/vip-source), so other instructors can modify it to their liking.
+    ```{marginfigure}
+    If you teach from this book I'd love to know: email or [tweet me](https://twitter.com/jweisber).
+    ```
 3. It's available in both [PDF](http://jonathanweisberg.org/vip/_main.pdf) and [HTML](http://jonathanweisberg.org/vip/). So it can be read comfortably on a range of devices, or printed.
 4. It emphasizes visual explanations and techniques, to make the material more approachable.
 5. It livens up the text with hyperlinks, images, and margin notes that highlight points of history and curiosity. I also hope to add some animations and interactive tools soon.
-
 
 `r newthought("The")`  book is divided into three main parts. The first explains the basics of logic and probability, the second covers basic decision theory, and the last explores the philosophical foundations of probability and statistics. This last, philosophical part focuses on the Bayesian and frequentist approaches.
 
@@ -65,3 +71,21 @@ By the end of the course, students with little formal background have a bevy of 
 If it weren't for these tools, I never would have written this book. It wouldn't have been possible to create one that does all the things this book is meant to do. I also owe inspiration to Kieran Healy's book [*Data Visualization: A Practical Introduction*](http://socviz.co/), which uses the same suite of tools. It gave me the idea to use those tools for an updated, open, and visually enhanced rendition of the classic material from Skyrms and Hacking.
 
 Finally, I'm indebted to several teaching assistants and students who helped with earlier drafts. Thanks especially to Liang Zhou Koh and Meagan Phillips, who contributed several exercises; to Soroush Marouzi and Daniel Munro, who worked out the kinks during the first semester the book was piloted; and to the students in that course, who bore with us, and contributed several corrections of their own.
+
+
+<!-- Default Statcounter code for Odds & Ends
+https://jonathanweisberg.org/vip/ -->
+<script type="text/javascript">
+var sc_project=12077193; 
+var sc_invisible=1; 
+var sc_security="6995a8df"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/12077193/0/6995a8df/1/"
+alt="Web Analytics"></a></div></noscript>
+<!-- End of Statcounter Code -->

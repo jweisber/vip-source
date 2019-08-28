@@ -284,6 +284,8 @@ The restrictions on these two rules are essential. If you ignore them, you will 
     b.  What is $\p((A \wedge B) \vee C)$?
     c.  Must $\p(A \wedge B) = 0$?
 
+#. True or false? If $\p(A)=\p(B)$, then $A$ and $B$ are logically equivalent.
+
 #. Consider the following argument:
 
     ```{block, type="argument", echo=TRUE}
@@ -299,6 +301,12 @@ The restrictions on these two rules are essential. If you ignore them, you will 
     a.  Is the premise of this argument true?
     b.  Is the argument valid?
     c.  Is the argument sound?
+
+#. Suppose a fair, six-sided die is rolled two times. What is is the probability of it landing on the same number each time?
+
+    Hint: calculate the probability of it landing on a *different* number each time. To do this, first count the number of possible ways the two rolls could turn out. Then count how many of these are "no-repeats."
+
+#. Same as the previous exercise but with four rolls instead of two. That is, suppose a fair, six-sided die is rolled four times. What is the probability of it landing on the same number four times in a row?
 
 #. The Addition Rule can be extended to three propositions. If $A$, $B$, and $C$ are all mutually exclusive with one another, then
 

@@ -1,5 +1,10 @@
 # Multiple Conditions
 
+```{block, type="epigraph"}
+Conditioning is the soul of statistics.\
+---Joe Blitzstein
+```
+
 `r newthought("We")`  often need to account for multiple pieces of evidence. More than one witness testifies about the colour of a taxicab; more than one person responds to our poll about an upcoming election; etc.
 
 How do we a calculate conditional probability when there are multiple conditions? In other words, how do we handle quantities of the form $\p(A \given B_1 \wedge B_2 \wedge \ldots)$?

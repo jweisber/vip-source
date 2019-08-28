@@ -269,6 +269,9 @@ This [video by Julia Galef](https://www.youtube.com/watch?v=BrK7X_XlGB8) explain
 One lesson of this chapter is that you have to take the base rate into account to get the right answer, via Bayes' theorem. Humans have a tendency to ignore the base rate, and focus only on the "test" performed: the blood test in the Zika example, the testimony of the witness in the taxicab example. This mistake is called *base rate neglect*, or *the base rate fallacy*.
 
 The base rate fallacy is so tempting, even trained professionals are susceptible to it. In [one famous study](https://www.stat.berkeley.edu/~aldous/157/Papers/health_stats.pdf), $160$ medical doctors were given a problem similar to our Zika example (but with  cancer instead of Zika). The question was multiple choice, and it used easier numbers than we did. Yet only $34$ of the doctors got it right.
+```{marginfigure, echo=TRUE}
+Microsoft Founder Bill Gates seems to be making a similar mistake in [this tweet](https://twitter.com/BillGates/status/1118196606975787008).
+```
 
 Hence the quote that opens [Chapter 1][The Monty Hall Problem] of this book: "in no other branch of mathematics is it so easy for experts to blunder as in probability theory."
 
@@ -355,3 +358,9 @@ Hence the quote that opens [Chapter 1][The Monty Hall Problem] of this book: "in
     You are going to pick an urn at random and start drawing marbles from it at random *without* replacement.
 
     What is the probability the urn is Type X if the first draw is black?
+
+#.  Suppose I have an even mix of black and white marbles. I choose one at random without letting you see the colour, and I put it in a hat.
+    ```{marginfigure, echo=TRUE}
+    This problem was devised by Lewis Carroll, author of *Alice's Adventures in Wonderland*.
+    ```
+    Then I add a second, black marble to the hat. If I draw one marble at random from the hat and it's black, what is the probability the marble left in the hat is black?

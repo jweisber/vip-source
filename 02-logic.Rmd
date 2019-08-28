@@ -361,6 +361,8 @@ What makes one explanation better than another? That turns out to be a very hard
         - Ani will be there and so will her sister PJ.
         - PJ will not be there.
 
+#. True or false? If $A$ and $B$ are mutually exclusive, and $B$ and $C$ are also mutually exclusive, then $A$ and $C$ are mutually exclusive.
+
 #. True or false? If $A$ and $B$ are mutually exclusive, then $A$ logically entails that $B$ is false.
 
 #. True or false? It is possible for $A$ to logically entail $B$ even though the reverse does not hold (i.e. even though $B$ does not logically entail $A$).

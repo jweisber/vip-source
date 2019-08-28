@@ -198,7 +198,9 @@ But we've paid a dear price for this increase in precision: we've failed to iden
 
 Notice, however, that if bogus treatments were rarer the problem wouldn't be so pressing. For example, Figure \@ref(fig:hundredstudiesgrid3) shows what would happen if half the treatments being studied were bogus, instead of $80\%$. Then we could have stuck with the $.05$ threshold and still had very good results: we would discover about $85$ genuine treatments and only approved about $3$ bogus ones, a precision of about $97\%$.
 
-There are two lessons here. First, lowering the threshold for significance has both benefits and costs. A lower threshold means fewer false discoveries, but it means fewer genuine discoveries too. Second, the base rate informs our decision about how to make this tradeoff. The more false hypotheses there are to watch out for, the stronger the incentive to use a lower threshold.
+There are two lessons here. First, lowering the threshold for significance has both benefits and costs. A lower threshold means fewer false discoveries, but it means fewer genuine discoveries too. Second, the base rate informs our decision about how to make this tradeoff. The more false hypotheses there are to watch out for, the stronger the incentive to use a lower threshold.[^drugtrialnote]
+
+[^drugtrialnote]: Is the real base rate low enough that medical researchers actually need to worry? Yes, according to [this research](https://www.doi.org/10.1038/nrd3439-c1).
 
 ```{r hundredstudiesgrid3, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="A significance cutoff of $.05$ does much better if the base rate is more favourable."}
 green_grid <- expand.grid(x = 0:19, y = 5:9)
