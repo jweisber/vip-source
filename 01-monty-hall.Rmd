@@ -104,7 +104,7 @@ draw_tree(nodes, node_fontface = "plain")
 
 Now, which door the host opens may depend on where the prize is, i.e. which branch we're on. If it's behind door C, they won't show you by opening that door. They would have to open door B in this case.
 
-Likewise, if the prize is behind door C, then opening door B is their only option.
+Likewise, if the prize is behind door B, then opening door C is their only option.
 
 Only if the prize is behind door A do they have a choice: open either door B or door C. In that case it's a tossup which door they'll open, so each of those possibilities has a 1/2 chance. Check out Figure \@ref(fig:montytree2).
 

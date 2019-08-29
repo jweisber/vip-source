@@ -87,15 +87,16 @@ In terms of an Euler diagram (Figure \@ref(fig:condprob)), the definition of con
 $$
   \p(A \given B) = \frac{\color{bookpurple}{\blacksquare}}{\color{bookpurple}{\blacksquare} + \color{bookblue}{\blacksquare}}.
 $$
-So the definition works because, informally speaking, $\p(A \wedge B)/\p(B)$ is the proportion of the $B$ outcomes that are also $A$ outcomes.[^wrightquip]
-
-[^wrightquip]: The comedian Steven Wright once quipped that "black holes are where God divided by zero."
+So the definition works because, informally speaking, $\p(A \wedge B)/\p(B)$ is the proportion of the $B$ outcomes that are also $A$ outcomes.
 
 `r newthought("Dividing")`  by zero is a common pitfall with conditional probability. Notice how the definition of $\p(A \given B)$ depends on $\p(B)$ being larger than zero. If $\p(B) = 0$, then the formula
+```{marginfigure}
+The comedian Steven Wright once quipped that "black holes are where God divided by zero."
+```
 $$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)} $$
 doesn't even make any sense. There is no number that results from the division on the right hand side.[^alternatesystems]
 
-[^alternatesystems]: There are alternative mathematical systems of probability, where conditional probability is defined differently to avoid this problem. But in this book we'll stick to the standard system. Where there's just no such thing as "the probability of $A$ given $B$" when $B$ has zero probability.
+[^alternatesystems]: There are alternative mathematical systems of probability, where conditional probability is defined differently to avoid this problem. But in this book we'll stick to the standard system. In this system, there's just no such thing as "the probability of $A$ given $B$" when $B$ has zero probability.
 
 In such cases we say that $\p(A \given B)$ is *undefined*. It's not zero, or some special number. It just isn't a number.
 

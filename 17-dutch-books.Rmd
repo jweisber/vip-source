@@ -157,8 +157,8 @@ knitr::kable(table, align = "r", caption = "A Dutch book for Suzy the Scientist"
 
 #.  Suppose Ronnie has personal probabilities $\p(A) = 4/10$ and $\p(\neg A) = 7/10$. Explain how to make a Dutch book against Ronnie. Your answer should include all of the following:
 
-    -  A list of the bets to be made with Ronnie
-    -  An explanation why Ronnie will regard these bets as fair
+    -  A list of the bets to be made with Ronnie.
+    -  An explanation why Ronnie will regard these bets as fair.
     -  An explanation why these bets will lead to a sure loss for Ronnie no matter what.
 
 #.  Suppose Marco has personal probabilities $\p(X) = 3/10$, $\p(Y) = 2/10$, and $\p(X \vee Y) = 6/10$. Explain how to make a Dutch book against him. Your answer should include all of the following:
