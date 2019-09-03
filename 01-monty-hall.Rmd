@@ -3,8 +3,9 @@
 # The Monty Hall Problem
 
 ```{block, type="epigraph"}
-...in no other branch of mathematics is it so easy for experts to blunder as in probability theory.\
----Martin Gardner
+When tackling a math problem,\
+I encourage students to *draw a picture*.\
+---Francis Su
 ```
 
 `r tufte::newthought("Imagine")` you're on a game show. There are three doors, one with a prize behind it. You're allowed to pick any door, so you choose the first one at random, door A.
@@ -215,15 +216,15 @@ ggplot(nodes) +
            color = "forestgreen", label.size = NA)
 ```
 
-The rules for a tree are as follows:
+The rules for a tree are as follows.
 
-*Rule 1.* Each node must use a partition. The branches coming out of it must be mutually exclusive possibilities, and they must cover all the possibilities.
+*Rule 1.* Each node must branch into a partition. The subpossibilities that emerge from a node must be mutually exclusive. And they must include every way the possibility from which they emerge could obtain.
 
-*Rule 2.* The probabilities at each node must add up to $1$.
+*Rule 2.* The probabilities emerging from a node must add to $1$. If we add up the numbers on the branches immediately coming out of a node, they should add to $1$.
 
 *Rule 3.*  The probability on a branch is *conditional* on the branches leading up to it.
 
-- For example, consider the bottom path in the Monty Hall problem. The probability the host will open door C is $1/2$ there because we're assuming  the prize is behind door A.
+- Consider the bottom path in the Monty Hall problem. The probability the host will open door C is $1/2$ there because we're assuming the prize is behind door A.
 
 *Rule 4.* The probability of a leaf is calculated by multiplying across the branches on the path leading to it. This number represents the probability that all possibilities on that path occur.
 

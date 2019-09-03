@@ -1,10 +1,14 @@
 # Bayes' Theorem {#chbayes}
 
-```{marginfigure}
-The experiment was first published in 1971. It was performed by [Daniel Kahneman](https://en.wikipedia.org/wiki/Daniel_Kahneman) and [Amos Tversky](https://en.wikipedia.org/wiki/Amos_Tversky). Their work on human reasoning reshaped the field of psychology, and eventually won a Nobel prize in 2002.
+```{block, type="epigraph"}
+...in no other branch of mathematics is it so easy for experts to blunder as in probability theory.\
+---Martin Gardner
 ```
 
 `r newthought("In")`  a famous psychology experiment, subjects were asked to solve the following problem.
+```{marginfigure}
+The experiment was first published in 1971. It was performed by [Daniel Kahneman](https://en.wikipedia.org/wiki/Daniel_Kahneman) and [Amos Tversky](https://en.wikipedia.org/wiki/Amos_Tversky). Their work on human reasoning reshaped the field of psychology, and eventually won a Nobel prize in 2002.
+```
 
 ```{block, type='problem'}
 A cab was involved in a hit and run accident at night. Two cab companies, the Green and the Blue, operate in the city. You are given the following data:
@@ -270,10 +274,10 @@ One lesson of this chapter is that you have to take the base rate into account t
 
 The base rate fallacy is so tempting, even trained professionals are susceptible to it. In [one famous study](https://www.stat.berkeley.edu/~aldous/157/Papers/health_stats.pdf), $160$ medical doctors were given a problem similar to our Zika example (but with  cancer instead of Zika). The question was multiple choice, and it used easier numbers than we did. Yet only $34$ of the doctors got it right.
 ```{marginfigure, echo=TRUE}
-Microsoft Founder Bill Gates seems to be making a similar mistake in [this tweet](https://twitter.com/BillGates/status/1118196606975787008).
+Microsoft founder Bill Gates seems to be making a similar mistake in [this tweet](https://twitter.com/BillGates/status/1118196606975787008).
 ```
 
-Hence the quote that opens [Chapter 1][The Monty Hall Problem] of this book: "in no other branch of mathematics is it so easy for experts to blunder as in probability theory."
+Hence the quote that opens this chapter: "in no other branch of mathematics is it so easy for experts to blunder as in probability theory."
 
 
 ## Exercises {-}

@@ -8,7 +8,7 @@ Applied statistics is hard.\
 `r newthought("My")`  wife's family keeps having girls. My wife has two sisters and she and her sisters each have two daughters, with no other siblings or children. That's nine girls in a row!
 
 ```{marginfigure, echo=TRUE}
-Note that girl and boy aren't the only two possibilities. The next child could also be intersex, like fashion model [Hanne Gaby Odiele](https://en.wikipedia.org/wiki/Hanne_Gaby_Odiele).
+Note that girl and boy aren't the only possibilities. The next child could also be intersex, like fashion model [Hanne Gaby Odiele](https://en.wikipedia.org/wiki/Hanne_Gaby_Odiele).
 ```
 
 So are they due for a boy next? Here are three possible answers.
