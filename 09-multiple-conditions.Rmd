@@ -212,7 +212,7 @@ $$
   \begin{aligned}
     \p(A \given B_1 \wedge B_2) &= \frac{\p(B_1 \wedge B_2 \given A)\p(A)}{\p(B_1 \wedge B_2 \given A) \p(A) + \p(B_1 \wedge B_2 \given \neg A) \p(\neg A)} \\
       &= \frac{(161/330)(1/2)}{(161/330)(1/2) + (19/495)(1/2)} \\
-      &= 5313/5693 \\
+      &= 483/521 \\
       &\approx .93. 
   \end{aligned}
 $$

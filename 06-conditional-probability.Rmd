@@ -112,7 +112,7 @@ For example, suppose there are two urns of coloured marbles:
 - Urn X contains 3 black marbles, 1 white.
 - Urn Y contains 1 black marble, 3 white.
 
-I flip a fair coin to decide which urn to draw from, heads for Urn B and tails for Urn W. Then I draw one marble at random.
+I flip a fair coin to decide which urn to draw from, heads for Urn X and tails for Urn Y. Then I draw one marble at random.
 
 ```{r echo=FALSE, fig.cap="Tree diagram for an urn problem"}
 nodes <- bind_rows(
