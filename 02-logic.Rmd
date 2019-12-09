@@ -265,7 +265,7 @@ Notice though, valid arguments are strong by definition. Since it's impossible f
 `r newthought("Generalizing")`  from observed instances is one extremely common form of argument:
 
 ```{block, type="argument", echo=TRUE}
-Every raven I have every seen has been black.\
+Every raven I have ever seen has been black.\
 Therefore, all ravens are black.
 ```
 

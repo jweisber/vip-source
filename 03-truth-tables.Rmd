@@ -257,7 +257,7 @@ knitr::kable(df, align = "c")
 ```
 
 
-## Mutually Exclusivity & Truth Tables
+## Mutual Exclusivity & Truth Tables
 
 `r newthought("Truth")`  tables can be used to establish that two propositions are mutually exclusive. A very simple example is the propositions $A$ and $\neg A$:
 
