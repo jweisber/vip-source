@@ -1,8 +1,8 @@
 # Lindley's Paradox {#chlindley}
 
 ```{block, type="epigraph"}
-Another reason for the popularity of statistical significance testing is probably that complicated mathematical procedures lend an air of scientific objectivity to conclusions.\
----Ronald P. Carver
+Inside every non-Bayesian, there is a Bayesian struggling to get out.\
+---Dennis V. Lindley (quoted by E. T. Jaynes)
 ```
 
 `r newthought("Significance")`  testing is all about whether the outcome would be too much of a coincidence for the hypothesis to be true. But how much of a coincidence is too much? Should we reject a hypothesis when we find results that are significant at the $.05$-level? At the $.01$-level?
