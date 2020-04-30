@@ -7,3 +7,4 @@ _bookdown_files/*
 *.Rproj
 .Rproj.user
 img_source/*
+ideas.md
