@@ -197,3 +197,17 @@ knitr::kable(table, align = "r", caption = "A Dutch book for Suzy the Scientist"
 #.  Suppose my personal probability for rain tomorrow is $30\%$, and my personal probability for snow tomorrow is $40\%$. Suppose also that my personal probability that it will either snow or rain tomorrow is $80\%$. Explain how to make a Dutch book against me.
 
 #.  Piz's personal probability that Pia is a basketball player is $1/4$. His probability that she's a good basketball player is $1/3$. Explain how to make a Dutch book against Piz.
+
+#.  Consider these two statements:
+
+    i.  If someone's degrees of belief violate a law of probability, then they can be Dutch booked.
+    ii. If someone can be Dutch booked, then their degrees of belief violate a law of probability.
+
+    Which one of the following is correct?
+
+    a. Only (i) is true.
+    #. Only (ii) is true.
+    #. Both (i) and (ii) are true.
+    #. Neither is true.
+
+#.  True or false: if someone has personal probabilities $\p(A \wedge B) = \p(A \vee B)$, then they can be Dutch booked.

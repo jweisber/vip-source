@@ -113,6 +113,10 @@ The second problem is about observability. You can observe actual frequencies, b
 
 A third problem has to do with evaluating scientific theories. Part of the point of science is establish which theory is most probable. But theories don't have frequencies. Recall the example from earlier, about the dinosaurs being made extinct by a meteor. Or take the theory that DNA has a double-helix structure. When we say these theories are highly probable, how would we translate that into a statement about hypothetical frequencies?
 
+```{marginfigure}
+Sports commentators often cite statistics like, "no team has ever come back from a 28 point lead in the last period of a championship away game." Sometimes these statistics are informative, but sometimes they're so specific they feel like parody. How specific is too specific?
+````
+
 A fourth and final problem is that how often an event happens depends on what you compare it to. It depends on the *reference class*. Consider Tweety, who has wings and is coloured black-and-white. What is the probability that Tweety can fly? Most things with wings can fly. Most things that are black-and-white cannot. Which reference class determines the probability that Tweety can fly? The class of winged things, or the class of black-and-white things?
 
 It's problems like these that drive many philosophers and scientists away from frequentism, and towards the alternative offered by so-called "Bayesian"  probability.
@@ -149,3 +153,17 @@ First, belief is something personal and mental, so it can't be quantified object
 And second, belief varies from person to person. People from different communities and with different personalities bring different opinions and assumptions to the scientific table. But science is supposed to eliminate personal, subjective elements like opinion and bias.
 
 `r newthought("So")` frequentists and Bayesians both have their work cut out for them. In the coming chapters we'll see how they address these issues.
+
+
+## Exercises {-}
+
+#.  Consider these two statements.
+
+    i.   According to Bayesianism, frequencies aren't real.
+    ii.  According to Bayesianism, frequencies don't obey the laws of probability.
+    
+    Are both statements true? Both false? Only one (which one)?
+
+#.  Explain the one-shot event problem for frequentism. Give two *original* examples to illustrate the problem.
+
+#.  Explain the reference class problem for frequentism. Give two *original* examples to illustrate the problem.

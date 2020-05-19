@@ -58,11 +58,15 @@ ggplot(NULL, aes(c(0, 1))) +
 
 As the number of potential flips grows, the rectangles get narrower because the outcomes become less probable. But they also get taller. The payoff doubles every time the probability is cut in half. The result is an infinite sequence of rectangles, each with the same area, namely $1$. So the total area of all the rectangles is infinite.
 
-`r newthought("Most")`  people, when they first encounter this puzzle, try to take the easy way out. "The game is impossible," they say. "Nobody could actually fund this game in real life. No casino has unlimited money, not even the government does. Besides, the coin would wear out after a while. So the house couldn't even guarantee they'd be able to finish the game."
+`r newthought("Most")`  people, when they first encounter this puzzle, try to take the easy way out. "The game is impossible," they say. "Nobody could actually fund this game in real life. No casino has unlimited money, not even the government does. And nobody can guarantee they'll live long enough to finish the game either, since it could potentially go on for any number of flips."
 
 There are two serious problems with this answer. 
 
-First, consider whether you'd be willing to risk your life to play the St. Petersburg game if the casino did have enough cash on hand, and enough coins to keep the game going as long as it takes? Imagine if God descended from heaven and offered to run the game. Would you gamble your life to play then?
+```{marginfigure}
+We can make the game instantaneous too. Instead of flipping a coin over and over, we throw a dart once at a square board. If it lands in the left half, that corresponds to heads on the first toss. If it lands in the bottom-right quadrant, that corresponds to heads on the second toss. If it lands in the top-right quadrant, we divide it into halves and quadrants similarly, and so on.
+```
+
+First, consider whether you'd be willing to risk your life to play the St. Petersburg game if the casino did have enough cash on hand, and enough coins to keep the game going as long as it takes. Imagine if God descended from heaven and offered to run the game. Would you gamble your life to play then?
 
 Second, even if the game had a finite limit---let's suppose it was $100$ flips---would you be willing to pay $\$100$ to play? The chance you'd make any money at all is less than 1%.
 
@@ -177,7 +181,7 @@ $$ 2, 4, 8, \ldots $$
 So the expected *utility* is the same as the expected monetary value of the original game, namely infinite:
 $$
   \begin{aligned}
-     \E(G) &= \p(\$e^2) \u(\$e^2) + \p(\$e^4) \u(\$e^4) + \p(\$8) \u(\$e^8) + \ldots\\
+     \E(G) &= \p(\$e^2) \u(\$e^2) + \p(\$e^4) \u(\$e^4) + \p(\$e^8) \u(\$e^8) + \ldots\\
           &= (1/2)(2) + (1/4)(4) + (1/8)(8) + \ldots\\
           &= 1 + 1 + 1 + \ldots\\
           &= \infty.

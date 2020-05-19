@@ -381,3 +381,26 @@ These are some pretty hairy formulas, so memorizing them probably isn't a good i
     Explain why these two observations do not conflict.
 
 #.  Above we observed that $\p(\neg A \given C) = 1 - \p(A \given C)$. Prove that this equation holds. Hint: start with the definition of conditional probability, and then recall that $1 = \p(C) / \p(C)$.
+
+#.  There is a room filled with two types of urns.
+
+    - Type X urns have $2$ black marbles, $3$ white.
+    - Type Y urns have $4$ black marbles, $1$ white.
+
+    The two types of urn look identical, but $40\%$ of them are Type X. You pick an urn at random, and start drawing marbles at random **without replacement**.
+    
+    a. If the first draw is black, what is the probability the urn is Type X?
+    #. If the first draw is black and the second draw is white, what is the probability the urn is Type X?
+    #. If the first draw is black and the second draw is white, what is the probability the third draw will be white?
+
+#.  A hat has two coins in it. One is fair, the other has a $1/4$ chance of heads on each toss (the tosses are independent). We choose a coin randomly and flip it twice.
+
+    a. If we get $1$ head and $1$ tail, what is the probability we chose the fair coin?
+    #. If we get $1$ head and $1$ tail, what is the probability the next flip will be heads?
+    #. Suppose instead we had flipped the coin $5$ times and gotten $5$ heads in a row. Then what would the probability be that we are flipping the fair coin?
+
+#.  Suppose that learning $E$ would increase the probability of $H$, and so would learning $F$. Does that mean learning both $E$ and $F$ would increase the probability of $H$? In other words, is the following statement always true?
+
+    - If $\p(H \given E) > \p(H)$ and $\p(H \given F) > \p(H)$, then $\p(H \given E \wedge F) > \p(H)$.
+
+    Assume all conditional probabilities are well-defined. If the statement is true, prove that it is. If it's not true, give a counterexample (use a standard setup like a deck of playing cards or marbles in an urn, and clearly specify which outcomes correspond to each of $H$, $E$, and $F$).

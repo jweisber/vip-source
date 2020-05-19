@@ -372,3 +372,11 @@ What makes one explanation better than another? That turns out to be a very hard
     a. Generalizing from Observed Instances
     #. Inferring an Instance from a Generalization
     #. Inference to the Best Explanation
+
+#.  Suppose a family has two children.
+
+    a. How many possible ways are there for their birthdays to be distributed among the four seasons fall, winter, spring, and summer?
+    #. Suppose we know the two siblings were born in different seasons. How many possibilities are there then?
+    #. Suppose another family has three children. We don't know whether any of them have the same birth-season. How many possibilities are there in this case?
+
+#.  Suppose $A$ and $B$ are compatible, and that $B$ and $C$ are compatible. Does that mean $A$ and $C$ are compatible? If yes, justify your answer. If no, describe a counterexample (an example where it's not true).

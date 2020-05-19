@@ -124,7 +124,7 @@ In our diagrams, potential losses extend below the $x$-axis. And we colour them 
 
 ## More Than Two Outcomes
 
-`r newthought("Most")` casino games have mor than two possible payoffs. For that matter, most decisions in life have more than two possible outcomes. If you buy insurance for your phone, it could end up saving you $\$0$, or it could save you $\$100$, or it might save you $\$150$, etc.
+`r newthought("Most")` casino games have more than two possible payoffs. For that matter, most decisions in life have more than two possible outcomes. If you buy insurance for your phone, it could end up saving you $\$0$, or it could save you $\$100$, or it might save you $\$150$, etc.
 
 So the official definition of expected monetary value is:
 
@@ -255,7 +255,7 @@ A decision table has a row for each option and a column for each possible outcom
 decision_table <- rbind(
     c("$1$ or $2$" = "$\\$3$", "$3$ or $4$" = "$\\$1$", 
       "$5$ or $6$" = "$-\\$1$"),
-    c("$1$ or $2$" = "$\\$1$", "$3$ or $4$" = "$\\$2$", 
+    c("$1$ or $2$" = "$\\$3$", "$3$ or $4$" = "$-\\$3$", 
       "$5$ or $6$" = "$\\$0$")
 )
 row.names(decision_table) <- c("$A$", "$B$")
@@ -303,6 +303,9 @@ knitr::kable(decision_table, align = "c")
 
 Now that the die is loaded towards $5$ or $6$ if you choose $A$, the expected value of choosing $A$ is nil: $\$0$.
 
+
+## Dominance
+
 `r newthought("Once")`  in a while you can avoid calculating expected values altogether. Consider this decision problem:
 
 ```{r echo=FALSE}
@@ -316,15 +319,28 @@ row.names(decision_table) <- c("$A$", "$B$")
 knitr::kable(decision_table, align = "c")
 ```
 
-We don't even have to put in the probabilities to make our decision here. Option $A$ is clearly better, because it has a better payoff no matter how the die lands. In every column, row $A$ has a larger payoff than row $B$. So $A$ is a better decision no matter what.
+Here it looks like we don't even have to put in the probabilities to make our decision. Option $A$ seems clearly better, because it has a better payoff no matter how the die lands. In every column, row $A$ has a larger payoff than row $B$. So $A$ is a better decision no matter what, right?
+
+Not quite. Consider a similar example, where this kind of reasoning would be disastrous. You're deciding whether to study for your midterm, and let's imagine your rich uncle has promised to give you $\$100$ if you get an A. The catch is that, to study, you'll have to miss a shift at work and lose $\$50$. You draw up a decision table, based on whether you get an A or not:
+
+```{r echo=FALSE}
+decision_table <- rbind(
+    c("A" = "$\\$100$", "No A" = "$\\$0$"),
+    c("A" = "$\\$50$", "No A" = "$-\\$50$")
+)
+row.names(decision_table) <- c("Don't Study", "Study")
+knitr::kable(decision_table, align = "c")
+```
+
+The top row gets you more money in both columns. So not studying seems like it has better results no matter what. Does that mean you shouldn't bother studying?
+
+No, because you're obviously not going to end up in the $\$100$ cell if you don't study. You're almost certainly going to get a bad grade and end up with $\$0$. Maybe you shouldn't study anyway, if all you care about is money and you don't think you can get an A even with studying. But if studying gives you a good enough shot at an A, then it will maximize your expected monetary value.
 
 When one option has a better payoff than another no matter what happens, we say the first option ***dominates*** the second. In terms of a table, the dominant option has a higher payoff in every column.
 
-```{block, type="info"}
-If $A$ dominates $B$, then $A$ must have higher expected value than $B$.
-```
+The lesson of our two examples is that a dominant option may not always have higher expected monetary value. But it does when the rows and columns are independent. If the action you take has no effect on the probability of ending up in one column rather than another, then a dominant option is guaranteed to have higher expected value.
 
-Dominant options don't come up very often in practice. Real decision problems tend to be harder than that. But they do come up sometimes. (They're also important in more advanced, theoretical topics: [Chapter 17][Dutch Books] covers one example.)
+Dominant options don't come up very often in practice. Real decision problems tend to be harder than that. But they do come up sometimes. And they're important in more advanced, theoretical topics, as we'll see in [Chapter 17][Dutch Books].
 
 
 ## Exercises {-}
@@ -363,7 +379,7 @@ Dominant options don't come up very often in practice. Real decision problems te
     b. Sometimes true
     c. Never true
 
-#.  Suppose you can bet on either of two dogs: Santa's Little Helper or She's the Fastest. If you bet on Santa's Little Helper and he wins, you get $\$5$. If he loses you pay $\$2$. If you bet on She's the Fastest and she loses, you pay $\$10$. The two dogs have the same chance of winning.
+#.  Suppose a race has just two dogs: Santa's Little Helper and She's the Fastest. If you bet on Santa's Little Helper and he wins, you get $\$5$; otherwise you pay $\$2$. If you bet on She's the Fastest and she loses, you pay $\$10$. The two dogs have the same chance of winning.
 
     ```{marginfigure}
     This problem is based on Exercise 1 from p. 85 of Michael D. Resnik's excellent book, *Choices*.
@@ -491,4 +507,20 @@ Dominant options don't come up very often in practice. Real decision problems te
 
 #.  Prove that paying the fair price for an option always results in expected value of $\$0$. In other words, if $E(A) = \$x$, then $E(\mbox{Pay } \$x \mbox{ for } A) = \$0$.
 
-#.  Prove that if $A$ dominates $B$, then $A$ has higher expected value: $E(A) > E(B)$.
+#. Suppose a game has two possible outcomes: either you win $3 or you lose $10. If the game is fair (zero expected monetary value), what must the probability of winning be?
+
+#.  A coin will be flipped, with chance $p$ of landings heads and chance $1-p$ of landing tails. We must choose between two options. Option A wins $\$20$ if heads, and loses $\$10$ if tails. Option $B$ wins $\$50$ if heads, and loses $\$25$ if tails. Is it possible for the expected monetary value of $A$ to be positive and twice the EMV of $B$?
+
+#.  A gamble has two possible outcomes: either you win $\$x$ or you lose $\$2x$, where $x > 0$. Consider the following statements.
+
+    i.  If the expected monetary value is zero, then the probability of winning is twice the probability of losing.
+    ii. If the expected monetary value is zero, then the probability of winning is $2/3$.
+    
+    Are both statements true, neither, or just one (which one)?
+
+#.  A gamble has three possible outcomes: win $\$1$, win $\$2$, or lose $\$3$. Consider the following two statements.
+
+    i.  If all outcomes are equally likely, the expected monetary value is $\$0$.
+    ii. If the expected monetary value is $\$0$, all outcomes are equally likely.
+    
+    Are both statements correct, neither, or just one (which one)?

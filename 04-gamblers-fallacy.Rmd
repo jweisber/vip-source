@@ -91,7 +91,7 @@ Things might actually be even more complicated than that, though. [Some recent s
 It's still being researched, but one possibility is: defense. When a basketball player gets in the zone, the other team ups their defense. The hot player has to take harder shots. So one of the recent studies added a correction to account for increased difficulty. And another looked at baseball instead, where they did find evidence of streaks.
 
 ```{marginfigure, echo=TRUE}
-But here's [Selena Gomez and Nobel prize winner Richard Thaler](https://www.youtube.com/watch?v=WStmFKp1x3g) telling a bit of the story in a clip from the 2015 movie *The Big Short*.
+But here's [Selena Gomez and Nobel prize winner Richard Thaler](https://www.youtube.com/watch?v=Pxr_FzpPM2Q) telling a bit of the story in a clip from the 2015 movie *The Big Short*.
 ```
 
 The full story of the hot hand fallacy has yet to be told it seems.
@@ -138,3 +138,7 @@ The full story of the hot hand fallacy has yet to be told it seems.
     #.  You know the lottery numbers in Ontario are selected using a fair process. So it's really unlikely that someone will win two weeks in a row. Your friend won last week, so you conclude their chances of winning this week too are even lower than usual.
 
     #.  You're visiting a new country where corruption is common, so you aren't sure whether the lottery there is fair. You see on the news that the King's cousin won the lottery two weeks in a row. You conclude that their chances of winning next week are higher than normal, because the lottery is rigged in their favour.
+
+#.  Suppose $A$ and $B$ are compatible (not mutually exclusive). Does it follow that they are independent? If your answer is yes, explain why this follows. If your answer is no, give a counterexample (an example where $A$ and $B$ are neither mutually exclusive nor independent).
+
+#.  Suppose $A$ is independent of $B$, and $B$ is independent of $C$. Does that mean $A$ is independent of $C$? If yes, justify your answer. If no, describe a counterexample (an example where it's false).

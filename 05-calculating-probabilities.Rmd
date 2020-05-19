@@ -131,7 +131,7 @@ propositions <- data.frame(
 euler_diagram(propositions)
 ```
 
-`r newthought("Exclusivity")`  and independence can be hard to keep straight at first. One way to keep track of the difference is to remember that mutually exclusive propositions don't overlap, but independent propositions usually do. Independence means the truth of one proposition doesn't affect the chances of the other. So if you find out that $A$ is true, $B$ still has the same chance of being true. Which means there have to be some $B$ possibilities within the $A$ circle (unless the probability of $A$ was zero to start with).
+`r newthought("Exclusivity")`  and independence can be hard to keep straight at first. One way to keep track of the difference is to remember that mutually exclusive propositions don't overlap, but independent propositions do. Independence means the truth of one proposition doesn't affect the chance of the other. So if you find out that $A$ is true, $B$ still has the same chance of being true. Which means there have to be some $B$ possibilities within the $A$ circle. (Unless the probability of $A$ was zero to start with, but our official definition of independence in the next chapter will rule this case out by hypothsis.)
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="Independent propositions do overlap (unless one of them has zero probability)."}
 propositions <- data.frame(
@@ -145,9 +145,7 @@ propositions <- data.frame(
 euler_diagram(propositions)
 ```
 
-So independence and exclusivity are very different. Generally speaking, exclusive propositions are not independent, and independent propositions are not exclusive.
-
-There is one exception. If $\p(A) = 0$, then $A$ and $B$ can be both independent and mutually exclusive. If they're mutually exclusive, the probability of $A$ just stays $0$ after $B$ we learn $B$. But otherwise, independence and mutual exclusivity are incompatible with one another.
+So independence and exclusivity are very different. Exclusive propositions are not independent, and independent propositions are not exclusive.
 
 Another marker that may help you keep these two concepts straight: exclusivity is a concept of deductive logic. It's about whether it's *possible* for both propositions to be true (even if that possibility is very unlikely). But independence is a concept of inductive logic. It's about whether one proposition being true changes the *probability* of the other being true.
 
@@ -284,7 +282,7 @@ The restrictions on these two rules are essential. If you ignore them, you will 
     b.  What is $\p((A \wedge B) \vee C)$?
     c.  Must $\p(A \wedge B) = 0$?
 
-#. True or false? If $\p(A)=\p(B)$, then $A$ and $B$ are logically equivalent.
+#. True or false: if $\p(A)=\p(B)$, then $A$ and $B$ are logically equivalent.
 
 #. Consider the following argument:
 
@@ -316,4 +314,6 @@ The restrictions on these two rules are essential. If you ignore them, you will 
     
     (Hint: there's more than one way to do this. You can use an Euler diagram. Or you can derive the new rule from the original one, by thinking of $A \vee B \vee C$ as a disjunction of $A \vee B$ and $C$.)
 
-#. You have a biased coin, where each toss has a $3/5$ chance of landing heads. But each toss is independent of the others. Suppose you're going to flip the coin $1,000$ times. The first 998 tosses all land tails. What is the probability at least one of the last two flips will be tails?
+#.  You have a biased coin, where each toss has a $3/5$ chance of landing heads. But each toss is independent of the others. Suppose you're going to flip the coin $1,000$ times. The first 998 tosses all land tails. What is the probability at least one of the last two flips will be tails?
+
+#.  There are $3$ empty buckets lined up. Someone takes $4$ apples and places each one in a bucket. The placement of each apple is random and independent of the others. What is the probability that the first two buckets end up with no apples?

@@ -88,7 +88,7 @@ Conditional Probability
 
 Independence (Formal Definition)
 
-:    $A$ is independent of $B$ if $\p(A \given B) = \p(A)$.
+:    $A$ is independent of $B$ if $\p(A \given B) = \p(A)$ and $\p(A) > 0$.
 
 Negation Rule
 

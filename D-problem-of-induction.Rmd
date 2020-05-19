@@ -1,5 +1,10 @@
 # The Problem of Induction
 
+```{block, type="epigraph"}
+It's tough to make predictions, especially about the future.\
+---Yogi Berra
+```
+
 `r newthought("Many")`  inductive arguments work by projecting an observed pattern onto as-yet unobserved instances. All the ravens we've observed have been black, so all ravens are. All the emeralds we've seen have been green, so all emeralds are.
 
 The assumption that the unobserved will resemble the observed seems to be central to induction. Philosophers call this assumption the *Principle of Induction*.[^poi] But what justfies this assumption? Do we have any reason to think the parts of reality we've observed so far are a good representative of the parts we haven't seen yet?
@@ -11,7 +16,7 @@ Actually there are strong reasons to doubt whether this assumption can be justif
 
 ## The Dilemma {-}
 
-`r newthought("We")`  observed previously that there are two kinds of argument, inductive and deductive. Some arguments establish their conclusions necessarily, others only support them with high probability. If there is an argument for the Principle of Induction, it must be one of these two kinds. Let's consider each in turn.
+`r newthought("We")`  noted in [Chapter 2][Logic] that there are two kinds of argument, inductive and deductive. Some arguments establish their conclusions necessarily, others only support them with high probability. If there is an argument for the Principle of Induction, it must be one of these two kinds. Let's consider each in turn.
 
 Could we give an inductive argument for the Principle of Induction? At first it seems we could. Scientists have been using inductive reasoning for millenia, often with great success. Indeed, it seems humans, and other creatures too, have relied on it for much longer, and could not have survived without it. So the Principle of Induction has a very strong track record. Isn't that a good argument for believing it's correct?
 
@@ -52,59 +57,71 @@ So the challenge posed by grue is to spell out, precisely, what the Principle of
 
 Not at all, unfortunately. One thing we learn in this book is that the laws of probability are very weak in a way. They don't tell us much, without us first telling them what the prior probabilities are. And as we've seen over and again throughout Part III, [the problem of priors](#priors) is very much unsolved.
 
-For example, suppose we're going to flip a mystery coin five times. We don't know whether the coin is fair or biased, but we hope to have some idea after a few flips.
+For example, suppose we're going to flip a mystery coin three times. We don't know whether the coin is fair or biased, but we hope to have some idea after a few flips.
 
-Now suppose we get through the first four flips and they've all been tails. The Principle of Induction says we should expect the next flip to be tails too. At least, that outcome should now be more probable.
+Now suppose we've done the first two flips, both heads. The Principle of Induction says we should expect the next flip to be heads too. At least, that outcome should now be more probable.
 
 Do the laws of probability agree? Well, we need to calculate the quantity:
-$$ \p(T_5 \given T_1 \wedge T_2 \wedge T_3 \wedge T_4).$$
-The definition of conditional probability tell us:
+$$ \p(H_3 \given H_1 \wedge H_2).$$
+The definition of conditional probability tells us:
 $$
   \begin{aligned}
-    \p(T_5 \given T_1 \wedge T_2 \wedge T_3 \wedge T_4) 
-      &= \frac{\p(T_1 \wedge T_2 \wedge T_3 \wedge T_4 \wedge T_5)}
-              {\p(T_1 \wedge T_2 \wedge T_3 \wedge T_4)}.
+    \p(H_3 \given H_2 \wedge H_1)
+      &= \frac{\p(H_3 \wedge H_2 \wedge H_1)}{\p(H_2 \wedge H_1)}.
   \end{aligned}
 $$
 But the laws of probability don't tell us what numbers go in the numerator and the denominator.
 
 The numbers have to be between $0$ and $1$. And we have to be sure mutually exclusive propositions have probabilities that add up, according to the Additivity rule. But that still leaves things wide open. 
 
-For example, we could finish the calculation this way:
+For example, we could assume that all possible sequences of heads and tails are equally likely. In other words:
+$$ \p(HHH) = \p(THH) = \p(HTH) = \ldots = \p(TTT) = 1/8. $$
+Given that assumption, we get the result that $\p(H_3 \given H_2 \wedge H_1) = 1/2$.
 $$
   \begin{aligned}
-    \p(T_5 \given T_1 \wedge T_2 \wedge T_3 \wedge T_4) 
-      &= \frac{\p(T_1 \wedge T_2 \wedge T_3 \wedge T_4 \wedge T_5)}
-              {\p(T_1 \wedge T_2 \wedge T_3 \wedge T_4)}\\
-      &= \frac{1/32}{1/16}\\
+    \p(H_3 \given H_2 \wedge H_1)
+      &= \frac{\p(H_3 \wedge H_2 \wedge H_1)}{\p(H_2 \wedge H_1)}\\
+      &= \frac{1/8}{1/8 + 1/8}\\
       &= 1/2.
   \end{aligned}
 $$
-Or we could finish it this way:
+But that means the first two flips didn't tell us anything about the third! Even after we got two heads, the chance of another heads is still stuck at $1/2$, same as it was to start with.
+
+`r newthought("We")` didn't *have* to assume all possible sequences are equally likely. We can make a different assumption, and get a different result.
+
+Let's try assuming instead that all possible *frequencies* of heads are equally probable. In other words, the probability of getting $0$ heads is the same as the probability of getting $1$ head, which is also the same as the probability of getting $2$ heads, and likewise for $3$ heads. So we're grouping the possible sequences like so:
+
+- $0$ heads: $TTT$
+- $1$ head: $HTT$, $THT$, or $TTH$
+- $2$ heads: $HHT$, $HTH$, or $THH$
+- $3$ heads: $HHH$
+
+Each grouping has the same probability, $1/4$. And for the groups in the middle, which have multiple members, we divide that evenly between the members. So $\p(HTH) = 1/12$, for example, but $\p(TTT) = 1/4$.
+
+This might seem a funny way of assigning prior probabilities. But it actually leads to very sensible results; the same results as the [Rule of Succession](#succession) in fact! For example, we get $\p(H_3 \given H_2 \wedge H_1) = 3/4$:
 $$
   \begin{aligned}
-    \p(T_5 \given T_1 \wedge T_2 \wedge T_3 \wedge T_4) 
-      &= \frac{\p(T_1 \wedge T_2 \wedge T_3 \wedge T_4 \wedge T_5)}
-              {\p(T_1 \wedge T_2 \wedge T_3 \wedge T_4)}\\
-      &= \frac{5/20}{6/20}\\
-      &= 5/6.
+    \p(H_3 \given H_1 \wedge H_2)
+      &= \frac{\p(H_3 \wedge H_2 \wedge H_1)}{\p(H_2 \wedge H_1)}\\
+      &= \frac{1/4}{1/4 + 1/12}\\
+      &= 3/4.
   \end{aligned}
 $$
-We could even do this:
-$$
-  \begin{aligned}
-    \p(T_5 \given T_1 \wedge T_2 \wedge T_3 \wedge T_4) 
-      &= \frac{\p(T_1 \wedge T_2 \wedge T_3 \wedge T_4 \wedge T_5)}
-              {\p(T_1 \wedge T_2 \wedge T_3 \wedge T_4)}\\
-      &= \frac{0}{1}\\
-      &= 0.
-  \end{aligned}
-$$
+So, on this analysis, the first two tosses do tell us what to expect on the next toss.
 
-All these options result from different choices of prior probabilities. And the laws of probability don't tell us what prior probabilities we must choose, as we learned in Part III.
+`r newthought("We've")` seen two different ways of assigning prior probabilities, which lead to very different results. The first way, where we assume all possible sequences are equally likely, disagrees with the Principle of Induction. Our observations of the first two flips tell us nothing about the next one. But the second way, where we assume all possible frequencies are equally likely, agrees with with the Principle of Induction. Observing heads on the first two does tell us to expect another heads on the next one.
 
-So the laws of probability don't by themselves tell us what to expect. It could be undecided, with heads and tails equally probable on the final toss ($1/2$).  Or the pattern of tails could continue into the future with high probability ($5/6$). There could even be no chance of the pattern continuing ($0$).
-
-The laws of probability only tell us what to expect once we've specified the necessary prior probabilities. The problem of induction challenges us to justify one choice of prior probabilities over the alternatives.
+Both assumptions are consistent with the laws of probability. So those laws don't, by themselves, tell us what to expect. The laws of probability only tell us what to expect once we've specified the prior probabilities. The problem of induction challenges us to justify one choice of prior probabilities over the alternatives.
 
 In the $280$ years since this challenge was first raised by David Hume, no answer has gained general acceptance.
+
+
+## Exercises {-}
+
+1.  Suppose we do $100$ draws, with replacement, from an urn containing an unknown mixture of black and white balls. All $100$ draws come out black. Which of the following is correct?
+
+    a. According to the laws of probability, the next draw is more likely to be black than white.
+    #. According to the laws of probability, the next draw is more likely to be white than black.
+    #. According to the laws of probability, the next draw is equally likely to be black vs. white.
+    #. The laws of probability are consistent with any of the above conclusions; it depends on the prior probabilities.
+    #. None of the above.

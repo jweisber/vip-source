@@ -263,3 +263,8 @@ Notice, Rule 4 is how we got the final probabilities (the numbers in bold) we us
     b. 3/8
     c. 1/2
     d. 1/4
+
+#. An ice cream counter sells 4 different flavours of ice cream (chocolate, vanilla, strawberry, mint). There are $2$ toppings (fudge, caramel), and $3$ kinds of sprinkles (chocolate, rainbow, purple). You order by picking a flavour, a topping, and a kind of sprinkles.
+
+    a. How many possible orders are there?
+    b. If you make your three choices randomly, what is the probability your order will have strawberry ice cream but not rainbow sprinkles?

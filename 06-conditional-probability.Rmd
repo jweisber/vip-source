@@ -278,6 +278,10 @@ Three-way Independence
 
 In other words, a trio of propositions is independent if each pair of them is independent, and the multiplication rule applies to their conjunction. The same idea can be extended to define independence for four propositions, five, etc.
 
+You may be wondering: is part (ii) of this definition really necessary? If each pair of propositions is independent, then the multiplication rule applies to any two of them. Doesn't this guarantee that it applies to all three together?
+
+Curiously, the answer is no. Suppose someone has equal chances of having been born in the spring, summer, fall, or winter. Let $A$ say that they were born in either spring or summer; let $B$ say they were born in either summer or fall; and let $C$ say they were born in either fall or winter. Pairwise these propositions are all independent. But $\p(A \wedge B \wedge C) = 0$ by the Contradiction rule, since there is no season shared by all three propositions; they cannot all be true. And yet $\p(A)\p(B)\p(C) = 1/8$.
+
 
 ## Exercises {-#ch6ex}
 
@@ -345,6 +349,39 @@ In other words, a trio of propositions is independent if each pair of them is in
 
     Hint: start by supposing $\p(A) > 0$, $\p(B) > 0$, and $\p(A \wedge B) = \p(A)\p(B)$. Then apply some algebra and the definition of conditional probability.
 
-#. Justify the claim that independence is symmetric: if $A$ is independent of $B$, then $B$ is independent of $A$.
+#.  Justify the claim that independence is symmetric: if $A$ is independent of $B$, then $B$ is independent of $A$.
 
     Hint: start by supposing that $A$ is independent of $B$. Then write out $\p(A \given B)$ and apply the definition of conditional probability.
+
+#.  Suppose $A$, $B$, and $C$ are independent. Is it possible that $\p(A \wedge B \wedge C) = 0$? If yes, give an example where this happens. If no, prove that it cannot happen.
+
+#.  Suppose we have $4$ apples and $10$ buckets. We place each apple in a random bucket; the placement of each apple is independent of the others. Let $B_{ij}$ be the proposition that apples $i$ and $j$ were placed in the same bucket.
+
+    a. Is $B_{12}$ independent of $B_{34}$?
+    #. Is $B_{12}$ independent of $B_{23}$?
+    #. Is every pair of $B_{ij}$ propositions independent?
+    #. Is every trio of $B_{ij}$ propositions independent?
+
+#.  Suppose we have a coin whose bias we want to learn, so we're going to flip it $3$ times. We start out by assigning the same probability to each possible sequence of heads and tails. For example, the sequences $HTH$ and $TTT$ are equally likely, as are all other sequences. 
+
+    a. Before we do our $3$ flips, what is the probability of $HTH$?
+    #. What is the probability of heads on the third flip, given that the first two flips land heads?
+
+#.  Prove that if $A$ logically entails $B$, then $\p(B \given A) = 1$.
+
+#.  Suppose the following three conditions hold:
+
+    i.   $\p(A) = \p(\neg A)$,
+    ii.  $\p(B \given A) = \p(B \given \neg A)$,
+    iii. $\p(B) > 0$.
+    
+    Must the following be true then?
+    
+    iv.  $\p(A \given B) = \p(A \given \neg B) = 1/2$?
+    
+    If yes, prove that (iv) must hold. If no, give a counterexample: draw an Euler diagram where conditions (i)--(iii) hold, but not (iv).
+
+#.  Prove that the equation $\p(A \given B) \p(B) = \p(B \given A) \p(A)$ always holds. (Assuming both conditional probabilities are well-defined.)
+
+#.  Prove that the following equation always holds, assuming the conditional probabilities are well-defined:
+    $$ \frac{\p(A \given B)}{\p(B \given A)} = \frac{\p(A)}{\p(B)}. $$

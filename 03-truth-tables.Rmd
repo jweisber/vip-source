@@ -227,7 +227,7 @@ colnames(df) <- c("$A$", "$\\neg A$", "$A \\vee \\neg A$")
 knitr::kable(df, align = "c")
 ```
 
-Such propositions are especially interesting because they *must* be true. Their truth is guaranteed, just as a matter of logic. So we call them ***logical truths***.
+Such propositions are especially interesting because they *must* be true. Their truth is guaranteed, just as a matter of logic. We call them ***logical truths***, or ***tautologies***.
 
 The other side of this coin is propositions that are false in every row of the truth table, like $A \wedge \neg A$:
 
@@ -433,3 +433,17 @@ Logically equivalent propositions entail one another. When two propositions have
     ```
 
 #. Use a truth table to determine whether the propositions $A \vee (B \wedge C)$ and $(A \vee B) \wedge (A \vee C)$ are equivalent.
+
+#. True or false: if $A$ and $B$ are mutually exclusive, then $A$ and $\neg B$ are logically equivalent.
+
+#.  If we are considering two compatible propositions $A$ and $B$, the truth-table has $4$ rows. If there are three compatible propositions $A$, $B$, and $C$, there are $8$ rows.
+
+    a. How many rows are there if we have four compatible propositions?
+    #. In general, how many rows are there for $n$ compatible propositions?
+    #. How many rows are there if we have three propositions $A$, $B$, and $C$, but $A$ and $B$ are not compatible (they are mutually exclusive). Assume the other pairs are compatible.
+
+#. Suppose a family has two children.
+
+    a. How many possible ways are there for their birthdays to be distributed among the $12$ months of the year?
+    #. Suppose we know the two siblings were born in different months. How many possibilities are there then?
+    #. Suppose another family has three children. We don't know whether any of them have the same birth-month. How many possibilities are there in this case?

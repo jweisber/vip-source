@@ -620,4 +620,44 @@ You can also use a tree diagram. Again, the calculation will be the same. But th
     Then use the Negation Rule which tells us:
     $$ \p(B) = 1 - \p(\neg B). $$
     And use the Addition Rule to get:
-    $$ \p(A \wedge B) = \p(A) - \p(A \wedge \neg B).$$ 
+    $$ \p(A \wedge B) = \p(A) - \p(A \wedge \neg B).$$
+
+#.  Three friends get together and tell each other their birthdays. If each person's birthday is independent of the others, what is the probability that they all have different birthdays? Assume birthdays are randomly distributed, and ignore leap years; each friend has a $1/365$ chance of being born on a given day.
+
+#.  An urn has two marbles, one black and one white. We will do repeated random draws, with replacement. But every time we draw a white marble, another white marble will be added to the urn for the next draw. Suppose we do $5$ draws. What is the probability they will all be white?
+
+#.  Consider the inequality $\p(A) < \p(A \vee B)$. Which of the following is correct?
+
+    a. This inequality always holds.
+    #. This inequality only holds sometimes: when $A$ and $B$ are mutually exclusive.
+    #. This inequality only holds sometimes: when $A$ and $B$ are compatible (not mutually exclusive).
+    #. This inequality only holds sometimes: when $\p(\neg A \wedge B) > 0$.
+    #. This inequality never holds.
+
+#.  Consider the following two statements.
+
+    i.  If $\p(A \given B) = 2/3$ and $\p(A \given \neg B) = 2/3$, then $\p(A) = 2/3$.
+    ii. If $\p(A) = 2/3$, then $\p(A \given B) = 2/3$ and $\p(A \given \neg B) = 2/3$.
+  
+    Assuming all conditional probabilities are well-defined, which of these statements is true? Both, neither, or just one (which one)?
+
+#.  Consider the following two assignments of probabilities.
+
+    i.   $\p(X \wedge Y) = 1/4$, $\p(X \wedge \neg Y) = 1/4$, $\p(\neg X) = 1/2$.
+    ii.  $\p(A \wedge \neg B) = 1/3$, $\p(A) = 1/2$, $\p(B) = 1/4$.
+
+    Which of them violate the laws of probability: both, neither, or just one (which one)?
+
+#.  Consider the following two assignments of probabilities.
+
+    i.   $\p(A) = 1/3$, $\p(A \wedge B) = 1/9$, $\p(\neg B \given A) = 2/9$.
+    ii.  $\p(X \given Y) = 1/3$, $\p(X \given \neg Y) = 1/2$, $\p(X) = 2/3$.
+
+    Which of them violate the laws of probability: both, neither, or just one (which one)?
+
+#.  Consider the following two assignments of probabilities:
+
+    i.  $\p(A) = 4/5$, $\p(B) = 1/5$, $\p(\neg A \wedge B) = 3/5$.
+    ii.  $\p(\neg X) = 1/10$, $\p(\neg Y) = 9/10$, $\p(X \wedge Y) = 0$.
+
+    Which of them violate the laws of probability: both, neither, or just one (which one)?

@@ -368,3 +368,17 @@ Hence the quote that opens this chapter: "in no other branch of mathematics is i
     This problem was devised by Lewis Carroll, author of *Alice's Adventures in Wonderland*.
     ```
     Then I add a second, black marble to the hat. If I draw one marble at random from the hat and it's black, what is the probability the marble left in the hat is black?
+
+#.  Suppose you have a test for some disease, which always comes up positive for people who have the disease: $\p(P \given D) = 1$. The base-rate in the population for this disease is $1\%$. How low does the false-positive rate $\p(P \given \neg D)$ have to be for the test to acheive $95\%$ reliability, i.e. to have $\p(D \given P) = .95$?
+
+#.  Suppose the test for some disease is perfect for people who have the disease, $\p(P \given D) = 1$. And it's almost perfect for people who don't have the disease: $\p(\neg P \given \neg D) = 98/99$. How high does the base rate have to be for the test to be $99\%$ reliable, i.e. to have $\p(D \given P) = .99$?
+
+#.  An urn contains $4$ marbles, either blue or green. The number of blue marbles is equally likely to be $0, 1, 2, 3$, or $4$. Suppose we do $3$ random draws with replacement, and the observed sequence is: blue, green, blue. What is the probability the urn contains just $1$ blue marble?
+
+#.  Consider the equation $\p(A \given B) = \p(B \given A)$.  Assume all conditional probabilities are well-defined. Which one of the following is correct?
+
+    a. This equation always holds.
+    #. This equation never holds.
+    #. This equation only holds sometimes: whenever $\p(A \given B) = \p(A)$.
+    #. This equation only holds sometimes: whenever $\p(A) = \p(B)$.
+    #. This equation only holds sometimes: whenever $\p(B) = 1$.

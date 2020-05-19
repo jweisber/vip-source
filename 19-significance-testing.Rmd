@@ -306,7 +306,7 @@ ggplot(df) +
 In general, the more extreme the value of $p$ is, the larger we need $n$ to be for the approximation to be accurate. But if you do a big enough study, the $68$-$95$-$99$ rule will give a reliable estimate.
 
 
-## Significance Testing
+## Significance Testing {#foobar}
 
 ```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Ronald A. Fisher (1890--1962) established significance testing as a standard scientific method with his influential $1925$ book *Statistical Methods for Research Workers*."}
 knitr::include_graphics("img/fisher.png")
@@ -415,7 +415,7 @@ We'll deepen our understanding of this point in [the next chapter](#chlindley).
     b.  Fill in the blanks: the results of the study are significant at the $.05$ level if the number of subjects who lose weight is either smaller than _____ or greater than _____.
     c.  Fill in the blanks: the results of the study are significant at the $.01$ level if the number of subjects who lose weight is either smaller than _____ or greater than _____.
     d.  Are the results of the Health Canada study significant at the $.05$ level? Are they significant at the $.01$ level?
-    e.  True or false: given the results of the study, the probability that Dr. Colbert's product works as advertised is less than $.05$.
+    e.  True, false, or not enough information: given the results of the study, the probability that Dr. Colbert's product works as advertised is less than $.05$.
 
 #.  Your professor says $80\%$ of the class passed the midterm, but that seems high since the test was so hard. So you ask all the people sitting in your row if they passed: $4$ of them did, $3$ didn't. Since you didn't pass either, that's a pass-rate of only $50\%$ in your sample.
 
@@ -484,3 +484,25 @@ We'll deepen our understanding of this point in [the next chapter](#chlindley).
     d.  Is the result significant at the $.01$ level for this null hypothesis?
 
 #.  Explain in your own words what it means for a result to be significant at the $.05$ level. See if you can do it without looking back over the text of this chapter.
+
+#.  Suppose we flip a coin $16$ times, to test the null hypothesis that its probability of landing heads is $1/10$.
+
+    a. According to the $68$-$95$-$99$ rule, if the null hypothesis is true we should expect the number of heads to be between $a$ and $b$ about $95\%$ of the time. What are $a$ and $b$?
+    #. There should be something strange about the answer you get to part (a). What is it, and why did we get this strange result? (Hint: look at Figure \@ref(fig:npgrid).)
+
+#.  Suppose we are testing the null hypothesis that $20\%$ of the marbles in an urn are green. We randomly draw $100$ marbles, with replacement, and count the number of green marbles, $k$. According to the normal approximation, which one of the following is correct?
+
+    a. The result is **not** significant at the $.01$ level if $k \leq 32$.
+    #. The result is **not** significant at the $.01$ level if $k \geq 8$.
+    #. The result **is** significant at the $.01$ level if $k = 10$.
+    #. The result **is** significant at the $.01$ level if $k > 32$.
+
+#.  Suppose $200$ people are lined up side-by-side, each one holding a fair coin. Each person flips their coin $64$ times; every time it lands heads they step $1$ meter forward, each time it lands tails they step $1$ meter backward. Use a normal approximation to answer the following question: after everyone finishes their $64$ steps, approximately how many people will be standing between $4$ and $8$ meters behind the starting line?
+
+#.  Suppose we are testing the null hypothesis that a coin is fair: $p = 1/2$. We do $n$ flips and observe $k$ heads; it turns out $k$ is greater than the expected mean $\mu = (1/2)n$. In fact $k$ is more than $3$ standard deviations above the mean: $k > \mu + 3 \sigma$. Which of the following must be true then?
+
+    a. $k > .7 n$
+    #. $.7 n   \geq  k > .6 n$
+    #. $.6 n   \geq  k > .55 n$
+    #. $.55 n  \geq  k > .51 n$
+    #. Not enough information is given.

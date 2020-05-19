@@ -272,3 +272,55 @@ Most decision theorists find this reasoning compelling. But some turn it on its 
     b. People don't always maximize expected utility.
     c. People tend to prefer known chances over unknown chances.
     d. All of the above
+
+#. Suppose we don't know what Yu's personal probabilities and utilities are. But we know that she has the following preferences when a card is drawn from a standard deck (not necessarily at random).
+
+    When offered the following two options, Yu prefers B:
+
+    - A: She wins $0 if it's a spade; $2 if it's a club; $0 if it's red.
+    - B: She wins $2 if it's a spade; $0 if it's a club; $0 if it's red.
+
+    When offered these two options, Yu prefers D:
+
+    - C: She wins $2 if it's a spade; $0 if it's a club; $5 if it's red.
+    - D: She wins $0 if it's a spade; $2 if it's a club; $5 if it's red.
+
+    Which one of the following is correct?
+
+    a. Yu has obeyed the expected utility rule.
+    #. Yu has violated the expected utility rule.
+    #. The expected utility rule does not apply to Yu's situation.
+    #. We don't have enough information to determine whether she has violated the expected utility rule or not.
+
+#. Suppose an urn contains $50$ balls: $25$ are red, the rest are either blue or green in unknown proportion. A random ball will be drawn, and you must choose one of the following.
+
+    - 1A: you win $5 if the ball is red,
+    - 1B: you win $5 if the ball is blue.
+
+    You also face a second choice:
+
+    - 2A: you win $5 if the ball is either blue or green,
+    - 2B: you win $5 if the ball is either red or green.
+
+    Which one of the following is correct?
+
+    a. Preferring 1B and 2A violates the sure-thing principle.
+    #. Preferring 1B and 2A violates the axioms of probability.
+    #. Preferring 1A and 2A violates the sure-thing principle.
+    #. None of the above.
+
+#. Suppose options $A$ and $B$ depend on a random draw from three tickets. Label the utilities of the possible outcomes as follows:
+
+    |     | $T_1$ | $T_2$ | $T_3$ |
+    |-----|-------|-------|-------|
+    | $A$ | $a_1$ | $a_2$ | $a_3$ |
+    | $B$ | $b_1$ | $b_2$ | $b_3$ |
+
+    According to the Sure-thing principle, you should prefer $A$ to $B$ if (i) you would prefer $A$ to $B$ given either $T_1$ or $T_2$, and (ii) you would prefer $A$ to $B$ given $T_3$. Prove that the expected utility rule agrees.
+    
+    In other words, assume the following two statements hold:
+
+    - $EU(A) > EU(B)$ if we know the drawn ticket will be either $T_1$ or $T_2$;
+    - $EU(A) > EU(B)$ if we know the drawn ticket will be $T_3$.
+
+    Then use those assumptions to show that $EU(A) > EU(B)$.

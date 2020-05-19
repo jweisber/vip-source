@@ -73,7 +73,7 @@ The question is, how high does the probability $\p(P)$ have to be before you are
 
 This is a question about your personal tastes, notice. Some people really like salad, they might even like it as much as pizza. So they'd need the shot at pizza to be pretty secure before they'd give up the salad. Others don't care much for salad. Like me: I'd be willing to trade the salad for the gamble even if the chances of pizza weren't very high. For me, salad isn't much better than celery, but pizza is way better than both of them.
 
-Let's suppose for the sake of example that your answer is $\p(P) \geq 1/3$. You'd need at least a $1/3$ chance at the pizza to risk getting celery instead of salad. Since celery is the worst option, let's say it has utility zero: $\u(C)=0$. And since pizza is the best option, let's say it has utility one: $\u(P)=1$. What is the utility of salad $\u(S)$ then?
+Let's suppose your answer is $\p(P) \geq 1/3$. That is, you'd need at least a $1/3$ chance at the pizza to risk getting celery instead of salad. Since celery is the worst option, let's say it has utility zero: $\u(C)=0$. And since pizza is the best option, let's say it has utility one: $\u(P)=1$. What is the utility of salad $\u(S)$ then?
 
 ```{r echo=FALSE, fig.margin=TRUE, dev="png", fig.cap="A utility scale for lunch options"}
 text <- bind_rows(
@@ -418,3 +418,39 @@ But what about you: how does a gain of $\$50$ compare to a gain of $\$100$ in yo
     c.  How high would his chances of getting into law school have to be for him to risk taking the summer program?
 
 #.  Prove the following statement: if an action has only two possible consequences, $C_1$ and $C_2$, and they are equally probable, with $\u(C_1) = -\u(C_2)$, then the expected utility is zero.
+
+#. Suppose Shinji does not follow the expected utility formula: instead of multiplying utilities by probabilities, he multiplies by square roots of probabilities. In other words, he prefers options that maximize the following quantity:
+    $$ \u(C_1) \sqrt{\p(C_1)} + \ldots + \u(C_n) \sqrt{\p(C_n)}. $$
+    Shinji is indifferent between the following two options:
+
+    - He gets $50 with probability $1$.
+    - He wins $100 with probability $7/10$, otherwise he gets $0.
+
+    How much utility does winning $50 have for Shinji, if $\u(\$0) = 1$ and $\u(\$100) = 10$?
+
+#.  Doug does not follow the expected utility formula. Instead he prefers options that maximize the quantity:
+    $$ (\p(C_1))^2 \u(C_1) + \ldots + (\p(C_n))^2 \u(C_n). $$
+    Doug is indifferent between the following two options.
+
+    - He wins $25 with probability $1/2$, otherwise he gets $0.
+    - He wins $100 with probability $1/4$, otherwise he gets $0.
+
+    If $\u(\$0) = 1$ and $\u(\$100) = 3$, what is $\u(\$25)$?
+
+#. Suppose two gambles, $A$ and $B$, depend on the flip of a fair coin. The utilities are $a_1, a_2, b_1$, and $b_2$, as in the following table.
+
+    |     |  $H$  |  $T$  |
+    |-----|-------|-------|
+    | $A$ | $a_1$ | $a_2$ |
+    | $B$ | $b_1$ | $b_2$ |
+
+    Suppose $EU(A) > EU(B)$. Prove that if we double all the utilities, $A$ will still have higher expected utility.
+
+#. Consider the following description: $EU(A) > EU(B)$ even though the probability is at least $99/100$ that $B$ will result in an outcome with higher utility than $A$.
+
+    Which one of the following is correct?
+
+    a. This situation is impossible because it violates the Additivity rule.
+    #. This situation is impossible because it violates the expected utility formula.
+    #. This situation is impossible because it violates the Sure-thing Principle.
+    #. This situation is possible.
