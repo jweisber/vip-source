@@ -1,0 +1,304 @@
+# Solutions to Selected Exercises
+
+## Chapter 1 {-}
+
+*Exercise 3.* Prisoner A is incorrect. His chances of survival are still only $1/3$. To see why, we can use the same tree as we did for the Monty Hall problem, and just change the labels on the leaves from "Monty Opens X" to "Guard Names X."
+
+*Exercise 5.* Option (a): $5/8$.
+
+
+## Chapter 2 {-}
+
+*Exercise 1.* (a) Invalid, (b) Valid, (c) Valid, (d) Valid, (e) Invalid, (f) Valid.
+
+*Exercise 2.* (a) Compatible, (b) Compatible, (c) Mutually Exclusive.
+
+*Exercise 3.* False.
+
+*Exercise 5.* Yes, it is possible. 
+
+
+## Chapter 3 {-}
+
+*Exercise 1.* (a) $\neg A$, (b) $A \wedge B$, (c) $A \wedge \neg B$, (d) $\neg A \wedge \neg B$.
+
+*Exercise 2a.* These are mutually exclusive: there's only one row where $A \wedge B$ is true, and $A \wedge \neg B$ is false in that row.
+
+*Exercise 3b.* These are logically equivalent: their final columns are identical, T T F F.
+
+*Exercise 4.* The column for $B \wedge C$ is T F F F T F F F. The column for $A \vee (B \wedge C)$ is T T T T T F F F.
+
+
+## Chapter 4 {-}
+
+*Exercise 1.* (a) Independent, (b) Not Independent, (c) Independent, (d) Not Independent.
+
+*Exercise 2.* Option (d): All of the above.
+
+*Exercise 3.* Option (e): None of the above.
+
+*Exercise 4.* (a) Not a gambler's fallacy, (b) Gambler's fallacy.
+
+
+## Chapter 5 {-}
+
+*Exercise 1.* This is a contradiction so its probability is $0$.
+
+*Exercise 4.* (a) $8/15$, (b) $8/15$, (c) No.
+
+*Exercise 5.* (a) $0$, (b) $1/6$, (c) No.
+
+*Exercise 7.* (a) Yes, (b) No, (c) No.
+
+*Exercise 8.* $1/6$.
+
+
+## Chapter 6 {-}
+
+*Exercise 2.* (a) $1/2$, (b) $2/7$.
+
+*Exercise 5.* (a) $9/70$, (b) $9/140$, (c) $1/30$, (d) $1/60$, (e) $17/210$, (f) $27/34$.
+
+*Exercise 6.* $1/9$.
+
+
+## Chapter 7 {-}
+
+*Exercise 1.* (a) $3/13$, (b) $10/13$, (c) $4/13$, (d) $4/13$, (e) $10/13$
+
+*Exercise 4.* $17/32$
+
+*Exercise 6.* Yes:
+  $$
+  \begin{aligned}
+    \p(A) 
+    & = \p((A \wedge B) \vee (A \wedge C) \vee (A \wedge D))            & \text{by Equivalence}\\
+    & = \p(A \wedge B) + \p(A \wedge C) + \p(A \wedge D)                & \text{by Addition}\\
+    & = \p(A \given B)\p(B) + \p(A \given C)\p(C) + \p(A \given D)\p(D) & \text{by General Multiplication}.
+  \end{aligned}
+  $$
+
+*Exercise 8.* (a) $1/13$, (b) $4/51$, (c) $4/663$, (d) $4/663$, (e) $8/663$, (f) $1/221$
+
+*Exercise 25.* First observe that $A \wedge (A \vee B)$ is equivalent to $A$. This can be verified by a truth table or Euler diagram. We then reason as follows:
+  $$
+  \begin{aligned}
+    \p(A \given A \vee B) 
+      & = \frac{\p(A \wedge (A \vee B))}{\p(A \vee B)}  & \text{by definition}\\
+      & = \frac{\p(A)}{\p(A \vee B)}                    & \text{by Equivalence}\\
+      & = \frac{\p(A)}{\p(A) + \p(B)}                   & \text{by Addition.}
+  \end{aligned}
+  $$
+
+
+## Chapter 8 {-}
+
+*Exercise 1.* $1/4$
+
+*Exercise 3.* $2/3$
+
+*Exercise 5.* $9/11$
+
+*Exercise 7.* The full formula is:
+  $$
+    \p(X \given B) 
+      = \frac{\p(X)\p(B \given X)}{\p(X)\p(B \given X) + \p(Y)\p(B \given Y) + \p(Z)\p(B \given Z)}.
+  $$
+To derive this formula, start with the short form of Bayes' theorem for $\p(X \given B)$. Then apply the version of LTP from Exercise 7.6 to the denominator, $\p(B)$.
+
+*Exercise 8.* $1/57$
+
+*Exercise 11.* $1/4$
+
+
+## Chapter 9 {-}
+
+*Exercise 1.* (a) $1/6$, (b) $1/2$, (c) $1/2$.
+
+*Exercise 2.* $81/85$.
+
+*Exercise 5.*
+  $$
+  \begin{aligned}
+    \p(A \given B \wedge C) 
+      &= \frac{\p(A \wedge (B \wedge C))}{\p(B \wedge C)} & \text{ by definition}\\
+      &= \frac{\p(A \wedge (C \wedge B))}{\p(C \wedge B)} & \text{ by Equivalence}\\
+      &= \p(A \given C \wedge B)                          & \text{ by definition.}
+  \end{aligned}
+  $$
+
+*Exercise 7.* First note that $\p(C) = \p((A \wedge C) \vee \p(\neg A \wedge C))$ by Equivalence, and thus by Addition we have $\p(\neg A \wedge C) = \p(C) - \p(A \wedge C)$. We then reason as follows:
+  $$
+  \begin{aligned}
+    \p(\neg A \given C) 
+      &= \frac{\p(\neg A \wedge C)}{\p(C)}                  & \text{ by definition}\\
+      &= \frac{\p(C) - \p(A \wedge C)}{\p(C)}               & \text{ by above}\\
+      &= \frac{\p(C)}{\p(C)} - \frac{\p(A \wedge C)}{\p(C)} & \text{ by algebra}\\
+      &= 1 - \frac{\p(A \wedge C)}{\p(C)}                   & \text{ by algebra}\\
+      &= 1 - \p(A \given C)                                 & \text{ by definition.}
+  \end{aligned}
+  $$
+
+
+## Chapter 11 {-}
+
+*Exercise 2.* $-\$80$.
+
+*Exercise 4.* $-\$0.79$.
+
+*Exercise 9.* (a) $\$460$ million, (b) $\$580$ million, (c) $\$220$ million, (d) no, they won't conduct the study because it would be a waste of $\$5,000$. (The EMV of enacting the tax will be positive regardless of the study's findings. So doing the study won't help them make their decision.)
+
+*Exercise 11.* (a) $-\$60$, (b) $-\$52$.
+
+*Exercise 16.* $x = 888$.
+
+*Exercise 22.* Suppose that $E(A) = \$x$. Let the possible payoffs of $A$ be $x_1, \ldots, x_n$. Then:
+  $$
+  \begin{aligned}
+    E(\text{Pay $\$x$ for $A$})
+      &= \p(\$x_1) \cdot (\$x_1 - \$x) + \ldots + \p(\$x_n) \cdot (\$x_n - \$x)\\
+      &= \left[\p(\$x_1) \cdot \$ x_1 - \p(\$x_1) \cdot \$x \right] + \ldots + \left[\p(\$x_n) \cdot \$x_n - \p(\$x_n) \cdot \$x \right]\\
+      &= E(A) - \left[\p(\$x_1) \cdot \$ x + \ldots + \p(\$x_n) \cdot \$x \right]\\
+      &= E(A) - \$x \left[\p(\$x_1) + \ldots + \p(\$x_n) \right]\\
+      &= E(A) - \$x \\
+      &= 0.
+  \end{aligned}
+  $$
+
+
+## Chapter 12 {-}
+
+*Exercise 2.* (d)
+
+*Exercise 3.* $3/5$
+
+*Exercise 5.* (a) $2/3$, (b) $3/5$.
+
+*Exercise 8.* (a) $103/2$, (b) $490/9$, (c) $45/49$.
+
+*Exercise 10.* Suppose action $A$ has only two possible consequences, $C_1$ and $C_2$, such that $\p(C_1) = \p(C_2)$ and $U(C_1) = -U(C_2)$. Since $\p(C_1) = \p(C_2) = 1/2$, we have:
+  $$
+    \begin{aligned}
+      EU(A) 
+        &= \p(C_1) U(C_1) + \p(C_2) U(C_2) \\
+        &= \frac{1}{2} U(C_1) + \frac{1}{2} U(C_2) \\
+        &= -\frac{1}{2} U(C_2) + \frac{1}{2} U(C_2) \\
+        &= 0.
+    \end{aligned}
+  $$
+
+
+## Chapter 13 {-}
+
+*Exercise 1.* (d)
+
+*Exercise 2.* (a)
+
+*Exercise 3.* (b)
+
+*Exercise 5.* (c)
+
+*Exercise 6.* (c)
+
+*Exercise 8.* (d)
+
+
+## Chapter 14 {-}
+
+*Exercise 1.* (d)
+
+*Exercise 2.* (b)
+
+*Exercise 5.* $f(y) = e^y$. If we plug $e^y$ into $\log(x)$ we get $y$ back: $\log(e^y) = y$.
+
+*Exercise 8.* (b)
+
+*Exercise 9.* (c)
+
+
+## Chapter 16 {-}
+
+*Exercise 1.* a) $7/10$, b) $4/5$, c) $2/3$.
+
+*Exercise 3.* $2/5$
+
+*Exercise 4.* $2/9$
+
+
+## Chapter 17 {-}
+
+*Exercise 1.* We make the following deals with Ronnie.
+
+- He pays us $\$.40$, we pay him $\$1$ if $A$ is true.
+- He pays us $\$.70$, we pay him $\$1$ if $A$ is false.
+
+Each of these deals is fair according to Ronnie because the betting rates match his personal probabilities. For example, the expected value of the first bet is 0:
+$$ (\$1 - \$.40) \p(A) - \$.40 (1 - \p(A)) = (\$.60)(4/10) - \$.40(6/10) = 0. $$
+But Ronnie must pay us $1.10 for these bets, and he will only get $1 in return. Whether $A$ is true or false, only one of the bets will pay off for Ronnie. So his net "gain" will be $\$1 - \$1.10 = -\$.10$.
+
+*Exercise 2.* We make the following deals with Marco.
+
+- We pay him $\$0.30$, he pays us $\$1$ if $X$ is true.
+- We pay him $\$0.20$, he pays us $\$1$ if $Y$ is true.
+- He pays us $\$0.60$, we pay him $\$1$ if $X \vee Y$ is true.
+
+The explanation is similar to 17.1: each bet is fair according to Marco's personal probabilities, as can be checked by doing the expected value calculations which come out to $0$ for each one. But he pays us $\$.10$ more up front than we pay him, and he can't possibly win it back. If he wins the third bet, we win one or both of the first two bets.
+
+*Exercise 8.* We make the following deals with Piz.
+
+- We pay him $\$1/4$, and he pays us $\$1$ if Pia is a basketball player.
+- He pays us $\$1/3$, and we pay him $\$1$ if Pia is a good basketball player.
+
+Again the deals are fair given his personal probabilities. And again he pays us more up front than we pay him, money which he can't win back. If he wins the second bet, we win the first.
+
+## Chapter 18 {-}
+
+*Exercise 1.* a) $7/10$, b) $3/10$, c) same answers as before, d) different answers: $217/300$ and $11/36$.
+
+*Exercise 2.* a) $1/2$, b) $5/8$, c) yes, different answers here: $2/3$ and $21/32$, d) different again: $49/62$ and $713/992$.
+
+*Exercise 6.* a) $2/3$, b) $2/1$, c) $1/2$, d) different: $1/3$ now
+
+
+## Chapter 19 {-}
+
+*Exercise 1.* 
+  (a) $\mu = 20, \sigma = 4$, 
+  (b) a bell curve centered at $20$ and reaching $y \approx 0$ around $x \approx 8$, 
+  (c) $a = 16, b = 24$, 
+  (d) $a = 12, b = 28$, 
+  (e) $a = 8, b = 32$, 
+  (f) $7$ or fewer, 
+  (g) $33$ or more, 
+  (h) answers will vary.
+
+*Exercise 3.*
+  (a) $\mu = 144, \sigma = 6$, 
+  (b) $132, 156$,
+  (c) $126, 162$,
+  (d) not significant at either level,
+  (e) false (more accurately, not enough information is given to draw a conclusion either way).
+
+*Exercise 8.*
+  (a) $\mu = 10, \sigma = 3$,
+  (b) no,
+  (c) false,
+  (d) false.
+
+*Exercise 9.*
+  (a) $\mu = 80, \sigma = 4$,
+  (b) yes,
+  (c) if the null hypothesis is true, and we repeated the experiment over and over, we would get a result this far from the mean less than $1\%$ of the time.
+
+*Exercise 11.* If the null hypothesis is true, the probability of getting a result this "extreme" (i.e. as improbable as this one, or even less probable) is below $.05$.
+
+
+## Chapter 20 {-}
+
+*Exercise 1.* (a) and (b)
+
+*Exercise 2.* (a) $25$, (b) $400$, (c) $16/17$ or about $94\%$.
+
+*Exercise 3.* (a) 225, (b) $675/676$ or about $99.9\%$.
+
+*Exercise 5.* (a) $\mu = 5, \sigma = 2$, (b) yes, (c) $\mu = 5/2, \sigma = 3/2$, (d) yes.

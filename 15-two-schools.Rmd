@@ -166,4 +166,6 @@ And second, belief varies from person to person. People from different communiti
 
 #.  Explain the one-shot event problem for frequentism. Give two *original* examples to illustrate the problem.
 
+#.  Explain the difference between actual and hypothetical frequency. Give two *original* examples to illustrate. Then explain why the distinction is important.
+
 #.  Explain the reference class problem for frequentism. Give two *original* examples to illustrate the problem.
