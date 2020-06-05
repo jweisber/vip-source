@@ -2,16 +2,9 @@
 
 `r newthought("The")`  chances of crashing your car are pretty low, but they're considerably higher if you're drunk. Probabilities change depending on the conditions.
 
-We symbolize this idea by writing $\p(A \given B)$, the probability that $A$ is true *given* that $B$ is true. And we call this kind of probability ***conditional probability***.
-
-```{marginfigure, echo=TRUE}
-To say $B$ increases the chance of $A$ we write $\p(A \given B) \gt \p(A)$.
-And to say $B$ doubles the chance of $A$ write $\p(A \given B) = 2 \times \p(A)$.
-```
-
-For example, to say the probability of $A$ given $B$ is 30%, we write:
+We symbolize this idea by writing $\p(A \given B)$, the probability that $A$ is true *given* that $B$ is true. For example, to say the probability of $A$ given $B$ is 30%, we write:
 $$ \p(A \given B) = .3. $$
-But how do we calculate conditional probabilities?
+We call this kind of probability ***conditional probability***. But how do we calculate conditional probabilities?
 
 
 ## Calculating Conditional Probability
@@ -103,18 +96,18 @@ In such cases we say that $\p(A \given B)$ is *undefined*. It's not zero, or som
 
 ## Conditional Probability & Trees
 
-`r newthought("We")`  already encountered conditional probabilities informally, when we used a tree diagram to solve [the Monty Hall problem][The Monty Hall Problem].
+We  already encountered conditional probabilities informally, when we used a tree diagram to solve [the Monty Hall problem][The Monty Hall Problem].
 
 In a tree diagram, each branch represents a possible outcome. The number placed on that branch represents the chance of that outcome occurring. But that number is based on the assumption that all branches leading up to it occur. So the probability on that branch is conditional on all previous branches.
 
-For example, suppose there are two urns of coloured marbles:
+For example, suppose there are two urns of coloured marbles.
 
 - Urn X contains 3 black marbles, 1 white.
 - Urn Y contains 1 black marble, 3 white.
 
 I flip a fair coin to decide which urn to draw from, heads for Urn X and tails for Urn Y. Then I draw one marble at random.
 
-```{r echo=FALSE, fig.cap="Tree diagram for an urn problem"}
+```{r urntree, echo=FALSE, fig.cap="Tree diagram for an urn problem", fig.margin=TRUE}
 nodes <- bind_rows(
   list(text = "H", x = .5, y = .75),
   list(text = "T", x = .5, y = .25),  
@@ -158,7 +151,7 @@ ggplot() +
   theme_void()
 ```
 
-The probability of drawing a black marble on the top path is $3/4$ because we are assuming the coin landed heads, and thus I'm drawing from Urn X. If the coin lands tails instead, and I draw from Urn Y, then the chance of a black marble is instead $1/4$. So these quantities are conditional probabilities:
+In Figure \@ref(fig:urntree), the probability of drawing a black marble on the top path is $3/4$ because we are assuming the coin landed heads, and thus I'm drawing from Urn X. If the coin lands tails instead, and I draw from Urn Y, then the chance of a black marble is instead $1/4$. So these quantities are conditional probabilities:
 $$
   \begin{aligned}
     \p(B \given H) &= 3/4,\\
@@ -171,7 +164,7 @@ Notice, though, the first branch in a tree diagram is different. In the $H$-vs.-
 
 ## More Examples
 
-`r newthought("Imagine")` an urn contains marbles of three different colours: 20 are red, 30 are blue, and 40 are green. I draw a marble at random. What is $\p(R \given \neg B)$, the probability it's red given that it's not blue?
+Imagine an urn contains marbles of three different colours: 20 are red, 30 are blue, and 40 are green. I draw a marble at random. What is $\p(R \given \neg B)$, the probability it's red given that it's not blue?
 $$
   \begin{aligned}
     \p(R \given \neg B) &= \frac{\p(R \wedge \neg B)}{\p(\neg B)}\\
@@ -182,9 +175,9 @@ $$
 $$
 This calculation relies on the fact that $R \wedge \neg B$ is logically equivalent to $R$. A red marble is automatically not blue, so $R$ is true under exactly the same circumstances as $R \wedge \neg B$. The [Equivalence Rule][Tautologies, Contradictions, and Equivalent Propositions] thus tells us $\p(R \wedge \neg B) = \p(R)$.
 
-`r newthought("Suppose")` a university has 10,000 students, and each student is studying under one of four broad headings: Humanities, Social Sciences, STEM, or Professional. Within each of these categories, the number of students with an average grade of A, B, C, or D is as follows:
+`r newthought("Suppose")` a university has 10,000 students. Each is studying under one of four broad headings: Humanities, Social Sciences, STEM, or Professional. Under each of these categories, the number of students with an average grade of A, B, C, or D is listed in the following table. What is the probability a randomly selected student will have an A average, given that they are studying either Humanities or Social Sciences?
 
-```{r echo=FALSE, echo=FALSE}
+```{r studentgrades, echo=FALSE, echo=FALSE}
 df <- data.frame(
     `Humanities`      = c(200, 500, 250, 50),
     `Social Sciences` = c(600, 800, 400, 200),
@@ -198,7 +191,6 @@ rownames(df) <- c("A", "B", "C", "D")
 knitr::kable(df, align = "c")
 ```
 
-What is the probability a randomly selected student will have an A average, given that they are studying either Humanities or Social Sciences?
 $$
   \begin{aligned}
     \p(A \given H \vee S) &= \frac{\p(A \wedge (H \vee S))}{\p(H \vee S)}\\
@@ -206,7 +198,6 @@ $$
                            &= 4/15.
   \end{aligned}
 $$
-
 What about the reverse probability, that a student is studying either Humanities or Social Sciences given that they have an A average?
 $$
   \begin{aligned}
@@ -217,9 +208,10 @@ $$
 $$
 Notice how we get a different number now.
 
+
 ## Order Matters
 
-`r newthought("In")`  general, the probability of $A$ given $B$ will be different from the probability of $B$ given $A$. These are different concepts.
+In  general, the probability of $A$ given $B$ will be different from the probability of $B$ given $A$. These are different concepts.
 
 For example, university students are usually young, but young people aren't usually university students. Most aren't even old enough to be in university. So the probability someone is young given they are in university is high. But the probability someone is in university given that they are young is low. So $\p(Y \given U) \neq \p(U \given Y)$.
 
@@ -234,7 +226,7 @@ When we write $\p(A \given B)$, we are discussing the probability of $A$. But we
 
 ## Declaring Independence
 
-`r newthought("We")`  explained independence informally back in [Chapter 4][Independence]: $A$ and $B$ are independent if the truth of one doesn't change the probability of the other. Now that we've formally defined conditional probability, we can formally define independence too.
+We  explained independence informally back in [Chapter 4][Independence]: $A$ and $B$ are independent if the truth of one doesn't change the probability of the other. Now that we've formally defined conditional probability, we can formally define independence too.
 
 Independence
 
@@ -244,7 +236,7 @@ In other words, they're independent if $A$'s probability is the same after $B$ i
 
 Now we can establish three useful facts about independence.
 
-`r newthought("The")`  first is summed up in the mantra "independence means multiply". This actually has two parts.
+`r newthought("The first")` is summed up in the mantra "independence means multiply." This actually has two parts.
 
 We already learned the first part with the Multiplication Rule: if $A$ is independent of $B$, then $\p(A \wedge B) = \p(A)\p(B)$. Except now we can see why this rule holds, using the definition of conditional probability and some algebra:
 $$
@@ -259,15 +251,15 @@ The second part of the "independence means multiply" mantra is new though. It ba
 
 Bottom line: as long as there are no zeros to worry about, independence is the same thing as $\p(A \wedge B) = \p(A)\p(B)$.
 
-`r newthought("Second,")` independence is symmetric. If $A$ is independent of $B$ then $B$ is independent of $A$. Informally speaking, if $B$ makes no difference to $A$'s probability, then $A$ makes no difference to $B$'s probability.
+`r newthought("Second,")` independence is symmetric. If $A$ is independent of $B$, then $B$ is independent of $A$. Informally speaking, if $B$ makes no difference to $A$'s probability, then $A$ makes no difference to $B$'s probability.
 
-This is why we often say "$A$ and $B$ are independent", without specifying which is independent of which. Since independence goes both ways, they're automatically independent of each other.
+This is why we often say "$A$ and $B$ are independent," without specifying which is independent of which. Since independence goes both ways, they're automatically independent of each other.
 
 `r newthought("Third,")` independence extends to negations. If $A$ is independent of $B$, then it's also independent of $\neg B$ (as long as $\p(\neg B) > 0$, so that $\p(A \given \neg B)$ is well-defined).
 
 Notice, this also means that if $A$ is independent of $B$, then $\neg A$ is independent of $\neg B$ (as long as $\p(\neg A) > 0$).
 
-`r newthought("So")`  far our definition of independence only applies to two propositions. We can extend it to three as follows:
+`r newthought("So far")` our definition of independence only applies to two propositions. We can extend it to three as follows.
 
 Three-way Independence
 
@@ -381,7 +373,7 @@ Curiously, the answer is no. Suppose someone has equal chances of having been bo
     
     If yes, prove that (iv) must hold. If no, give a counterexample: draw an Euler diagram where conditions (i)--(iii) hold, but not (iv).
 
-#.  Prove that the equation $\p(A \given B) \p(B) = \p(B \given A) \p(A)$ always holds. (Assuming both conditional probabilities are well-defined.)
+#.  Prove that the equation $\p(A \given B) \p(B) = \p(B \given A) \p(A)$ always holds. (Assume both conditional probabilities are well-defined.)
 
 #.  Prove that the following equation always holds, assuming the conditional probabilities are well-defined:
     $$ \frac{\p(A \given B)}{\p(B \given A)} = \frac{\p(A)}{\p(B)}. $$

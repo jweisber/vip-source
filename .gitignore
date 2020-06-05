@@ -2,6 +2,7 @@
 vip/*
 _book/*
 _bookdown_files/*
+_main*
 .vscode/*
 .Rproj.user/*
 *.Rproj

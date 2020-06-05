@@ -2,6 +2,13 @@
 
 # Two Schools
 
+
+```{block, type="epigraph"}
+To understand God's thoughts we must study statistics, for these are the measure of His purpose.\
+---attributed to Florence Nightingale
+```
+
+
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="Ned Flanders informs us that, well sir, there are two schools of thought on the matter."}
 knitr::include_graphics("img/flanders.png")
 ```
@@ -11,16 +18,16 @@ knitr::include_graphics("img/flanders.png")
 
 ## Probability as Frequency
 
-`r newthought("In")`  statistics, the dominant tradition has been to think of probability in terms of "frequency". What's the probability a coin will land heads? That just depends on how often it lands heads---the *frequency* of heads.
+In  statistics, the dominant tradition has been to think of probability in terms of "frequency." What's the probability a coin will land heads? That just depends on how often it lands heads---the *frequency* of heads.
 
 If a coin lands heads half the time, then the probability of heads on any given toss is $1/2$. If it lands heads $9/10$ of the time, then the probability of heads is $9/10$.
 
-This is probably the most common way of understanding "probability". You may even be thinking to yourself, *isn't it obvious that's what probability is about?*
+This is probably the most common way of understanding "probability." You may even be thinking to yourself, *isn't it obvious that's what probability is about?*
 
 
 ## Probability as Belief
 
-`r newthought("But")`  many statements about probability don't fit the frequency mold, not very well at least.
+But  many statements about probability don't fit the frequency mold, not very well at least.
 
 Consider the statement, "the probability the dinosaurs were wiped out by a meteor is $90\%$." Does this mean $90\%$ of the times dinosaurs existed on earth, they were wiped out? They only existed once! This probability is about an event that doesn't repeat. So there's no frequency with which it happens.
 
@@ -33,7 +40,7 @@ So, some probability statements appear to be about *belief*, not frequency. If a
 
 ## Which Kind of Probability?
 
-`r newthought("Which")`  kind of probability are scientists using when they use probability theory? Is science about the frequency with which certain events happen?  Or is it about what beliefs are warranted by the evidence?
+Which  kind of probability are scientists using when they use probability theory? Is science about the frequency with which certain events happen?  Or is it about what beliefs are warranted by the evidence?
 
 There is a deep divide among scientists on this issue, especially statisticians.
 
@@ -46,7 +53,7 @@ Let's consider the strengths and weaknesses of each approach.
 
 ## Frequentism
 
-`r newthought("According")` to frequentists, probability is all about how often something happens. But what if it only ever has one opportunity to happen?
+According to frequentists, probability is all about how often something happens. But what if it only ever has one opportunity to happen?
 
 For example, suppose we take an ordinary coin fresh from the mint, and we flip it once. It lands heads. Then we melt it down and destroy it. Was the probability of heads on that flip $1$? The coin landed heads $1$ out of $1$ times, so isn't that what the frequency view implies? And yet, common sense says the probability of heads was $1/2$, not $1$. It was an ordinary coin, it could have landed either way.
 
@@ -111,7 +118,7 @@ So the hypothetical frequency of $1/2$ isn't what would necessarily happen. It's
 
 The second problem is about observability. You can observe actual frequencies, but not hypothetical frequencies. We never actually get to flip a coin more than a few hundred times. So hypothetical frequencies aren't observable and objective, which undermines the main appeal of the frequency theory.
 
-A third problem has to do with evaluating scientific theories. Part of the point of science is establish which theory is most probable. But theories don't have frequencies. Recall the example from earlier, about the dinosaurs being made extinct by a meteor. Or take the theory that DNA has a double-helix structure. When we say these theories are highly probable, how would we translate that into a statement about hypothetical frequencies?
+A third problem has to do with evaluating scientific theories. Part of the point of science is to establish which theory is most probable. But theories don't have frequencies. Recall the example from earlier, about the dinosaurs being made extinct by a meteor. Or take the theory that DNA has a double-helix structure. When we say these theories are highly probable, how would we translate that into a statement about hypothetical frequencies?
 
 ```{marginfigure}
 Sports commentators often cite statistics like, "no team has ever come back from a 28 point lead in the last period of a championship away game." Sometimes these statistics are informative, but sometimes they're so specific they feel like parody. How specific is too specific?
@@ -119,12 +126,12 @@ Sports commentators often cite statistics like, "no team has ever come back from
 
 A fourth and final problem is that how often an event happens depends on what you compare it to. It depends on the *reference class*. Consider Tweety, who has wings and is coloured black-and-white. What is the probability that Tweety can fly? Most things with wings can fly. Most things that are black-and-white cannot. Which reference class determines the probability that Tweety can fly? The class of winged things, or the class of black-and-white things?
 
-It's problems like these that drive many philosophers and scientists away from frequentism, and towards the alternative offered by so-called "Bayesian"  probability.
+It's problems like these that drive many philosophers and scientists away from frequentism, and toward the alternative offered by "Bayesian"  probability.
 
 
 ## Bayesianism
 
-`r newthought("According")`  to Bayesians, probability is ultimately about belief. It's about how certain you should be that something is true.
+According  to Bayesians, probability is ultimately about belief. It's about how certain you should be that something is true.
 
 For example, $\p(A)=.9$ means that $A$ is certain to degree $0.9$. We can be $90\%$ confident that $A$ is true. Whereas $\p(A)=.3$ means that $A$ is certain to degree $0.3$. We can only be $30\%$ confident $A$ is true.
 
@@ -146,13 +153,13 @@ Finally, new evidence has to be weighed against previous evidence and existing c
 
 So, Bayesians say, we should understand probability as the degree of belief it's rational to have. The laws of probability, like Bayes' theorem, show us how to be good, objective scientists, shaping our beliefs according to the evidence.
 
-`r newthought("The")`  main challenge for Bayesians is objectivity.  Critics complain that science is objective, but belief is subjective. How so?
+`r newthought("The main")`  challenge for Bayesians is objectivity.  Critics complain that science is objective, but belief is subjective. How so?
 
 First, belief is something personal and mental, so it can't be quantified objectively. What does it even mean to be $90\%$ confident that something is true, you might ask? How can you pin a number on a belief?
 
 And second, belief varies from person to person. People from different communities and with different personalities bring different opinions and assumptions to the scientific table. But science is supposed to eliminate personal, subjective elements like opinion and bias.
 
-`r newthought("So")` frequentists and Bayesians both have their work cut out for them. In the coming chapters we'll see how they address these issues.
+`r newthought("So frequentists")`  and Bayesians both have their work cut out for them. In the coming chapters we'll see how they address these issues.
 
 
 ## Exercises {-}

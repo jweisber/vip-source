@@ -2,7 +2,7 @@
 
 ## Theories and Axioms {-}
 
-`r newthought("In")`  mathematics, a theory like the theory of probability is developed axiomatically. That means we begin with fundamental laws or principles called *axioms*, which are the assumptions the theory rests on. Then we derive the consequences of these axioms via *proofs*: deductive arguments which establish additional principles that follow from the axioms. These further principles are called *theorems*.
+In  mathematics, a theory like the theory of probability is developed axiomatically. That means we begin with fundamental laws or principles called *axioms*, which are the assumptions the theory rests on. Then we derive the consequences of these axioms via *proofs*: deductive arguments which establish additional principles that follow from the axioms. These further principles are called *theorems*.
 
 In the case of probability theory, we can build the whole theory from just three axioms. And that makes certain tasks much easier. For example, it makes it easy to establish that anyone who violates a law of probability can be Dutch booked. Because, if you violate a law of probability, you must also be violating one of the three axioms that entail the law you've violated. And with only three axioms to check, we can verify pretty quickly that violating an axiom always makes you vulnerable to a Dutch book.
 
@@ -10,7 +10,7 @@ The axiomatic approach is useful for lots of other reasons too. For example, we 
 
 In addition to axioms, a theory typically includes some *definitions*. Definitions construct new concepts out of existing ones, ones that already appear in the axioms. Definitions don't add new assumptions to the theory. Instead they're useful because they give us new language in which to describe what the axioms already entail.
 
-So a theory is a set of statements that tells us everything true about the subject at hand. There are three kinds of statements:
+So a theory is a set of statements that tells us everything true about the subject at hand. There are three kinds of statements.
 
 1. Axioms: the principles we take for granted.
 2. Definitions: statements that introduce new concepts or terms.
@@ -21,9 +21,9 @@ In this appendix we'll construct probability theory axiomatically. We'll learn h
 
 ## The Three Axioms of Probability {-}
 
-`r newthought("Probability")`  theory has three axioms, and they're all familiar laws of probability. But they're fundamental laws in a way. All the other laws can be derived from them.
+Probability  theory has three axioms, and they're all familiar laws of probability. But they're fundamental laws in a way. All the other laws can be derived from them.
 
-The three axioms are:
+The three axioms are as follows.
 
 Normality
 
@@ -42,11 +42,11 @@ Our task now is to derive from these three axioms the other laws of probability.
 
 ## First Steps {-}
 
-`r newthought("Let's start")` with one of the easier laws to derive.
+Let's start with one of the easier laws to derive.
 
 The Negation Rule
 
-:   $\p(\neg A) = 1 - \p(A)$
+:   $\p(\neg A) = 1 - \p(A)$.
 
 ```{proof}
 
@@ -61,7 +61,7 @@ $$
 
 ```
 
-The black square indicates the end of the proof. Notice how each line of our proof is justified by either applying an axiom or using basic algebra. This ensures it's a valid deductive argument.
+The little square indicates the end of the proof. Notice how each line of our proof is justified by either applying an axiom or using basic algebra. This ensures it's a valid deductive argument.
 
 Now we can use the Negation rule to establish the flipside of the Tautology rule: the Contradiction rule.
 
@@ -85,7 +85,7 @@ $$
 ## Conditional Probability & the Multiplication Rule {-}
 
 
-`r newthought("Our")`  next theorem is about conditional probability. But the concept of conditional probability isn't mentioned in the axioms, so we need to define it first.
+Our  next theorem is about conditional probability. But the concept of conditional probability isn't mentioned in the axioms, so we need to define it first.
 
 Definition: Conditional Probability
 
@@ -114,7 +114,7 @@ Notice that the first step in this proof wouldn't make sense if we didn't assume
 
 ## Equivalence & General Addition {-}
 
-`r newthought("Next")`  we'll prove the Equivalence rule and the General Addition rule. These proofs are longer and more difficult than the ones we've done so far.
+Next  we'll prove the Equivalence rule and the General Addition rule. These proofs are longer and more difficult than the ones we've done so far.
 
 Equivalence Rule
 
@@ -132,7 +132,7 @@ $$
   \end{aligned}
 $$
 
-Next notice that, because $A$ and $B$ are logically equivalent, we also know that $\neg A \vee B$ is a necessary truth. If $B$ is false, then $A$ must be false, so $\neg A$ must be true. So either $B$ is true, or $\neg A$ is true. So $\neg A \vee B$ is always true, no matter what.
+Next notice that, because $A$ and $B$ are logically equivalent, we also know that $\neg A \vee B$ is a logical truth. If $B$ is false, then $A$ must be false, so $\neg A$ must be true. So either $B$ is true, or $\neg A$ is true. So $\neg A \vee B$ is always true, no matter what.
 
 So we can apply the Tautology axiom:
 $$
@@ -201,7 +201,7 @@ $$
 
 ## Total Probability & Bayes' Theorem {-}
 
-`r newthought("Next")`  we derive the Law of Total Probability and Bayes' theorem.
+Next  we derive the Law of Total Probability and Bayes' theorem.
 
 Total Probability
 
@@ -263,7 +263,7 @@ $$
 
 ## Independence {-}
 
-`r newthought("Finally, let's introduce")` the concept of independence, and two key theorems that deal with it.
+Finally, let's introduce the concept of independence, and two key theorems that deal with it.
 
 Definition: Independence
 

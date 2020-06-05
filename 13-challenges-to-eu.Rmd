@@ -1,5 +1,6 @@
 # Challenges to Expected Utility
 
+
 `r newthought("We've")` learned two key elements of modern decision theory. First, we can quantify people's desires, values, and priorities, a quantity we call *utility*. Second, we should make our decisions according to the expected value formula. We should choose the option with highest *expected utility*.
 
 These ideas have been extremely popular and influential in the last hundred years. But there have also been challenges.
@@ -7,7 +8,7 @@ These ideas have been extremely popular and influential in the last hundred year
 
 ## The Allais Paradox
 
-`r newthought("Suppose")` you have to choose between two options:
+Suppose you must choose between two options.
 
 - $1A$: $\$1$ million dollars, guaranteed.
 - $1B$: a gamble...
@@ -17,7 +18,7 @@ These ideas have been extremely popular and influential in the last hundred year
 
 Which would you choose, $1A$ or $1B$? Write your answer down and set it aside, we'll come back to it in a moment.
 
-Now, what if you had to choose instead between these two options:
+Now, what if you had to choose instead between these two options.
 
 - $2A$: a gamble...
     - $89\%$ chance of $\$0$,
@@ -26,7 +27,7 @@ Now, what if you had to choose instead between these two options:
     - $90\%$ chance of $\$0$,
     - $10\%$ chance of $\$5$ million.
 
-`r newthought("Most")`  people choose $1A$ over $1B$ in the first decision. With the safe option of walking away $\$1$ million richer, they don't want to take the chance at $\$5$ million. Even though there's only a $1\%$ risk of walking away empty handed if they take the gamble, it's not worth it to them. The $10\%$ shot at $\$5$ million isn't enough to risk losing out on the guaranteed $\$1$ million.
+Most  people choose $1A$ over $1B$ in the first decision. With the safe option of walking away $\$1$ million richer, they don't want to take the chance at $\$5$ million. Even though there's only a $1\%$ risk of walking away empty handed if they take the gamble, it's not worth it to them. The $10\%$ shot at $\$5$ million isn't enough to risk losing out on the guaranteed $\$1$ million.
 
 But in the second decision, most people choose $2B$ over $2A$. There's no safe option now, in fact you'll probably walk away empty handed whatever you choose. Under these circumstances, most people prefer to take on an extra $1\%$ risk of empty-handedness in exchange for a $10\%$ shot at $\$5$ million.
 
@@ -59,7 +60,7 @@ $$
 $$
 Notice how both formulas are exactly the same. The difference in expected value between the first two options is exactly the same as the difference in value between the second two options. Which means if you're making decisions using the expected utility rule, you can't prefer the A option in the first decision and the B option in the second.
 
-`r newthought("It's")` important to understand that these calculations don't depend on the utility of money.
+`r newthought("It's important")` to understand that these calculations don't depend on the utility of money.
 
 In [Chapter 12][Utility] we noted that the difference in utility between $\$0$ and $\$1$ million might be larger for some people than for others. Could these individual priorities explain why some people prefer $1A$ over $1B$ yet $2B$ over $2A$?
 
@@ -78,9 +79,9 @@ When Savage first encountered Allais' example, he did exactly what most people d
 
 Savage responded by acknowledging that people are tempted to make exactly the choices Allais predicted. But, he pointed out, people sometimes make irrational choices. And Allais' example brings out our irrational temptations, Savage argued.
 
-To make his case, Savage cast the example in concrete terms. Imagine a random ticket will be drawn from a hat containing tickets numbered $\#1$ through $\#100$. The outcome of each options is determined according to the following table:
+To make his case, Savage cast the example in concrete terms. Imagine a random ticket will be drawn from a hat containing tickets numbered $\#1$ through $\#100$. The outcome of each options is determined according to Table \@ref(tab:allaishat).
 
-```{r echo=FALSE}
+```{r allaishat, echo=FALSE}
 df <- data.frame(
     A = c("$1A$", "$1B$", "$2A$", "$2B$"),
     B = c("$1M", "$0", "$1M", "$0"),
@@ -88,7 +89,7 @@ df <- data.frame(
     D = c("$1M", "$1M", "$0", "$0")
 )
 colnames(df) <- c("", "$\\#1$", "$\\#2$--$11$", "$\\#12$--$100$")
-knitr::kable(df, align = "c", caption = "Savage's version of the Allais paradox, using a lottery with $100$ tickets")
+knitr::kable(df, align = "c", caption = "Savage's presentation of the Allais paradox")
 ```
 
 In the first row you're guaranteed to get $\$1$ million. In the second row you have a $1\%$ chance of getting nothing, an $89\%$ chance of getting $\$1$ million, and a $10\%$ chance of getting $\$5$ million. And so on.
@@ -119,16 +120,16 @@ ggplot(NULL, aes(c(0, 1))) +
   ggtitle("Option 1B")
 ```
 
-`r newthought("Visualizing")` the problem is also informative. Figure \@ref(fig:allais1) shows Allais' first choice, between $1A$ and $1B$. Notice how the riskiness of choosing $1B$ is much less noticeable in this format than the potential upside. The $10\%$ chance of winning $\$5$ million jumps right out at you. Whereas the $1\%$ chance of winding up with nothing is barely noticable. 
+`r newthought("Visualizing")` the problem is also informative. Figure \@ref(fig:allais1) shows Allais' first choice, between $1A$ and $1B$. Notice how the riskiness of choosing $1B$ is much less noticeable in this format than the potential upside. The $10\%$ chance of winning $\$5$ million jumps right out at you. Whereas the $1\%$ chance of winding up with nothing is barely noticeable. 
 
-If you were presented with the Allais choices in this graphical format, instead of with numbers and words, you might choose very differently. Psychologists call this a "framing effect". The way a decision is framed can make a big difference to what people will choose.
+If you were presented with the Allais choices in this graphical format, instead of with numbers and words, you might choose very differently. Psychologists call this a "framing effect." The way a decision is framed can make a big difference to what people will choose.
 
 Advertisers know a lot about framing effects.
 
 
 ## The Sure-thing Principle
 
-`r newthought("Savage's answer")` to the Allais paradox is based on a famous principle of decision theory:
+Savage's answer to the Allais paradox is based on a famous principle of decision theory.
 
 The Sure-thing Principle
 
@@ -136,9 +137,9 @@ The Sure-thing Principle
 
 How does this principle apply to the Allais paradox? Interpret $E$ this way:
 
-- $E$: One of tickets #$12$--$100$ will be drawn.
+- $E =$ One of tickets #$12$--$100$ will be drawn.
 
-Then imagine someone who chos $1A$ over $1B$. Would it make sense for them to choose $2B$ over $2A$?
+Then imagine someone who chose $1A$ over $1B$. Would it make sense for them to choose $2B$ over $2A$?
 
 Well, first imagine they know $E$ is true: they know one of tickets $\#12$--$100$ will be drawn. Then they wouldn't prefer $2B$ over $2A$. They wouldn't care about $2B$ vs. $2A$ because they'll get $\$0$ either way.
 
@@ -149,7 +150,7 @@ So the Sure-thing Principle says they should choose $2A$ over $2B$ if they chose
 
 ## Prescriptive vs. Descriptive
 
-`r newthought("Some")`  decision theorists use the expected utility formula to *describe* the way people make choices. If you want to predict when people will buy/sell a stock, for example, you might use the expected utility formula to describe what people will do.
+Some decision theorists use the expected utility formula to *describe* the way people make choices. If you want to predict when people will buy/sell a stock, for example, you might use the expected utility formula to describe what people will do.
 
 But others use the formula to *prescribe* decisions: to determine what we *ought* to do. Sometimes people do what they should, but sometimes they make mistakes or do foolish things.
 
@@ -158,27 +159,27 @@ Savage's answer to the Allais paradox is based on the prescriptive approach to d
 
 ## The Ellsberg Paradox
 
-`r newthought("Here's another")` famous challenge to expected utility and the Sure-thing Principle:
+Here's another famous challenge to expected utility and the Sure-thing Principle.
 
 ```{block, type='puzzle'}
-An urn contains $90$ balls, $30$ of which are red. The other $60$ are either black or white, but the proportion of black to white is not known. A ball will be drawn at random, and you must choose between the following:
+An urn contains $90$ balls, $30$ of which are red. The other $60$ are either black or white, but the proportion of black to white is not known. A ball will be drawn at random, and you must choose between the following.
 
-- $1A$: win $100 if the ball is red,
-- $1B$: win $100 if the ball is black.
+- $1A$: win $\$100$ if the ball is red,
+- $1B$: win $\$100$ if the ball is black.
 
-You also face a second choice:
+You also face a second choice.
 
-- $2A$: win $100 if the ball is either red or white,
-- $2B$: win $100 if the ball is either black or white.
+- $2A$: win $\$100$ if the ball is either red or white,
+- $2B$: win $\$100$ if the ball is either black or white.
 ```
 
-Most people choose $1A$ over $1B$, since you know what you're getting with $1A$: a $1/3$ chance at the $\$100$. Whereas $1B$ might give worse odds; it may even have no chance at all of winning, if there are no black balls.
+\noindent Most people choose $1A$ over $1B$, since you know what you're getting with $1A$: a $1/3$ chance at the $\$100$. Whereas $1B$ might give worse odds; it may even have no chance at all of winning, if there are no black balls.
 
 At the same time, most people choose $2B$ over $2A$, and for a similar reason. With $2B$ you know you're getting a $2/3$ chance at the $\$100$. While $2A$ might give much worse odds, maybe even as low as $1/3$ if there are no white balls in the urn.
 
 Like in the Allais paradox, this popular combination of choices violates the expected utility rule. The calculation that shows this is pretty similar to the one we did with Allais, so we won't rehearse it here.
 
-(ref:ellsbergcap) Daniel Ellsberg (b. $1931$) is most famous as the leaker of [the Pentagon Papers](https://bit.ly/1Lgsq2D). The 2017 movie [*The Post*](https://bit.ly/2CcHs8v) tells that story, with Ellsberg portrayed by actor Matthew Rhys. (Photograph by Bernd Gross).
+(ref:ellsbergcap) Daniel Ellsberg (b. $1931$) is most famous as the leaker of [the Pentagon Papers](https://bit.ly/1Lgsq2D). The 2017 movie [*The Post*](https://bit.ly/2CcHs8v) tells that story, with Ellsberg portrayed by actor Matthew Rhys. (Photograph by Bernd Gross.)
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="(ref:ellsbergcap)"}
 knitr::include_graphics("img/ellsberg.png")
@@ -189,7 +190,7 @@ Instead let's think about what this puzzle is showing us.
 
 ## Ellsberg & Allais
 
-`r newthought("Ellsberg's paradox")` is strongly reminiscent of Allais'. Both exploit a human preference for the known. In the Allais paradox we prefer the sure million, and in the Ellsberg paradox we prefer to know our chances.
+Ellsberg's paradox is strongly reminiscent of Allais'. Both exploit a human preference for the known. In the Allais paradox we prefer the sure million, and in the Ellsberg paradox we prefer to know our chances.
 
 But the kind of risk at work in each paradox is different. In the Allais paradox, all the probabilities are known, and in one case we can even know the outcome. If you choose the safe million, you know what your fate will be.
 
@@ -210,7 +211,7 @@ knitr::kable(df, align = "c", caption = "The Ellsberg paradox")
 
 If you knew a white ball was going to be drawn, you wouldn't care which option you chose. In the first decision, you'd get $\$0$ either way, and in the second you'd get $\$100$ either way.
 
-And if you knew a white ball wouldn't be drawn, then options 1A and $2A$ would be equivalent. The first two rows are identical to the second two rows, if we ignore the "White" column. So consistency seems to demand selecting $2A$ if you selected 1A.
+And if you knew a white ball wouldn't be drawn, then options $1A$ and $2A$ would be equivalent. The first two rows are identical to the second two rows, if we ignore the "White" column. So consistency seems to demand selecting $2A$ if you selected $1A$.
 
 Most decision theorists find this reasoning compelling. But some turn it on its head. They say: so much the worse for the Sure-thing Principle. The debate has yet to settle into a universal consensus.
 
@@ -316,11 +317,11 @@ Most decision theorists find this reasoning compelling. But some turn it on its 
     | $A$ | $a_1$ | $a_2$ | $a_3$ |
     | $B$ | $b_1$ | $b_2$ | $b_3$ |
 
-    According to the Sure-thing principle, you should prefer $A$ to $B$ if (i) you would prefer $A$ to $B$ given either $T_1$ or $T_2$, and (ii) you would prefer $A$ to $B$ given $T_3$. Prove that the expected utility rule agrees.
+    According to the Sure-thing principle, you should prefer $A$ if (i) you would prefer $A$ given either $T_1$ or $T_2$, and (ii) you would prefer $A$ given $T_3$. Prove that the expected utility rule agrees.
     
     In other words, assume the following two statements hold:
 
-    - $EU(A) > EU(B)$ if we know the drawn ticket will be either $T_1$ or $T_2$;
-    - $EU(A) > EU(B)$ if we know the drawn ticket will be $T_3$.
+    - $EU(A) > EU(B)$ if we know the ticket will be either $T_1$ or $T_2$;
+    - $EU(A) > EU(B)$ if we know the ticket will be $T_3$.
 
     Then use those assumptions to show that $EU(A) > EU(B)$.

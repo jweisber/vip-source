@@ -12,6 +12,7 @@
 \newcommand{\EU}{EU}
 \newcommand{\pr}{Pr}
 \newcommand{\po}{Pr^*}
+\newcommand{\degr}{^{\circ}}
 \definecolor{bookred}{RGB}{228,6,19}
 \definecolor{bookblue}{RGB}{0,92,169}
 \definecolor{bookpurple}{RGB}{114,49,94}
@@ -30,7 +31,8 @@
 }
 \newenvironment{problem}{\begin{quote}\normalsize}{\end{quote}}
 \newenvironment{puzzle}{\begin{quote}\normalsize}{\end{quote}}
-\newenvironment{argument}{\begin{quote}\normalsize}{\end{quote}}
+\def\argument{\list{}{\leftmargin3em}\item[]}
+\let\endargument=\endlist 
 \usepackage{fontawesome}
 \newenvironment{warning}{\begin{itemize}\item[\faBan]}{\end{itemize}}
 \usepackage{marvosym}
@@ -44,7 +46,7 @@
 {\fontsize{18}{18}\selectfont\textit{\@author}\par}
 \vspace{1.75in}{\fontsize{36}{14}\selectfont\@title\par}
 \vspace{0.5in}{\fontsize{20}{14}\selectfont Introducing Probability \& Decision with a Visual Emphasis\par}
-\vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\smallcaps{v0.2 beta}}\par}
+\vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\smallcaps{v0.3 beta}}\par}
 \vfill{\fontsize{14}{14}\selectfont\textit{An Open Access Publication}\par}
 \thispagestyle{empty}
 \endgroup
@@ -81,8 +83,13 @@
 \AfterEndEnvironment{problem}{\expandafter\gobblepars}
 \AfterEndEnvironment{info}{\expandafter\gobblepars}
 \AfterEndEnvironment{warning}{\expandafter\gobblepars}
+\AfterEndEnvironment{marginfigure}{\expandafter\gobblepars}
 \AfterEndEnvironment{longtable}{\expandafter\gobblepars} % not working, why?
+\makeatletter
+\AfterEndEnvironment{longtable}{\par\@afterindentfalse\@afterheading} % this seems to work instead
+\makeatother
 
+\renewcommand*\descriptionlabel[1]{\hspace\labelsep\normalfont\em #1.}
 
 % prevent extra space when \newthought follows \section
 % see: https://tex.stackexchange.com/questions/291746/tufte-latex-newthought-after-section
@@ -101,3 +108,5 @@
 % indent lists a bit
 \usepackage{enumitem}
 \setlist[1]{leftmargin=24pt}
+
+\def\labelitemii{$\circ$}

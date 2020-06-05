@@ -1,11 +1,12 @@
 # Infinity & Beyond
 
-`r newthought("Infinity")` poses a different sort of challenge to expected utility, and in this chapter we'll meet two famous examples.
+
+`r newthought("Infinity")` poses a different sort of challenge to expected utility. In this chapter we'll meet two famous examples.
 
 
 ## The St. Petersburg Paradox
 
-`r newthought("Suppose")` I'm going to flip a fair coin, and I'm going to keep flipping it until it lands heads. When it does, the game is over.
+Suppose I'm going to flip a fair coin, and I'm going to keep flipping it until it lands heads. When it does, the game is over.
 
 - If it comes up heads on the first flip, you win $\$2$.
 - If it comes up heads on the second flip, you win $\$4$.
@@ -60,15 +61,13 @@ As the number of potential flips grows, the rectangles get narrower because the 
 
 `r newthought("Most")`  people, when they first encounter this puzzle, try to take the easy way out. "The game is impossible," they say. "Nobody could actually fund this game in real life. No casino has unlimited money, not even the government does. And nobody can guarantee they'll live long enough to finish the game either, since it could potentially go on for any number of flips."
 
-There are two serious problems with this answer. 
+But there are two problems with this answer. 
 
-```{marginfigure}
-We can make the game instantaneous too. Instead of flipping a coin over and over, we throw a dart once at a square board. If it lands in the left half, that corresponds to heads on the first toss. If it lands in the bottom-right quadrant, that corresponds to heads on the second toss. If it lands in the top-right quadrant, we divide it into halves and quadrants similarly, and so on.
-```
+First, notice that we can make the game instantaneous. Instead of flipping a coin over and over, we throw a dart at a square board just once. If it lands in the left half, you win $\$2$. The bottom right quadrant wins $\$4$. If it lands in the top-right, we subdivide that sector further: its left half wins $\$8$, etc. The probabilities and payoffs here are the same as the coin version, but the game is settled after just one throw of the dart.
 
-First, consider whether you'd be willing to risk your life to play the St. Petersburg game if the casino did have enough cash on hand, and enough coins to keep the game going as long as it takes. Imagine if God descended from heaven and offered to run the game. Would you gamble your life to play then?
+We still need an infinite bankroll, since there's no finite cap on the possible amount you could win. But consider whether you'd be willing to risk your life to play the game if the casino did have enough cash on hand. Imagine if God descended from heaven and offered to run the game. Would you gamble your life to play then? It's a fanciful scenario, but if our decision theory really is correct then it should still work even in fanciful scenarios.
 
-Second, even if the game had a finite limit---let's suppose it was $100$ flips---would you be willing to pay $\$100$ to play? The chance you'd make any money at all is less than 1%.
+Second, even if the game had a finite limit---let's suppose it was $100$ flips---would you be willing to pay $\$100$ to play? The chance you'd make any money at all is less than $1\%$.
 
 ```{r bernoulli, echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="Daniel Bernoulli (1700--1782)"}
 knitr::include_graphics("img/daniel_bernoulli.png")
@@ -76,7 +75,7 @@ knitr::include_graphics("img/daniel_bernoulli.png")
 
 ## Bernoulli's Solution
 
-`r newthought("The")`  St. Petersburg game was invented by the mathematician Nicolaus Bernoulli in the $18$th Century. He discussed it with his cousin Daniel Bernoulli, who published a famous solution in the *St. Petersburg Academy Proceedings*. (Hence the name of the game.)
+The  St. Petersburg game was invented by the mathematician Nicolaus Bernoulli in the $18$th Century. He discussed it with his cousin Daniel Bernoulli, who published a famous solution in the *St. Petersburg Academy Proceedings*. (Hence the name of the game.)
 
 His solution: replace monetary value with real value, *utility* in other words. [Recall][Utility] that the more money you have, the less value additional money brings. So even though the payoffs in the St. Petersburg game double from $\$2$ to $\$4$ to $\$8$ etc., the *real* value doesn't double. It grows more slowly.
 
@@ -84,8 +83,8 @@ His solution: replace monetary value with real value, *utility* in other words. 
 log_utility <- function(x) {
   log(x + 1)
 }
-ggplot(data.frame(x = c(0, 100))) + 
-  stat_function(aes(x), fun = log_utility) +
+ggplot(data.frame(x = c(0, 100)), aes(x)) + 
+  stat_function(fun = log_utility) +
   xlab("dollars") + ylab("utility")
 ```
 
@@ -132,11 +131,10 @@ So if Bernoulli is right about the utility of money, the fair price for the St. 
 
 ## St. Petersburg's Revenge
 
-`r newthought("Unfortunately,")` although Bernoulli was probably right that money decreases in value the more of it you have, that doesn't actually solve the paradox. Because we can just modify the game so that the monetary payoffs grow even faster.
+Unfortunately, although Bernoulli was probably right that money decreases in value the more of it you have, that doesn't actually solve the paradox. Because we can just modify the game so that the monetary payoffs grow even faster.
 
 ```{marginfigure}
-![](img/xfiles.png)
-The decimal value of $e$ was used as the key code for a locked room in the *X-Files* episode "Paper Clip" (except they seem to have forgotten the 1). The same scene also references Monty Hall.
+The decimal value of $e$ was used as the key code for a locked room in the *X-Files* episode "Paper Clip" (except they seem to have forgotten the $1$). The same scene also references Monty Hall.
 ```
 
 Instead of the payoffs increasing like this:
@@ -187,10 +185,9 @@ $$
           &= \infty.
   \end{aligned}
 $$
-
 So, once again, you should be willing to give anything to play. Or so the expected utility rule seems to demand.^[Still worried there's not enough money in the world to guarantee this game? Try another variation. Imagine God offers to substitute days in heaven for dollars. Unlike dollars, days in heaven don't lose value the more you have.]
 
-`r newthought("What's the right solution")` to the St. Petersburg paradox then? Nobody knows, really. Once infinities get involved, the whole expected value framework seems to go off the rails.
+`r newthought("What's")` the right solution to the St. Petersburg paradox then? Nobody knows, really. Once infinities get involved, the whole expected value framework seems to go off the rails.
 
 Some decision theorists respond by insisting that there's a finite limit on utility. There's only so good an outcome can be, they say.
 
@@ -203,7 +200,7 @@ But others don't find this response plausible. There may be a limit on how much 
 knitr::include_graphics("img/pascal.png")
 ```
 
-`r newthought("The")`  modern theory of probability has a curious origin. It started with Blaise Pascal, a French mathematician and philosopher living in the $1600$s. Pascal had a friend who was an avid gambler, and who came to him for advice on gambling problems. Pascal discussed these problems in letters with another famous mathematician, Pierre de Fermat. Out of their correspondence, the concept of expected value was born.
+The  modern theory of probability has a curious origin. It started with Blaise Pascal, a French mathematician and philosopher living in the $1600$s. Pascal had a friend who was an avid gambler, and who came to him for advice on gambling problems. Pascal discussed these problems in letters with another famous mathematician, Pierre de Fermat. Out of their correspondence, the concept of expected value was born.
 
 Pascal was a devout Catholic. So, once he developed the tools of decision theory, he applied them to religious questions. Like: is it rational to believe in God?
 
@@ -233,12 +230,12 @@ It doesn't matter, as it turns out. Whether we use $-10$, $-20$, or any other fi
 
 Why do these finite values not matter in the end? How do they get drowned out?
 
-Well, said Pascal, even atheists must admit that there's some small chance God exists. Nobody can be 100% sure there is no God. So when we calculate the expected utility of believing in God, we get the following result:
+Well, said Pascal, even atheists must admit that there's some small chance God exists. Nobody can be $100\%$ sure there is no God. So when we calculate the expected utility of believing in God, we get the following result:
 $$
   \begin{aligned}
-    \E(\mbox{Believe}) &= \p(G) \times \infty + \p(\neg G) \times -10\\
-                       &= \infty - \mbox{something finite}\\
-                       &= \infty.
+    \EU(\mbox{Believe}) &= \p(G) \times \infty + \p(\neg G) \times -10\\
+                        &= \infty - \mbox{something finite}\\
+                        &= \infty.
   \end{aligned}
 $$
 As long as $\p(G)$ is some positive number, multiplying it by $\infty$ results in $\infty$. No matter how small a number is, adding it to itself infinitely many times results in an infinite quantity. No matter how small your steps, if you take infinitely many of them, you can travel any distance.
@@ -252,9 +249,9 @@ Therefore, Pascal argued, believing in God has infinite expected value.
 What about not believing? It has infinitely negative expected value:
 $$
 \begin{aligned}
-    \E(\mbox{Don't Believe}) &= \p(G) \times -\infty + \p(\neg G) \times 10\\
-                             &= -\infty + \mbox{something finite}\\
-                             &= -\infty.
+    \EU(\mbox{Don't Believe}) &= \p(G) \times -\infty + \p(\neg G) \times 10\\
+                              &= -\infty + \mbox{something finite}\\
+                              &= -\infty.
   \end{aligned}
 $$
 So believing in God is an infinitely better decision than not believing! Or so Pascal thought.
@@ -262,11 +259,11 @@ So believing in God is an infinitely better decision than not believing! Or so P
 
 ## Responses to Pascal's Wager
 
-`r newthought("Some")`  people criticized Pascal's argument on the grounds that belief is not a decision. Whether you believe in something isn't voluntary, like deciding what shirt to wear in the morning. You can't just decide to believe in God, you can only believe what seems plausible to you based on what you know.
+Some  people criticized Pascal's argument on the grounds that belief is not a decision. Whether you believe in something isn't voluntary, like deciding what shirt to wear in the morning. You can't just decide to believe in God, you can only believe what seems plausible to you based on what you know.
 
 But, Pascal famously replied, you can decide how you spend your days. And you can decide to spend them  with religious people, reading religious books, and going to a house of worship. So you can decide to take steps that will, eventually, make you a believer. And since believing is so much better than not, that's how you should spend your days.
 
-`r newthought("A")`  more serious problem with Pascal's argument is known as *the many gods* problem.
+`r newthought("A more")` serious problem with Pascal's argument is known as *the many gods* problem.
 
 In Pascal's day, in France, Catholicism dominatd the religious landscape. So for him, believing in God just meant believing in *Catholicism's* conception of God. But there are many possible gods besides the Catholic god, like the god of Islam, the god of Judaism, the gods of Hinduism, and so on.
 
@@ -289,13 +286,13 @@ knitr::kable(df, align = "c", caption = "Pascal's Wager with many gods. The ... 
 What's the expected utility of believing in the Catholic god now? It turns out there's no answer! The calculation comes out undefined:
 $$
   \begin{aligned}
-  \E(\mbox{Believe Catholic}) %
+  \EU(\mbox{Believe Catholic}) %
     &= \p(\mbox{Catholic})\u(\mbox{Catholic}) +%
        \p(\mbox{Anti-Catholic})\u(\mbox{Anti-Catholic}) + \ldots\\
     &= \p(\mbox{Catholic}) \times \infty + \p(\mbox{Anti-Catholic}) \times%
         -\infty + \ldots\\
     &= \infty - \infty + \ldots\\
-    &= \mbox{undefined}
+    &= \mbox{undefined.}
   \end{aligned}
 $$
 Why is this undefined? Why isn't $\infty - \infty = 0$? Because taking an infinite quantity away from an infinite quantity can result in any quantity left over.
@@ -314,7 +311,7 @@ The moral: there are many ways to take an infinite quantity away from an infinit
 
 So $\infty - \infty$ is not a well-defined quantity. 
 
-`r newthought("The")`  expected value framework doesn't seem to work well when infinities show up. The St. Petersburg problem gave us similar trouble. Researchers are still trying to figure out how to make decisions that involve infinite quantities.
+`r newthought("The expected")` value framework doesn't seem to work well when infinities show up. The St. Petersburg problem gave us similar trouble. Researchers are still trying to figure out how to make decisions that involve infinite quantities.
 
 
 ## Exercises {-}

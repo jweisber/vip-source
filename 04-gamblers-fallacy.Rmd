@@ -5,7 +5,7 @@ Applied statistics is hard.\
 ---Andrew Gelman
 ```
 
-`r newthought("My")`  wife's family keeps having girls. My wife has two sisters and she and her sisters each have two daughters, with no other siblings or children. That's nine girls in a row!
+`r newthought("My wife's")` family keeps having girls. My wife has two sisters and she and her sisters each have two daughters, with no other siblings or children. That's nine girls in a row!
 
 ```{marginfigure, echo=TRUE}
 Note that girl and boy aren't the only possibilities. The next child could also be intersex, like fashion model [Hanne Gaby Odiele](https://en.wikipedia.org/wiki/Hanne_Gaby_Odiele).
@@ -13,18 +13,16 @@ Note that girl and boy aren't the only possibilities. The next child could also 
 
 So are they due for a boy next? Here are three possible answers.
 
-*Answer 1.* Yes, the next baby is more likely to be a boy. Ten girls in a row would be a *really* unlikely outcome.
-
-*Answer 2.* No, the next baby is actually more likely to be a girl. Girls run in the family! Something about this family clearly predispose them to have girls.
-
-*Answer 3.* No, the next baby is equally likely to be a boy vs. girl. Each baby's sex is determined by a purely random event, similar to a coin flip. So it's equal odds every time. The nine girls so far is just a coincidence.
+- *Answer 1.* Yes, the next baby is more likely to be a boy. Ten girls in a row would be a *really* unlikely outcome.
+- *Answer 2.* No, the next baby is actually more likely to be a girl. Girls run in the family! Something about this family clearly predispose them to have girls.
+- *Answer 3.* No, the next baby is equally likely to be a boy vs. girl. Each baby's sex is determined by a purely random event, similar to a coin flip. So it's equal odds every time. The nine girls so far is just a coincidence.
 
 Which answer is correct?
 
 
 ## Independence
 
-`r newthought("It")`  all hangs on whether the sex of each baby is "independent" of the others. Two events are ***independent*** when the outcome of one doesn't change the probability of the other.
+It  all hangs on whether the sex of each baby is "independent" of the others. Two events are ***independent*** when the outcome of one doesn't change the probability of the other.
 
 A clear example of independence is ***sampling with replacement***. Suppose we have an urn with $50$ black marbles and $50$ white ones. You draw a ball at random, then put it back. Then you give the urn a good hard shake and draw at random again. The two draws are independent in this case. Each time you draw, the number of black vs. white marbles is the same, and they're all randomly mixed up.
 
@@ -32,9 +30,7 @@ Even if you were to draw ten white balls in a row, the eleventh draw would still
 
 But now imagine sampling ***without replacement***. The situation is the same, except now you set aside each ball you draw rather than put it back.  Now the draws are ***dependent***. If you draw a black ball on the first draw, the odds of black on the next draw go down. There are only $49$ black balls in the urn now, vs. $50$ white.
 
-## Picturing Independence
-
-```{r eikosex, echo=FALSE, fig.margin=TRUE, fig.cap="Example of an Eikosogram where $A$ and $B$ are *not* independent."}
+```{r eikosex, echo=FALSE, fig.margin=TRUE, fig.cap="Example of an eikosogram."}
 ggplot() +
   geom_rect(aes(xmin = 0, xmax = 1/3, ymin = 3/4, ymax = 1), 
             fill = "transparent", colour = "black") +
@@ -56,9 +52,9 @@ ggplot() +
   theme_void()
 ```
 
-We can visualize independence with an ***eikosogram***, which is like an Euler diagram but with rectangles instead of circles. The size of each sector reflects its probability. For example, in Figure \@ref(fig:eikosex) the proposition $A \wedge B$ has low probability ($1/12$), while $\neg A \wedge B$ has much higher probability ($1/2$).
+`r newthought("We can")` visualize independence with an ***eikosogram***, which is like an Euler diagram but with rectangles instead of circles. The size of each sector reflects its probability. For example, in Figure \@ref(fig:eikosex) the proposition $A \wedge B$ has low probability ($1/12$), while $\neg A \wedge B$ has much higher probability ($1/2$).
 
-```{r eikosindex, echo=FALSE, fig.margin=TRUE, fig.cap="Example of an Eikosogram where $A$ and $B$ are independent."}
+```{r eikosindex, echo=FALSE, fig.margin=TRUE, fig.cap="Example of an eikosogram where $A$ and $B$ are independent."}
 ggplot() +
   geom_rect(aes(xmin = 0, xmax = 2/3, ymin = 3/4, ymax = 1), 
             fill = "transparent", colour = "black") +
@@ -80,12 +76,12 @@ ggplot() +
   theme_void()
 ```
 
-When propositions are independent, the eikosogram is divided by just two straight lines. That way the $A$ region takes up the same percentage of the $B$ region as it does the $\neg B$ region. So the probability of $A$ is the same whether $B$ is true or false. In other words, whether $B$ is true or not doesn't affect the probability of $A$.
+When propositions are independent, as in Figure \@ref(fig:eikosindex), the eikosogram is divided by just two straight lines. That way the $A$ region takes up the same percentage of the $B$ region as it does the $\neg B$ region. So the probability of $A$ is the same whether $B$ is true or false. In other words, $B$'s truth has no effect on the probability of $A$.
 
 
 ## Fairness
 
-`r newthought("Flips")`  of an ordinary coin are also independent. Even if you get ten heads in a row, the eleventh toss is still $50$-$50$. If it's *really* an ordinary coin, the ten heads in a row was just a coincidence.
+Flips  of an ordinary coin are also independent. Even if you get ten heads in a row, the eleventh toss is still $50$-$50$. If it's *really* an ordinary coin, the ten heads in a row was just a coincidence.
 
 Coin flips aren't just independent, they're also *unbiased*: heads and tails are equally likely. A process is ***biased*** if some outcomes are more likely than others. For example, a loaded coin that comes up heads $3/4$ of the time is biased.
 
@@ -98,7 +94,7 @@ But drawing without replacement is not a fair process, because the draws are not
 
 ## The Gambler's Fallacy
 
-`r newthought("Gambling")`  often involves fair processes: fair dice, fair roulette wheels, fair decks of cards, etc. But people sometimes forget that fair processes are independent. If a roulette wheel comes up black nine times in a row, they figure it's "due" for red. Or if they get a bunch of bad hands in a row at poker, they figure they're due for a good one soon.
+Gambling  often involves fair processes: fair dice, fair roulette wheels, fair decks of cards, etc. But people sometimes forget that fair processes are independent. If a roulette wheel comes up black nine times in a row, they figure it's "due" for red. Or if they get a bunch of bad hands in a row at poker, they figure they're due for a good one soon.
 
 This way of thinking is called *the gambler's fallacy*. A fallacy is a mistake in reasoning. The mistake here is failing to fully account for independence. These gamblers know the process in question is fair, in fact that's a key part of their reasoning. They know it's unlikely that the roulette wheel will land on black ten times in a row because a fair wheel should land on black and red equally often. But then they overlook the fact that fair also means independent, and independent means the last nine spins tell us nothing about the tenth spin.
 
@@ -115,9 +111,9 @@ Now how likely is it these ten spins will all land black? Well, just one more sp
 
 ## Ignorance Is Not a Fallacy
 
-`r newthought("At")`  this point you may have a nagging thought at the back of your mind. If we flipped a coin 100 times and it landed heads every time, wouldn't we conclude the next toss will probably land heads? How could that be a mistake?!
+At  this point you may have a nagging thought at the back of your mind. If we flipped a coin $100$ times and it landed heads every time, wouldn't we conclude the next toss will probably land heads? How could that be a mistake?!
 
-The answer: it's not a fallacy. It *would* be a fallacy if you knew the coin was fair. But if you didn't know that for sure, then landing 100 heads in a row would be enough to convince you it's not fair.
+The answer: it's not a mistake. It *would* be a mistake if you knew the coin was fair. But if you don't know that, then $100$ heads in a row could be enough to convince you it's actually not fair.
 
 The gambler's fallacy only occurs when you know a process is fair, and then you fail to reason accordingly. If you don't know whether a process is fair, then you aren't making a logical error by reasoning according to a different assumption.
 
@@ -130,11 +126,11 @@ So it's not necessarily a fallacy if my in-laws expect a boy next. It could just
 
 ## The Hot Hand Fallacy
 
-`r newthought("Sometimes")`  a basketball player hits a lot of baskets in a row and people figure they're on fire: they've got a "hot hand". But [a famous study published in 1985](http://www.sciencedirect.com/science/article/pii/0010028585900106?via%3Dihub) found that these streaks are just a coincidence. Each shot is still independent of the others. Is the hot hand an example of the gambler's fallacy?
+Sometimes  a basketball player hits a lot of baskets in a row and people figure they're on fire: they've got a "hot hand." But [a famous study published in 1985](http://www.sciencedirect.com/science/article/pii/0010028585900106?via%3Dihub) found that these streaks are just a coincidence. Each shot is still independent of the others. Is the hot hand an example of the gambler's fallacy?
 
 Most people don't know about the famous 1985 study. Certainly nobody knew what the result of the study would be before it was conducted. So a lot of believers in the hot hand were in the unfortunate position of just not knowing a player's shots are independent. So the hot hand isn't the same as the gambler's fallacy.
 
-Believers in the hot hand may be guilty of a different fallacy, though. That same study analyzed the reasoning that leads people to think a player's shots are dependent. Their conclusion: people tend to see patterns in sequences of misses and hits even when they're random. So there may be a second, different fallacy at work, the "hot hand fallacy".
+Believers in the hot hand may be guilty of a different fallacy, though. That same study analyzed the reasoning that leads people to think a player's shots are dependent. Their conclusion: people tend to see patterns in sequences of misses and hits even when they're random. So there may be a second, different fallacy at work, the "hot hand fallacy."
 
 Things might actually be even more complicated than that, though. [Some recent studies](https://www.gsb.stanford.edu/insights/jeffrey-zwiebel-why-hot-hand-may-be-real-after-all) found that the hot hand may actually be real after all! How could that be possible? What did the earlier studies miss?
 

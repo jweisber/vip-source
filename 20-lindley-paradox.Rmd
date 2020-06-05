@@ -10,28 +10,24 @@ Inside every non-Bayesian, there is a Bayesian struggling to get out.\
 
 ## Significance & Subjectivity
 
-`r newthought("Critics")`  say this decision is subjective. In the social sciences, researchers have mainly adopted $.05$ as the cutoff, while in other sciences the convention is to use $.01$. But we saw there's nothing special about these numbers. Except that they're easy to estimate without the help of a computer.
+Critics  say this decision is subjective. In the social sciences, researchers have mainly adopted $.05$ as the cutoff, while in other sciences the convention is to use $.01$. But we saw there's nothing special about these numbers. Except that they're easy to estimate without the help of a computer.
 
 It makes a big difference what cutoff we choose, though. The lower the cutoff, the less often a result will be deemed significant. So a lower cutoff means fewer hypotheses ruled out, which means fewer scientific discoveries.
 
 Think of all the studies of potential cancer treatments being done around the world. In each study, the researcher is testing the hypothesis that their treatment has no effect, in the hopes of disproving that hypothesis. They're hoping enough patients get better in their study to show the treatment genuinely helps. If just a few more patients improve with their treatment compared to a placebo, it could just be a fluke. But if a lot more improve, that means the treatment is probably making a real difference.
 
-The lower the significance level, the more patients have to improve before they can call their study's results "significant". So a lower significance level means fewer treatments will be approved by the medical community.
+The lower the significance level, the more patients have to improve before they can call their study's results "significant." So a lower significance level means fewer treatments will be approved by the medical community.
 
 That might seem like a bad thing, but it also has an upside. It means fewer *bogus* treatments being adopted.
 
-```{marginfigure, echo=TRUE}
-Medical treatments are often expensive, painful, or dangerous. So it's a serious problem to approve ones that don't actually help.
+After all, occasionally a study of a useless treatment will have lots of patients improving anyway, just by luck. When that happens, the medical community adopts a treatment that doesn't actually work.
+And there might be lots of studies out there experimenting with treatments that don't actually help. So if we do enough studies, we're bound to get flukey results in some of them, and adopt a treatment that doesn't actually work by mistake.
 
-But sometimes it just leads to [silly dietary choices](https://xkcd.com/882/).
+```{marginfigure, echo=TRUE}
+Medical treatments are often expensive, painful, or dangerous. So it's a serious problem to approve ones that don't actually help. Sometimes though it just leads to [silly dietary choices](https://xkcd.com/882/).
 ```
 
-After all, occasionally a study of a useless treatment will have lots of patients improving anyway, just by luck. When that happens, the medical community adopts a treatment that doesn't actually work. And there might be lots of studies out there experimenting with treatments that don't actually help. So if we do enough studies, we're bound to get flukey results in some of them, and adopt a treatment that doesn't actually work by mistake.
-
-
-## Making It Concrete
-
-`r newthought("Suppose")`  for example there are only two types of potential treatment being studied. The useless kind just leave the patient's recovery up to chance: it's a $50\%$ shot. But the effective kind increase their chances of recovery by $15\%$: they have a $65\%$ chance of getting better with these treatments.
+`r newthought("Suppose")` for example there are only two types of potential treatment being studied. The useless kind just leave the patient's recovery up to chance: it's a $50\%$ shot. But the effective kind increase their chances of recovery by $15\%$: they have a $65\%$ chance of getting better with these treatments.
 
 Let's also imagine we're studying $200$ different treatments, $160$ of which are actually useless and $40$ of which are effective. Since we don't know which are which, we'll run $200$ studies, one for each treatment. And just to make things concrete, let's suppose each study has $n = 100$ subjects enrolled.
 
@@ -119,10 +115,9 @@ ggplot() +
   geom_path(aes(x = x, y = y), data = path, colour = bookgreen, size = 1, linetype = "longdash")
 ```
 
-
 As a result, only about $89\%$ of the treatments we approve will actually be genuinely effective. We can't see this from Figure \@ref(fig:hundredstudies) because it doesn't show the base rates. We have to turn to the kind of reasoning we did in the taxicab problem instead.
 
-Figure \@ref(fig:hundredstudiesgrid) shows the results. Since $2.5\%$ of the $160$ useless treatments (red pills) will be approved, that's $4$ bogus "discoveries". And since $`r 100 * p_missed`\%$ of the $40$ genuine ones (green pills) will be approved, that's about $34$ genuine treatments discovered. So only about $34/38 \approx 89\%$ of our approved treatments actually work.
+Figure \@ref(fig:hundredstudiesgrid) shows the results. Since $2.5\%$ of the $160$ useless treatments (red pills) will be approved, that's $4$ bogus "discoveries." And since $`r 100 * p_missed`\%$ of the $40$ genuine ones (green pills) will be approved, that's about $34$ genuine treatments discovered. So only about $34/38 \approx 89\%$ of our approved treatments actually work.
 
 We could improve this percentage by lowering the threshold for significance to $.01$. But then only half of the genuine treatments would be identified by our studies (Figure \@ref(fig:hundredstudies2)).
 
@@ -170,6 +165,8 @@ ggplot(NULL) +
   scale_y_continuous(NULL, labels = NULL)
 ```
 
+Figure \@ref(fig:hundredstudiesgrid2) shows what happens now: about $95\%$ of our approved treatments will be genuine. We discover half of the $40$ genuine treatments, which is $20$. And $.005$ of the $160$ useless treatments is $.8$, which we'll round up to $1$ for purposes of the diagram. So $20/21 \approx .95$ of our approved treatments are genuinely effective.
+
 ```{r hundredstudiesgrid2, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="With a stricter significance cutoff of $.01$, we make fewer \"bogus\" discoveries. But we miss out on a lot of genuine discoveries too."}
 green_grid <- expand.grid(x = 0:19, y = 8:9)
 red_grid <- expand.grid(x = 0:19, y = 0:7)
@@ -192,15 +189,9 @@ ggplot() +
   geom_path(aes(x = x, y = y), data = path, colour = bookgreen, size = 1, linetype = "longdash")
 ```
 
-Figure \@ref(fig:hundredstudiesgrid2) shows what happens now: about $95\%$ of our approved treatments will be genuine. We discover half of the $40$ genuine treatments, which is $20$. And $.005$ of the $160$ useless treatments is $.8$, which we'll round up to $1$ for purposes of the diagram. So $20/21 \approx .95$ of our approved treatments are genuinely effective.
-
 But we've paid a dear price for this increase in precision: we've failed to identify half the treatments there are to be discovered. We've missed out on a lot of potential benefit to our patients.
 
-Notice, however, that if bogus treatments were rarer the problem wouldn't be so pressing. For example, Figure \@ref(fig:hundredstudiesgrid3) shows what would happen if half the treatments being studied were bogus, instead of $80\%$. Then we could have stuck with the $.05$ threshold and still had very good results: we would discover about $85$ genuine treatments and only approved about $3$ bogus ones, a precision of about $97\%$.
-
-There are two lessons here. First, lowering the threshold for significance has both benefits and costs. A lower threshold means fewer false discoveries, but it means fewer genuine discoveries too. Second, the base rate informs our decision about how to make this tradeoff. The more false hypotheses there are to watch out for, the stronger the incentive to use a lower threshold.[^drugtrialnote]
-
-[^drugtrialnote]: Is the real base rate low enough that medical researchers actually need to worry? Yes, according to [this research](https://www.doi.org/10.1038/nrd3439-c1).
+Notice, however, that if bogus treatments were rarer, the problem wouldn't be so pressing. For example, Figure \@ref(fig:hundredstudiesgrid3) shows what would happen if half the treatments being studied were bogus, instead of $80\%$. Then we could have stuck with the $.05$ threshold and still had very good results: we would discover about $85$ genuine treatments and only approved about $3$ bogus ones, a precision of about $97\%$.
 
 ```{r hundredstudiesgrid3, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="A significance cutoff of $.05$ does much better if the base rate is more favourable."}
 green_grid <- expand.grid(x = 0:19, y = 5:9)
@@ -225,10 +216,14 @@ ggplot() +
   geom_path(aes(x = x, y = y), data = path, colour = bookgreen, size = 1, linetype = "longdash")
 ```
 
+There are two lessons here. First, lowering the threshold for significance has both benefits and costs. A lower threshold means fewer false discoveries, but it means fewer genuine discoveries too. Second, the base rate informs our decision about how to make this tradeoff. The more false hypotheses there are to watch out for, the stronger the incentive to use a lower threshold.[^drugtrialnote]
+
+[^drugtrialnote]: Is the real base rate low enough that medical researchers actually need to worry? Yes, according to [some research](https://www.doi.org/10.1038/nrd3439-c1).
+
 
 ## The Role of Priors in Significance Testing
 
-`r newthought("Bayesian")`  critics of significance testing conclude that, when we choose where to set the cutoff, we're choosing based on our "priors". We're relying on assumptions about the base rate, the prior probability of the null hypothesis.
+Bayesian  critics of significance testing conclude that, when we choose where to set the cutoff, we're choosing based on our "priors." We're relying on assumptions about the base rate, the prior probability of the null hypothesis.
 
 So, these critics say, frequentism faces exactly the same subjectivity problem as Bayesianism. Bayesians use Bayes' theorem to evaluate hypothesis $H$ in light of evidence $E$:
 $$ \p(H \given E) = \p(H) \frac{\p(E \given H)}{\p(E)} .$$
@@ -251,7 +246,7 @@ This critique of frequentism is sharpened by a famous problem known as Lindley's
 The tulip example is based on an example from Henry Kyburg's book *Logical Foundations of Statistical Inference*. It also appears in Howson & Urbach's *Scientific Reasoning: A Bayesian Approach*.
 ```
 
-`r newthought("Suppose")`  a florist receives a large shipment of tulip bulbs with the label scratched off. The company that sent the shipment only sends two kinds of shipments. The first kind contains $25\%$ red bulbs, the second kind has $50\%$ red bulbs.
+Suppose  a florist receives a large shipment of tulip bulbs with the label scratched off. The company that sent the shipment only sends two kinds of shipments. The first kind contains $25\%$ red bulbs, the second kind has $50\%$ red bulbs.
 
 The two kinds of shipment are equally common. So the store owner figures this shipment could be of either kind, with equal probability.
 
@@ -321,7 +316,7 @@ But one of these hypotheses still fits the finding much better than the other. T
 
 ## A Bayesian Analysis
 
-`r newthought("Bayesians")`  will happily point out the source of the trouble: our florist has ignored the prior probabilities. If we use Bayes' theorem instead of significance testing, we'll find that the store owner should believe the second hypothesis, which seems right. $36$ red bulbs out of $48$ fits much better with the $50\%$ hypothesis than with the $25\%$ hypothesis.
+Bayesians  will happily point out the source of the trouble: our florist has ignored the prior probabilities. If we use Bayes' theorem instead of significance testing, we'll find that the store owner should believe the second hypothesis, which seems right. $36$ red bulbs out of $48$ fits much better with the $50\%$ hypothesis than with the $25\%$ hypothesis.
 
 How do we apply Bayes' theorem in the tulip example? First we label our two hypotheses and the evidence:
 $$
@@ -366,7 +361,7 @@ According to Bayesian critics, this shows that significance testing is misguided
 #. Which of the following statements are true? Select all that apply.
 
     a. The higher the cutoff for statistical significance, the more true hypotheses will be discovered.
-    b. The higher the cutoff for statistical significance, the more false hypotheses will be "discovered".
+    b. The higher the cutoff for statistical significance, the more false hypotheses will be "discovered."
     c. The higher the cutoff for statistical significance, the more true hypotheses will go undiscovered.
     d. The higher the cutoff for statistical significance, the more false hypotheses will be correctly rejected.
 
@@ -374,8 +369,8 @@ According to Bayesian critics, this shows that significance testing is misguided
 
     Suppose half the coins are fair and half are not. Suppose also that when a coin is unfair, the probability of getting a result that is not statistically significant is $0.2$.
 
-    a. How many fair coins should we expect will incorrectly end up labeled "unfair".
-    b. How many unfair coins should we expect will correctly end up labeled "unfair".
+    a. How many fair coins should we expect will incorrectly end up labeled "unfair."
+    b. How many unfair coins should we expect will correctly end up labeled "unfair."
     d. What percentage of the coins labeled "unfair" should we expect to actually be unfair? 
 
 #. Suppose we are going to investigate $1,000$ null hypotheses by running an experiment on each. In each experiment, we will reject the null hypothesis when the results are significant at the $.01$ level.

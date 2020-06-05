@@ -12,11 +12,11 @@ How do we a calculate conditional probability when there are multiple conditions
 
 ## Multiple Draws
 
-`r newthought("Imagine")`  you're faced with another one of our mystery urns. There are two equally likely possibilities:
+Imagine  you're faced with another one of our mystery urns. There are two equally likely possibilities.
 $$
   \begin{aligned}
-    A      &: \mbox{The urn contains $70$ black marbles, $30$ white marbles.}\\
-    \neg A &: \mbox{The urn contains $20$ black marbles, $80$ white marbles.}\\
+    A      &= \mbox{The urn contains $70$ black marbles, $30$ white marbles.}\\
+    \neg A &= \mbox{The urn contains $20$ black marbles, $80$ white marbles.}\\
   \end{aligned}
 $$
 Now suppose you draw a marble at random and it's black. You put it back, give the urn a good shake, and then draw another: black again. What's the probability the urn has $70$ black marbles?
@@ -55,7 +55,6 @@ $$
       &= (20/100)^2.
   \end{aligned}
 $$
-
 Returning to Bayes' theorem, we can now finish the calculation:
 $$
   \begin{aligned}
@@ -65,7 +64,7 @@ $$
   \end{aligned}
 $$
 
-`r newthought("The")`  same solution can also be captured in a probability tree. The tree will have an extra stage now, because there's a second draw. And it will have many more leaves, but luckily we can ignore most of them. We just need to worry about the two leaves where both draws have come up black. And we only need to fill in the probabilities along the paths that lead to those two leaves. The result is Figure \@ref(fig:twodrawsreplacement).
+`r newthought("The same")` solution can also be captured in a probability tree. The tree will have an extra stage now, because there's a second draw. And it will have many more leaves, but luckily we can ignore most of them. We just need to worry about the two leaves where both draws have come up black. And we only need to fill in the probabilities along the paths that lead to those two leaves. The result is Figure \@ref(fig:twodrawsreplacement).
 
 ```{r twodrawsreplacement, echo=FALSE, cache=TRUE, fig.cap="Tree diagram for two draws with replacement"}
 nodes <- bind_rows(
@@ -95,7 +94,7 @@ So $\p(A \given B_1 \wedge B_2) = 0.245 / (0.245 + 0.02)$, which is the same as 
 
 ## Multiple Witnesses
 
-`r newthought("Let's try")` a different sort of problem with multiple conditions. Recall the taxicab problem from [Chapter 8](#chbayes):
+Let's try a different sort of problem with multiple conditions. Recall the taxicab problem from [Chapter 8](#chbayes):
 
 ```{block2, type='problem'}
 A cab was involved in a hit and run accident at night. Two cab companies, the Green and the Blue, operate in the city. You are given the following data:
@@ -136,7 +135,6 @@ $$
                        &= 13/100.
   \end{aligned}
 $$
-
 Now we can return to Bayes' theorem to finish the problem:
 $$
   \begin{aligned}
@@ -170,12 +168,12 @@ nodes <- bind_rows(
 p_tree(nodes, parse = TRUE, round = 3)
 ```
 
-`r newthought("We")`  can use a tree here too, similar to the one we made when sampling two black marbles with replacement. As before, we only need to worry about the $W_1 \wedge W_2$ leaves, the ones where both witnesses say the cab was blue. The result is Figure \@ref(fig:twowitnesstree), which tells us that $\p(B \given W_1 \wedge W_2) = 0.096 / (0.096 + 0.034)$, which is approximately $0.74$.
+`r newthought("We can")` use a tree here too, similar to the one we made when sampling two black marbles with replacement. As before, we only need to worry about the $W_1 \wedge W_2$ leaves, the ones where both witnesses say the cab was blue. The result is Figure \@ref(fig:twowitnesstree), which tells us that $\p(B \given W_1 \wedge W_2) = 0.096 / (0.096 + 0.034)$, which is approximately $0.74$.
 
 
 ## Without Replacement
 
-`r newthought("The")`  problems we've done so far were simplified by assuming independence.  We sampled with replacement in the urn problem, and we assumed our two witnesses were independently reporting what they saw in the taxicab problem. What about when independence doesn't hold?
+The  problems we've done so far were simplified by assuming independence.  We sampled with replacement in the urn problem, and we assumed our two witnesses were independently reporting what they saw in the taxicab problem. What about when independence doesn't hold?
 
 Let's go back to our urn problem, but this time suppose we don't replace the marble after the first draw. How do we calculate $\p(A \given B_1 \wedge B_2)$ then?
 
@@ -239,7 +237,7 @@ nodes <- bind_rows(
 p_tree(nodes, parse = TRUE, round = 4)
 ```
 
-`r newthought("The")`  tree diagram for this problem will also be similar to the with-replacement version. The key difference is the probabilities at the last stage of the tree. Without independence, the probability of a $B_2$ branch is affected by the $B_1$ that precedes it. The result is Figure \@ref(fig:twodrawsnoreplacement), though note that some values are rounded. Still we find that:
+`r newthought("The tree")` diagram for this problem will also be similar to the with-replacement version. The key difference is the probabilities at the last stage of the tree. Without independence, the probability of a $B_2$ branch is affected by the $B_1$ that precedes it. The result is Figure \@ref(fig:twodrawsnoreplacement), though note that some values are rounded. Still we find that:
 $$
   \begin{aligned}
      \p(A \given B_1 \wedge B_2) &\approx \frac{ 0.2439 }{ 0.2439 + 0.0192 } \\
@@ -250,7 +248,7 @@ $$
 
 ## Multiplying Conditional Probabilities
 
-`r newthought("The")`  calculation we just did relied on a new rule, which we should make explicit. Start by recalling a familiar rule:
+The  calculation we just did relied on a new rule, which we should make explicit. Start by recalling a familiar rule:
 
 The General Multiplication Rule
 
@@ -281,7 +279,7 @@ So if we have a rule of probability, the same rule will hold if we add a conditi
 
 ## Summary
 
-`r newthought("We've learned two strategies")` for calculating conditional probabilities with multiple conditions.
+We've learned two strategies for calculating conditional probabilities with multiple conditions.
 
 The first strategy is easier, but it only works when the conditions are appropriately independent. Like when we sample with replacement, or when two witnesses independently report what they saw.
 

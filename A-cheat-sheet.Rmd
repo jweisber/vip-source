@@ -14,9 +14,7 @@ Soundness
 
 Connectives
 
-:    There are three connectives: $\neg$ (negation), $\wedge$ (conjunction), and $\vee$ (disjunction).
-
-    Their truth tables are as follows
+:    There are three connectives: $\neg$ (negation), $\wedge$ (conjunction), and $\vee$ (disjunction). Their truth tables are as follows.
     
     ```{r echo=FALSE}
     df <- data.frame(
@@ -30,7 +28,7 @@ Connectives
     knitr::kable(df, align = "c")
     ```
 
-Logical Truth
+Logical Truth (Tautology)
 
 :    A proposition that is always true.
 
@@ -55,11 +53,11 @@ Logical Equivalence
 
 Independence
 
-:    Proposition $A$ is independent of proposition $B$ if the truth (or falsity) of $B$ makes no difference to the probability of $A$.
+:    Proposition $A$ is independent of proposition $B$ if $B$'s truth or falsity makes no difference to the probability of $A$.
 
 Fairness
 
-:    A repeating process is fair if each repetition has the same probability and the repetitions are independent of one another.
+:    A repeating process is fair if each outcome has the same probability and the repetitions are independent of one another.
 
 Multiplication Rule
 
@@ -133,7 +131,7 @@ $$ \EU(A) = \p(C_1)\u(C_1) + \p(C_2)\u(C_2) + \ldots + \p(C_n)\u(C_n). $$
 
 Measuring Utility
 
-:    Suppose an agent's best and worst possible outcomes are $B$ and $W$. Let $\u(B) = 1$ and $\u(W) = 0$. And suppose $\p(B)$ be the lowest probability such that they are indifferent between outcome $O$ and a gamble with probability $\p(B)$ of outcome $B$, and probability $1 - \p(B)$ of outcome $W$. Then, if the agent is following the expected utility rule, $\u(O) = \p(B)$.
+:    Suppose an agent's best and worst possible outcomes are $B$ and $W$. Let $\u(B) = 1$ and $\u(W) = 0$. And suppose $\p(B)$ is the lowest probability such that they are indifferent between outcome $O$ and a gamble with probability $\p(B)$ of outcome $B$, and probability $1 - \p(B)$ of outcome $W$. Then, if the agent is following the expected utility rule, $\u(O) = \p(B)$.
 
 Sure-thing Principle
 
@@ -163,7 +161,7 @@ Principle of Indifference
 
 Significance Testing
 
-:    A significance test at the $.05$ level can be described in three steps:
+:    A significance test at the $.05$ level can be described in three steps.
 
     1. State the hypothesis you want to test: the true probability of outcome X is $p$. This is called the *null hypothesis*.
     2. Repeat the event over and over and count the number of times $k$ that outcome X occurs.
@@ -175,6 +173,6 @@ Normal Approximation
 
 :    Suppose an event has two possible outcomes, with probabilities $p$ and $1-p$. And suppose the event will be repeated $n$ independent times. We define the mean $\mu = np$ and the standard deviation $\sigma = \sqrt{np(1-p)}$. Let $k$ be the number of times the first outcome occurs. Then, if $n$ is large enough:
 
-    - The probability is about $.68$ that $k$ will be between $\mu - \sigma$ and $\mu + \sigma$ times.
-    - The probability is about $.95$ that $k$ will be between $\mu - 2\sigma$ and $\mu + 2\sigma$ times.
-    - The probability is about $.99$ that $k$ will be between $\mu - 3\sigma$ and $\mu + 3\sigma$ times.
+    - The probability is about $.68$ that $k$ will be between $\mu - \sigma$ and $\mu + \sigma$.
+    - The probability is about $.95$ that $k$ will be between $\mu - 2\sigma$ and $\mu + 2\sigma$.
+    - The probability is about $.99$ that $k$ will be between $\mu - 3\sigma$ and $\mu + 3\sigma$.

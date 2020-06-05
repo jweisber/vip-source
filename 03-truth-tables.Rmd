@@ -1,11 +1,11 @@
 # Truth Tables
 
-`r newthought("In")`  this chapter we'll introduce the last few concepts we need from deductive logic, and we'll learn a useful technique in the process: truth tables.
+`r newthought("In this")` chapter we'll introduce the last few concepts we need from deductive logic, and we'll learn a useful technique in the process: truth tables.
 
 
 ## Connectives
 
-`r newthought("Complex")`  propositions can be built up out of other, simpler propositions:
+Complex propositions can be built up out of other, simpler propositions:
 
 - Aegon is a tyrant **and** Brandon is a wizard.
 - **Either** Aegon is a tyrant **or** Brandon is a wizard.
@@ -79,7 +79,7 @@ So in the proposition $\neg A \vee B$, the $\neg$ only applies to $A$. And in $\
 
 ## Truth Tables
 
-`r newthought("The")`  truth of a complex proposition built using our three connectives depends on the truth of its components. For example, $\neg A$ is false if $A$ is true, and it's true if $A$ is false:
+The  truth of a complex proposition built using our three connectives depends on the truth of its components. For example, $\neg A$ is false if $A$ is true, and it's true if $A$ is false:
 
 ```{r echo=FALSE}
 df <- data.frame(
@@ -120,7 +120,7 @@ knitr::kable(df, align = "c", caption="Truth table for $\\vee$")
 
 Now the complex proposition is always true, except in one case: the last row where $A$ and $B$ are both false. It makes sense that $A \vee B$ is false when both sides are false. But why is it true when both sides are true? Doesn't "Either $A$ or $B$" mean that *just one* of these is true?
 
-Sometimes it does have that meaning. But sometimes it means "Either A or B, *or both*". Consider this exchange:
+Sometimes it does have that meaning. But sometimes it means "Either A or B, *or both*." Consider this exchange:
 
 > X: What are you doing tomorrow night?\
 > Y: I'm either going to a friend's house or out to a club. I might even do both, if there's time.
@@ -135,7 +135,7 @@ That says:
 $$ \mbox{Either $A$ or $B$ is true, and it's not the case that both $A$ and $B$ are true}.$$
 Which is just a very explicit way of saying: either one or the other, but not both.
 
-We can even verify that the complex construction captures the meaning we want using a truth table. We start with an empty table, where the header lists all the formulas we use to build up to the final, complex one we're interested in:
+We can even verify that the complex construction captures the meaning we want, by using a truth table. We start with an empty table, where the header lists all the formulas we use to build up to the final, complex one we're interested in:
 
 ```{r echo=FALSE}
 df <- data.frame(
@@ -215,7 +215,7 @@ Complex constructions like this are difficult at first, but don't worry. With pr
 
 ## Logical Truths & Contradictions
 
-`r newthought("Some")`  propositions come out true in every row of the truth table. Consider $A \vee \neg A$ for example:
+Some  propositions come out true in every row of the truth table. Consider $A \vee \neg A$ for example:
 
 ```{r echo=FALSE}
 df <- data.frame(
@@ -259,7 +259,7 @@ knitr::kable(df, align = "c")
 
 ## Mutual Exclusivity & Truth Tables
 
-`r newthought("Truth")`  tables can be used to establish that two propositions are mutually exclusive. A very simple example is the propositions $A$ and $\neg A$:
+Truth  tables can be used to establish that two propositions are mutually exclusive. A very simple example is the propositions $A$ and $\neg A$:
 
 ```{r echo=FALSE}
 df <- data.frame(
@@ -272,9 +272,9 @@ knitr::kable(df, align = "c")
 
 There is no row in the table where both propositions are true. And if two propositions can't both be true, they are mutually exclusive by definition.
 
-A slightly more complex example is the propositions $A \vee B$ and $\neg A \wedge \neg B$:
+A slightly more complex example is the pair of propositions $A \vee B$ and $\neg A \wedge \neg B$. Their truth table (\@ref(tab:avbnaanb)) also has no row where $A \vee B$ and $\neg A \wedge \neg B$ are both true. So they are mutually exclusive.
 
-```{r echo=FALSE}
+```{r avbnaanb, echo=FALSE}
 df <- data.frame(
     A = c("T", "T", "F", "F"),
     B = c("T", "F", "T", "F"),
@@ -285,18 +285,18 @@ df <- data.frame(
 )
 colnames(df) <- c("$A$", "$B$", "$\\neg A$", "$\\neg B$", "$A \\vee B$",
                   "$\\neg A \\wedge \\neg B$")
-knitr::kable(df, align = "c")
+knitr::kable(df, align = "c", caption = "The propositions $A \\vee B$ and $\\neg A \\wedge \\neg B$ are mutually exclusive.")
 ```
-
-Again there's no row where $A \vee B$ and $\neg A \wedge \neg B$ are both true. So they are mutually exclusive.
 
 
 ## Entailment & Equivalence
 
-`r newthought("Truth")`  tables can also be used to establish that an argument is valid. Here's a very simple example:
+Truth  tables can also be used to establish that an argument is valid. Here's a very simple example:
 
-> $A \wedge B$.\
-> Therefore, $A$.
+```{block, type="argument", echo=TRUE}
+$A \wedge B$.\
+Therefore, $A$.
+```
 
 Obviously it's not possible for the premise to be true and the conclusion false, so the argument is valid (if a bit silly). Accordingly, there is no line of the truth table where $A \wedge B$ comes out true, yet $A$ comes out false:
 
@@ -314,9 +314,11 @@ The only line where $A \wedge B$ comes out true is the first one. And on that li
 
 One more example:
 
-> $A \vee B$.\
-> $\neg A$.\
-> Therefore, $B$.
+```{block, type="argument", echo=TRUE}
+$A \vee B$.\
+$\neg A$.\
+Therefore, $B$.
+```
 
 This argument is valid because the first premise says that at least one of the two propositions $A$ and $B$ must be true, and the second line says it's not $A$. So it must be $B$ that's true, as the conclusion asserts. And once again there is no line of the truth table where both $A \vee B$ and $\neg A$ are true, yet $B$ is false:
 
@@ -372,7 +374,7 @@ Here again the columns under these two propositions are identical.
 
 ## Summary
 
-`r newthought("Connectives")`  can be used to build more complex propositions, like $A \wedge B$ or $A \vee \neg B$. We introduced three connectives:
+Connectives  can be used to build more complex propositions, like $A \wedge B$ or $A \vee \neg B$. We introduced three connectives:
 
 - $\neg A$ means it's not true that $A$.
 - $A \wedge B$ means both $A$ and $B$ are true.

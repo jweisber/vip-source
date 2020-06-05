@@ -1,13 +1,21 @@
 # Probability & Induction
 
+
+```{block, type="epigraph"}
+Nothing in life is to be feared, it is only to be understood.
+Now is the time to understand more, so that we may fear less.\
+---Marie Curie
+```
+
+
 `r newthought("We")`  met some common types of inductive argument back in [Chapter 2][Forms of Inductive Argument]. Now that we know how to work with probability, let's use what we've learned to sharpen our understanding of how those arguments work.
 
 
 ## Generalizing from Observed Instances
 
-`r newthought("Generalizing")` from observed instances was the first major form of inductive argument we encountered. Suppose you want to know what colour a particular species of bird tends to be. Then you might go out and look at a bunch of examples:
+Generalizing from observed instances was the first major form of inductive argument we encountered. Suppose you want to know what colour a particular species of bird tends to be. Then you might go out and look at a bunch of examples:
 
-```{block, type="argument"}
+```{block, type="argument", echo=TRUE}
 I've seen $10$ ravens and they've all been black.\
 Therefore, all ravens are black.
 ```
@@ -16,11 +24,11 @@ How strong is this argument?
 
 Observing ravens is a lot like sampling from an urn. Each raven is a marble, and the population of all ravens is the urn. We don't know what nature's urn contains at first: it might contain only black ravens, or it might contain ravens of other colours too. To assess the argument's strength, we have to calculate $\p(A \given B_1 \wedge B_2 \wedge \ldots \wedge B_{10})$: the probability that all ravens in nature's urn are black, given that the first raven we observed was black, and the second, and so on, up to the tenth raven.
 
-We learned how to solve simple problems of this form in the [previous chapter][Multiple Draws]. For example, imagine you face another of our mystery urns, and this time there are two equally likely possibilities:
+We learned how to solve simple problems of this form in the [previous chapter][Multiple Draws]. For example, imagine you face another of our mystery urns, and this time there are two equally likely possibilities.
 $$
   \begin{aligned}
-    A      &: \mbox{The urn contains only black marbles.} \\
-    \neg A &: \mbox{The urn contains an equal mix of black and white marbles.} \\
+    A      &= \mbox{The urn contains only black marbles.} \\
+    \neg A &= \mbox{The urn contains an equal mix of black and white marbles.} \\
   \end{aligned}
 $$
 If we do two random draws with replacement, and both are black, we calculate $\p(A \given B_1 \wedge B_2)$ using Bayes' theorem:
@@ -34,7 +42,7 @@ $$
 If we do a third draw with replacement, and it too comes up black, we replace the squares with cubes. On the fourth draw we'd raise to the fourth power. And so on. When we get to the tenth black draw, the calculation becomes:
 $$
   \begin{aligned}
-    \p(A \given B_1 \wedge B_2) &= \frac{(1)^{10}(1/2)}{(1)^{10}(1/2) + (1/2)^{10}(1/2)}\\
+    \p(A \given B_1 \wedge \ldots \wedge B_{10}) &= \frac{(1)^{10}(1/2)}{(1)^{10}(1/2) + (1/2)^{10}(1/2)}\\
     &= 1,024/1,025\\
     &\approx .999.
   \end{aligned}
@@ -46,13 +54,13 @@ But that doesn't mean our argument that all ravens are black is $99.9\%$ strong!
 
 ## Real Life Is More Complicated 
 
-`r newthought("There")`  are two major limitations to our urn analogy.
+There  are two major limitations to our urn analogy.
 
-`r newthought("The")`  first limitation is that the ravens we observe in real life aren't randomly sampled from nature's "urn." We only observe ravens in certain locations, for example. But our solution to the urn problem relied on random sampling. For example, we assumed $\p(B_1 \given \neg A) = 1/2$ because the black marbles are just as likely to be drawn as the white ones, if there are any white ones.
+`r newthought("The first")`  limitation is that the ravens we observe in real life aren't randomly sampled from nature's "urn." We only observe ravens in certain locations, for example. But our solution to the urn problem relied on random sampling. For example, we assumed $\p(B_1 \given \neg A) = 1/2$ because the black marbles are just as likely to be drawn as the white ones, if there are any white ones.
 
 If there are white ravens in the world though, they might be limited to certain locales.^[In fact there are white ravens, [especially in one area of Vancouver Island](https://vancouversun.com/news/local-news/rare-white-raven-spotted-on-vancouver-island).] So the fact we're only observing ravens in our part of the world could make a big difference to what we find. It matters whether your sample really is random.
 
-`r newthought("The")`  second limitation is that we pretended there were only two possibilities: either all the marbles in the urn are black, or half of them are. And, accordingly, we assumed there was already a 1/2 chance all the marbles are black, before we even looked at any of them.
+`r newthought("The second")` limitation is that we pretended there were only two possibilities: either all the marbles in the urn are black, or half of them are. And, accordingly, we assumed there was already a $1/2$ chance all the marbles are black, before we even looked at any of them.
 
 In real life though, when we encounter a new species, it could be that $90\%$ of them are black, or $31\%$, or $42.718\%$, or any portion from $0\%$ to $100\%$. So there are many, many more possibilities. The possibility that *all* members of the new species ($100\%$) are black is just one of these many possibilities. So it would start with a much lower probability than $1/2$.
 
@@ -71,33 +79,33 @@ In our example, we did $10$ draws, all of which came up black. So $n = 10$, and 
 $$ \frac{10 + 1}{10 + 2} = \frac{11}{12}, $$
 in other words the next draw has about a $0.92$ probability of being black. If we'd only gotten $k = 5$ black marbles out of $n = 10$ draws, the probability would be $6/12 = 1/2$.
 
-Notice though that we've somewhat changed the subject. The rule of succession gives us the probability for *one* draw. It doesn't tell us the probability that *all* marbles in the urn are black, it just tells us the probability of getting a black marble if we draw one of them. Analyzing the probability that all the marbles are black is trickier, so we won't go into it. Just be aware that the Rule of Succession gives us individual probabilities, not collective ones.
+Notice though that we've somewhat changed the subject. The Rule of Succession gives us the probability for *one* draw. It doesn't tell us the probability that *all* marbles in the urn are black, it just tells us the probability of getting a black marble if we draw one of them. Analyzing the probability that all the marbles are black is trickier, so we won't go into it. Just be aware that the Rule of Succession gives us individual probabilities, not general ones.
 
 Notice also that the Rule of Succession relies on two assumptions. The first is an assumption we also used earlier, namely that we're sampling randomly. Sometimes this assumption is realistic, but in many real-world applications getting a random sample is tricky, even impossible.
 
 The second assumption is that all possible compositions of the urn are equally likely. It's just as likely that $50\%$ of the marbles are black as that $75\%$ are, or $35.12\%$, or $0.0001\%$. This assumption certainly looks reasonable, at least in some cases. But we'll see in [Chapter 18](#priors) that there are fundamental problems lurking here.
 
-When these assumptions hold, the rule of succession is entirely correct. It just follows from the rules of probability we've already learned. But it would be a mistake to use the Rule of Succession in situations where these assumptions do not apply.
+When these assumptions hold though, the Rule of Succession is entirely correct. It just follows from the rules of probability we've already learned. We just need to remember that it would be a mistake to use the Rule of Succession in situations where these assumptions do not apply.
 
 
 ## Inference to the Best Explanation {#bayesibe}
 
-`r newthought("Let's")` set aside arguments that generalize from observed instances now, and focus instead on a different form of inductive argument that we also met in [Chapter 2][Logic], namely Inference to the Best Explanation. An example:
+Let's set aside arguments that generalize from observed instances, and focus instead on a different form of inductive argument we met in [Chapter 2][Logic], namely Inference to the Best Explanation. An example:
 
 ```{block, type="argument", echo=TRUE}
-My car won't start and the gas gauge reads 'empty.'\
+My car won't start and the gas gauge reads empty.\
 Therefore, my car is out of gas.
 ```
 
-My car being out of gas is a very good explanation of the facts that it won't start and the gauge reads 'empty.' So this seems like a pretty strong argument.
+My car being out of gas is a very good explanation of the facts that it won't start and the gauge reads empty. So this seems like a pretty strong argument.
 
 How do we understand its strength using probability? This is actually a controversial topic, currently being studied by researchers. There are different, competing theories about how Inference to the Best Explanation fits into probability theory. So we'll just look at one, popular way of understanding things.
 
 Let's start by thinking about what makes an explanation a good one.
 
-`r newthought("A")`  good explanation should account for all the things we're trying to explain. For example, if we're trying to explain why my car won't start and the gauge reads 'empty,' I'd be skeptical if my mechanic said it's because the brakes are broken. That doesn't account for any of the symptoms! I'd also be skeptical if they said the gas gauge was broken. That might fit okay with one of the symptoms (the gauge reads 'empty'), but it doesn't account for the fact the car won't start.
+`r newthought("A good")` explanation should account for all the things we're trying to explain. For example, if we're trying to explain why my car won't start and the gauge reads empty, I'd be skeptical if my mechanic said it's because the brakes are broken. That doesn't account for any of the symptoms! I'd also be skeptical if they said the gas gauge was broken. That might fit okay with one of the symptoms (the gauge reads empty), but it doesn't account for the fact the car won't start.
 
-The explanation that my car is out of gas, however, fits both symptoms. It would account for both the 'empty' reading on the gauge and the car's refusal to start.
+The explanation that my car is out of gas, however, fits both symptoms. It would account for both the empty reading on the gauge and the car's refusal to start.
 
 A good explanation should also fit with other things I know. For example, suppose my mechanic tries to explain my car troubles by saying that both the gauge and the ignition broke down at the same time. But I know my car is new, it's a highly reliable model, and it was recently serviced. So my mechanic's explanation doesn't fit well with the other things I know. It's not a very good explanation.
 
@@ -110,7 +118,7 @@ These criteria match up with terms in Bayes' theorem. Imagine we have some evide
 $$ \p(H \given E) = \frac{\p(H)\p(E \given H)}{\p(E)}. $$
 How probable is our explanation $H$ given our evidence $E$? Well, the larger the terms in the numerator are, the higher that probability is. And the terms in the numerator correspond to our two criteria for a good explanation.
 
-1. $\p(E \given H)$ corresponds to how well our hypothesis $H$ accounts for our evidence $E$. If $H$ is the hypothesis that the car is out of gas, then $\p(E \given H) \approx 1$. After all, if there's no gas in the car, it's virtually guaranteed that it won't start and the gauge will read 'empty.' (It's not perfectly guaranteed because the gauge could be broken after all, though that's not very likely.)
+1. $\p(E \given H)$ corresponds to how well our hypothesis $H$ accounts for our evidence $E$. If $H$ is the hypothesis that the car is out of gas, then $\p(E \given H) \approx 1$. After all, if there's no gas in the car, it's virtually guaranteed that it won't start and the gauge will read empty. (It's not perfectly guaranteed because the gauge could be broken after all, though that's not very likely.)
 
 2. $\p(H)$ corresponds to how well our hypothesis fits with other things we know. For example, suppose I know it's been a while since I put gas in the car. If $H$ is the hypothesis that the car is out of gas, this fits well with what I already know, so $\p(H)$ will be pretty high.
 
@@ -122,26 +130,28 @@ What about the last term in Bayes' theorem though, the denominator $\p(E)$? It c
 
 (ref:mooncap1) The hammer/feather experiment was performed on the moon in 1971. See the [full video here](https://bit.ly/1KLQzOB).
 
-(ref:mooncap2) It's also been performed in vacuum chambers here on earth. A beautifully filmed example is [available on YouTube](https://bit.ly/10hw8mP), courtesy of the BBC.
+(ref:mooncap2) The hammer/feather experiment has also been performed in vacuum chambers here on earth. A beautifully filmed example is [available on YouTube](https://bit.ly/10hw8mP), courtesy of the BBC.
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap=c("(ref:mooncap1)", "(ref:mooncap2)")}
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap=c("(ref:mooncap1)")}
 
 if (knitr:::is_latex_output()) {
   knitr::include_graphics("img/moon.png")
 } else {
   knitr::include_graphics("img/moon.gif")
 }
+```
 
+Scientists love theories that explain the unexplained. For example, Newton's theory of physics is able to explain why a heavy object and a light object, like a hammer and feather, fall to the ground at the same speed as long as there's no air resistance. If you'd never performed this experiment before, you'd probably expect the hammer to fall faster. You'd be surprised to find that the hammer and feather actually hit the ground at the same time. That Newton's theory explains this surprising fact strongly supports his theory.
+
+So the ability to explain surprising facts is a third virtue of a good explanation. And this virtue corresponds to our third term in Bayes' theorem:
+
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap=c("(ref:mooncap2)")}
 if (knitr:::is_latex_output()) {
   knitr::include_graphics("img/vacuum.png")
 } else {
   knitr::include_graphics("img/vacuum.gif")
 }
 ```
-
-Scientists love theories that explain the unexplained. For example, Newton's theory of physics is able to explain why a heavy object and a light object, like a hammer and feather, fall to the ground at the same speed as long as there's no air resistance. If you'd never performed this experiment before, you'd probably expect the hammer to fall faster. You'd be surprised to find that the hammer and feather actually hit the ground at the same time. That Newton's theory explains this surprising fact strongly supports his theory.
-
-So the ability to explain surprising facts is a third virtue of a good explanation. And this virtue corresponds to our third term in Bayes' theorem:
 
 3. $\p(E)$ corresponds to how surprising the evidence $E$ is. If $E$ is surprising, then $\p(E)$ will be low, since $E$ isn't something we expect to be true. 
 

@@ -21,7 +21,7 @@ So it seems like a bad deal.
 
 But some people do buy tickets in lotteries like this one, and not necessarily because they're just bad at math. Maybe they enjoy the thrill of winning, or even just having a shot at winning. Or maybe they want to support the student union, and foster fun and community on campus.
 
-`r newthought("Suppose")` your friend is one of these people. How might they respond to the calculation above? One thing they could do is replace the dollar amounts with different numbers, numbers that more accurately capture their personal values.
+Suppose your friend is one of these people. How might they respond to the calculation above? One thing they could do is replace the dollar amounts with different numbers, numbers that more accurately capture their personal values.
 
 Instead of just a $\$499$ gain for winning, for example, they might use $599$, to capture the added value that comes from the thrill of winning. And instead of $-\$1$ for losing, they might put $9$ to capture the contribution to campus community that comes from participating in the event.
 
@@ -38,7 +38,7 @@ Notice how there are no dollar signs anymore. In fact there's no explicit unit o
 
 They represent how good or bad an outcome is, from your friend's point of view. In decision theory we call these numbers ***utilities***, or ***utils*** for short.
 
-`r newthought("If")`  the real value of something is its utility, we should calculate *expected utilities* instead of expected monetary values:
+`r newthought("If the")` real value of something is its utility, we should calculate *expected utilities* instead of expected monetary values.
 
 Expected Utility
 
@@ -52,7 +52,7 @@ According to standard decision theory, the right choice is the act that has the 
 
 ## Subjectivity & Objectivity
 
-`r newthought("People")` have different desires, needs, and interests. Some value friendship most, others value family more. Some prioritize professional success, others favour activism. Some people like '80s music, others prefer hip-hop---and still others, to my constant surprise, enjoy reggae.
+People have different desires, needs, and interests. Some value friendship most, others value family more. Some prioritize professional success, others favour activism. Some people like eighties music, others prefer hip-hop---and still others, to my constant surprise, enjoy reggae.
 
 So the value of a decision's outcome depends on the person. It is *subjective*. And that raises a big question: if utility is subjective, how can we measure it objectively? Does it even make sense to treat personal tastes and preferences using mathematical equations?
 
@@ -66,12 +66,12 @@ For example, imagine you have three options for lunch: pizza, salad, or celery. 
 
 Here's how we find out. We offer you a choice, you can either have a salad or you can have a gamble. The gamble might win you pizza, but you might end up with celery instead.
 
-- $S$: Salad.
-- $G$: A gamble, with probability $\p(P)$ of pizza and $1-\p(P)$ of celery.
+- $S$: salad.
+- $G$: a gamble with probability $\p(P)$ of pizza, $1-\p(P)$ of celery.
 
 The question is, how high does the probability $\p(P)$ have to be before you are *indifferent* between these two options? How good does your shot at pizza have to be before you'd trade the salad for the gamble, and risk winding up with celery instead?
 
-This is a question about your personal tastes, notice. Some people really like salad, they might even like it as much as pizza. So they'd need the shot at pizza to be pretty secure before they'd give up the salad. Others don't care much for salad. Like me: I'd be willing to trade the salad for the gamble even if the chances of pizza weren't very high. For me, salad isn't much better than celery, but pizza is way better than both of them.
+This is a question about your personal tastes. Some people really like salad, they might even like it as much as pizza. So they'd need the shot at pizza to be pretty secure before they'd give up the salad. Others don't care much for salad. Like me: I'd be willing to trade the salad for the gamble even if the chances of pizza weren't very high. For me, salad isn't much better than celery, but pizza is way better than both of them.
 
 Let's suppose your answer is $\p(P) \geq 1/3$. That is, you'd need at least a $1/3$ chance at the pizza to risk getting celery instead of salad. Since celery is the worst option, let's say it has utility zero: $\u(C)=0$. And since pizza is the best option, let's say it has utility one: $\u(P)=1$. What is the utility of salad $\u(S)$ then?
 
@@ -126,7 +126,7 @@ ggplot(text) +
   geom_text(aes(x = x, y = y, label = label, hjust = hjust), size = 5)
 ```
 
-`r newthought("Now")`  imagine your friend gives a different answer. They'd need at least a $2/3$ chance at the pizza to risk ending up with celery instead of salad. So for them, $\u(S) = \EU(G)$ when $\p(P) = 2/3$. So now the calculation goes:
+`r newthought("Now imagine")` your friend gives a different answer. They'd need at least a $2/3$ chance at the pizza to risk ending up with celery instead of salad. So for them, $\u(S) = \EU(G)$ when $\p(P) = 2/3$. So now the calculation goes:
 $$
   \begin{aligned}
     \u(S) &= \p(P)\u(P) + \p(C)\u(C)\\
@@ -138,7 +138,7 @@ So for your friend, salad is closer to pizza than to celery. For them it has uti
 
 ## The General Recipe
 
-`r newthought("Lunch")` is important, but how do we apply this recipe more broadly? How do we quantify the value a person places on other things, like career options, their love life, or their preferred music?
+Lunch is important, but how do we apply this recipe more broadly? How do we quantify the value a person places on other things, like career options, their love life, or their preferred music?
 
 ```{marginfigure}
 What are $B$ and $W$? What are the best and worst options a person could have? I like to think of them as heaven and hell: $B$ is an eternity of bliss, $W$ is an eternity of suffering.
@@ -155,9 +155,9 @@ $$
     \u(W) &= 0.
   \end{aligned}
 $$
-Then, to find the utility of any consequence $C$, we follow this recipe. We find the *lowest* probability $\p(B)$ at which they would be indifferent between having $C$ for sure vs. accepting the following gamble:
+Then, to find the utility of any consequence $C$, we follow this recipe. We find the *lowest* probability $\p(B)$ at which they would be indifferent between having $C$ for sure vs. accepting the following gamble.
 
-- $G$: probability $\p(B)$ of getting $B$, probability $1-\p(B)$ of getting $W$.
+- $G$: probability $\p(B)$ of getting $B$, probability $1-\p(B)$ of $W$.
 
 Then we know consequence $C$ has utility $\p(B)$ for them.
 
@@ -170,9 +170,9 @@ $$
   \end{aligned}
 $$
 
-`r newthought("I")`  find it helps to think of this method as marking every point on our utility scale with a gamble, which we can use for comparisons.
+`r newthought("I find")` it helps to think of this method as marking every point on our utility scale with a gamble, which we can use for comparisons.
 
-```{r uscale, echo=FALSE, fig.margin=TRUE, fig.cap="A utility scale with some arbitrarily selected points of comparison chosen for display: $u = 7/8$, $2/3$, $1/2$, and $1/6$"}
+```{r uscale, echo=FALSE, fig.margin=TRUE, fig.cap="A utility scale with some points of comparison chosen for display: $u = 7/8$, $2/3$, $1/2$, and $1/6$"}
 text <- bind_rows(
   list(x = .4, y = 1,   label = "italic(B)",  hjust = "left"),
   list(x = .4, y = 7/8, 
@@ -213,55 +213,50 @@ For every utility value $u$ between $0$ and $1$, there's a gamble whose expected
 
 These gambles give us points of comparison for every possible utility value $u$ on our utility scale. Figure \@ref(fig:uscale) shows a sample of a few such points. We can't show them all of course; there are infinitely many, one for every number between $0$ to $1$.
 
-Now to find the utility of an outcome---whether it's a salad, a Carribbean vacation, or a million dollars---we find which of these gambles it's comparable to. To locate a Carribbean vacation on our scale, for example, we move up the scale from 0 until we hit a gamble where our subject says, "There! I'd be willing to trade a Carribbean vacation for that gamble there." Then we look at what $\p(B)$ is equal to in that gamble, and that tells us their utility for a Carribbean vacation.
+Now to find the utility of an outcome---whether it's a salad, a Carribbean vacation, or a million dollars---we find which of these gambles it's comparable to. To locate a Carribbean vacation on our scale, for example, we move up the scale from $0$ until we hit a gamble where our subject says, "There! I'd be willing to trade a Carribbean vacation for that gamble there." Then we look at what $\p(B)$ is equal to in that gamble, and that tells us their utility for a Carribbean vacation.
 
 
 ## Choosing Scales
 
-`r newthought("This")`  method for quantifying utility assumes that $\u(W) = 0$ and $\u(B) = 1$. What justifies this assumption? It's actually a bit arbitrary. We could measure someone's utilities on a scale from $0$ to $10$ instead. Or $-1$ to $1$, or any interval.
-
-```{marginfigure}
-Question: how would we calculate $\u(C)$ on a scale from $-1$ to $1$?
-```
-
-It's just convenient to use $0$ and $1$. Because then, once we've identified the relevant probability $\p(B)$, we can immediately set $\u(C) = \p(B)$. If we used a scale from $0$ to $10$ instead, we'd have to multiply $\p(B)$ by $10$ to get $\u(C)$. That would add some unnecessary work.
-
-```{r echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="The best possible gamble (top), the worst possible gamble (middle), and an intermediate gamble (bottom)"}
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The best possible gamble"}
 ggplot(NULL, aes(c(0, 1))) + 
   coord_fixed() +
   stat_function(fun = function(x) 1, geom = "area", n = 1000, 
                 fill = bookblue) +
   scale_y_continuous("utility", breaks = seq(0, 1, 1), limits = c(0, 1)) +
-  scale_x_continuous("probability", breaks = seq(0, 1, 1)) +
-  ggtitle(expression(Best~Possible~Gamble:~italic(Pr)(italic(B))==1))
-
-ggplot(NULL, aes(c(0, 1))) + 
-  coord_fixed() +
-  stat_function(fun = function(x) 0, geom = "area", n = 1000,
-                fill = bookblue) +
-  scale_y_continuous("utility", breaks = seq(0, 1, 1), limits = c(0, 1)) +
-  scale_x_continuous("probability", breaks = seq(0, 1, 1)) +
-  ggtitle(expression(Worst~Possible~Gamble:~italic(Pr)(italic(W))==1))
-
+  scale_x_continuous("probability", breaks = seq(0, 1, 1))
+```
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="An intermediate gamble"}
 ggplot(NULL, aes(c(0, 1))) + 
   coord_fixed() +
   stat_function(fun = function(x) case_when(x <= 1/2 ~ 1/3, x <= 1 ~ 2/3), 
                 geom = "area", n = 1000, fill = bookblue) +
   scale_y_continuous("utility", breaks = seq(0, 1, 1), limits = c(0, 1)) +
-  scale_x_continuous("probability", breaks = seq(0, 1, 1)) +
-  ggtitle("A Gamble of Intermediate Value")
+  scale_x_continuous("probability", breaks = seq(0, 1, 1))
+```
+```{r echo=FALSE, fig.margin=TRUE, fig.cap="The worst possible gamble"}
+ggplot(NULL, aes(c(0, 1))) + 
+  coord_fixed() +
+  stat_function(fun = function(x) 0, geom = "area", n = 1000,
+                fill = bookblue) +
+  scale_y_continuous("utility", breaks = seq(0, 1, 1), limits = c(0, 1)) +
+  scale_x_continuous("probability", breaks = seq(0, 1, 1))
 ```
 
-It's also inuitive to use the same $0$-to-$1$ scale for both probability and utility. It makes our visualizations of expected utility especially tidy. Expected utility can then be thought of as portion of the unit square. The best possible option is a $100\%$ chance of the best outcome, i.e. probability 1 of getting utility $1$. So the best possible choices have area $1$. Whereas the worst gamble has no chance of getting any outcome with positive utility, and has area $0$.
+Our method for quantifying utility assumes that $\u(W) = 0$ and $\u(B) = 1$. What justifies this assumption? It's actually a bit arbitrary. We could measure someone's utilities on a scale from $0$ to $10$ instead. Or $-1$ to $1$, or any interval.
 
-`r newthought("You")`  can think of the $0$ and $1$ endpoints like the choices we make when measuring temperature. On the celsius scale, the freezing point of water is $0$ degrees and the boiling point is $100$. On the Fahrenheit scale we use $32$ and $212$ instead. The celsius scale is more intuitive, so that's what most people use. But the Fahrenheit scale works fine too, as long as you don't get confused by it.
+It's just convenient to use $0$ and $1$. Because then, once we've identified the relevant probability $\p(B)$, we can immediately set $\u(C) = \p(B)$. If we used a scale from $0$ to $10$ instead, we'd have to multiply $\p(B)$ by $10$ to get $\u(C)$. That would add some unnecessary work.
+
+It's also inuitive to use the same $0$-to-$1$ scale for both probability and utility. It makes our visualizations of expected utility especially tidy. Expected utility can then be thought of as portion of the unit square. The best possible option is a $100\%$ chance of the best outcome, i.e. probability $1$ of getting utility $1$. So the best possible choices have area $1$. Whereas the worst gamble has no chance of getting any outcome with positive utility, and has area $0$.
+
+`r newthought("You can")` think of the $0$ and $1$ endpoints like the choices we make when measuring temperature. On the celsius scale, the freezing point of water is $0$ degrees and the boiling point is $100$. On the Fahrenheit scale we use $32$ and $212$ instead. The celsius scale is more intuitive, so that's what most people use. But the Fahrenheit scale works fine too, as long as you don't get confused by it.
 
 Notice, by the way, that a person's body temperature is another example of  something personal and subjective, yet precisely and objectively measurable. Different people have different body temperatures. But that doesn't mean we can't quantify and measure them.
 
 
 ## A Limitation: The Expected Utility Assumption
 
-`r newthought("A")`  measurement is only as good as the method used to generate it. An oral thermometer only works when the temperature in your mouth is the same as your general body temperature. If you've got ice cubes tucked in your cheeks, or a mouthful of hot tea, even the best thermometer will give the wrong reading.
+A  measurement is only as good as the method used to generate it. An oral thermometer only works when the temperature in your mouth is the same as your general body temperature. If you've got ice cubes tucked in your cheeks, or a mouthful of hot tea, even the best thermometer will give the wrong reading.
 
 The same goes for our method of measuring utility. It's based on the assumption that our subject is making their choices using the expected utility formula. When the probability of pizza $\p(P)$ was $1/3$, we assumed you were indifferent between keeping the salad and taking gamble on pizza/celery because $\u(C) = \EU(G)$.
 
@@ -274,7 +269,7 @@ Our method for quantifying utilities only works when the subject is following th
 
 ## The Value of Money
 
-`r newthought("If")`  you saw $50$ cents on the ground while walking, would you stop to pick it up? I probably wouldn't. But I would have when I was younger, back then I had a lot less money. So an additional $50$ cents made a bigger difference to my day. The more money you have, the less an additional $50$ cents will be worth to you.
+If  you saw $50$ cents on the ground while walking, would you stop to pick it up? I probably wouldn't. But I would have when I was younger, back then I had a lot less money. So an additional $50$ cents made a bigger difference to my day. The more money you have, the less an additional $50$ cents will be worth to you.
 
 Imagine you won a million dollars in the lottery. Your life would be changed radically (unless you already happen to be a millionaire). But if you win another million dollars in another lottery, that extra million wouldn't make as big a difference. It's still a big deal, but not as big a deal as the first million.
 
@@ -282,8 +277,8 @@ Imagine you won a million dollars in the lottery. Your life would be changed rad
 bernoulli_utility <- function(x) {
   log(x + 1) / log(101)
 }
-ggplot(data.frame(x = c(0, 100))) + 
-  stat_function(aes(x), fun = bernoulli_utility) +
+ggplot(data.frame(x = c(0, 100)), aes(x)) + 
+  stat_function(fun = bernoulli_utility) +
   xlab("dollars") + ylab("utility")
 ```
 
@@ -300,7 +295,7 @@ $$
 $$
 Then we ask: how high would $\p(\$100)$ have to be before you would trade a guaranteed gain of $\$50$ for the following gamble?
 
-- Chance $\p(\$100)$ of winning $\$100$, chance $1-\p(\$100)$ of winning $\$0$.
+- Chance $\p(\$100)$ of winning $\$100$, chance $1-\p(\$100)$ of $\$0$.
 
 For me, I'd only be willing to take the gamble if $\p(\$100) \geq .85$. So, for me, $\u(\$50) = .85$.
 $$

@@ -25,7 +25,7 @@ How could the probability be so low when the witness is $80\%$ reliable? The sho
 
 But this answer still needs some explaining. Let's use a diagram.
 
-```{r taxigrid, echo=FALSE, fig.margin=TRUE, fig.cap="The taxicab problem. There are $15$ blue cabs, $85$ green. The dashed region indicates those cabs the witness identifies as \"blue\". It includes $80\\%$ of the blue cabs ($12$), and only $20\\%$ of the green ones ($17$). Yet it includes more green cabs than blue."}
+```{r taxigrid, echo=FALSE, fig.margin=TRUE, fig.cap="The taxicab problem. There are $15$ blue cabs, $85$ green. The dashed region indicates those cabs the witness identifies as \"blue.\" It includes $80\\%$ of the blue cabs ($12$), and only $20\\%$ of the green ones ($17$). Yet it includes more green cabs than blue."}
 taxi_blue <- readPNG("img/taxi_blue.png") %>% rasterGrob()
 taxi_green <- readPNG("img/taxi_green.png") %>% rasterGrob()
 
@@ -59,9 +59,9 @@ ggplot() +
 ```
 
 Imagine there are just $100$ cabs in town, $85$ green and $15$ blue. The dashed blue line represents the cabs the witness identifies as 
-"blue", both right or wrong. Because the witness is $80\%$ accurate, that line encompasses $80\%$ of the blue cabs, which is $12$ cabs. But it also encompasses $20\%$ of the green cabs, which is $17$. That's a total of $29$ cabs identified as "blue", only $12$ of which actually are blue.
+"blue," both right or wrong. Because the witness is $80\%$ accurate, that line encompasses $80\%$ of the blue cabs, which is $12$ cabs. But it also encompasses $20\%$ of the green cabs, which is $17$. That's a total of $29$ cabs identified as "blue," only $12$ of which actually are blue.
 
-So out of the $29$ cabs the witness calls "blue", only $12$ really are blue. The probability a cab really is blue given the witness says so is only $12/29$, about $41\%$.
+So out of the $29$ cabs the witness calls "blue," only $12$ really are blue. The probability a cab really is blue given the witness says so is only $12/29$, about $41\%$.
 
 Another way to think about the problem is that there are *two* pieces of information relevant to whether the cab is blue. The witness says the cab is blue, but also, most cabs are not blue. So there's evidence for the cab being blue, but also strong evidence against it. The diagram in Figure \@ref(fig:taxigrid) shows us how to balance these two, competing pieces of evidence and come to the correct answer.
 
@@ -72,7 +72,7 @@ We saw back in [Chapter 6][Conditional Probability] that $\p(A \given B)$ is usu
 
 ## Bayes' Theorem
 
-`r newthought("Problems")`  where we're given $\p(B \given A)$ and we have to figure out $\p(A \given B)$ are extremely common. Luckily, there's a famous formula for solving them.
+Problems  where we're given $\p(B \given A)$ and we have to figure out $\p(A \given B)$ are extremely common. Luckily, there's a famous formula for solving them.
 
 ```{marginfigure}
 [Thomas Bayes](https://en.wikipedia.org/wiki/Thomas_Bayes) (1701--1761) was an English minister and mathematician, the first to formulate the theorem that now bears his name.
@@ -129,7 +129,7 @@ p_tree(nodes)
 
 ## Understanding Bayes' Theorem
 
-`r newthought("Why")`  does Bayes' theorem work? One way to think about it is to start by recalling the definition of conditional probability:
+Why  does Bayes' theorem work? One way to think about it is to start by recalling the definition of conditional probability:
 $$ \p(A \given B) = \frac{\p(A \wedge B)}{\p(B)}. $$
 Then apply the General Multiplication Rule to the numerator:
 $$ \p(A \wedge B) = \p(B \given A)\p(A).$$
@@ -156,7 +156,7 @@ ggplot(data.frame(x = c(-3, 3))) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 
-`r newthought("We've talked")` before about $\p(A \given B)$ being the portion of the $B$ region that's inside the $A$ region. The purple portion of the blue $B$ circle, in other words:
+`r newthought("We've")` talked before about $\p(A \given B)$ being the portion of the $B$ region that's inside the $A$ region. The purple portion of the blue $B$ circle, in other words:
 $$
   \begin{aligned}
     \p(A \given B) &= \frac{ \color{bookpurple}{\p(A \wedge B)} }{ \color{bookblue}{\p(B)} }.\\
@@ -171,7 +171,7 @@ $$
 
 We'll come back to another, non-visual way of understanding Bayes' theorem in [Chapter 10][Inference to the Best Explanation].
 
-`r newthought("There")`  are lots more visual explanations of Bayes' theorem you can find online. There's even one [using Legos](https://www.countbayesie.com/blog/2015/2/18/bayes-theorem-with-lego)! But they all tend to come down to the same thing. A two step explanation that goes:
+There are lots more visual explanations of Bayes' theorem you can find online. There's even one [using Legos](https://www.countbayesie.com/blog/2015/2/18/bayes-theorem-with-lego)! But they all tend to come down to the same thing. A two step explanation that goes:
 
 1. Start with the definition of conditional probability, which we learned how to visualize in [Chapter 6][Calculating Conditional Probability].
 2. Then apply the General Multiplication Rule, which we learned how to visualize in [Chapter 7][The General Multiplication Rule].
@@ -187,7 +187,7 @@ In any case, Bayes' theorem comes up so often it's good to memorize the formula 
 
 ## Bayes' Long Theorem
 
-`r newthought("We")`  had to apply the Law of Total Probability first, before we could solve the taxicab problem with Bayes' theorem, to calculate the denominator. This is so common that you'll often see Bayes' theorem written with this calculation built in. That is, the denominator $\p(B)$ is expanded out using the Law of Total Probability.
+We  had to apply the Law of Total Probability first, before we could solve the taxicab problem with Bayes' theorem, to calculate the denominator. This is so common that you'll often see Bayes' theorem written with this calculation built in. That is, the denominator $\p(B)$ is expanded out using the Law of Total Probability.
 
 Bayes' Theorem (long version)
 
@@ -210,13 +210,13 @@ p_tree(nodes, p_fontface = "italic", leaf_p_distance = .2, leaf_p_width = .3,
        leaf_p_fontface = "italic")
 ```
 
-`r newthought("A")`  tree diagram helps illuminate the long version of Bayes' theorem. To calculate $\p(A \given B)$, the definition of conditional probability directs us to calculate $\p(A \wedge B)$ and $\p(B)$:
+`r newthought("A tree")` diagram helps illuminate the long version of Bayes' theorem. To calculate $\p(A \given B)$, the definition of conditional probability directs us to calculate $\p(A \wedge B)$ and $\p(B)$:
 $$ \p(A \given B) = \frac{ \p(A \wedge B) }{ \p(B) }. $$
 Looking at the tree diagram in Figure \@ref(fig:longbayestree), we see that this amounts to computing the first leaf for the numerator, and the sum of the first and third leaves for the denominator. Which yields the same formula as in the long form of Bayes' theorem.
 
 ## Example
 
-`r newthought("Let's")` practice the long form of Bayes' theorem.
+Let's practice the long form of Bayes' theorem.
 
 ```{block, type='problem'}
 Joe has just heard about the Zika virus and wonders if he has it. His doctor tells him only $1\%$ of the population has the virus, but he's still worried. There's a blood test he can take, but it's not perfect. The test always comes up either negative or positive, but:
@@ -259,12 +259,12 @@ p_tree(nodes, round = 4)
 
 It turns out there's only about a $6\%$ chance Joe has the virus. Even though he tested positive with a fairly reliable blood test! It's counterintuitive, but the reason is the same as with the taxicab problem. There are two, conflicting pieces of evidence: the blood test is positive but the virus is rare. It turns out the virus is so rare that the positive blood test doesn't do much to increase Joe's chances of being infected.
 
-`r newthought("Bayes' theorem")` doesn't always give such surprising results. In fact the results are often very intuitive. Professors just like to use the counterintuitive examples to demonstrate how important Bayes' theorem is. Without it, it's easy to go astray.
+`r newthought("Bayes'")` theorem doesn't always give such surprising results. In fact the results are often very intuitive. Professors just like to use the counterintuitive examples to demonstrate how important Bayes' theorem is. Without it, it's easy to go astray.
 
 
 ## The Base Rate Fallacy {#baserate}
 
-`r newthought("In")` the Zika example, the rate of infection in the general population is very low, just $1\%$. The rate at which something happens in general is called the *base rate*. In the taxicab example, the base rate for blue cabs was $15\%$.
+In the Zika example, the rate of infection in the general population is very low, just $1\%$. The rate at which something happens in general is called the *base rate*. In the taxicab example, the base rate for blue cabs was $15\%$.
 
 ```{marginfigure}
 This [video by Julia Galef](https://www.youtube.com/watch?v=BrK7X_XlGB8) explains more about how you can use Bayes' theorem, not just to avoid the base-rate fallacy, but also to improve your thinking more generally. In [Chapter 10](#bayesibe) we'll talk more about how Bayes' theorem illuminates good scientific reasoning.

@@ -5,21 +5,19 @@ As to the speculators from the south, they had the advantage in the toss up; the
 ---[Newspaper report](https://chroniclingamerica.loc.gov/lccn/sn83045242/1805-09-02/ed-1/seq-2.pdf), Sep. 2, 1805
 ```
 
-`r newthought("Critics")`  of Bayesianism won't be satisfied just because beliefs can be quantified with betting rates. After all, a person's betting rates might not obey the laws of probability. What's to stop someone being $9/10$ confident it will rain tomorrow and also $9/10$ confident it won't? How do we enforce laws of probability like the Negation Rule, if probability is just subjective opinion?
+`r newthought("Critics")`  of Bayesianism won't be satisfied just because beliefs can be quantified with betting rates. After all, a person's betting rates might not obey the laws of probability. What's to stop someone being $9/10$ confident it will rain tomorrow and also $9/10$ confident it won't rain? How do we enforce the laws of probability, like the Negation Rule, if probability is just subjective opinion?
 
 
 ## Dutch Books
 
-`r newthought("The")`  Bayesian answer uses a special betting strategy. If someone violates the laws of probability, we can use this strategy to take advantage of them. We can sucker them into a deal that will lose them money no matter what.
+The  Bayesian answer uses a special betting strategy. If someone violates the laws of probability, we can use this strategy to take advantage of them. We can sucker them into a deal that will lose them money no matter what.
 
 For example, suppose Sam violates a very simple rule of probability. His personal probability in the proposition $2+2=4$ is only $9/10$, when it should be $1$. (Because it's impossible for $2+2$ to be anything other than $4$.) Sam has violated the laws of probability, so he'll be willing to accept a very bad deal, as follows.
 
 We put two marbles into an empty bucket, and then two more. We then offer Sam the following deal: we pay him $90$¢, and in exchange he pays us $\$1$ if the bucket has a total of $4$ marbles in it.
 
 This deal should be fair according to Sam. As he sees it, there's a $90\%$ chance he'll have to pay us $\$1$ for a net loss of $10$¢. But there's also a $10\%$ chance he won't have to pay us anything, a net gain of $90$¢.  So the expected value is zero according to Sam's personal probabilities:
-
 $$ (9/10)(-\$.10) + (1/10)(\$.90) = 0. $$
-
 And yet, Sam will lose money no matter what! There's no way for him to win: he's bound to end up paying out $\$1$, when we only paid him $90$¢ to get in on the deal.
 
 `r newthought("This")`  kind of deal is called a *Dutch book*.^[Why is it called that? The 'book' part comes from gambling, where 'making a book' means setting up a betting arrangement. But the 'Dutch' part [is a mystery](https://personal.eur.nl/wakker/miscella/dutchbk.htm).] A Dutch book has two defining features.
@@ -34,13 +32,13 @@ Almost nobody in real life would be foolish enough accept the deal we just offer
 
 ## The Bankteller Fallacy {#bankteller}
 
-`r newthought("Consider")`  a famous problem:
+Consider  a famous problem.
 
 ```{marginfigure, echo=TRUE}
 This problem was devised by the same psychologists who studied [the taxicab problem](#chbayes): Daniel Kahneman and Amos Tversky. This one is from a 1983 study of theirs.
 ```
 
-```{block2, type="puzzle"}
+```{block2, type="problem"}
 Linda is 31 years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice, and also participated in anti-nuclear demonstrations. Which is more probable?
 
 1. Linda is a bank teller.
@@ -78,7 +76,7 @@ So it's a law of probability that $\p(B \wedge F) \leq \p(B)$. Which means it ca
 
 Here's another way to think about it. Imagine everyone who fits the description of Linda gathered in a room. The people in the room who happen to be bank tellers are then gathered together inside a circle. Some of the people inside that circle will also be feminists. But there can't be more feminists inside that circle than people! Feminist bank tellers are just less common than bank tellers in general.
 
-`r newthought("How")` do we Dutch book someone who mistakenly thinks $B \wedge F$ is more probable than $B$? We offer them two deals, one involving a bet on $B$ and the other a bet on $B \wedge F$.
+`r newthought("How do")` we Dutch book someone who mistakenly thinks $B \wedge F$ is more probable than $B$? We offer them two deals, one involving a bet on $B$ and the other a bet on $B \wedge F$.
 
 Suppose for example their betting rate for $B$ is $1/5$, and their betting rate for $B \wedge F$ is $1/4$. Then we offer them these deals:
 
@@ -87,9 +85,9 @@ Suppose for example their betting rate for $B$ is $1/5$, and their betting rate 
 
 Both of these deals are fair according to their betting rates. So our victim will be willing accept both. And yet, they'll lose money no matter what. Why?
 
-Notice they've already paid us more than we've paid them before the bets are even settled. We're up $5$¢ from the get-go. So for them to come out ahead, they'll have to win the second bet. But if they do win the second bet, we win the first bet. They only win the second bet if $B \wedge F$ is true, in which case $B$ is automatically true and we win the first bet. Since both bets pay off $\$1$, they cancel each other out. So even if they win the second bet, they still suffer a net loss of $5$¢.
+Notice how they've already paid us more than we've paid them, before the bets are even settled. We're up $5$¢ from the get-go. So for them to come out ahead, they'll have to win the second bet. But if they do win the second bet, we win the first bet. They only win the second bet if $B \wedge F$ is true, in which case $B$ is automatically true and we win the first bet. Since both bets pay off $\$1$, they cancel each other out.
 
-Thinking through a Dutch book can be tricky, but a table like \@ref(tab:banktellerdb) can help. The columns capture the possible outcomes, the rows represent exchanges of cash. For clarity, we separate investments and returns into their own rows. The investment is the amount the person pays or receives at first, when the bet is arranged. The return is the amount they win/lose if the bet pays off. The last row sums up all the investments and returns to get the net amount won or lost.
+Thinking through a Dutch book can be tricky, but a table like \@ref(tab:banktellerdb) can help. The columns are the possible outcomes, the rows are exchanges of cash. For clarity, we separate investments and returns into their own rows. The investment is the amount the person pays or receives at first, when the bet is arranged. The return is the amount they win/lose if the bet pays off. The last row sums up all the investments and returns to get the net amount won or lost.
 
 ```{r banktellerdb, echo=FALSE}
 table <- data.frame(
@@ -104,18 +102,18 @@ colnames(table) <- c("", "", "$B \\wedge F$", "$B \\wedge \\neg F$", "$\\neg B$"
 knitr::kable(table, align = "r", caption = "A Dutch book for the bank teller fallacy")
 ```
 
-Notice how the net amount is negative in every column. In a Dutch book, no matter what the victim loses money.
+Notice how the net amount is negative in every column. In a Dutch book, no matter what, the victim loses money.
 
 
 ## Dutch Books in General
 
-`r newthought("Anyone")`  who violates any law of probability can be suckered via a Dutch book. But if you obey the laws of probability, it's impossible to be Dutch booked. That's why the laws of probability are objectively correct, according to Bayesians.
+Anyone  who violates any law of probability can be suckered via a Dutch book. But if you obey the laws of probability, it's impossible to be Dutch booked. That's why the laws of probability are objectively correct, according to Bayesians.
 
 ```{r echo=FALSE}
 # TODO: insert sketch of de Finetti
 ```
 ```{marginfigure}
-Bruno de Finetti (1906--1985) proved in the $1930$'s that the laws of probability are the only safegaurd against Dutch books. The same point was also noted by [Frank Ramsey](#fig:ramsey) in an essay from the $1920$'s, though he didn't include a proof.
+Bruno de Finetti (1906--1985) proved in the $1930$s that the laws of probability are the only safegaurd against Dutch books. The same point was also noted by [Frank Ramsey](#fig:ramsey) in an essay from the $1920$s, though he didn't include a proof.
 ```
 
 What's the general recipe for constructing a Dutch book when someone violates the laws of probability?
@@ -130,9 +128,9 @@ For example, Sam was underconfident in $2+2=4$. He was only $9/10$ confident ins
 
 Whereas in the bank teller example, the victim was overconfident of $B \wedge F$, and underconfident in $B$. So we underpaid them for a bet on $B$, and got them to overpay us for a bet on $B \wedge F$.
 
-`r newthought("Here's one more")` example. Suppose Suzy the Scientist is conducting an experiment. The experiment could have either of two outcomes, $E$ or $\neg E$. Suzy thinks there's a $70\%$ chance of $E$, and a $40\%$ chance of $\neg E$. She's violated the Additivity rule: $\p(E) = 7/10$ and $\p(\neg E) = 4/10$, which adds up to more than $1$.
+`r newthought("Here's")` one more example. Suppose Suzy the Scientist is conducting an experiment. The experiment could have either of two outcomes, $E$ or $\neg E$. Suzy thinks there's a $70\%$ chance of $E$, and a $40\%$ chance of $\neg E$. She's violated the Additivity rule: $\p(E) = 7/10$ and $\p(\neg E) = 4/10$, which adds up to more than $1$.
 
-So we can make a Dutch book against Suzy. In this case she's overconfident in both of the propositions $E$ and $\neg E$. So we get her to overpay us for bets on $E$ and on $\neg E$:
+So we can make a Dutch book against Suzy. In this case she's overconfident in both of the propositions $E$ and $\neg E$. So we get her to overpay us for bets on $E$ and on $\neg E$.
 
 1. Suzy pays us $70$¢, and in exchange we pay her $\$1$ if $E$ is true.
 2. Suzy pays us $40$¢, and in exchange we pay her $\$1$ if $\neg E$ is true.
@@ -150,7 +148,7 @@ colnames(table) <- c("", "", "$E$", "$\\neg E$")
 knitr::kable(table, align = "r", caption = "A Dutch book for Suzy the Scientist")
 ```
 
-`r newthought("We")`  now have a second way for Bayesians to argue that the concept of personal probability is scientifically respectable. Not only can beliefs be quantified. There are also objective rules that everyone's beliefs should follow: the laws of probability. Anyone who doesn't follow those laws can be suckered into a sure loss.
+`r newthought("We now")` have a second way for Bayesians to argue that the concept of personal probability is scientifically respectable. Not only can beliefs be quantified. There are also objective rules that everyone's beliefs should follow: the laws of probability. Anyone who doesn't follow those laws can be suckered into a sure loss.
 
 
 ## Exercises {-}

@@ -13,7 +13,7 @@ But what about learning from evidence? Observation and evidence-based reasoning 
 
 ## Priors & Posteriors
 
-`r newthought("When")`  we observe something new, we change our beliefs. A doctor sees the results of her patient's lab test and concludes he doesn't have strep throat after all, just a bad cold.
+When  we observe something new, we change our beliefs. A doctor sees the results of her patient's lab test and concludes he doesn't have strep throat after all, just a bad cold.
 
 In Bayesian terms, the beliefs you have before a change are called your ***priors***. We denote your prior beliefs with the familiar operator $\pr$. Your prior belief about hypothesis $H$ is written $\p(H)$. The new beliefs you form based on the evidence are called your ***posteriors***. We write $\po$ to distinguish them from what you believed before. So $\po(H)$ is your posterior belief in $H$.
 
@@ -40,7 +40,7 @@ df <- data.frame(
   time = c(rep("Priors", 6), rep("Posteriors", 6))
 )
 
-df$time <- factor(df$time, levels = rev(levels(df$time)))
+df$time <- factor(df$time, levels = c("Priors", "Posteriors"))
 
 ggplot(df) +
   geom_bar(aes(x = outcome, y = probability, fill = hilo), stat = "identity") +
@@ -54,25 +54,25 @@ ggplot(df) +
 
 Now I roll the die and I tell you it did in fact land even. What is your new personal probability that it landed on a high number? Following the Conditionalization rule, $\po(H) = \pr(H \given E) = 2/3$.
 
-`r newthought("We")`  learned how to use [Bayes' theorem][Bayes' Theorem] to calculate $\pr(H \given E)$. If we combine Bayes' theorem with Conditionalization we get:
+`r newthought("We learned")` how to use [Bayes' theorem][Bayes' Theorem] to calculate $\pr(H \given E)$. If we combine Bayes' theorem with Conditionalization we get:
 $$ \po(H) = \pr(H) \frac{\pr(E \given H)}{\pr(E)}. $$
 Because this formula is so useful for figuring out what conclusion to draw from new evidence, the Bayesian school of thought is named after it. Bayesian statisticians use it to evaluate evidence in actual scientific research. And Bayesian philosophers use it to explain the logic behind the scientific method.^[We learned part of this story back in [Chapter 10][Probability & Induction].]
 
 
 ## The Principle of Indifference
 
-`r newthought("Bayes' theorem")` provides an objective guide for *changing* your personal probabilities. Given the prior probabilities on the right hand side, you can calculate what your new probabilities should be on the left. But where do the prior probabilities on the right come from? Are there any objective rules for determining them? How do we calculate $\pr(H)$, for example?
+Bayes' theorem provides an objective guide for *changing* your personal probabilities. Given the prior probabilities on the right hand side, you can calculate what your new probabilities should be on the left. But where do the prior probabilities on the right come from? Are there any objective rules for determining them? How do we calculate $\pr(H)$, for example?
 
 Let's go back to our example where I roll a die behind a screen. Before I tell you whether the die landed on an even number, it seems reasonable to assign probability $1/2$ to the proposition that the die will land on a high number ($4$, $5$, or $6$). But what if someone had a different prior probability, like $\pr(H) = 1/10$?
 
 That seems like a strange opinion to have. Why would they think the die is so unlikely to land on a high number, when there are just as many high numbers as low ones? On the other hand, if you don't know whether the die is fair, it is possible it's biased against high numbers. So maybe they're on to something. And notice, assigning $\pr(H) = 1/10$ doesn't violate the laws of probability, as long as they also assign $\pr(\neg H) = 9/10$. So we couldn't make a Dutch book against them.
 
-Where do prior probabilities come from then? How do we decide whether to start with $\pr(H) = 1/2$ or $\pr(H) = 1/10$? Here is a very natural proposal:
+Where do prior probabilities come from then? How do we decide whether to start with $\pr(H) = 1/2$ or $\pr(H) = 1/10$? Here is a very natural proposal.
 
 ```{marginfigure, echo=TRUE}
-The Principle of Indifference dates back to the very early days of probability theory. In fact [Laplace](#fig:laplace) seems to have thought it was *the* central principle of probability.
+The Principle of Indifference dates back to the very early days of probability theory. In fact, [Laplace](#fig:laplace) seems to have thought it was *the* central principle of probability.
 
-For a long time it was known by a different name: "The Principle of Insufficient Reason". The idea was that, without any reason to think one outcome more likely than another, they should all get the same probability.
+For a long time it was known by a different name: "The Principle of Insufficient Reason." The idea was that, without any reason to think one outcome more likely than another, they should all get the same probability.
 
 In $1921$ it was renamed "The Principle of Indifference" by economist John Maynard Keynes (1883--1946). The idea behind the new name is that you should be indifferent about which outcome to bet on, since they all have the same probability of winning.
 ```
@@ -130,9 +130,9 @@ $$
 
 ## The Continuous Principle of Indifference
 
-`r newthought("So")`  far so good, but there's a problem. Sometimes the number of possible outcomes isn't a finite number $n$, it's a continuum. Suppose you had to bet on the *angle* the roulette wheel will stop at, rather than just the colour it will land on. There's a continuum of possible angles, from $0\deg$ to $360\deg$. It could land at an angle of $3\deg$, or $314.1\deg$, or $100\pi\deg$, etc.
+So  far so good, but there's a problem. Sometimes the number of possible outcomes isn't a finite number $n$, it's a continuum. Suppose you had to bet on the *angle* the roulette wheel will stop at, rather than just the colour it will land on. There's a continuum of possible angles, from $0\degr$ to $360\degr$. It could land at an angle of $3\degr$, or $314.1\degr$, or $100\pi\degr$, etc.
 
-So what's the probability the wheel will stop at, say, an angle between $180\deg$ and $270\deg$? Well, this range is $1/4$ of the whole range of possibilities from $0\deg$ to $360\deg$. So the natural answer is $1/4$. Generalizing this idea gives us another version of the Principle of Indifference. 
+So what's the probability the wheel will stop at, say, an angle between $180\degr$ and $270\degr$? Well, this range is $1/4$ of the whole range of possibilities from $0\degr$ to $360\degr$. So the natural answer is $1/4$. Generalizing this idea gives us another version of the Principle of Indifference. 
 
 Principle of Indifference (Continuous Version)
 
@@ -161,7 +161,7 @@ The idea is that the prior probability of a hypothesis $H$ is just the proportio
 
 ## Bertrand's Paradox
 
-`r newthought("Unfortunately")`, there's a serious problem with this way of thinking. In fact it's so serious that the Principle of Indifference is not accepted as part of the modern theory of probability. You won't find it in a standard mathematics or statistics textbook on probability.
+Unfortunately, there's a serious problem with this way of thinking. In fact it's so serious that the Principle of Indifference is not accepted as part of the modern theory of probability. You won't find it in a standard mathematics or statistics textbook on probability.
 
 What's the problem? Imagine a factory makes square pieces of paper, whose sides always have length somewhere between $1$ and $3$ feet. What is the probability the sides of the next piece of paper they manufacture will be between $1$ and $2$ feet long?
 
@@ -169,9 +169,9 @@ Applying the Principle of Indifference we get $1/2$:
 $$ \frac{d-c}{b-a} = \frac{2-1}{3-1} = \frac{1}{2}. $$
 That seems reasonable, but now suppose we rephrase the question. What is the probability that the *area* of the next piece of paper will be between $1$ ft$^2$ and $4$ ft$^2$? Applying the Principle of Indifference again, we get a different number, $3/8$:
 $$ \frac{d-c}{b-a} = \frac{4-1}{9-1} = \frac{3}{8}. $$
-But the answer should have been the same as before: it's the same questions, just rephrased! If the sides are between $1$ and $2$ feet long, that's the same as the area being between $1$ ft$^2$ and $4$ ft$^2$.
+But the answer should have been the same as before: it's the same question, just rephrased! If the sides are between $1$ and $2$ feet long, that's the same as the area being between $1$ ft$^2$ and $4$ ft$^2$.
 
-```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Joseph Bertrand (1822--1900) presented this paradox in his $1889$ book *Calcul des Probabilités*. He used a different example though. Our example is a bit easier to understand, and comes from the book *Laws and Symmetry* by Bas van Fraassen."}
+```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Joseph Bertrand (1822--1900) presented this paradox in $1889$. He used a different example though. Our example, which is easier to understand, comes from  Bas van Fraassen."}
 knitr::include_graphics("img/bertrand.png")
 ```
 
@@ -182,27 +182,27 @@ Here's [a video explaining Bertrand's paradox](http://www.wi-phi.com/video/bertr
 [![](img/bertrand_screengrab.png)](http://www.wi-phi.com/video/bertrands-paradox)
 ```
 
-`r newthought("There's nothing special")` about the example of the paper factory, the same problem comes up all the time. Take the continuous roulette wheel. Suppose the angle it stops at depends on how hard it's spun. The wheel's starting speed can be anywhere between $1$ and $10$ miles per hour, let's suppose. And if it's between $2$ and $5$ miles per hour, it lands at an angle between $180\deg$ and $270\deg$ degrees. Otherwise it lands at an angle outside that range.
+`r newthought("There's")` nothing special about the example of the paper factory, the same problem comes up all the time. Take the continuous roulette wheel. Suppose the angle it stops at depends on how hard it's spun. The wheel's starting speed can be anywhere between $1$ and $10$ miles per hour, let's suppose. And if it's between $2$ and $5$ miles per hour, it lands at an angle between $180\degr$ and $270\degr$ degrees. Otherwise it lands at an angle outside that range.
 
-If we apply the Principle of Indifference to the wheel's starting speed we get a probability of $1/3$ that it will land at an angle between $180\deg$ and $270\deg$:
+If we apply the Principle of Indifference to the wheel's starting speed we get a probability of $1/3$ that it will land at an angle between $180\degr$ and $270\degr$:
 $$ \frac{d-c}{b-a} = \frac{5-2}{10-1} = \frac{1}{3}. $$
 But we got an answer of $1/4$ when we solved the same problem before. Once again, what answer we get depends on how we apply the Principle of Indifference. If we apply it to the final angle we get $1/4$, if we apply it to the starting speed we get $1/3$. And there doesn't seem to be any principled way of deciding which way to go.
 
 
-`r newthought("More realistic and serious")` examples are also commonplace, the sorts of things a practicing scientist deals with all the time. Imagine an object is rolling downhill, with $10$ metres to go before it reaches the bottom. Its velocity is between $1$ meter per second and $3$ meters per second. What's the probability it will reach the bottom in the next $5$ seconds?
+`r newthought("More")` realistic and serious examples are also commonplace, the sorts of things a practicing scientist deals with all the time. Imagine an object is rolling downhill, with $10$ meters to go before it reaches the bottom. Its velocity is between $1$ meter per second and $3$ meters per second. What's the probability it will reach the bottom in the next $5$ seconds?
 
 It will only get there in time if its velocity is at least $2$ meters per second. So the probability is $1/2$, right?
 
-Well, consider the ball's *energy* instead of its velocity. Energy can be defined in terms of mass and velocity, according to the equation $E = mv^2/2$, where $m$ is the object's mass and $v$ is its velocity. Suppose our ball's mass is $1$ kilogram, so $m = 1$. That means its energy is somewhere between $1/2$ and $9/2$. We said it will reach the bottom within $5$ seconds just in case the velocity is at least $2$ meters per second, which corresponds to energy $2$. So according to the Principle of Indifference, the probability it has enough energy to reach the bottom in time is
+Well, consider the ball's *energy* instead of its velocity. Energy can be defined in terms of mass and velocity, according to the equation $E = mv^2/2$, where $m$ is the object's mass and $v$ is its velocity. Suppose our ball's mass is $1$ kilogram, so $m = 1$. That means its energy is somewhere between $1/2$ and $9/2$. We said it will reach the bottom within $5$ seconds just in case the velocity is at least $2$ meters per second, which corresponds to energy $2$. So, according to the Principle of Indifference, the probability it has enough energy to reach the bottom in time is:
 $$ \frac{9/2 - 2}{9/2 - 1/2} = \frac{5}{8}. $$
-Which is the right answer then, $1/2$ or $5/8$. If you're trying to land a space shuttle or predict the likely outcome of a medical treatment, it really matters.
+Which is the right answer then, $1/2$ or $5/8$? If you're trying to land a space shuttle, or predict the likely outcome of a medical treatment, this kind of thing really matters.
 
 
 ## The Problem of Priors
 
-`r newthought("There")`  is no accepted solution to Bertrand's paradox.
+There  is no accepted solution to Bertrand's paradox.
 
-Some Bayesians think it shows that prior probabilities should be somewhat subjective. Your beliefs have to follow the laws of probability to avoid Dutch books. But beyond that you can start with whatever prior probabilities seem right to you. (The Principle of Indifference should be abandoned.)
+Some Bayesians think it shows that prior probabilities should be somewhat subjective. Your beliefs have to follow the laws of probability to avoid Dutch books. But beyond that, you can start with whatever prior probabilities seem right to you. (The Principle of Indifference should be abandoned.)
 
 Others think the paradox shows that Bayesianism is too subjective. The whole idea of "prior" and "posterior" probabilities was a mistake, say the frequentists. Probability isn't a matter of personal beliefs. There are objective rules for using probability to evaluate a hypothesis, but Bayes' theorem is the wrong way to go about it.
 
@@ -218,10 +218,10 @@ So what's the right way, according to frequentism? The next two chapters introdu
     #.  Recalculate the probabilities from parts (a) and (b), but this time apply the Principle of Indifference to circumference instead of diameter. Does this change what answers you get?
     #.  Recalculate the probabilities from parts (a) and (b), but this time apply the Principle of Indifference to area instead of diameter. Does this change what answers you get?
 
-#.  Joe spends his afternoons whittling cubes that have a side length between $2$ and $10$ centimetres. Use the Principle of Indifference to answer the following questions. (Give exact answers, not decimal approximations.)
+#.  Joe spends his afternoons whittling cubes that have a side length between $2$ and $10$ centimeters. Use the Principle of Indifference to answer the following questions. (Give exact answers, not decimal approximations.)
 
-    a.  What is the probability that Joe's next cube will have sides at least $6$ centimetres long?
-    #.  What is the probability Joe's next cube will either have sides shorter than $4$ centimetres or longer than $7$ centimetres?
+    a.  What is the probability that Joe's next cube will have sides at least $6$ centimeters long?
+    #.  What is the probability Joe's next cube will either have sides shorter than $4$ centimeters or longer than $7$ centimeters?
     #.  Recalculate the probabilities from parts (a) and (b), but this time apply the Principle of Indifference to the area of each face, rather than the length of each side. Does this change what answers you get?
     #.  Recalculate the probabilities from parts (a) and (b), but this time apply the Principle of Indifference to volume. Is the result the same or different compared to the answers from parts (a), (b), and (c)?
 
@@ -247,7 +247,7 @@ So what's the right way, according to frequentism? The next two chapters introdu
     b.  If we reformulate part (a) in terms of the dartboard’s area, what is the probability given by the Principle of Indifference then? (Reminder: the area of a circle with diameter $d$ is $A = \pi/4 \times d^2$.)
     c.  Explain the challenge that cases like this pose for the theory of personal probability. What do critics of Bayesianism say these examples demonstrate about prior probabilities?
 
-#.  Some bars water down their whisky to save money. Suppose the proportion of whisky to water at your local bar is always somewhere between $1/2$ and $2$. That is, there's always at least $1$ unit of whisky for every $2$ units of water. But there's never more than $2$ units of whisky for every $1$ unit of water. Suppose you order a "whisky".
+#.  Some bars water down their whisky to save money. Suppose the proportion of whisky to water at your local bar is always somewhere between $1/2$ and $2$. That is, there's always at least $1$ unit of whisky for every $2$ units of water. But there's never more than $2$ units of whisky for every $1$ unit of water. Suppose you order a "whisky."
 
     a.  According to the Principle of Indifference, what is the probability that it will be mostly whisky? ("Mostly" means more than half.)
     b.  What is the maximum possible proportion water to whisky?
