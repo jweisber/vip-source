@@ -22,9 +22,9 @@ ggplot() + theme_void() + coord_fixed() +
         panel.background = element_rect(fill = bookred)) +
   geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), fill = "white") +
   geom_text(aes(x = 0, y = 0, label = "A"), 
-            fontface = "italic", size = 6) +
+            fontface = "italic", size = 7) +
   geom_text(aes(x = -2, y = 1.5, label = "~A"), 
-            fontface = "italic", size = 6)
+            fontface = "italic", size = 7)
 ```
 
 If there's a 70% chance of rain, then there's a 30% chance it won't rain. In symbols, if $\p(R) = .7$ then $\p(\neg R) = .3$. So the rule for $\p(\neg A)$ is:
@@ -61,7 +61,7 @@ ggplot() +
   geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
               fill = bookpurple, colour = "black") +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
-            fontface = "italic", size = 6) +
+            fontface = "italic", size = 7) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 
@@ -105,61 +105,33 @@ That's why we call the new rule the *General* Addition Rule. It applies in gener
 `r newthought("A tree")`  diagram also works to explain the General Addition Rule. Consider Figure \@ref(fig:gatree), where we start with branches for $A$ and $\neg A$, then subdivide into branches for $B$ and $\neg B$.
 
 ```{r gatree, echo=FALSE, fig.cap="Tree diagram with the three $A \\vee B$ leaves marked"}
-nodes <- bind_rows(
-  list(text = "A",   x = .39, y = 5/6),
-  list(text = "~ A", x = .39, y = 1/6),  
-  list(text = "B",   x = .78, y = 1  ),  
-  list(text = "~ B", x = .78, y = 2/3),
-  list(text = "B",   x = .78, y = 1/3),
-  list(text = "~ B", x = .78, y = 0  )
-)
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3),
+                to   = c(2, 3, 4, 5, 6, 7)) %>%
+  graph_from_data_frame()
 
-segments <- bind_rows(
-  list(x1 = 0,   y1 = .5,  x2 = .36, y2 = 5/6 ),
-  list(x1 = 0,   y1 = .5,  x2 = .36, y2 = 1/6 ),  
-  list(x1 = .42, y1 = 5/6, x2 = .75, y2 = 1   ),  
-  list(x1 = .42, y1 = 5/6, x2 = .75, y2 = 2/3 ),
-  list(x1 = .42, y1 = 1/6, x2 = .75, y2 = 1/3 ),
-  list(x1 = .42, y1 = 1/6, x2 = .75, y2 = 0   )
-)
+vertex_attr(g, "name") <- c(NA, "italic(A)", "'~'*italic(A)", 
+                            "italic(B)~~~~~~~~italic(Pr(A*'&'*B))~~'*'",
+                            "'~'*italic(B)~~~~~~italic(Pr(A*'&'*'~'*B))~~'**'", 
+                            "italic(B)~~~~~~~~italic(Pr('~'*A*'&'*B))~~'***'",
+                            "'~'*italic(B)~~~~~~italic(Pr('~'*A*'&'*'~'*B))")
 
-leaf_labels <- bind_rows(
-  list(text = "Pr(A&B)",   x = .9, y = 1),
-  list(text = "Pr(A&~B)",  x = .9, y = 2/3),
-  list(text = "Pr(~A&B)",  x = .9, y = 1/3),
-  list(text = "Pr(~A&~B)", x = .9, y = 0)
-)
-
-shades <- readPNG("img/emoji_shades.png") %>% rasterGrob()
-hearts <- readPNG("img/emoji_hearts.png") %>% rasterGrob()
-nerd <- readPNG("img/emoji_nerd.png") %>% rasterGrob()
-
-ggplot() +
+ggraph(g, layout = "tree") +
+  geom_edge_link(label_size = 5,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 5,
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 2), rep(0, 4))) +
+  scale_y_reverse(expand = expansion(add = c(.05, .8))) +
+  scale_x_reverse() +
   theme_void() +
-  xlim(0, 1) + ylim(0, 1) +
-  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) +
-  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "italic") + 
-  annotation_custom(shades, xmin = 1 - 1/40, xmax = 1 + 1/40, 
-                            ymin = 1 - 1/40, ymax = 1 + 1/40) +
-  annotation_custom(hearts, xmin = 1 - 1/40, xmax = 1 + 1/40, 
-                            ymin = 2/3 - 1/40, ymax = 2/3 + 1/40) +
-  annotation_custom(nerd, xmin = 1 - 1/40, xmax = 1 + 1/40, 
-                          ymin = 1/3 - 1/40, ymax = 1/3 + 1/40)
+  coord_flip()
 ```
 
-```{r echo=FALSE}
-if (knitr::is_latex_output()) {
-  dpi <- 130
-} else {
-  dpi <- 110
-}
-png_shades <- knitr::include_graphics("img/emoji_shades_small.png", dpi = dpi)
-png_hearts <- knitr::include_graphics("img/emoji_hearts_small.png", dpi = dpi)
-png_nerd <- knitr::include_graphics("img/emoji_nerd_small.png", dpi = dpi)
-```
-
-There are three leaves where $A \vee B$ is true, marked with emoji. If we add $\p(A) + \p(B)$, we're adding the two leaves where $A$ is true (`r png_shades` and `r png_hearts`) to the two leaves where $B$ is true (`r png_shades` and `r png_nerd`). So we've double-counted the $A \wedge B$ leaf (`r png_shades`). To get $\p(A \vee B)$ then, we have to subtract one of those $A \wedge B$ leaves (`r png_shades`).
+There are three leaves where $A \vee B$ is true, marked with asterisks. If we add $\p(A) + \p(B)$, we're adding the two leaves where $A$ is true (\* and \*\*) to the two leaves where $B$ is true (\* and \*\*\*). So we've double-counted the $A \wedge B$ leaf (\*). To get $\p(A \vee B)$ then, we have to subtract one of those $A \wedge B$ leaves (\*).
 
 `r newthought("There")`  is a catch to the General Addition Rule. You need to know $\p(A \wedge B)$ in order to apply it. Sometimes that information is given to us. But when it's not, we have to figure it out somehow. If $A$ and $B$ are mutually exclusive, then it's easy: $\p(A \wedge B) = 0$. Or, if they're independent, then we can calculate $\p(A \wedge B) = \p(A) \times \p(B)$. But in other cases we have to turn elsewhere.
 
@@ -193,47 +165,30 @@ So we now have two rules for $\wedge$. The first one only applies when the two s
 I flip a fair coin to decide which urn to draw from, heads for Urn X and tails for Urn Y. Then I draw one marble at random.
 
 ```{r echo=FALSE, fig.cap="Tree diagram for an urn problem"}
-nodes <- bind_rows(
-  list(text = "H", x = 1/2, y = 5/6),
-  list(text = "T", x = 1/2, y = 1/6),  
-  list(text = "B", x = 1,   y = 1  ),  
-  list(text = "W", x = 1,   y = 2/3),
-  list(text = "B", x = 1,   y = 1/3),
-  list(text = "W", x = 1,   y = 0  )
-)
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3),
+                to   = c(2, 3, 4, 5, 6, 7)) %>%
+  graph_from_data_frame()
 
-segments <- bind_rows(
-  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
-  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
-  list(x1 = .52, y1 = 5/6, x2 = .98, y2 = 1  ),  
-  list(x1 = .52, y1 = 5/6, x2 = .98, y2 = 2/3),
-  list(x1 = .52, y1 = 1/6, x2 = .98, y2 = 1/3),
-  list(x1 = .52, y1 = 1/6, x2 = .98, y2 = 0  )
-)
+E(g)$weight <- c("1/2", "1/2", "3/4", "1/4", "1/4", "3/4")
 
-segment_labels <- bind_rows(
-  list(text = "1/2", x = .25, y = .72),
-  list(text = "1/2", x = .25, y = .38),  
-  list(text = "3/4", x = .75, y = .95),
-  list(text = "1/4", x = .75, y = .78),
-  list(text = "1/4", x = .75, y = .29),
-  list(text = "3/4", x = .75, y = .13)
-)
+vertex_attr(g, "name") <- c(NA, "italic(H)", "italic(T)", 
+                            "italic(B)~~~~~~bold('3/8')", "italic(W)~~~~~~bold('1/8')", "italic(B)~~~~~~bold('1/8')", "italic(W)~~~~~~bold('3/8')")
 
-leaf_labels <- bind_rows(
-  list(text = "3/8", x = 1.1, y = 1  ),
-  list(text = "1/8", x = 1.1, y = 2/3),
-  list(text = "1/8", x = 1.1, y = 1/3),
-  list(text = "3/8", x = 1.1, y = 0  )
-)
-
-ggplot() +
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight), 
+                 label_size = 5,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 5, 
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 2), rep(0, 4))) +
+  scale_y_reverse(expand = expansion(add = c(.05, .4))) +
+  scale_x_reverse() +
   theme_void() +
-  xlim(0, 1.1) + ylim(0, 1) +
-  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) + 
-  geom_text(aes(x, y, label = text), data = segment_labels) + 
-  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "bold")
+  coord_flip()
 ```
 
 Now suppose we want to know the probability the coin will land tails and the marble drawn will be white, $\p(T \wedge W)$. The General Multiplication Rule tells us the answer is:
@@ -260,59 +215,38 @@ It's tempting to say $1/4$. The probability of drawing a black marble on each dr
 But the correct answer is actually $5/16$. Why? Let's use a probability tree again.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="Building a probability tree to solve Laplace's urn puzzle"}
-nodes <- bind_rows(
-  list(text = "X",   x = .5, y = 5/6),
-  list(text = "Y",   x = .5, y = 1/6),  
-  list(text = "BB",  x = 1,  y = 1  ),  
-  list(text = "~BB", x = 1,  y = 2/3),
-  list(text = "BB",  x = 1,  y = 1/3),
-  list(text = "~BB", x = 1,  y = 0  )
-)
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3),
+                to   = c(2, 3, 4, 5, 6, 7)) %>%
+  graph_from_data_frame()
 
-segments <- bind_rows(
-  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
-  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
-  list(x1 = .52, y1 = 5/6, x2 = .96, y2 = 1  ),  
-  list(x1 = .52, y1 = 5/6, x2 = .96, y2 = 2/3),
-  list(x1 = .52, y1 = 1/6, x2 = .96, y2 = 1/3),
-  list(x1 = .52, y1 = 1/6, x2 = .96, y2 = 0  )
-)
+E(g)$weight <- c("1/2", "1/2", "9/16", "7/16", "1/16", "15/16")
 
-segment_labels <- bind_rows(
-  list(text = "1/2",   x = .25, y = .72),
-  list(text = "1/2",   x = .25, y = .38),  
-  list(text = "9/16",  x = .75, y = .95),
-  list(text = "7/16",  x = .75, y = .78),
-  list(text = "1/16",  x = .75, y = .29),
-  list(text = "15/16", x = .75, y = .12)
-)
+vertex_attr(g, "name") <- c(NA, "italic(X)", "italic(Y)", 
+                            "italic(BB)~~~~~~bold('9/32')", "'~'*italic(BB)", 
+                            "italic(BB)~~~~~~bold('1/32')", "'~'*italic(BB)")
 
-leaf_labels <- bind_rows(
-  list(text = "9/32", x = 1.1, y = 1  ),
-  list(text = "1/32", x = 1.1, y = 1/3)
-)
-
-ggplot() +
-  geom_text(aes(x, y, label = text), data = nodes[0:4,], fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments[0:4, ]) + 
-  geom_text(aes(x, y, label = text), data = segment_labels[0:4, ]) + 
-  xlim(0, 1.1) + ylim(0, 1) +
-  theme_void()
-
-ggplot() +
-  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) + 
-  geom_text(aes(x, y, label = text), data = segment_labels) + 
-  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "bold") + 
-  xlim(0, 1.1) + ylim(0, 1) +
-  theme_void()
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight), 
+                 label_size = 7,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 7,
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 2), rep(0, 4))) +
+  scale_y_reverse(expand = expansion(add = c(.05, .6))) +
+  scale_x_reverse() +
+  theme_void() +
+  coord_flip()
 ```
 
 Depending on how the coin lands, you could end up drawing either from Urn X or from Urn Y, with equal probability.
 
-If you end up drawing from Urn X, the probability of a black marble on any given draw is $3/4$. Because the draws are independent (we're drawing with replacement), the probability they'll both come up black is $3/4 \times 3/4 = 9/16$.
+If you end up drawing from Urn X, the probability of a black marble on any given draw is $3/4$. We're drawing with replacement, so this doesn't change on the second draw. The probability both draws will come up black is thus $3/4 \times 3/4 = 9/16$.
 
-If instead you end up drawing from Urn Y, the probability of a black marble on any given draw is $1/4$. The draws are still independent though, so the chance of both being black in this case is $1/4 \times 1/4 = 1/16$.
+If instead you end up drawing from Urn Y, the probability of a black marble on any given draw is $1/4$. And this doesn't change on the second draw since we're drawing with replacement. So the chance of both being black in this case is $1/4 \times 1/4 = 1/16$.
 
 So the probability of drawing two black marbles from Urn X is:
 $$
@@ -359,7 +293,7 @@ ggplot() +
   geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
               fill = bookpurple, colour = "black") +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
-            fontface = "italic", size = 6) +
+            fontface = "italic", size = 7) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 
@@ -375,48 +309,37 @@ $$
 Which is precisely the Law of Total Probability.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="The Law of Total Probability in a tree diagram"}
-nodes <- bind_rows(
-  list(text = "A",   x = .39, y = 5/6),
-  list(text = "~ A", x = .39, y = 1/6),  
-  list(text = "B",   x = .78, y = 1  ),  
-  list(text = "~ B", x = .78, y = 2/3),
-  list(text = "B",   x = .78, y = 1/3),
-  list(text = "~ B", x = .78, y = 0  )
-)
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3),
+                to   = c(2, 3, 4, 5, 6, 7)) %>%
+  graph_from_data_frame()
 
-segments <- bind_rows(
-  list(x1 = 0,   y1 = .5,  x2 = .36, y2 = 5/6 ),
-  list(x1 = 0,   y1 = .5,  x2 = .36, y2 = 1/6 ),  
-  list(x1 = .42, y1 = 5/6, x2 = .75, y2 = 1   ),  
-  list(x1 = .42, y1 = 5/6, x2 = .75, y2 = 2/3 ),
-  list(x1 = .42, y1 = 1/6, x2 = .75, y2 = 1/3 ),
-  list(x1 = .42, y1 = 1/6, x2 = .75, y2 = 0   )
-)
+E(g)$weight <- c("italic(Pr(B))", "italic(Pr('~'*B))", "italic(Pr(A*'|'*B))", "", "italic(Pr(A*'|'*'~'*B))", "")
 
-leaf_labels <- bind_rows(
-  list(text = "Pr(A&B)",   x = .9, y = 1),
-  list(text = "Pr(A&~B)",  x = .9, y = 2/3),
-  list(text = "Pr(~A&B)",  x = .9, y = 1/3),
-  list(text = "Pr(~A&~B)", x = .9, y = 0)
-)
+vertex_attr(g, "name") <- c(NA, "italic(B)", "'~'*italic(B)", 
+                            "italic(A)~~~~~~~~italic(Pr(A*'|'*B)*Pr(B))~~'*'",
+                            "'~'*italic(A)", 
+                            "italic(A)~~~~~~~~italic(Pr(A*'|'*'~'*B)*Pr('~'*B))~~'**'",
+                            "'~'*italic(A)")
 
-shades <- readPNG("img/emoji_shades.png") %>% rasterGrob()
-hearts <- readPNG("img/emoji_hearts.png") %>% rasterGrob()
-nerd <- readPNG("img/emoji_nerd.png") %>% rasterGrob()
-
-ggplot() +
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight),
+                 label_size = 7,
+                 label_parse = TRUE,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 7,
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 2), rep(0, 4))) +
+  scale_y_reverse(expand = expansion(add = c(.05, 2))) +
+  scale_x_reverse() +
   theme_void() +
-  xlim(0, 1) + ylim(0, 1) +
-  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) +
-  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "italic") + 
-  annotation_custom(shades, xmin = 1 - 1/40, xmax = 1 + 1/40, 
-                            ymin = 1 - 1/40, ymax = 1 + 1/40) +
-  annotation_custom(hearts, xmin = 1 - 1/40, xmax = 1 + 1/40, 
-                            ymin = 2/3 - 1/40, ymax = 2/3 + 1/40)
+  coord_flip()
 ```
 
-We can also use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked with emoji. To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$, we add up the two leaves: $\p(A) =$ `r png_shades` $+$ `r png_hearts`. Once again the result is the Law of Total Probability:
+We can also use a tree diagram to illustrate the same reasoning. There are two leaves where $A$ is true, marked with asterisks. To get the probability of each leaf we multiply across the branches (that's the General Multiplication Rule). And then to get the total probability for $A$, we add up the two leaves: $\p(A) = * + **$. Once again the result is the Law of Total Probability:
 $$
   \p(A) = \p(A \given B) \p(B) + \p(A \given \neg B) \p(\neg B).
 $$
@@ -458,45 +381,31 @@ $$
 Notice that we didn't just get the same answer, we ended up doing the same calculation too. Our second approach just reconstructed from scratch the reasoning behind the Law of Total Probability. It's a very good idea to understand the rationale behind the Law of Total Probability. But once you get used to the formula, it's also fine to skip straight to applying it directly.
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="A probability tree for Professor X"}
-nodes <- bind_rows(
-  list(text = "B",   x = .5, y = 5/6),
-  list(text = "D",   x = .5, y = 1/6),  
-  list(text = "O",   x = 1,  y = 1  ),  
-  list(text = "~ O", x = 1,  y = 2/3),
-  list(text = "O",   x = 1,  y = 1/3),
-  list(text = "~ O", x = 1,  y = 0  )
-)
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3),
+                to   = c(2, 3, 4, 5, 6, 7)) %>%
+  graph_from_data_frame()
 
-segments <- bind_rows(
-  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 5/6),
-  list(x1 = 0,   y1 = .5,  x2 = .48, y2 = 1/6),  
-  list(x1 = .52, y1 = 5/6, x2 = .96, y2 = 1  ),  
-  list(x1 = .52, y1 = 5/6, x2 = .96, y2 = 2/3),
-  list(x1 = .52, y1 = 1/6, x2 = .96, y2 = 1/3),
-  list(x1 = .52, y1 = 1/6, x2 = .96, y2 = 0  )
-)
+E(g)$weight <- c("1/4", "3/4", "9/10", "1/10", "8/10", "2/10")
 
-segment_labels <- bind_rows(
-  list(text = "1/4",   x = .25, y = .72),
-  list(text = "3/4",   x = .25, y = .38),  
-  list(text = "9/10",  x = .75, y = .95),
-  list(text = "1/10",  x = .75, y = .78),
-  list(text = "8/10",  x = .75, y = .29),
-  list(text = "2/10",  x = .75, y = .12)
-)
+vertex_attr(g, "name") <- c(NA, "italic(B)", "italic(D)", 
+                            "italic(O)~~~~~~bold('9/40')", "'~'*italic(O)", 
+                            "italic(O)~~~~~~bold('24/40')", "'~'*italic(O)")
 
-leaf_labels <- bind_rows(
-  list(text = "9/40",  x = 1.1, y = 1  ),
-  list(text = "24/40", x = 1.1, y = 1/3)
-)
-
-ggplot() +
-  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) + 
-  geom_text(aes(x, y, label = text), data = segment_labels) + 
-  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "bold") + 
-  xlim(0, 1.1) + ylim(0, 1) +
-  theme_void()
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight), 
+                 label_size = 7,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 7,
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 2), rep(0, 4))) +
+  scale_y_reverse(expand = expansion(add = c(.05, .6))) +
+  scale_x_reverse() +
+  theme_void() +
+  coord_flip()
 ```
 
 You can also use a tree diagram. Again, the calculation will be the same. But the diagram may help you get started, and it helps you check that you've applied the formula correctly too.
@@ -662,3 +571,18 @@ You can also use a tree diagram. Again, the calculation will be the same. But th
     ii.  $\p(\neg X) = 1/10$, $\p(\neg Y) = 9/10$, $\p(X \wedge Y) = 0$.
 
     Which of them violate the laws of probability: both, neither, or just one (which one)?
+
+#.  In April of 2021 during the Covid-19 pandemic, concerns arose about the safety of one of the vaccines. At the time $7$ million people had already received this vaccine, a few of whom developed dangerous bloodclots. One of these people had already died as a result.
+    ```{marginfigure, echo=TRUE}
+    This exercise is based on [a tweet of Nate Silver's](https://twitter.com/NateSilver538/status/1381968804004065299)
+    ```
+
+    Suppose at the time there was a $1/100$ chance of getting Covid-19 without the vaccine, and only a $1/1,000$ chance with the vaccine. And suppose unvaccinated people who got Covid-19 died in $1/150$ cases, while those who'd had the vaccine only died in $1/500$ cases.
+
+    What then was the probability of dying, either from a vaccine-induced blood clot or from Covid-19, if you did take the vaccine? What was the probability if you didn't? (Assume no other vaccines were available.)
+
+#. Prove that if $\p(B) = 1$, then $\p(A \wedge B) = \p(A)$.
+
+#. Prove that $\p(A \wedge B) \geq \p(A) + \p(B) - 1$.
+
+#. Prove that $\p(A \wedge B \wedge C) = \p(A) \p(B \given A) \p(C \given B \wedge A)$ as long as the two conditional probabilities are well-defined.

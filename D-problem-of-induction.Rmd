@@ -125,3 +125,51 @@ In the $280$ years since this challenge was first raised by David Hume, no answe
     #. According to the laws of probability, the next draw is equally likely to be black vs. white.
     #. The laws of probability are consistent with any of the above conclusions; it depends on the prior probabilities.
     #. None of the above.
+  
+#.  Write a short essay ($3$--$4$ paragraphs) explaining the problem of induction. Your essay should include all of the following:
+
+    - a clear, accurate explanation of the Principle of Induction,
+    - a clear, accurate explanation of the dilemma we face in justifying the Principle of Induction,
+    - a clear, accurate explanation of the challenge for the deductive horn of this dilemma, and
+    - a clear, accurate explanation of the challenge for the inductive horn of the dilemma.
+
+#. A coin will be tossed $3$ times, so the number of heads could be $0$, $1$, $2$, or $3$. Suppose all $4$ of these possibilities are equally likely. Moreover, any two sequences with the same number of heads are also equally likely. For example, $\p(H_1 \wedge H_2 \wedge T_3) = \p(T_1 \wedge H_2 \wedge H_3)$. Answer each of the following.
+
+    a. What is $\p(H_2 \given H_1)$?
+    #. What is $\p(H_3 \given H_1 \wedge H_2)$?
+    
+    Now suppose we do $4$ tosses instead of $3$. The prior probabilities follow the same rules: all possible numbers of heads are equally likely, and any two sequences with the same number of heads are equally likely. 
+    
+    c. If the first $n$ tosses come up heads, what is the probability the next toss will come up heads? In other words, give a formula for $\p(H_{n+1} \given H_1 \wedge \ldots \wedge H_n)$ in terms of $n$.
+    #. What if only $k$ out of the first $n$ tosses land heads, then what formula gives the probability of heads on the next toss?
+
+#.  Suppose a computer program prints out a stream of A's and B's. After observing the sequence A, A, B, we want to know the probability of an A next.
+
+    Our friend Charlie suggests we reason as follows. We are going to observe $4$ characters total. Before we observed any characters, there were $5$ possibilities: the total number of As could turn out to be $0$, $1$, $2$, $3$, or $4$. And all of these possibilities are equally likely. So each has prior probability $1/5$.
+
+    Some of these possibilities can be subdivided. For example, there are $4$ ways to get $3$ A's:
+
+    A, A, A, B\
+    A, A, B, A\
+    A, B, A, A\
+    B, A, A, A
+
+    So each of these sequences gets $1/4$ of $1/5$, in other words prior probability $1/20$.
+
+    According to Charlie's way of reasoning, what is the probability the $4$th character will be an A, given that the first $3$ were A, A, B?
+  
+#.  In this chapter we considered a coin to be flipped $3$ times, with the same prior probability for every possible sequence of heads/tails. Now suppose the coin will be flipped some very large number of times, $n$. And again suppose the prior probability is the same for every possible sequence of heads/tails. Prove that no matter how many times the coin lands heads, the probability of heads on the next toss is still $1/2$. In other words, prove that $\p(H_{k+1} \given H_1 \wedge \ldots \wedge H_{k}) = 1/2$ no matter how large $k$ gets.
+
+#.  Suppose a coin will be flipped $3$ times. There are $2^3 = 8$ possible sequences of heads/tails that we might get. Find a way of assigning prior probabilities to these $8$ sequences so that, the more heads we observe, the *less* likely it becomes we'll get heads on the next toss. In other words, assign a prior probability to each sequence so that $\p(H_2 \given H_1) < \p(H_2)$ and $\p(H_3 \given H_2 \wedge H_1) < \p(H_3 \given H_1)$.
+
+#.  Suppose a coin will be flipped $4$ times. Recall the two different ways of assigning a probability to each possible sequence of heads and tails discussed in the chapter:
+
+    - Scheme 1: all possible sequences have the same probability.
+    - Scheme 2: all possible *frequencies* (numbers of heads) have the same probability, and all sequences that share the same frequency have the same probability.
+    
+    According to each scheme, how probable is each of the following propositions?
+
+    - $A =$ All tosses will land the same way.\
+    - $B =$ The number of heads and tails will be the same.
+
+    Now answer the same question with $10$ tosses instead of $4$.

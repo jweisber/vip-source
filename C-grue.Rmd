@@ -37,13 +37,14 @@ df$colour <- factor(df$colour, levels = rev(levels(df$colour)))
 df$green <- c(TRUE, TRUE, FALSE, FALSE)
 df$grolour <- c("Grue", "Bleen", "Bleen", "Grue")
 
-ggplot(df) +
+ggplot(df) + 
   geom_tile(aes(x = t_obs, y = colour, fill = green), colour = "black") +
   geom_label(aes(x = t_obs, y = colour, label = grolour), 
              data = df %>% filter(grolour == "Grue")) +
   theme_minimal() +
   scale_fill_manual(values = c(bookblue, bookgreen)) +
   xlab(NULL) + ylab(NULL) +
+  theme_minimal(base_size = 14) +
   theme(panel.grid = element_blank(), legend.position = "none")
 ```
 
@@ -137,6 +138,7 @@ ggplot(df) +
   theme_minimal() +
   scale_fill_manual(values = c(bookblue, bookgreen)) +
   xlab(NULL) + ylab(NULL) +
+  theme_minimal(base_size = 14) +
   theme(panel.grid = element_blank(), legend.position = "none")
 ```
 
@@ -184,3 +186,38 @@ Just as Bertrand's paradox stops us from using the Principle of Indifference to 
 There is even more to the similarity between these two paradoxes. Both paradoxes are problems of "language dependence." Depending on what language we work in, rules like the Principle of Indifference and the Principle of Induction give different recommendations. If we apply the Principle of Indifference to length, we get one prior probability; if we apply it to area, we get another. If we apply the Principle of Induction to green, we expect all emeralds to be green; if we apply it to grue, we expect some to be blue.
 
 To this day, we do not have an answer to the question: which language is the right one to use, and why?
+
+
+## Exercises {-}
+
+1.  Suppose you have a large urn of emeralds, and you want to compare the following two hypotheses:
+    \begin{align*}
+    H_1 &= \text{all the emeralds in the urn are green,}\\
+    H_2 &= \text{all the emeralds in the urn are grue.}
+    \end{align*}
+    You draw $10$ emeralds from the urn, and all $10$ are green. Assuming the two hypotheses have the same prior probability, how do their posterior probabilities compare?
+    
+    a. $\p(H_1 \given E) > \p(H_2 \given E)$
+    b. $\p(H_1 \given E) < \p(H_2 \given E)$
+    c. $\p(H_1 \given E) = \p(H_2 \given E)$
+
+#.  Suppose you are exploring the relationship between temperature and pressure for a newly discovered gas. You have a sample of the gas in a container where you can control the temperature. So you try $8$ different temperatures, and measure the pressure at each temperature. The results look like the points in Figure \@ref(fig:curvefitting), where the $x$-axis is temperature and the $y$-axis is pressure.
+
+    You want to compare two hypotheses about the true relationship between pressure and temperature, portrayed with dashes in Figure \@ref(fig:curvefitting):
+    \begin{align*}
+    H_1 &= \text{the straight line,}\\
+    H_2 &= \text{the oscillating curve.}
+    \end{align*}
+    Assuming the two hypotheses have the same prior probability, how do their posterior probabilities compare?
+
+    a. $\p(H_1 \given E) > \p(H_2 \given E)$
+    b. $\p(H_1 \given E) < \p(H_2 \given E)$
+    c. $\p(H_1 \given E) = \p(H_2 \given E)$
+
+#. Write a short essay ($3$--$4$ paragraphs) explaining the grue paradox. Your essay should include all of the following:
+
+    - a clear, accurate explanation of the Principle of Induction,
+    - a clear, accurate explanation of the concept grue,
+    - a clear, accurate explanation of the challenge grue poses for the Principle of Induction, and
+    - a clear, accurate explanation of the "disjunctivitis" solution to the paradox, and Goodman's reply to that solution.
+

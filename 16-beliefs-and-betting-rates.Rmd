@@ -26,7 +26,7 @@ $$
 f <- function(x) case_when(x <= 2/3 ~ 1, x <= 1 ~ 0)
 g <- function(x) case_when(x <= 2/3 ~ 0, x <= 1 ~ -2)
 
-ggplot(NULL, aes(c(0, 1))) + 
+ggplot() +
   stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
   stat_function(fun = g, geom = "area", n = 1000, fill = bookred) +
   scale_y_continuous("payoff ($)", breaks = seq(-2, 1, 1), limits = c(-2.5, 1.5)) +
@@ -43,7 +43,7 @@ This makes sense: it's a fair bet from my point of view, after all.
 f <- function(x) case_when(x <= 1/10 ~ 9, x <= 1 ~ 0)
 g <- function(x) case_when(x <= 1/10 ~ 0, x <= 1 ~ -1)
 
-ggplot(NULL, aes(c(0, 1))) + 
+ggplot() +
   stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
   stat_function(fun = g, geom = "area", n = 1000, fill = bookred) +
   scale_y_continuous("payoff ($)", limits = c(-1.5, 10.5)) +
@@ -78,7 +78,7 @@ You can memorize this formula, but personally, I prefer to apply the recipe. It 
 
 Personal  probabilities aren't revealed by just any old betting rate a person will accept. They're exposed by the person's *fair* betting rates.
 
-Consider: I'd take a bet where you pay me a million dollars of it rains today, and I pay you just $\$1$ otherwise. But that's because I think this bet is *advantageous*. I don't think this is a fair bet, which is why I'd only take one side of it. I wouldn't take the reverse deal, where I win $\$1$ if it rains and I pay you a million dollars if it does. That's a terrible deal from my point of view!
+Consider: I'd take a bet where you pay me a million dollars if it rains today, and I pay you just $\$1$ otherwise. But that's because I think this bet is *advantageous*. I don't think this is a fair bet, which is why I'd only take one side of it. I wouldn't take the reverse deal, where I win $\$1$ if it rains and I pay you a million dollars if it does. That's a terrible deal from my point of view!
 
 So you can't just look at a bet a person is willing to accept. You have to look at a bet they're willing to accept *because they think it's fair*.
 
@@ -135,13 +135,13 @@ We have to be careful though. This technique only works if the subject's betting
 
     c.  What is Li's personal probability that Musk will be elected?  (Assume his personal probabilities obey the laws of probability.)
 
-#.  Sam thinks the Saskatchewan Roughriders will win the next Grey Cup game. She's confident enough that she regards the following deal as fair: if they win, you pay her $\$3$, otherwise she'll pay you $\$7$.
+#.  Sam thinks the Saskatchewan Roughriders will win the next Grey Cup game. She's confident enough that she regards the following deal as fair: if they win, you pay her $\$2$, otherwise she'll pay you $\$8$.
 
-    Suppose Sam equates money with utility: for her, the utility of gaining $\$3$ is $3$, the utility of losing $\$7$ is $-7$, and so on.
+    Suppose Sam equates money with utility: for her, the utility of gaining $\$2$ is $2$, the utility of losing $\$8$ is $-8$, and so on.
 
     a.  What is Sam's personal probability that the Roughriders will win the Grey Cup?
 
-    Sam thinks the Roughriders will have an even better chance in the snow. If it snows during the game, she will regard the following deal as fair: if the Roughriders win, you pay her $\$3$, otherwise she'll pay you $\$12$.
+    Sam thinks the Roughriders will have an even better chance in the snow. If it snows during the game, she will regard the following deal as fair: if the Roughriders win, you pay her $\$1$, otherwise she'll pay you $\$9$.
 
     b.  What is Sam's personal conditional probability that the Roughriders will win the Grey Cup if it snows?
 
@@ -171,7 +171,7 @@ We have to be careful though. This technique only works if the subject's betting
     After checking the forecast and seeing that it does predict snow, Freya changes her betting odds for snow tomorrow. Now she's willing to accept as little as $\$5$ if it snows, while still paying $\$10$ if it doesn't.
 
     c.  Now what is Freya's personal probability for snow tomorrow?
-    d.  Before she checked the forecast, what was Freya's personal probability that the forecast would predict snow and be right.
+    d.  Before she checked the forecast, what was Freya's personal probability that the forecast would predict snow and be right?
 
 #.  Ben's favourite TV show is *Community*. He thinks it's so good they'll make a movie of it. In fact, he's so confident that he thinks the following is a fair deal: he pays you $\$8$ if they don't make it into a movie and you pay him $\$1$ if they do. Assume Ben equates money with utility.
 

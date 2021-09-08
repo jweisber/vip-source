@@ -10,7 +10,6 @@ We call this kind of probability ***conditional probability***. But how do we ca
 ## Calculating Conditional Probability
 
 ```{r echo=FALSE, fig.show='hold', fig.margin=TRUE, fig.cap="Conditional probability in a fair die roll"}
-
 die1 <- readPNG("img/die/die1.png") %>% rasterGrob()
 die2 <- readPNG("img/die/die2.png") %>% rasterGrob()
 die3 <- readPNG("img/die/die3.png") %>% rasterGrob()
@@ -55,7 +54,6 @@ In the die-roll example, we considered how many of the $B$ possibilities were al
 In fact, this formula is our official definition for the concept of conditional probability. When we write the sequence of symbols $\p(A \given B)$, it's really just shorthand for the fraction $\p(A \wedge B) / \p(B)$.
 
 ```{r condprob, echo=FALSE, fig.margin=TRUE, fig.cap="Conditional probability is the size of the $A \\wedge B$ region compared to the entire $B$ region."}
-
 x <- seq(-.75, .75, 0.01)
 
 upper <- function(x) {
@@ -72,7 +70,7 @@ ggplot() +
   geom_ribbon(aes(x = x, ymin = upper(x), ymax = -upper(x)), 
               fill = bookpurple, colour = "black") +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
-            fontface = "italic", size = 6) +
+            fontface = "italic", size = 7) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 
@@ -107,48 +105,32 @@ For example, suppose there are two urns of coloured marbles.
 
 I flip a fair coin to decide which urn to draw from, heads for Urn X and tails for Urn Y. Then I draw one marble at random.
 
-```{r urntree, echo=FALSE, fig.cap="Tree diagram for an urn problem", fig.margin=TRUE}
-nodes <- bind_rows(
-  list(text = "H", x = .5, y = .75),
-  list(text = "T", x = .5, y = .25),  
-  list(text = "B", x = 1,  y = .9),  
-  list(text = "W", x = 1,  y = .6),
-  list(text = "B", x = 1,  y = .4),
-  list(text = "W", x = 1,  y = .1)
-)
+```{r urntree, echo=FALSE, message=FALSE, fig.cap="Tree diagram for an urn problem", fig.margin=TRUE}
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3),
+                to   = c(2, 3, 4, 5, 6, 7)) %>%
+  graph_from_data_frame()
 
-segments <- bind_rows(
-  list(x1 = 0, y1 = .5, x2 = .48, y2 = .75),
-  list(x1 = 0, y1 = .5, x2 = .48, y2 = .25),  
-  list(x1 = .52, y1 = .75, x2 = .98, y2 = .9),  
-  list(x1 = .52, y1 = .75, x2 = .98, y2 = .6),
-  list(x1 = .52, y1 = .25, x2 = .98, y2 = .4),
-  list(x1 = .52, y1 = .25, x2 = .98, y2 = .1)
-)
+E(g)$weight <- c("1/2", "1/2", "3/4", "1/4", "1/4", "3/4")
 
-segment_labels <- bind_rows(
-  list(text = "1/2", x = .25, y = .67),
-  list(text = "1/2", x = .25, y = .40),  
-  list(text = "3/4", x = .75, y = .86),
-  list(text = "1/4", x = .75, y = .71),
-  list(text = "1/4", x = .75, y = .36),
-  list(text = "3/4", x = .75, y = .21)
-)
+vertex_attr(g, "name") <- c(NA, "italic(H)", "italic(T)", 
+                            "italic(B)~~~~~~bold('3/8')", "italic(W)~~~~~~bold('1/8')",
+                            "italic(B)~~~~~~bold('1/8')", "italic(W)~~~~~~bold('3/8')")
 
-leaf_labels <- bind_rows(
-  list(text = "3/8", x = 1.1, y = .9),
-  list(text = "1/8", x = 1.1, y = .6),
-  list(text = "1/8", x = 1.1, y = .4),
-  list(text = "3/8", x = 1.1, y = .1)
-)
-
-ggplot() +
-  geom_text(aes(x, y, label = text), data = nodes, fontface = "italic") + 
-  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = segments) + 
-  geom_text(aes(x, y, label = text), data = segment_labels) + 
-  geom_text(aes(x, y, label = text), data = leaf_labels, fontface = "bold") + 
-  xlim(0, 1.1) + ylim(0, 1) +
-  theme_void()
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight), 
+                 label_size = 7,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 7, 
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 2), rep(0, 4))) +
+  scale_y_reverse(expand = expansion(add = c(.05, .5))) +
+  scale_x_reverse() +
+  theme_void() +
+  coord_flip()
 ```
 
 In Figure \@ref(fig:urntree), the probability of drawing a black marble on the top path is $3/4$ because we are assuming the coin landed heads, and thus I'm drawing from Urn X. If the coin lands tails instead, and I draw from Urn Y, then the chance of a black marble is instead $1/4$. So these quantities are conditional probabilities:
@@ -272,7 +254,7 @@ In other words, a trio of propositions is independent if each pair of them is in
 
 You may be wondering: is part (ii) of this definition really necessary? If each pair of propositions is independent, then the multiplication rule applies to any two of them. Doesn't this guarantee that it applies to all three together?
 
-Curiously, the answer is no. Suppose someone has equal chances of having been born in the spring, summer, fall, or winter. Let $A$ say that they were born in either spring or summer; let $B$ say they were born in either summer or fall; and let $C$ say they were born in either fall or winter. Pairwise these propositions are all independent. But $\p(A \wedge B \wedge C) = 0$ by the Contradiction rule, since there is no season shared by all three propositions; they cannot all be true. And yet $\p(A)\p(B)\p(C) = 1/8$.
+Curiously, the answer is no. Suppose someone has equal chances of having been born in the spring, summer, fall, or winter. Let $A$ say that they were born in either spring or summer; let $B$ say they were born in either summer or fall; and let $C$ say they were born in either fall or spring. Pairwise these propositions are all independent. But $\p(A \wedge B \wedge C) = 0$ by the Contradiction rule, since there is no season shared by all three propositions; they cannot all be true. And yet $\p(A)\p(B)\p(C) = 1/8$.
 
 
 ## Exercises {-#ch6ex}
@@ -377,3 +359,8 @@ Curiously, the answer is no. Suppose someone has equal chances of having been bo
 
 #.  Prove that the following equation always holds, assuming the conditional probabilities are well-defined:
     $$ \frac{\p(A \given B)}{\p(B \given A)} = \frac{\p(A)}{\p(B)}. $$
+
+#.  Does the equation $\p(A \given B) = \p(\neg B \given \neg A)$ always hold, assuming both conditional probabilities are both well-defined? If yes, prove that it does. If no, draw an eikosogram where it fails to hold.
+
+#.  Suppose an urn contains 30 black marbles and 70 white. We randomly draw 5 marbles with replacement. Let $A$ be the proposition that $3$ of the first $4$ draws are black, and let $B$ be the proposition that the $5$^th^ draw is black. Calculate the following quantity:
+    $$ \frac{Pr(A \,\vert\, B)}{Pr(B \,\vert\, A)} \frac{Pr(B)}{Pr(A)}. $$

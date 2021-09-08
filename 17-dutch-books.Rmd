@@ -12,6 +12,10 @@ As to the speculators from the south, they had the advantage in the toss up; the
 
 The  Bayesian answer uses a special betting strategy. If someone violates the laws of probability, we can use this strategy to take advantage of them. We can sucker them into a deal that will lose them money no matter what.
 
+```{marginfigure, echo=TRUE}
+"A bet is a tax on bullshit." ---Alex Tabarrok
+```
+
 For example, suppose Sam violates a very simple rule of probability. His personal probability in the proposition $2+2=4$ is only $9/10$, when it should be $1$. (Because it's impossible for $2+2$ to be anything other than $4$.) Sam has violated the laws of probability, so he'll be willing to accept a very bad deal, as follows.
 
 We put two marbles into an empty bucket, and then two more. We then offer Sam the following deal: we pay him $90$¢, and in exchange he pays us $\$1$ if the bucket has a total of $4$ marbles in it.
@@ -55,7 +59,7 @@ euler_diagram <- function(propositions) {
         theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
         geom_circle(aes(x0 = cirx, y0 = ciry, r = r)) +
         geom_text(aes(x = labx, y = laby, label = labl), 
-                  parse = TRUE, size = 6)
+                  parse = TRUE, size = 7)
 }
 
 propositions <- data.frame(
@@ -165,7 +169,7 @@ knitr::kable(table, align = "r", caption = "A Dutch book for Suzy the Scientist"
     -  An explanation why Marco will regard these bets as fair.
     -  An explanation why these bets will lead to a sure loss for Marco no matter what.
 
-#.  Maya is the star of her high school hockey team. My personal probably that she'll go to university on an athletic scholarship is $3/5$. But because she doesn't like schoolwork, my personal probability that she'll go to university is $1/3$. Explain how to make a Dutch book against me.
+#.  Maya is the star of her high school hockey team. My personal probability that she'll go to university on an athletic scholarship is $3/5$. But because she doesn't like schoolwork, my personal probability that she'll go to university is $1/3$. Explain how to make a Dutch book against me.
 
 #.  Saia isn't sure what grade she'll get in her statistics class. But she thinks the following deals are all fair:
 
@@ -208,4 +212,18 @@ knitr::kable(table, align = "r", caption = "A Dutch book for Suzy the Scientist"
     #. Both (i) and (ii) are true.
     #. Neither is true.
 
-#.  True or false: if someone has personal probabilities $\p(A \wedge B) = \p(A \vee B)$, then they can be Dutch booked.
+#.  Suppose $A$ and $B$ are compatible propositions. True or false: if someone has personal probabilities $\p(A \wedge B) = \p(A \vee B)$, then they can be Dutch booked.
+
+#.  Suppose a fair coin will be flipped twice. You and I have flipped this coin many times before, so we know that it is fair. But Frank doesn't know about our experiments; in fact he suspects the coin is not fair. His personal probabilities are as follows:
+\begin{align*}
+\p(H_1 \wedge H_2) &= 3/10, \\
+\p(H_1 \wedge T_2) &= 2/10, \\
+\p(T_1 \wedge H_2) &= 2/10, \\
+\p(T_1 \wedge T_2) &= 3/10.
+\end{align*}
+Assume we can only make two bets with Frank, a bet on $H_1$ and a bet on $H_2$. The stake for each bet must be $\$1$. What is the most we can win from him in a Dutch book? In other words, what is the maximum amount we can guarantee we will win from him? (Note that this is different from the maximum we *might* win from him if we get lucky with the coin flips.)
+  
+    a. $\$1$
+    b. $\$0.50$
+    c. $\$0.40$
+    d. $\$0$: we cannot make a Dutch book against Frank

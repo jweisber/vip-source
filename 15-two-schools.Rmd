@@ -4,8 +4,8 @@
 
 
 ```{block, type="epigraph"}
-To understand God's thoughts we must study statistics, for these are the measure of His purpose.\
----attributed to Florence Nightingale
+As a statistician, there’s a big secret that I think the public needs to know. Statisticians don’t all agree on what probability is!\
+---Kareem Carr
 ```
 
 
@@ -29,7 +29,7 @@ This is probably the most common way of understanding "probability." You may eve
 
 But  many statements about probability don't fit the frequency mold, not very well at least.
 
-Consider the statement, "the probability the dinosaurs were wiped out by a meteor is $90\%$." Does this mean $90\%$ of the times dinosaurs existed on earth, they were wiped out? They only existed once! This probability is about an event that doesn't repeat. So there's no frequency with which it happens.
+Consider the statement, "the probability the dinosaurs were wiped out by a meteor is $90\%$." Does this mean $90\%$ of the times dinosaurs existed on earth, they were wiped out by a meteor? They only existed once! This probability is about an event that doesn't repeat. So there's no frequency with which it happens.
 
 Here's another example: "humans are probably the main cause of our changing climate." Does that mean most of the time, when climate change happens, humans are the cause? Humans haven't even been around for most of the climate changes in Earth's history. So again: this doesn't seem to be a statement about the frequency with which humans cause global warming.
 
@@ -45,6 +45,10 @@ Which  kind of probability are scientists using when they use probability theory
 There is a deep divide among scientists on this issue, especially statisticians.
 
 The *frequentists* think that science deals in the first kind of probability, frequency. This interpretation has the appeal of being conrete and objective, since we can observe and count how often something happens. And science is all about observation and objectivity, right?
+
+```{marginfigure, echo=TRUE}
+When YouTuber [Dream](https://en.wikipedia.org/wiki/Dream_(YouTuber)) was accused of cheating in a Minecraft speedrun record, his appeal was rejected for illegitimately mixing a frequentist approach with a Bayesian analysis.
+```
 
 The *Bayesians* think instead that science deals in the second kind of probability, belief-type probability. Science is supposed to tell us what to believe given our evidence, after all. So it has to go beyond just the frequencies we've observed, and say what beliefs those observations support.
 
@@ -75,7 +79,8 @@ ggplot(df) +
   geom_line(aes(x = n, y = k/n)) +
   geom_text(aes(x = n, y = -.05, label = ht)) +
   xlab("flip") +
-  ylim(-.1, 1) + ylab("frequency of heads")
+  ylim(-.1, 1) + ylab("frequency of heads") +
+  theme_minimal(base_size = 12)
 ```
 
 Presumably, it's the *hypothetical* frequency that is the real probability of heads, according to frequentists. So doesn't that solve our problem with one-off events? Even if a coin is only ever flipped once, what matters is how it would have landed if we'd flipped it many times.
@@ -83,25 +88,25 @@ Presumably, it's the *hypothetical* frequency that is the real probability of he
 `r newthought("Serious")`  problems beset the hypothetical frequency view too, however.
 
 ```{r threecoins, echo=FALSE, fig.margin=TRUE, fig.cap="Three fair coins flipped $100$ times each, yielding three different frequencies"}
-set.seed(1)
+set.seed(1) 
 
 df1 <- data.frame(outcome = rbinom(100, 1, 1/2)) %>%
   mutate(ht = if_else(outcome == 1, "H", "T"),
          n = row_number(),
          k = cumsum(outcome))
-df1$title <- paste("Coin #1: ", tail(df1$k, n = 1), "H,", 100 - tail(df1$k, n = 1), "T")
+df1$title <- paste(tail(df1$k, n = 1), "H,", 100 - tail(df1$k, n = 1), "T")
 
 df2 <- data.frame(outcome = rbinom(100, 1, 1/2)) %>%
   mutate(ht = if_else(outcome == 1, "H", "T"),
          n = row_number(),
          k = cumsum(outcome))
-df2$title <- paste("Coin #2: ", tail(df2$k, n = 1), "H,", 100 - tail(df2$k, n = 1), "T")
+df2$title <- paste(tail(df2$k, n = 1), "H,", 100 - tail(df2$k, n = 1), "T")
 
 df3 <- data.frame(outcome = rbinom(100, 1, 1/2)) %>%
   mutate(ht = if_else(outcome == 1, "H", "T"),
          n = row_number(),
          k = cumsum(outcome))
-df3$title <- paste("Coin #3: ", tail(df3$k, n = 1), "H,", 100 - tail(df3$k, n = 1), "T")
+df3$title <- paste(tail(df3$k, n = 1), "H,", 100 - tail(df3$k, n = 1), "T")
 
 df <- bind_rows(df1, df2, df3)
 

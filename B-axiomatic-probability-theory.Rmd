@@ -214,7 +214,7 @@ Total Probability
 $$
   \begin{aligned}
     \p(A) &= \p((A \wedge B) \vee (A \wedge \neg B)) & \mbox{ by Equivalence}\\
-          &= \p(A \wedge B) + (A \wedge \neg B) & \mbox{ by Additivity}\\
+          &= \p(A \wedge B) + \p(A \wedge \neg B) & \mbox{ by Additivity}\\
           &= \p(A \given B)\p(B) + \p(A \given \neg B)\p(\neg B) & \mbox{ by Multiplication.}
   \end{aligned}
 $$

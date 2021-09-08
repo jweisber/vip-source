@@ -106,13 +106,12 @@ We learned about mutually exclusive propositions in [Section](#lessons) \@ref(le
 There is no way for both of these propositions to be true, and we can visualize this relationship in a diagram (Figure \@ref(fig:meprops)).
 
 ```{r meprops, echo=FALSE, fig.margin=TRUE, fig.cap="Mutually exclusive propositions"}
-
 euler_diagram <- function(propositions) {
     ggplot(data = propositions) + theme_void() + coord_fixed() +
         xlim(-3,3) + ylim(-2,2) +
         theme(panel.border = element_rect(colour="black", fill=NA, size=1)) +
         geom_circle(aes(x0 = cirx, y0 = ciry, r = r)) +
-        geom_text(aes(x = labx, y = laby, label = labl), parse = TRUE, size = 6)
+        geom_text(aes(x = labx, y = laby, label = labl), parse = TRUE, size = 7)
 }
 
 propositions <- data.frame(
@@ -177,7 +176,7 @@ propositions <- data.frame(
 euler_diagram(propositions)
 ```
 
-In this case we say that the first proposition ***logically entails*** the second. In terms of an Euler diagram, he first circle is contained entirely in the second (Figure \@ref(fig:entailment)). Because there is no possible situation where the first proposition is true yet the second false.
+In this case we say that the first proposition ***logically entails*** the second. In terms of an Euler diagram, the first circle is contained entirely in the second (Figure \@ref(fig:entailment)). Because there is no possible situation where the first proposition is true yet the second false.
 
 What if an argument has multiple premises? For example:
 
@@ -362,4 +361,6 @@ What makes one explanation better than another? That turns out to be a very hard
     #. Suppose we know the two siblings were born in different seasons. How many possibilities are there then?
     #. Suppose another family has three children. We don't know whether any of them have the same birth-season. How many possibilities are there in this case?
 
-#.  Suppose $A$ and $B$ are compatible, and that $B$ and $C$ are compatible. Does that mean $A$ and $C$ are compatible? If yes, justify your answer. If no, describe a counterexample (an example where it's not true).
+#.  Suppose $A$ and $B$ are compatible, and $B$ and $C$ are compatible. Does that mean $A$ and $C$ are compatible? If yes, justify your answer. If no, describe a counterexample (an example where $A$ and $B$ are compatible, and $B$ and $C$ are compatible, but $A$ and $C$ are *not* compatible).
+
+#.  Suppose $A$ logically entails $B$, and $B$ logically entails $C$. Does that mean $A$ logically entails $C$? If yes, justify your answer. If no, describe a counterexample (an example where $A$ logically entails $B$, and $B$ logically entails $C$, but $A$ does *not* logically entail $C$).

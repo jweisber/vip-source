@@ -42,7 +42,7 @@ df <- data.frame(
 
 df$time <- factor(df$time, levels = c("Priors", "Posteriors"))
 
-ggplot(df) +
+ggplot(df) + 
   geom_bar(aes(x = outcome, y = probability, fill = hilo), stat = "identity") +
   facet_grid(cols = vars(time)) +
   scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 1/6), 
@@ -141,14 +141,14 @@ Principle of Indifference (Continuous Version)
 ```{r echo=FALSE, fig.margin=TRUE, dev="png", fig.asp = .3, fig.cap="The continuous version of the Principle of Indifference: $Pr(H)$ is the length of the $c$-to-$d$ interval divided by the length of the whole $a$-to-$b$ interval."}
 library(grid)
 library(pBrackets)
-ggplot(NULL) +
+ggplot() + 
   geom_errorbarh(aes(xmin = 0, xmax = 1, y = 0, height = .05)) +
   geom_errorbarh(aes(xmin = .3, xmax = .6, y = 0, height = .05)) +
-  geom_text(aes(x = 0,  y = .065, label = "a"), size = 6, fontface = "italic") +
-  geom_text(aes(x = 1,  y = .065, label = "b"), size = 6, fontface = "italic") +
-  geom_text(aes(x = .3, y = .065, label = "c"), size = 6, fontface = "italic") +
-  geom_text(aes(x = .6, y = .065, label = "d"), size = 6, fontface = "italic") +
-  geom_text(aes(x = .445, y = -.08, label = "H"), size = 6, fontface = "italic") +
+  geom_text(aes(x = 0,  y = .065, label = "a"), size = 7, fontface = "italic") +
+  geom_text(aes(x = 1,  y = .065, label = "b"), size = 7, fontface = "italic") +
+  geom_text(aes(x = .3, y = .065, label = "c"), size = 7, fontface = "italic") +
+  geom_text(aes(x = .6, y = .065, label = "d"), size = 7, fontface = "italic") +
+  geom_text(aes(x = .445, y = -.08, label = "H"), size = 7, fontface = "italic") +
   ylim(-.1, .1) +
   coord_fixed() +
   theme_void()

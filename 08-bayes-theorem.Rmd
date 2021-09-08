@@ -112,18 +112,32 @@ $$
 $$
 This is the same answer we got with our grid diagram (Figure \@ref(fig:taxigrid)). And notice, it's also the answer we'd get from a tree diagram too (Figure \@ref(fig:taxitree)).
 
-```{r taxitree, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Tree diagram for the taxicab problem. Since $\\p(B \\wedge W) = .12$ and $\\p(W) = .12 + .17$, the definition of conditional probability yields $\\p(B \\given W) = 12/29$."}
+```{r taxitree, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="A tree diagram for the taxicab problem. We calculate $\\p(B \\wedge W) = .12$ and $\\p(W) = .12 + .17$, then use the definition of conditional probability to get $\\p(B \\given W) = 12/29$."}
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3),
+                to   = c(2, 3, 4, 5, 6, 7)) %>%
+  graph_from_data_frame()
 
-nodes <- bind_rows(
-  list(text = "B",   parent = 0, p = 15/100),
-  list(text = "~ B", parent = 0, p = 85/100),  
-  list(text = "W",   parent = 1, p = 80/100, leaf_p = 12/100),
-  list(text = "~ W", parent = 1, p = 20/100),
-  list(text = "W",   parent = 2, p = 20/100, leaf_p = 17/100),
-  list(text = "~ W", parent = 2, p = 80/100)
-)
+E(g)$weight <- c(.15, .85, .8, .2, .2, .8)
 
-p_tree(nodes)
+vertex_attr(g, "name") <- c(NA, "italic(B)", "'~'*italic(B)", 
+                            "italic(W)~~~~~~bold('0.12')", "'~'*italic(W)",
+                            "italic(W)~~~~~~bold('0.17')", "'~'*italic(W)")
+
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight), 
+                 label_size = 7,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 7,
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 2), rep(0, 4))) +
+  scale_y_reverse(expand = expansion(add = c(.05, .5))) +
+  scale_x_reverse() +
+  theme_void() +
+  coord_flip()
 ```
 
 
@@ -152,7 +166,7 @@ ggplot(data.frame(x = c(-3, 3))) +
   stat_function(fun = upper, xlim = c(-3/4, 3/4), colour = bookpurple, size = 3) +
   stat_function(fun = function(x) -upper(x), xlim = c(-3/4, 3/4), colour = bookpurple, size = 3) +
   geom_text(aes(x = c(-2.25, 2.25), y = c(1, 1), label = c("A", "B")), 
-            fontface = "italic", size = 6) +
+            fontface = "italic", size = 7) +
   theme(panel.border = element_rect(colour = "black", fill = NA, size = 1))
 ```
 
@@ -197,17 +211,32 @@ Bayes' Theorem (long version)
 Notice how there's some repetition in the numerator and the denominator. The term $\p(A)\p(B \given A)$ appears both above and below. So, when you're doing a calculation with this formula, you can just do that bit once and then copy it in both the top and bottom. Then you just have to do the bottom-right term to complete the formula.
 
 ```{r longbayestree, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="A tree diagram for the long form of Bayes' theorem. The definition of conditional probability tells us $\\p(A \\given B)$ is the first leaf divided by the sum of the first and third leaves."}
-nodes <- bind_rows(
-  list(text = "A",    parent = 0, p = "Pr(A)"),
-  list(text = "~ A",  parent = 0, p = "Pr(~A)"),
-  list(text = "B",    parent = 1, p = "Pr(B|A)", leaf_p = "Pr(A) Pr(B|A)"  ),
-  list(text = "~ B",  parent = 1, p = NA),
-  list(text = "B",    parent = 2, p = "Pr(B|~A)", leaf_p = "Pr(~A) Pr(B|~A)"),
-  list(text = "~ B",  parent = 2, p = NA)
-)
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3),
+                to   = c(2, 3, 4, 5, 6, 7)) %>%
+  graph_from_data_frame()
 
-p_tree(nodes, p_fontface = "italic", leaf_p_distance = .2, leaf_p_width = .3, 
-       leaf_p_fontface = "italic")
+E(g)$weight <- c("italic(Pr(A))", "italic(Pr('~'*A))", "italic(Pr(B*'|'*A))", "", "italic(Pr(B*'|'*'~'*A))", "")
+
+vertex_attr(g, "name") <- c(NA, "italic(A)", "'~'*italic(A)", 
+                            "italic(B)~~~~~~italic(Pr(A)*Pr(B*'|'*A))", "italic('~'*B)",
+                            "italic(B)~~~~~~italic(Pr('~'*A)*Pr(B*'|'*'~'*A))", "italic('~'*B)")
+
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight), 
+                 label_parse = TRUE,
+                 label_size = 7,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 7,
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 2), rep(0, 4))) +
+  scale_y_reverse(expand = expansion(add = c(.05, 1.5))) +
+  scale_x_reverse() +
+  theme_void() +
+  coord_flip()
 ```
 
 `r newthought("A tree")` diagram helps illuminate the long version of Bayes' theorem. To calculate $\p(A \given B)$, the definition of conditional probability directs us to calculate $\p(A \wedge B)$ and $\p(B)$:
@@ -245,16 +274,32 @@ $$
 The calculation is also diagrammed in Figure \@ref(fig:zikatree).
 
 ```{r zikatree, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Tree diagram of the Zika problem"}
-nodes <- bind_rows(
-  list(text = "Z",   parent = 0, p = 1/100),
-  list(text = "~ Z", parent = 0, p = 99/100),
-  list(text = "P",   parent = 1, p = 95/100, leaf_p = 1/100 * 95/100),
-  list(text = "~ P", parent = 1, p = NA),
-  list(text = "P",   parent = 2, p = 15/100, leaf_p = 99/100 * 15/100),
-  list(text = "~ P", parent = 2, p = NA)
-)
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3),
+                to   = c(2, 3, 4, 5, 6, 7)) %>%
+  graph_from_data_frame()
 
-p_tree(nodes, round = 4)
+E(g)$weight <- c(.01, .99, .95, NA, .15, NA)
+
+vertex_attr(g, "name") <- c(NA, "italic(Z)", "'~'*italic(Z)", 
+                            "italic(P)~~~~~~bold('0.0095')", "italic('~'*P)",
+                            "italic(P)~~~~~~bold('0.1485')", "italic('~'*P)")
+
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight), 
+                 label_parse = TRUE,
+                 label_size = 7,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 7,
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 2), rep(0, 4))) +
+  scale_y_reverse(expand = expansion(add = c(.05, .7))) +
+  scale_x_reverse() +
+  theme_void() +
+  coord_flip()
 ```
 
 It turns out there's only about a $6\%$ chance Joe has the virus. Even though he tested positive with a fairly reliable blood test! It's counterintuitive, but the reason is the same as with the taxicab problem. There are two, conflicting pieces of evidence: the blood test is positive but the virus is rare. It turns out the virus is so rare that the positive blood test doesn't do much to increase Joe's chances of being infected.

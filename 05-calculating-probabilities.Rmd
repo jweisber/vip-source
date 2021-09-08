@@ -115,7 +115,7 @@ euler_diagram <- function(propositions) {
         theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
         geom_circle(aes(x0 = cirx, y0 = ciry, r = r)) +
         geom_text(aes(x = labx, y = laby, label = labl), 
-                  fontface = "italic", size = 6)
+                  fontface = "italic", size = 7)
 }
 
 propositions <- data.frame(
@@ -158,9 +158,9 @@ ggplot() + theme_void() + coord_fixed() +
         panel.background = element_rect(fill = bookblue)) +
   geom_circle(aes(x0 = 0, y0 = 0, r = 1.5), fill = bookred) +
   geom_text(aes(x = 0, y = 0, label = "A"), 
-            fontface = "italic", size = 6) +
+            fontface = "italic", size = 7) +
   geom_text(aes(x = -2, y = 1.5, label = "~A"), 
-            fontface = "italic", size = 6)
+            fontface = "italic", size = 7)
 ```
 
 A tautology is a proposition that must be true, so its probability is always 1.
@@ -198,7 +198,7 @@ ggplot(data = propositions) +
   geom_circle(aes(x0 = cirx, y0 = ciry, r = r), fill = bookred) +
   geom_circle(aes(x0 = cirx, y0 = ciry, r = r), fill = "transparent") +
   geom_text(aes(x = labx, y = laby, label = labl), 
-            fontface = "italic", size = 6)
+            fontface = "italic", size = 7)
 ```
 
 The Equivalence Rule
@@ -311,3 +311,11 @@ The restrictions on these two rules are essential. If you ignore them, you will 
 #.  You have a biased coin, where each toss has a $3/5$ chance of landing heads. But each toss is independent of the others. Suppose you're going to flip the coin $1,000$ times. The first 998 tosses all land tails. What is the probability at least one of the last two flips will be tails?
 
 #.  There are $3$ empty buckets lined up. Someone takes $4$ apples and places each one in a bucket. The placement of each apple is random and independent of the others. What is the probability that the first two buckets end up with no apples?
+
+#.  Suppose three cards are stacked in order: jack on top, queen in the middle, king on the bottom. If we shuffle them randomly, what is the probability the queen will still be in the middle when we're done? Assume shuffling makes every possible ordering of the cards equally likely. Hint: how many ways are there to assign each card a place in the stack? How many of these have the queen in the middle?
+
+#.  At University X, all courses meet once a week for 3 hours. At the beginning of the semester, the registrar assigns each course a time slot at random: they pick a random weekday and then flip a fair coin to decide on morning (9 a.m. -- 12 p.m.) vs. afternoon (1 p.m. -- 4 p.m.).
+
+    Conflicts are allowed: students can sign up for two (or more) classes scheduled at the same time.
+
+    So far Axl has signed up for 2 classes that do not conflict. If he chooses a 3rd class at random, what is the probability it will introduce a conflict?

@@ -94,7 +94,11 @@ But drawing without replacement is not a fair process, because the draws are not
 
 ## The Gambler's Fallacy
 
-Gambling  often involves fair processes: fair dice, fair roulette wheels, fair decks of cards, etc. But people sometimes forget that fair processes are independent. If a roulette wheel comes up black nine times in a row, they figure it's "due" for red. Or if they get a bunch of bad hands in a row at poker, they figure they're due for a good one soon.
+Gambling often involves fair processes: fair dice, fair roulette wheels, fair decks of cards, etc. But people sometimes forget that fair processes are independent. If a roulette wheel comes up black nine times in a row, they figure it's "due" for red. Or if they get a bunch of bad hands in a row at poker, they figure they're due for a good one soon.
+
+```{marginfigure, echo=TRUE}
+"Simply cannot stop thinking about a girl I knew who dated a guy she couldn't STAND---all because his ex died in a plane crash, & her biggest fear was dying in a plane crash, & she figured there was no way the universe would let both of this guy's girlfriends die in a plane crash" ---[\@isabelzawtun](https://twitter.com/isabelzawtun/status/1329537047837675522?s=20).
+```
 
 This way of thinking is called *the gambler's fallacy*. A fallacy is a mistake in reasoning. The mistake here is failing to fully account for independence. These gamblers know the process in question is fair, in fact that's a key part of their reasoning. They know it's unlikely that the roulette wheel will land on black ten times in a row because a fair wheel should land on black and red equally often. But then they overlook the fact that fair also means independent, and independent means the last nine spins tell us nothing about the tenth spin.
 
@@ -117,7 +121,7 @@ The answer: it's not a mistake. It *would* be a mistake if you knew the coin was
 
 The gambler's fallacy only occurs when you know a process is fair, and then you fail to reason accordingly. If you don't know whether a process is fair, then you aren't making a logical error by reasoning according to a different assumption.
 
-So, is the gambler's fallacy at work if my wife's family expects a boy next? As it turns out, [the process that determines the sex of a child is pretty much fair](https://stat.duke.edu/~dalene/chance/chanceweb/144.rodgers.pdf).^[The question isn't completely settled though, as far as I could tell from my (not very thorough) research.] So the correct answer to our opening question was Answer 3.
+So, is the gambler's fallacy at work if my wife's family expects a boy next? As it turns out, [the process that determines the sex of a child is pretty much fair](https://doi.org/10.1080/09332480.2001.10542293).^[The question isn't completely settled though, as far as I could tell from my (not very thorough) research.] So the correct answer to our opening question was Answer 3.
 
 Most people don't know about the relevant research, though. They may (like me) only know a bit from high school biology about how sex is usually determined at conception. But it's still possible for all they know that some people's eggs are more likely to select sperm cells with an X chromosome, for example.
 

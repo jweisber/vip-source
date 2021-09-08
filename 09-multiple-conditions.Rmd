@@ -67,24 +67,33 @@ $$
 `r newthought("The same")` solution can also be captured in a probability tree. The tree will have an extra stage now, because there's a second draw. And it will have many more leaves, but luckily we can ignore most of them. We just need to worry about the two leaves where both draws have come up black. And we only need to fill in the probabilities along the paths that lead to those two leaves. The result is Figure \@ref(fig:twodrawsreplacement).
 
 ```{r twodrawsreplacement, echo=FALSE, cache=TRUE, fig.cap="Tree diagram for two draws with replacement"}
-nodes <- bind_rows(
-  list(text = "italic(A)",      parent = 0, p = 1/2),
-  list(text = "'~'~italic(A)",  parent = 0, p = 1/2),
-  list(text = "italic(B[1])",   parent = 1, p = 7/10),
-  list(text = "italic(W[1])",   parent = 1),
-  list(text = "italic(B[1])",   parent = 2, p = 2/10),
-  list(text = "italic(W[1])",   parent = 2),
-  list(text = "italic(B[2])",   parent = 3, p = 7/10, leaf_p = 1/2 * 7/10 * 7/10),
-  list(text = "italic(W[2])",   parent = 3),
-  list(text = "italic(B[2])",   parent = 4),
-  list(text = "italic(W[2])",   parent = 4),
-  list(text = "italic(B[2])",   parent = 5, p = 2/10, leaf_p = 1/2 * 2/10 * 2/10),
-  list(text = "italic(W[2])",   parent = 5),
-  list(text = "italic(B[2])",   parent = 6),
-  list(text = "italic(W[2])",   parent = 6)
-)
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3, 4, 4,  5,  5,  6,  6,  7,  7),
+                to   = c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)) %>%
+  graph_from_data_frame()
 
-p_tree(nodes, parse = TRUE, round = 3)
+E(g)$weight <- c(.5, .5, .7, NA, .2, NA, .7, NA, NA, NA, .2, NA, NA, NA)
+
+vertex_attr(g, "name") <- c(NA, "italic(A)", "'~'*italic(A)", 
+                            "italic(B)[1]", "italic(W)[1]", "italic(B)[1]", "italic(W)[1]",
+                            "italic(B)[2]~~~~~~bold('0.245')", "italic(W)[2]", "italic(B)[2]", "italic(W)[2]", 
+                            "italic(B)[2]~~~~~~bold('0.02')", "italic(W)[2]", "italic(B)[2]", "italic(W)[2]")
+
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight), 
+                 label_parse = TRUE,
+                 label_size = 4.5,
+                 angle_calc = "along",
+                 label_dodge = unit(.15, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 4.5,
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 6), rep(0, 8))) +
+  scale_y_reverse(expand = expansion(add = c(.05, .6))) +
+  scale_x_reverse() +
+  theme_void() +
+  coord_flip()
 ```
 
 So $\p(A \given B_1 \wedge B_2) = 0.245 / (0.245 + 0.02)$, which is the same as $49/53$, the answer we got with Bayes' theorem.
@@ -146,26 +155,33 @@ $$
 So, with two witnesses independently agreeing that the cab was blue, the probability goes up from less than $1/2$ to almost $3/4$.
 
 ```{r twowitnesstree, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Tree diagram for the two-witness taxicab problem"}
-nodes <- bind_rows(
-  list(text = "italic(B)",        parent = 0, p = 15/100),
-  list(text = "'~'~italic(B)",    parent = 0, p = 85/100),
-  list(text = "italic(W[1])",     parent = 1, p = 80/100),
-  list(text = "'~'~italic(W[1])", parent = 1),
-  list(text = "italic(W[1])",     parent = 2, p = 20/100),
-  list(text = "'~'~italic(W[1])", parent = 2),
-  list(text = "italic(W[2])",     parent = 3, p = 80/100,
-       leaf_p = 15/100 * 80/100 * 80/100),
-  list(text = "'~'~italic(W[2])", parent = 3),
-  list(text = "italic(W[2])",     parent = 4),
-  list(text = "'~'~italic(W[2])", parent = 4),
-  list(text = "italic(W[2])",     parent = 5, p = 20/100,
-       leaf_p = 85/100 * 20/100 * 20/100),
-  list(text = "'~'~italic(W[2])", parent = 5),
-  list(text = "italic(W[2])",     parent = 6),
-  list(text = "'~'~italic(W[2])", parent = 6)
-)
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3, 4, 4,  5,  5,  6,  6,  7,  7),
+                to   = c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)) %>%
+  graph_from_data_frame()
 
-p_tree(nodes, parse = TRUE, round = 3)
+E(g)$weight <- c(.15, .85, .8, NA, .2, NA, .8, NA, NA, NA, .2, NA, NA, NA)
+
+vertex_attr(g, "name") <- c(NA, "italic(B)", "'~'*italic(B)", 
+                            "italic(W)[1]", "'~'*italic(W)[1]", "italic(W)[1]", "'~'*italic(W)[1]",
+                            "italic(W)[2]~~~~~~bold('0.096')", "'~'*italic(W)[2]", "italic(W)[2]", "'~'*italic(W)[2]",
+                            "italic(W)[2]~~~~~~bold('0.034')", "'~'*italic(W)[2]", "italic(W)[2]", "'~'*italic(W)[2]")
+
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight), 
+                 label_parse = TRUE,
+                 label_size = 7,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 7, 
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 6), rep(0, 8))) +
+  scale_y_reverse(expand = expansion(add = c(.05, 1))) +
+  scale_x_reverse() +
+  theme_void() +
+  coord_flip()
 ```
 
 `r newthought("We can")` use a tree here too, similar to the one we made when sampling two black marbles with replacement. As before, we only need to worry about the $W_1 \wedge W_2$ leaves, the ones where both witnesses say the cab was blue. The result is Figure \@ref(fig:twowitnesstree), which tells us that $\p(B \given W_1 \wedge W_2) = 0.096 / (0.096 + 0.034)$, which is approximately $0.74$.
@@ -217,24 +233,33 @@ $$
 Notice how similar this answer is to the $.92$ we got when sampling with replacement. With so many black and white marbles in the urn, taking one out doesn't make much difference. The second draw is almost the same as the first, so the final answer isn't much affected.
 
 ```{r twodrawsnoreplacement, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="Tree diagram for two draws without replacement, values rounded"}
-nodes <- bind_rows(
-  list(text = "italic(A)",      parent = 0, p = 1/2),
-  list(text = "'~'~italic(A)",  parent = 0, p = 1/2),
-  list(text = "italic(B[1])",   parent = 1, p = 7/10),
-  list(text = "italic(W[1])",   parent = 1),
-  list(text = "italic(B[1])",   parent = 2, p = 2/10),
-  list(text = "italic(W[1])",   parent = 2),
-  list(text = "italic(B[2])",   parent = 3, p = 69/99, leaf_p = 1/2 * 7/10 * 69/99),
-  list(text = "italic(W[2])",   parent = 3),
-  list(text = "italic(B[2])",   parent = 4),
-  list(text = "italic(W[2])",   parent = 4),
-  list(text = "italic(B[2])",   parent = 5, p = 19/99, leaf_p = 1/2 * 2/10 * 19/99),
-  list(text = "italic(W[2])",   parent = 5),
-  list(text = "italic(B[2])",   parent = 6),
-  list(text = "italic(W[2])",   parent = 6)
-)
+g <- data.frame(from = c(1, 1, 2, 2, 3, 3, 4, 4,  5,  5,  6,  6,  7,  7),
+                to   = c(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)) %>%
+  graph_from_data_frame()
 
-p_tree(nodes, parse = TRUE, round = 4)
+E(g)$weight <- c(.5, .5, .7, NA, .2, NA, .697, NA, NA, NA, .1919, NA, NA, NA)
+
+vertex_attr(g, "name") <- c(NA, "italic(A)", "'~'*italic(A)", 
+                            "italic(B)[1]", "italic(W)[1]", "italic(B)[1]", "italic(W)[1]",
+                            "italic(B)[2]~~~~~~bold('0.2439')", "italic(W)[2]", "italic(B)[2]", "italic(W)[2]",
+                            "italic(B)[2]~~~~~~bold('0.0192')", "italic(W)[2]", "italic(B)[2]", "italic(W)[2]")
+
+ggraph(g, layout = "tree") +
+  geom_edge_link(aes(label = weight), 
+                 label_parse = TRUE,
+                 label_size = 7,
+                 angle_calc = "along",
+                 label_dodge = unit(.2, "inches")) +
+  geom_node_label(aes(label = name, filter = !is.na(name)),
+                  size = 7,
+                  parse = TRUE,
+                  label.padding = unit(.5, "lines"),
+                  label.size = 0,
+                  hjust = c(rep(.5, 6), rep(0, 8))) +
+  scale_y_reverse(expand = expansion(add = c(.05, 1))) +
+  scale_x_reverse() +
+  theme_void() +
+  coord_flip()
 ```
 
 `r newthought("The tree")` diagram for this problem will also be similar to the with-replacement version. The key difference is the probabilities at the last stage of the tree. Without independence, the probability of a $B_2$ branch is affected by the $B_1$ that precedes it. The result is Figure \@ref(fig:twodrawsnoreplacement), though note that some values are rounded. Still we find that:
@@ -402,3 +427,8 @@ These are some pretty hairy formulas, so memorizing them probably isn't a good i
     - If $\p(H \given E) > \p(H)$ and $\p(H \given F) > \p(H)$, then $\p(H \given E \wedge F) > \p(H)$.
 
     Assume all conditional probabilities are well-defined. If the statement is true, prove that it is. If it's not true, give a counterexample (use a standard setup like a deck of playing cards or marbles in an urn, and clearly specify which outcomes correspond to each of $H$, $E$, and $F$).
+
+#. Suppose we are sampling *without* replacement from an urn of $10$ marbles: $4$ red and $6$ green.
+
+    a. Is $\p(R_1 \wedge G_2 \wedge R_3) = \p(R_1 \wedge R_2 \wedge G_3)$? 
+    b. Do such identities always hold? In other words, does the order in which various colours are drawn matter to the probability, or does it only matter how many of each colour are drawn?  Prove your answer.

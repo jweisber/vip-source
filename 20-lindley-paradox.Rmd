@@ -56,7 +56,7 @@ df_effective <- data.frame(
   y = dnorm(x, mean = n * .65, sd = sqrt(n * .65 * .35))
 )
 
-ggplot(NULL) +
+ggplot() +
   geom_path(aes(x = x, y = y), data = df_useless, colour = bookred) +
   geom_path(aes(x = x, y = y), data = df_effective, colour = bookgreen) +
   annotate("segment", x = 40, xend = 40, y = 0, yend = fence_y_end,
@@ -82,7 +82,8 @@ ggplot(NULL) +
   annotate("text", x = 68, y = .0125, label = "bogus \"discoveries\"", 
            size = 3, colour = "dimgrey") +        
   xlab(NULL) +
-  scale_y_continuous(NULL, labels = NULL)
+  scale_y_continuous(NULL, labels = NULL) +
+  theme_minimal(base_size = 12)
 ```
 
 ```{r hundredstudiesgrid, echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="The results of our $200$ studies. Green pills represent genuinely effective treatments, red pills represent useless treatments. The dashed green line represents the treatments we approve: only $34$ out of $38$ of these are genuinely effective."}
@@ -136,7 +137,7 @@ df_effective <- data.frame(
   y = dnorm(x, mean = n * .65, sd = sqrt(n * .65 * .35))
 )
 
-ggplot(NULL) +
+ggplot() +
   geom_path(aes(x = x, y = y), data = df_useless, colour = bookred) +
   geom_path(aes(x = x, y = y), data = df_effective, colour = bookgreen) +
   annotate("segment", x = 35, xend = 35, y = 0, yend = yend,
@@ -162,7 +163,8 @@ ggplot(NULL) +
   annotate("text", x = 69, y = .015, label = "bogus\n\"discoveries\"", 
            size = 3, colour = "dimgrey") +        
   xlab(NULL) +
-  scale_y_continuous(NULL, labels = NULL)
+  scale_y_continuous(NULL, labels = NULL) +
+  theme_minimal(base_size = 12)
 ```
 
 Figure \@ref(fig:hundredstudiesgrid2) shows what happens now: about $95\%$ of our approved treatments will be genuine. We discover half of the $40$ genuine treatments, which is $20$. And $.005$ of the $160$ useless treatments is $.8$, which we'll round up to $1$ for purposes of the diagram. So $20/21 \approx .95$ of our approved treatments are genuinely effective.
@@ -257,11 +259,13 @@ Intuitively, this result fits much better with the $50\%$ hypothesis than the $2
 But if she uses significance testing, she won't get this result. In fact she'll get an *impossible* result. Let's see how.
 
 ```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="The result $k = 36$ out of $n = 48$ is easily statistically significant for the null hypothesis $p = .25$."}
-ggplot(data = NULL, aes(x = c(0, 40))) +
+# changed
+ggplot() + 
   stat_function(fun = dnorm, args = list(mean = 12, sd = 3), n = 201) +
   geom_point(aes(x = 36, y = 0), size = 2) +  
   annotate("text", x = 36, y = .01, label = "italic(k) == 36", size = 4,
            parse = TRUE) +
+  xlim(0, 40) +
   xlab("# red bulbs") +
   scale_y_continuous(name = NULL, labels = NULL)
 ```
@@ -276,11 +280,12 @@ $$
 The $99\%$ range is $12 \pm (3)(3)$, or from $3$ to $21$. Her finding of $k = 36$ is nowhere close to this range, so the result is significant at the $.01$ level. She rejects the $25\%$ hypothesis.
 
 ```{r echo=FALSE, cache=TRUE, fig.margin=TRUE, fig.cap="The result $k = 36$ out of $n = 48$ is also statistically significant for the null hypothesis $p = .5$."}
-ggplot(data = NULL, aes(x = c(0, 40))) +
+ggplot() + 
   stat_function(fun = dnorm, args = list(mean = 24, sd = 3.464), n = 201) +
   geom_point(aes(x = 36, y = 0), size = 2) +
   annotate("text", x = 36, y = .01, label = "italic(k) == 36", size = 4,
            parse = TRUE) +
+  xlim(0, 40) +
   xlab("# red bulbs") +
   scale_y_continuous(name = NULL, labels = NULL)
 ```
@@ -299,7 +304,7 @@ But now she has rejected the only two possibilities. There are only two kinds of
 How did things go so wrong? Figure \@ref(fig:lindley) shows what's happening here. Neither hypothesis fits the finding $k = 36$ very well: it's an extremely improbable result on either hypothesis. This is why both hypotheses end up being rejected by a significance test.
 
 ```{r lindley, echo=FALSE, cache=TRUE, fig.cap="An illustration of Lindley's paradox. The finding $k = 36$ doesn't fit well with either hypothesis, so both are rejected. But it fits one of them (red) much better than the other (blue). So the red hypothesis is more plausible from an intuitive perspective."}
-ggplot(data = NULL, aes(x = c(0, 40))) +
+ggplot() +
   stat_function(fun = dnorm, args = list(mean = 12, sd = 3), n = 201,
                 colour = bookblue) +
   stat_function(fun = dnorm, args = list(mean = 24, sd = 3.464), n = 201,
@@ -307,8 +312,10 @@ ggplot(data = NULL, aes(x = c(0, 40))) +
   geom_point(aes(x = 36, y = 0), size = 2) +
   annotate("text", x = 36, y = .01, label = "italic(k) == 36", size = 4,
            parse = TRUE) +
+  xlim(0, 40) +
   xlab("# red bulbs") +
-  scale_y_continuous(name = NULL, labels = NULL)
+  scale_y_continuous(name = NULL, labels = NULL) +
+  theme_minimal(base_size = 12)
 ```
 
 But one of these hypotheses still fits the finding much better than the other. The blue curve ($p = .25$) flatlines long before it gets to $k = 36$, while the red curve ($p = .5$) is only close to flatlining. So the most plausible interpretation is that the shipment is half red bulbs ($p = .5$), and it's just a fluke that we happen to have gotten much more than half red in our sample.

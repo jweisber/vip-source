@@ -10,7 +10,7 @@ These ideas have been extremely popular and influential in the last hundred year
 
 Suppose you must choose between two options.
 
-- $1A$: $\$1$ million dollars, guaranteed.
+- $1A$: $\$1$ million, guaranteed.
 - $1B$: a gamble...
     - $1\%$ chance of $\$0$,
     - $89\%$ chance of $\$1$ million,
@@ -46,16 +46,16 @@ To see why, let's first write out the expected utility formula for each option:
 $$
   \begin{aligned}
      \EU(1A) &= \u(\$1M),\\
-     \EU(1B) &= .89 \times \u(\$1M) + .1 \times \u(\$5M) + .01 \times \u(\$0M),\\
-     \EU(2A) &= .89 \times \u(\$0M) + .11 \times \u(\$1M),\\
-     \EU(2B) &= .9 \times \u(\$0M) + .1 \times\u(\$5M).
+     \EU(1B) &= .89 \times \u(\$1M) + .1 \times \u(\$5M) + .01 \times \u(\$0),\\
+     \EU(2A) &= .89 \times \u(\$0) + .11 \times \u(\$1M),\\
+     \EU(2B) &= .9 \times \u(\$0) + .1 \times\u(\$5M).
   \end{aligned}
 $$
 Now a little arithmetic will show that we get the same result when we subtract the first two formulas and the second two:
 $$
   \begin{aligned}
-    \EU(1A) - \EU(1B) &= -.01 \times \u(\$0M) + .11 \times \u(\$1M) - .1 \times \u(\$5M),\\
-    \EU(2A) - \EU(2B) &= -.01 \times \u(\$0M) + .11 \times \u(\$1M) - .1 \times \u(\$5M).\\
+    \EU(1A) - \EU(1B) &= -.01 \times \u(\$0) + .11 \times \u(\$1M) - .1 \times \u(\$5M),\\
+    \EU(2A) - \EU(2B) &= -.01 \times \u(\$0) + .11 \times \u(\$1M) - .1 \times \u(\$5M).
   \end{aligned}
 $$
 Notice how both formulas are exactly the same. The difference in expected value between the first two options is exactly the same as the difference in value between the second two options. Which means if you're making decisions using the expected utility rule, you can't prefer the A option in the first decision and the B option in the second.
@@ -79,7 +79,7 @@ When Savage first encountered Allais' example, he did exactly what most people d
 
 Savage responded by acknowledging that people are tempted to make exactly the choices Allais predicted. But, he pointed out, people sometimes make irrational choices. And Allais' example brings out our irrational temptations, Savage argued.
 
-To make his case, Savage cast the example in concrete terms. Imagine a random ticket will be drawn from a hat containing tickets numbered $\#1$ through $\#100$. The outcome of each options is determined according to Table \@ref(tab:allaishat).
+To make his case, Savage cast the example in concrete terms. Imagine a random ticket will be drawn from a hat containing tickets numbered $1$ through $100$. The outcome of each options is determined according to Table \@ref(tab:allaishat).
 
 ```{r allaishat, echo=FALSE}
 df <- data.frame(
@@ -102,10 +102,10 @@ Thus, Savage argued, we can see that the expected utility rule is correct once w
 
 `r newthought("Here's")` another way of thinking about Savage's argument. If you choose $2B$ over $2A$, then you must be willing to accept a $1\%$ chance of getting nothing in exchange for a $10\%$ chance at $\$5$ million. But if you're willing to make that trade, then you should be willing to give up option 1A and take option $1B$ instead.
 
-```{r allais1, echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="A graphical depiction of options $1A$ and $1B$ in the Allais paradox"}
+```{r allais1, echo=FALSE, fig.margin=TRUE, fig.show="hold", fig.cap="Options $1A$ and $1B$ in the Allais paradox"}
 f <- function(x) { case_when(x <= 1 ~ 1) }
 
-ggplot(NULL, aes(c(0, 1))) + 
+ggplot() + 
   stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
   scale_y_continuous("", labels = c("0" = "$0", "1" = "$1M", "2" = "$2M", "3" = "$3M", "4" = "$4M", "5" = "$5M"), breaks = seq(0, 5, 1), limits = c(0, 5)) +
   scale_x_continuous("probability", breaks = seq(0, 1, 1/10)) +
@@ -113,7 +113,7 @@ ggplot(NULL, aes(c(0, 1))) +
 
 f <- function(x) { case_when(x <= .01 ~ 0, x <= .9 ~ 1, x <= 1 ~ 5) }
 
-ggplot(NULL, aes(c(0, 1))) + 
+ggplot() + 
   stat_function(fun = f, geom = "area", n = 1000, fill = bookblue) +
   scale_y_continuous("", labels = c("0" = "$0", "1" = "$1M", "2" = "$2M", "3" = "$3M", "4" = "$4M", "5" = "$5M"), breaks = seq(0, 5, 1), limits = c(0, 5)) +
   scale_x_continuous("probability", breaks = seq(0, 1, 1/10)) +
@@ -325,3 +325,7 @@ Most decision theorists find this reasoning compelling. But some turn it on its 
     - $EU(A) > EU(B)$ if we know the ticket will be $T_3$.
 
     Then use those assumptions to show that $EU(A) > EU(B)$.
+
+#. Suppose two gambles $A$ and $B$ depend on the flip of a fair coin. Gamble $A$ wins $\$1$ if heads, and loses $\$1$ otherwise. Gamble $B$ is similar, except you win $\$100$ if heads, lose $\$100$ otherwise.
+
+    Is it possible to have $EU(A) > EU(B)$? If not, prove that it's impossible. If it is possible, describe a utility function $U(\$x) = y$ that makes this inequality hold.

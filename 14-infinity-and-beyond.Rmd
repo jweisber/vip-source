@@ -48,13 +48,14 @@ st_petersburg_overage <- function(x) {
   )
 }
 
-ggplot(NULL, aes(c(0, 1))) + 
+ggplot() +
   stat_function(fun = st_petersburg, geom = "area", n = 1000, fill = bookblue) +
   stat_function(fun = st_petersburg_overage, geom = "area", n = 1000, fill = bookblue, alpha = 0.2) +
   scale_y_continuous(breaks = seq(0, 128, 16)) +
   coord_cartesian(ylim = c(0, 128)) +
   xlab("probability") +
-  ylab("payoff ($)")
+  ylab("payoff ($)") +
+  theme_minimal(base_size = 12)
 ```
 
 As the number of potential flips grows, the rectangles get narrower because the outcomes become less probable. But they also get taller. The payoff doubles every time the probability is cut in half. The result is an infinite sequence of rectangles, each with the same area, namely $1$. So the total area of all the rectangles is infinite.
@@ -83,7 +84,7 @@ His solution: replace monetary value with real value, *utility* in other words. 
 log_utility <- function(x) {
   log(x + 1)
 }
-ggplot(data.frame(x = c(0, 100)), aes(x)) + 
+ggplot(data.frame(x = c(0, 100)), aes(x)) +
   stat_function(fun = log_utility) +
   xlab("dollars") + ylab("utility")
 ```
@@ -117,7 +118,7 @@ data <- bind_rows(
              stringsAsFactors = FALSE)
 )
 
-ggplot(data) + 
+ggplot(data) +
   geom_area(aes(x = x, y = y), fill = bookblue) +
   scale_y_continuous(limits = c(0, 128), breaks = seq(0, 128, 16)) +
   facet_wrap(~unit, scales = "free_y", strip.position = "left",
@@ -165,7 +166,7 @@ st_petersburg_overage <- function(x) {
   )
 }
 
-ggplot(NULL, aes(c(0, 1))) + 
+ggplot() +
   stat_function(fun = st_petersburg, geom = "area", n = 1000, fill = bookblue) +
   stat_function(fun = st_petersburg_overage, geom = "area", n = 1000, fill = bookblue, alpha = 0.2) +
   scale_y_continuous(breaks = seq(0, 128, 16)) +
@@ -364,7 +365,7 @@ So $\infty - \infty$ is not a well-defined quantity.
     c. $0$
     d. one in ten trillion
 
-#.  According to the many gods objection, Pascal’s Wager argument fails to account for the possibility of other gods besides the Catholic conception. What happens to Pascal’s decision table when other gods are included? Circle one answer.
+#.  According to the many gods objection, Pascal’s Wager argument fails to account for the possibility of other gods besides the Catholic conception. What happens to Pascal’s decision table when other gods are included? Choose one.
 
     a.  The expected utilities can’t be calculated because there are infinitely many possible Gods.
     b.  The expected utilities can’t be calculated because you can’t subtract $\infty$ from $\infty$.

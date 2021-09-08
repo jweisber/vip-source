@@ -24,9 +24,8 @@ That's the rough idea behind the most popular frequentist approach to hypothesis
 df <- data.frame(heads = 30:70, probability = dbinom(30:70, 100, 0.5))
 
 ggplot(df, aes(x = heads, y = probability)) + 
-  geom_bar(stat = "identity", fill = "firebrick") +
-  scale_x_continuous("# heads", breaks = seq(30, 70, 10)) +
-  theme(text = element_text(size = 25))
+  geom_bar(stat = "identity", fill = "firebrick") + 
+  scale_x_continuous("# heads", breaks = seq(30, 70, 10))
 ```
 
 Figure \@ref(fig:binom100) shows the probability for each number of heads we might get, if the coin is fair. Notice how unlikely $67$ heads is, compared to say $50$ heads, or even compared to $60$ heads. So it seems like a stretch to just write off our $67$ heads as a coincidence. Plausibly, the coin is biased toward heads.
@@ -127,7 +126,7 @@ ggplot(df, aes(x = heads, y = probability)) +
            yend = fence_y_end - .002, size = .3, colour = "dimgrey", arrow = a) +
   annotate("text", x = 50, y = fence_y_end, label = "99%", size = 6, 
            colour = "dimgrey") +
-  theme(text = element_text(size = 25), legend.position = "none")
+  theme(legend.position = "none")
 ```
 
 Different sciences have different conventions about where to put the cutoff. Social sciences like psychology typically use the $95\%$ cutoff. Only when the outcome of a study is significant at the $.05$ level is the hypothesis rejected. But medical and physical sciences often use a stricter cutoff like $99\%$. A finding has to be significant at the $.01$ level to disprove a hypothesis then.
@@ -151,8 +150,7 @@ ggplot(df, aes(x = heads, y = probability)) +
   scale_x_continuous("# heads", breaks = seq(30, 70, 10)) +
   stat_function(fun = dnorm, args = list(mean = 50, sd = 5), 
                 n = 201, colour = bookred, size = .75) +
-  theme(text = element_text(size = 25),
-        strip.background = element_blank(),
+  theme(strip.background = element_blank(),
         strip.text.x = element_blank())
 ```
 
@@ -194,7 +192,7 @@ df <- bind_rows(df1, df2, df3, df4)
 
 df$sigma <- factor(df$sigma, levels = c("2.5", "5", "10", "20"))
 
-ggplot(df) +
+ggplot(df) + 
   geom_path(aes(x, y, colour = sigma), size = 1) +
   facet_wrap(~ sigma, ncol = 2, nrow = 2) +
   theme(strip.background = element_blank(), strip.text.x = element_blank()) +
@@ -242,19 +240,19 @@ a <- arrow(length = unit(0.015, "npc"))
 
 ggplot(df) +
   stat_function(fun = dnorm, n = 201, size = .5, colour = "dimgrey") +
-  geom_segment(aes(x = x, y = y, xend = xend, yend = yend, colour = group),                  alpha = .7, linetype = "dashed") +
+  geom_segment(aes(x = x, y = y, xend = xend, yend = yend, colour = group), alpha = .7, linetype = "dashed") +
   geom_segment(aes(x = 0, y = .7 * yend, xend = x, yend = .7 * yend, 
                    colour = group), size = .5, arrow = a) +
   geom_text(aes(x = 0, y = .7 * yend + .015, label = group, colour = group),
             size = 5) +
   scale_x_continuous(NULL, breaks = seq(-3, 3, 1),
-                     labels = c("μ - 3σ", "μ - 2σ", "μ - σ", "μ", 
+                     labels = c("μ – 3σ", "μ – 2σ", "μ – σ", "μ", 
                                 "μ + σ", "μ + 2σ", "μ + 3σ")) +
   scale_y_continuous(NULL, breaks = NULL, labels = NULL) +
   theme(legend.position = "none",
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
-        axis.text.x = element_text(face = "italic", size = 20)) +
+        axis.text.x = element_text(face = "italic", size = 18)) +
   scale_colour_manual(values = c(bookblue, "chocolate2", bookred))
 ```
 
@@ -310,7 +308,8 @@ ggplot(df) +
              labeller = l, switch = "y") +
   scale_x_continuous(NULL, labels = NULL) + 
   scale_y_continuous(NULL, labels = NULL) +
-  theme(strip.placement = "outside")
+  theme(strip.placement = "outside") +
+  theme_minimal(base_size = 12)
 ```
 
 In general, the more extreme the value of $p$ is, the larger we need $n$ to be for the approximation to be accurate. But if you do a big enough study, the $68$-$95$-$99$ rule will give a reliable estimate.
@@ -501,7 +500,7 @@ We'll deepen our understanding of this point in [the next chapter](#chlindley).
     #. The result **is** significant at the $.01$ level if $k = 10$.
     #. The result **is** significant at the $.01$ level if $k > 32$.
 
-#.  Suppose $200$ people are lined up side-by-side, each one holding a fair coin. Each person flips their coin $64$ times; every time it lands heads they step $1$ meter forward, each time it lands tails they step $1$ meter backward. Use a normal approximation to answer the following question: after everyone finishes their $64$ steps, approximately how many people will be standing between $4$ and $8$ meters behind the starting line?
+#.  Suppose $200$ people are lined up side-by-side, each one holding a fair coin. Each person flips their coin $64$ times; every time it lands heads they step $1$ meter forward, each time it lands tails they step $1$ meter backward. Use a normal approximation to answer the following question: after everyone finishes their $64$ steps, approximately how many people will be standing between $8$ and $16$ meters behind the starting line?
 
 #.  Suppose we are testing the null hypothesis that a coin is fair: $p = 1/2$. We do $n$ flips and observe $k$ heads; it turns out $k$ is greater than the expected mean $\mu = n/2$. In fact $k$ is more than $3$ standard deviations above the mean: $k > \mu + 3 \sigma$. Which of the following must be true then?
 
@@ -510,3 +509,5 @@ We'll deepen our understanding of this point in [the next chapter](#chlindley).
     #. $.6 n   \geq  k > .55 n$
     #. $.55 n  \geq  k > .51 n$
     #. Not enough information is given.
+
+#.  Your friend is testing the hypothesis that a coin tends to land heads $40\%$ of the time, with the tosses independent. They flip the coin repeatedly, and $48\%$ of the flips land heads. If this result is statistically significant at the $.05$ level, they must have flipped the coin more than $n$ times. What is $n$? Use a normal approximation, and give the highest value of $n$ supported by the information given.
