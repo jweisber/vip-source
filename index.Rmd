@@ -63,7 +63,7 @@ I hope this book also offers more universal benefits.
 
 `r newthought("The")`  book is divided into three main parts. The first explains the basics of logic and probability, the second covers basic decision theory, and the last explores the philosophical foundations of probability and statistics. This last, philosophical part focuses on the Bayesian and frequentist approaches.
 
-A "cheat sheet" summarizing key definitions and formulas appears in [Appendix][Cheat Sheet] [A][Cheat Sheet]. Further appendices cover the axiomatic construction of probability theory, Hume's problem of induction, and Goodman's new ridle of induction.
+A "cheat sheet" summarizing key definitions and formulas appears in [Appendix][Cheat Sheet] [A][Cheat Sheet]. Further appendices cover the axiomatic construction of probability theory, Hume's problem of induction, and Goodman's new riddle of induction.
 
 `r newthought("I")` usually get a mix of students in my course, with different ideological inclinations and varying levels of background. For some the technical material is easy, even review. For others, a healthy skepticism about scientific methods and discourses comes naturally. My goal is to get these students all more or less on the same page.
 
