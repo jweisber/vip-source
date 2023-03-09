@@ -130,7 +130,7 @@ propositions <- data.frame(
 euler_diagram(propositions)
 ```
 
-Exclusivity and independence can be hard to keep straight at first. One way to keep track of the difference is to remember that mutually exclusive propositions don't overlap, but independent propositions do. Independence means the truth of one proposition doesn't affect the chance of the other. So if you find out that $A$ is true, $B$ still has the same chance of being true. Which means there have to be some $B$ possibilities within the $A$ circle. (Unless the probability of $A$ was zero to start with, but our official definition of independence in the next chapter will rule this case out by hypothsis.)
+Exclusivity and independence can be hard to keep straight at first. One way to keep track of the difference is to remember that mutually exclusive propositions don't overlap, but independent propositions do. Independence means the truth of one proposition doesn't affect the chance of the other. So if you find out that $A$ is true, $B$ still has the same chance of being true. Which means there have to be some $B$ possibilities within the $A$ circle. (Unless the probability of $A$ was zero to start with, but our official definition of independence in the next chapter will rule this case out by hypothesis.)
 
 ```{r echo=FALSE, fig.margin=TRUE, fig.cap="Independent propositions do overlap (unless one of them has zero probability)."}
 propositions <- data.frame(
