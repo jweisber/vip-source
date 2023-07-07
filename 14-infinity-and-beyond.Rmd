@@ -266,7 +266,7 @@ But, Pascal famously replied, you can decide how you spend your days. And you ca
 
 `r newthought("A more")` serious problem with Pascal's argument is known as *the many gods* problem.
 
-In Pascal's day, in France, Catholicism dominatd the religious landscape. So for him, believing in God just meant believing in *Catholicism's* conception of God. But there are many possible gods besides the Catholic god, like the god of Islam, the god of Judaism, the gods of Hinduism, and so on.
+In Pascal's day, in France, Catholicism dominated the religious landscape. So for him, believing in God just meant believing in *Catholicism's* conception of God. But there are many possible gods besides the Catholic god, like the god of Islam, the god of Judaism, the gods of Hinduism, and so on.
 
 What happens if you choose the wrong God? You might go to hell! The god of Mormonism might send you to hell for believing in Catholicism, for example. There might even be an anti-Catholic god, who sends all Catholics to hell and everyone else to heaven!
 

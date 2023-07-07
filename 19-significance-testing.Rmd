@@ -354,7 +354,7 @@ So VisioPerfect's claim has failed our test: the results are significant at the 
 ## Warnings
 
 ```{marginfigure, echo=TRUE}
-The American Statistical Association [recently released a statement](https://www.amstat.org/newsroom/pressreleases/P-ValueStatement.pdf) to clarify the ideas behind significance testing, and prevent their misuse. It's also the punchline of [one of my favourite comics](https://imgs.xkcd.com/comics/significant.png).
+The American Statistical Association [recently released a statement](https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf) to clarify the ideas behind significance testing, and prevent their misuse. It's also the punchline of [one of my favourite comics](https://imgs.xkcd.com/comics/significant.png).
 ```
 
 Significance  testing is very confusing. So confusing that scientists, and even statisticians, often misunderstand and misuse it. Dangerous medical treatments have been approved and administered as a result. Scientific careers have even been built on the misuse of significance testing.
